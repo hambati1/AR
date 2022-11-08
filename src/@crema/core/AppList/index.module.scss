@@ -1,0 +1,40 @@
+@import '../../../shared/styles/variable.scss';
+
+.listFooter {
+  padding: 10px;
+  color: $text-color-secondary;
+}
+
+.loaderProgress {
+  color: $text-color-secondary;
+  border-top: solid 1px darken($border-color, 2);
+  box-sizing: border-box;
+
+  & span {
+    margin-left: 8px;
+
+    [dir=rtl] & {
+      margin-left: 0;
+      margin-right: 8px;
+    }
+  }
+}
+
+.emptyListContainer {
+  border-radius: $card-radius;
+  min-height: 450px;
+  padding: 20px;
+  font-size: $font-size-lg;
+  color: $text-color-hint;
+
+  & p {
+    font-size: $font-size-base;
+    color: $text-color;
+  }
+
+  & h4 {
+    font-size: 18px;
+    color: $text-color-secondary;
+    margin-bottom: 12px;
+  }
+}

@@ -1,0 +1,200 @@
+@import '../../../shared/styles/variable';
+
+.cardBody {
+  // border-radius: $card-radius;
+  border: 1px solid $gray-200;
+}
+
+.aboutImg {
+  width: 100%;
+
+  @include media-breakpoint-up(md) {
+    width: 40%;
+    order: 2;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    max-height: 300px;
+  }
+
+  &>img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.aboutImgContent {
+  width: 100%;
+  padding: 20px;
+  //background-image: url('../../../assets/images/home_bg.png');
+
+  @include media-breakpoint-up(md) {
+    width: 100%;
+    order: 1;
+    height: 270px;
+  }
+
+  & h2 {
+    margin-bottom: 16px;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-lg;
+  }
+
+  & p {
+    margin-bottom: 20px;
+  }
+}
+
+.aboutBtnView {
+  margin-left: -8px;
+  margin-right: -8px;
+
+  @include media-breakpoint-up(xxl) {
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+
+  & .btn {
+    font-size: 11PX;
+    margin-bottom: 8px;
+    font-weight: 600;
+    margin-left: 8px;
+    margin-right: 8px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    border-radius: 5px;
+    background-color: #db7100 !important;
+    border: 1px solid #db7100 !important;
+
+    &:hover {
+      background: $white;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      margin-right: 12px;
+      margin-left: 12px;
+    }
+  }
+}
+
+.aboutReadBtn {
+  font-weight: $font-weight-medium;
+  background-color: $component-bg;
+  color: $black;
+}
+
+.aboutSectionCard {
+  border-radius: $card-radius;
+  border: 1px solid $gray-200;
+
+  & .cardBodyContent {
+    padding: 20px;
+    text-align: center;
+  }
+
+  & h2 {
+    margin-bottom: 16px;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-lg;
+  }
+
+  & p {
+    margin-bottom: 20px;
+  }
+
+  & .readBtn {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $primary;
+      background: $white;
+      border-color: $primary;
+    }
+  }
+}
+
+.aboutSectionAvatar {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  font-size: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-circle;
+  box-shadow: 2px 2px 3px 1px rgb(0 0 0 / 47%);
+  background-color: #393939 !important;
+
+  @media screen and (min-width: 1600px) {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.teamCard {
+  border-radius: $card-radius;
+  border: 1px solid $gray-200;
+
+  & .teamCardBody {
+    padding: 20px;
+  }
+
+  & h2 {
+    margin-bottom: 16px;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-lg;
+  }
+}
+
+.teamSliderView {
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-bottom: 25px;
+
+  & .slick-dots li {
+    width: 12px;
+    height: 12px;
+    margin-right: 2px;
+    margin-left: 2px;
+
+    & button {
+      width: 12px;
+      height: 12px;
+
+      &:before {
+        width: 12px;
+        height: 12px;
+        font-size: 10px;
+        color: #be8658;
+      }
+    }
+  }
+
+  & .slick-dots li.slick-active button:before {
+    color: #825a44;
+  }
+}
+
+.teamSliderInfo {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+
+  & h5 {
+    margin-bottom: 4px;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-base;
+  }
+}
+
+.teamSliderThumb {
+  width: 100%;
+  margin-bottom: 12px;
+
+  & img {
+    border-radius: $card-radius;
+    width: 100%;
+  }
+}

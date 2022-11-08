@@ -1,0 +1,36 @@
+@import '../../../../../../shared/styles/variable.scss';
+
+.horizontalItemNavItem {
+  
+  min-height: 40px;
+  padding: 4px 12px;
+  text-decoration: none;
+  min-width: 160px;
+
+  &.active {
+      pointer-events: none;
+  }
+}
+
+.horizontalItemNavItemIcon {
+  color: $text-color;
+  margin-right: 12px;
+  font-size: 16px;
+
+  @include media-breakpoint-up(xl) {
+    font-size: 18px;
+  }
+}
+
+.horizontalItemNavItemText {
+  color: inherit;
+}
+
+.horizontalItemNavItemBadge {
+  margin-left: 16px;
+
+  [dir=rtl] & {
+    margin-left: 0;
+    margin-right: 16px;
+  }
+}

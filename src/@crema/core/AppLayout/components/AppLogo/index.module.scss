@@ -1,0 +1,22 @@
+@import '../../../../../shared/styles/variable.scss';
+
+.appLogo {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: center;
+margin-left: 70px;
+  & img {
+    // height: 36px;
+    width: 130px;
+  }
+}
+
+.modulesLogo
+{
+  width: 50px;
+  position: absolute;
+}
+.modulesLogofield{
+  width: 200px;
+}

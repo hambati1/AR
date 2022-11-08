@@ -1,0 +1,100 @@
+@import '../../../shared/styles/variable';
+
+.know-base {
+  width: 100%;
+}
+
+.knowBaseHeader {
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+  & h2 {
+    color: $text-color;
+    margin-bottom: 24px;
+    font-size: 20px;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.knowDivider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  @include media-breakpoint-up(sm) {
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+  @include media-breakpoint-up(lg) {
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+  @include media-breakpoint-up(xxl) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+}
+
+.knowSectionHeading {
+  color: $text-color;
+  margin-bottom: 16px;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 24px;
+  }
+}
+
+.knowSale {
+  margin-bottom: 16px;
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 40px;
+  }
+}
+
+.knowKbCard {
+  border-radius: $card-radius;
+  border: $border-width solid $border-color;
+  
+  & .kbCardBody {
+    padding: 20px;
+  }
+
+  & h5 {
+    margin-bottom: 8px;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.knowKbScrollbar {
+  margin-bottom: 20px;
+  height: 130px;
+}
+
+.knowBadge {
+  font-size: $font-size-base;
+  text-transform: uppercase;
+  border-radius: 30px;
+  border: $border-width solid $gray-400;
+  font-weight: $font-weight-medium;
+  padding: 5px 12px;
+}
+
+.searchInput {
+  [dir='rtl'] & {
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+}
+.searchBtn {
+  [dir='rtl'] & {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

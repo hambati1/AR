@@ -1,0 +1,79 @@
+@import '../../../../shared/styles/variable.scss';
+
+.sidebarSetting {
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    @include media-breakpoint-up(xxl) {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.customizeItem {
+  position: relative;
+
+  &:not(:last-child) {
+    border-bottom: solid 1px $border-color;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    @include media-breakpoint-up(xxl) {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
+  }
+
+  & h4 {
+    margin-bottom: 8px;
+
+    @include media-breakpoint-up(xxl) {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.customizeSwitchView {
+  position: relative;
+}
+
+.customizeNavOption {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.customizeNavOptionItem {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+.customizeNavOptionContent {
+  position: relative;
+  cursor: pointer;
+
+  & .layout-img {
+    width: 72px;
+  }
+}
+
+.customizeNavOptionRightIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: $primary;
+  color: $white;
+}
+
+.formSwitchInput {
+  cursor: pointer;
+}

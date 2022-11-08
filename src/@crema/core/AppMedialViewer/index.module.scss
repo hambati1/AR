@@ -1,0 +1,56 @@
+@import '../../../shared/styles/variable.scss';
+
+.appMediaModal {
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+  top: 0;
+  padding-bottom: 0;
+}
+
+.mediaViewer {
+  position: relative;
+  background-color: rgb(49, 53, 65);
+}
+
+.medialCarousel {
+  padding: 30px;
+
+  & .slick-track {
+    display: flex;
+    align-items: center;
+  }
+
+  & .slick-slide {
+    text-align: center;
+    position: relative;
+
+    & img {
+      width: auto !important;
+      max-height: 96vh;
+      height: auto !important;
+    }
+
+    & > * {
+      position: relative;
+      z-index: 9;
+    }
+  }
+
+  & .slick-dots {
+    bottom: 10px;
+  }
+
+  & .slick-dots li button:before, & .slick-dots li.slick-active button:before {
+    background-color: $body-bg;
+  }
+
+  & .slick-next {
+    right: 0;
+  }
+
+  & .slick-prev {
+    left: 0;
+  }
+}

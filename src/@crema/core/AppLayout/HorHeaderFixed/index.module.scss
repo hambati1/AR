@@ -1,0 +1,258 @@
+@import '../../../../shared/styles/variable';
+
+.appLayoutHorHeaderFixed {
+  min-height: 100vh;
+  position: relative;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column !important;
+
+  & .customizerOption {
+    position: fixed;
+    top: 138px;
+  }
+
+  &.appMainFixedFooter {
+    padding-bottom: 46px;
+
+    & .appMainFooter {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 9;
+      width: 100%;
+    }
+  }
+
+  &.boxedLayout {
+    @include media-breakpoint-up(xxl) {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1360px;
+      border-left: solid $border-width $border-color;
+      border-right: solid $border-width $border-color;
+    }
+  }
+
+  &.framedLayout {
+    @include media-breakpoint-up(xxl) {
+      padding: 20px;
+      background-color: $primary;
+
+      & .appLayoutHorHeaderFixedInner {
+        border-radius: 12px;
+        background-color: $body-bg;
+      }
+
+      & .appHeaderHorHeaderFixed,
+      & .headerHorHeaderFixedMain {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+      }
+
+      & .appMainFooter {
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+      }
+    }
+  }
+}
+
+.appLayoutHorHeaderFixedInner {
+  display: flex;
+  flex-direction: column !important;
+}
+
+.appMainHorHeaderFixedSidebar {
+  flex: 0 0 auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  width: 17.5rem !important;
+  transition: all 0.1s linear;
+  background-color: $sidebar-bg-color;
+  color: $sidebar-text-color;
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  [dir=rtl] & {
+    left: auto;
+    right: 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 17.5rem !important;
+  }
+}
+
+.appMainHorHeaderFixedSidebarInner {
+  display: flex;
+  flex-direction: column;
+}
+
+.appHeaderHorHeaderFixed {
+  background-color: inherit;
+  color: inherit;
+  border-bottom: solid $border-width $border-color;
+  width: 100% !important;
+  height: auto;
+  line-height: 1;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  & .trigger {
+    font-size: 24px;
+    margin-right: 20px;
+    padding: 5.5px;
+    color: inherit;
+    cursor: pointer;
+
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+
+    [dir=rtl] & {
+      margin-right: 0;
+      margin-left: 20px;
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @include media-breakpoint-up(xl) {
+    max-width: 1140px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    max-width: 1440px;
+  }
+
+  @media screen and (min-width: 1920px) {
+    max-width: 1720px;
+  }
+}
+
+.headerHorHeaderFixedMain {
+  position: relative;
+  background-color: inherit;
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.headerHorHeaderFixedMainFlex {
+  display: flex;
+  align-items: center;
+}
+
+.appLayoutHorHeaderFixedMain {
+  width: 100% !important;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  & .mainContentView {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  & > .container {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.appSidebarHorHeaderFixedScrollbar {
+  height: calc(100vh - 56px);
+
+  @include media-breakpoint-up(sm) {
+    height: calc(100vh - 71px);
+  }
+}
+
+//Horizontal Main Menu
+.appMainHorHeaderFixedMenu {
+  background-color: inherit;
+  color: inherit;
+  border-bottom: 0 none;
+  display: none;
+  padding-left: 12px;
+
+  [dir=rtl] & {
+    padding-left: 0;
+    padding-right: 12px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+  }
+}
+
+// Sidebar Background Image
+.horHeaderFixedSidebarImgBackground {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  & > div {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+// Drawer
+.appHorHeaderFixedDrawer {
+  width: 17.5rem !important;
+
+  & :global(.offcanvas-body) {
+    padding: 0;
+  }
+}
+
+.dropdownToggleBtn {
+  color: inherit;
+  text-align: left;
+  font-size: $font-size-base;
+
+  [dir=rtl] & {
+    text-align: right;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+.userInfoContent {
+  display: none;
+
+  @include media-breakpoint-up(xl) {
+    display: block;
+    min-width: 160px;
+  }
+}

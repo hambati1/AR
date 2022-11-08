@@ -1,0 +1,24 @@
+@import '../../../shared/styles/variable.scss';
+
+.listFooter {
+  padding: 10px;
+  color: $text-color-secondary;
+}
+
+.loaderProgress {
+  color: $text-color-secondary;
+
+  & span {
+    margin-left: 8px;
+
+    [dir=rtl] & {
+      margin-left: 0;
+      margin-right: 8px;
+    }
+  }
+}
+
+.gridColumnCount {
+  flex-grow: 0;
+  box-sizing: border-box;
+}

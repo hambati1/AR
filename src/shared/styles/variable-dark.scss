@@ -1,0 +1,151 @@
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+
+//Custom Color system
+$text-color: rgb(255,255,255);
+$text-color-secondary: rgb(229, 231, 235);
+$text-color-disabled: rgb(156, 163, 175);
+$text-color-hint: #c6c7cc;
+// Body
+//
+// Settings for the `<body>` element.
+$body-bg:                   #1F2527;
+$body-color:                #fff;
+$component-bg:              #2B3137;
+
+$border-color:                rgba(255, 255, 255, 0.2);
+
+// sidebar variable
+$sidebar-bg-color: $white;
+$sidebar-text-color: $text-color;
+$sidebar-dark-bg-color: #001529;
+$sidebar-curved-menu-color: #F4F7FE;
+
+// bootstrap variable changes in dark theme
+$gray-100: #212529;
+$gray-200: #343a40;
+$gray-300: #495057;
+$gray-400: #6c757d;
+$gray-500: #adb5bd;
+$gray-600: #ced4da;
+$gray-700: #dee2e6;
+$gray-800: #e9ecef;
+$gray-900: #f8f9fa;
+
+// fusv-disable
+// scss-docs-start gray-colors-map
+$grays: (
+        "100": $gray-100,
+        "200": $gray-200,
+        "300": $gray-300,
+        "400": $gray-400,
+        "500": $gray-500,
+        "600": $gray-600,
+        "700": $gray-700,
+        "800": $gray-800,
+        "900": $gray-900
+);
+// scss-docs-end gray-colors-map
+// fusv-enable
+
+$component-active-color:             $component-bg;
+
+$dropdown-bg:                        $component-bg;
+$dropdown-color:                     $body-color;
+$dropdown-link-color:               $gray-900;
+$dropdown-link-hover-color:         shade-color($dropdown-link-color, 10%);
+$dropdown-link-hover-bg:            $gray-200;
+
+$tooltip-color:                      $component-bg;
+
+$toast-background-color:             rgba($component-bg, .85);
+$toast-header-background-color:      rgba($component-bg, .85);
+$badge-color:                        $component-bg;
+
+$modal-content-bg:                   $component-bg;
+$modal-header-border-color:          $border-color;
+$modal-footer-border-color:         $modal-header-border-color;
+
+$progress-bar-color:                 $component-bg;
+
+$list-group-bg:                      $component-bg;
+$list-group-disabled-bg:             $list-group-bg;
+$list-group-action-active-color:     $body-color;
+$list-group-color:                  $gray-900;
+$list-group-hover-bg:               $gray-100;
+$list-group-active-color:           $component-active-color;
+$list-group-active-bg:              $component-active-bg;
+$list-group-active-border-color:    $list-group-active-bg;
+$list-group-disabled-color:         $gray-600;
+$list-group-disabled-bg:            $list-group-bg;
+$list-group-action-color:           $gray-700;
+$list-group-action-hover-color:     $list-group-action-color;
+$list-group-action-active-color:    $body-color;
+$list-group-action-active-bg:       $gray-200;
+
+$carousel-control-color:             $component-bg;
+$carousel-indicator-active-bg:       $component-bg;
+$carousel-caption-color:             $component-bg;
+$kbd-color:                          $component-bg;
+
+$input-bg:                           $body-bg;
+$input-disabled-bg:                  $gray-200;
+$input-color:                        $body-color;
+$input-focus-bg:                     $component-bg;
+$input-group-addon-border-color:     $border-color;
+$input-border-color:                 $border-color;
+$input-plaintext-color:              $body-color;
+$input-focus-color:                  $input-color;
+$input-placeholder-color:               $gray-600;
+$input-plaintext-color:                 $body-color;
+$input-focus-border-color:              tint-color($component-active-bg, 50%);
+$form-check-input-focus-border:      $input-focus-border-color;
+$input-group-addon-bg:                  $gray-200;
+$input-group-addon-color:               $input-color;
+
+$form-file-button-bg:             $input-group-addon-bg;
+$form-file-button-hover-bg:       shade-color($form-file-button-bg, 5%);
+$form-file-button-color:          $input-color;
+$form-check-input-bg:                $gray-700;
+$form-select-bg:                     $body-bg;
+$form-select-border-color:           $border-color;
+$form-select-focus-border-color:     $border-color;
+$form-select-color:                 $input-color;
+$form-select-disabled-bg:           $gray-200;
+$form-range-track-bg:             $gray-300;
+
+$accordion-bg:                       $component-bg;
+$accordion-color:                    $body-color;
+$accordion-button-color:                  $accordion-color;
+$accordion-button-bg:                     $accordion-bg;
+
+$thumbnail-bg:                       $component-bg;
+$table-color:                        $body-color;
+$thumbnail-border-color:             $border-color;
+
+$table-border-color:                 $border-color;
+$table-border-color:                 $border-color;
+
+$nav-tabs-link-active-bg:            $component-bg;
+$nav-tabs-border-color:              $border-color;
+$nav-tabs-link-hover-border-color:   $gray-200 $gray-200 $border-color;
+$nav-tabs-link-active-bg:            $body-bg;
+
+$pagination-bg:                      $component-bg;
+$pagination-border-color:            $border-color;
+$pagination-hover-border-color:      $border-color;
+$pagination-disabled-bg:             $component-bg;
+$pagination-disabled-border-color:  $border-color;
+
+$popover-bg:                         $component-bg;
+$popover-header-bg:                  shade-color($popover-bg, 6%);
+$popover-arrow-color:               $popover-bg;
+$popover-body-color:                $body-color;
+
+$offcanvas-bg-color:                $modal-content-bg;
+
+$btn-close-color:                   $text-color;
+$btn-close-bg:                      url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$btn-close-color}'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>");

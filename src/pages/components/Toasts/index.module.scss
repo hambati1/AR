@@ -1,0 +1,17 @@
+.toastHeader {
+  button {
+    [dir='rtl'] & {
+      margin-left: 0;
+      margin-right: 0.75rem;
+    }
+  }
+}
+.toastHeading,
+.toastHeadingImg {
+  margin-right: auto;
+
+  [dir='rtl'] & {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}

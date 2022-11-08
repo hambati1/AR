@@ -1,0 +1,72 @@
+@import '../../../../../shared/styles/variable';
+
+.profileConnection {
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  border-top: $border-width solid $border-color;
+}
+
+.profileConnectionTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+}
+
+.memberCard {
+  border: $border-width solid $border-color;
+  border-radius: $border-radius;
+}
+
+.memberCardTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $text-color-secondary;
+}
+
+.memberThumb {
+  margin-right: 12px;
+
+  [dir='rtl'] & {
+    margin-right: 0;
+    margin-left: 12px;
+  }
+
+  & img {
+    width: 40px;
+    height: 40px;
+    border-radius: $border-radius-circle;
+  }
+}
+
+.memberInfoContent {
+  flex: 1;
+
+  & h5 {
+    font-weight: $font-weight-medium;
+    font-size: $font-size-base;
+    margin-bottom: 10px;
+  }
+
+  & .memberBtn {
+    font-size: $font-size-sm;
+    height: 30px;
+    padding: 3.5px 12px;
+  }
+}
+
+.disconnectBtn {
+  background-color: rgba($secondary, 0.1);
+  color: $secondary;
+  border-color: rgba($secondary, 0.1);
+  font-size: $font-size-sm;
+
+  &:hover,
+  &:focus {
+    background-color: rgba($secondary, 0.2);
+    color: $secondary;
+    border-color: rgba($secondary, 0.2);
+  }
+}

@@ -1,0 +1,98 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+// stylelint-disable indentation
+
+// Utilities
+
+$utilities: ();
+// stylelint-disable-next-line scss/dollar-variable-default
+$utilities: map-merge(
+                (
+                  // scss-docs-start utils-position
+                        "start": (
+                                property: right,
+                                class: start,
+                                values: $position-values
+                        ),
+                        "end": (
+                                property: left,
+                                class: end,
+                                values: $position-values
+                        ),
+                  // scss-docs-end utils-position
+                  // scss-docs-start utils-borders
+                        "border-end": (
+                                property: border-left,
+                                class: border-end,
+                                values: (
+                                        null: $border-width solid $border-color,
+                                        0: 0,
+                                )
+                        ),
+                        "border-start": (
+                                property: border-right,
+                                class: border-start,
+                                values: (
+                                        null: $border-width solid $border-color,
+                                        0: 0,
+                                )
+                        ),
+                  // scss-docs-end utils-borders
+                  // Margin utilities
+                  // scss-docs-start utils-spacing
+                        "margin-end": (
+                                responsive: true,
+                                property: margin-left,
+                                class: me,
+                                values: map-merge($spacers, (auto: auto))
+                        ),
+                        "margin-start": (
+                                responsive: true,
+                                property: margin-right,
+                                class: ms,
+                                values: map-merge($spacers, (auto: auto))
+                        ),
+                  // Negative margin utilities
+                        "negative-margin-end": (
+                                responsive: true,
+                                property: margin-left,
+                                class: me,
+                                values: $negative-spacers
+                        ),
+                        "negative-margin-start": (
+                                responsive: true,
+                                property: margin-right,
+                                class: ms,
+                                values: $negative-spacers
+                        ),
+                  // Padding utilities
+                        "padding-end": (
+                                responsive: true,
+                                property: padding-left,
+                                class: pe,
+                                values: $spacers
+                        ),
+                        "padding-start": (
+                                responsive: true,
+                                property: padding-right,
+                                class: ps,
+                                values: $spacers
+                        ),
+                  // scss-docs-end utils-spacing
+                  // scss-docs-start utils-border-radius
+                        "rounded-end": (
+                                property: border-top-left-radius border-bottom-left-radius,
+                                class: rounded-end,
+                                values: (null: $border-radius)
+                        ),
+                        "rounded-start": (
+                                property: border-bottom-right-radius border-top-right-radius,
+                                class: rounded-start,
+                                values: (null: $border-radius)
+                        ),
+                  // scss-docs-end utils-border-radius
+                ),
+                $utilities
+);

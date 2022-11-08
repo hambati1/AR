@@ -1,0 +1,352 @@
+@import '../../shared/styles/variable';
+
+.userPages {
+  flex: 1;
+
+  & > div {
+    flex: 1;
+  }
+}
+
+.userContainer {
+  padding-bottom: 24px;
+  display: flex;
+  flex: 1;
+
+  @include media-breakpoint-up(xxl) {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+.userCard {
+  max-width: 480px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  border-radius: $card-radius;
+
+  @include media-breakpoint-up(lg) {
+    padding: 32px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    padding: 48px 64px;
+  }
+}
+
+.userCardLg {
+  max-width: 900px;
+}
+
+.userCardLgSpace {
+  padding: 32px;
+
+  @include media-breakpoint-up(lg) {
+    padding: 48px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    padding: 48px 64px;
+  }
+}
+
+.userCardUnlock {
+  @include media-breakpoint-up(sm) {
+    padding: 48px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-left: 32px;
+    padding-right: 64px;
+
+    [dir='rtl'] & {
+      padding-left: 64px;
+      padding-right: 32px;
+    }
+  }
+
+  @include media-breakpoint-up(xxl) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  & .userStyledImg {
+    padding-right: 0;
+
+    & svg {
+      fill: $primary;
+    }
+
+    [dir='rtl'] & {
+      padding-left: 0;
+    }
+  }
+}
+
+.userStyledImg {
+  height: 400px;
+  object-fit: contain;
+
+  & svg {
+    fill: $primary;
+  }
+  @include media-breakpoint-up(lg) {
+    padding-right: 40px;
+
+    [dir='rtl'] & {
+      padding-right: 0;
+      padding-left: 40px;
+    }
+  }
+
+  &.mln {
+    margin-left: -32px;
+
+    [dir='rtl'] & {
+      margin-left: 0;
+      margin-right: -32px;
+    }
+  }
+}
+
+.userCardHeader {
+  margin-bottom: 20px;
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 32px;
+  }
+
+  & h3 {
+    margin-bottom: 0;
+    font-weight: $font-weight-medium;
+    font-size: 20px;
+  }
+}
+
+.userCardLogo {
+  margin-right: 8px;
+
+  [dir='rtl'] & {
+    margin-right: 0;
+    margin-left: 8px;
+  }
+
+  & img {
+    height: 24px;
+  }
+}
+
+.userForm {
+  text-align: left;
+  margin-bottom: 12px;
+
+  [dir='rtl'] & {
+    text-align: right;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 20px;
+  }
+
+  & .formField {
+    margin-bottom: 20px;
+  }
+}
+
+.user-field-action {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+
+  @include media-breakpoint-up(sm) {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 26px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 32px;
+  }
+
+  & .ant-form-item-control-input {
+    min-height: 10px;
+  }
+
+  & .ant-form-item-control-input-content {
+    display: flex;
+    flex-direction: column;
+
+    @include media-breakpoint-up(sm) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+}
+
+.user-field-action-row {
+  & .ant-form-item-control-input-content {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  & .user-field-action-link {
+    padding-top: 2px;
+  }
+}
+
+.userFieldActionLink {
+  color: $primary;
+  font-size: $font-size-base;
+  cursor: pointer;
+
+  &.ml-auto {
+    margin-top: 8px;
+
+    @include media-breakpoint-up(sm) {
+      margin-left: auto;
+      margin-top: 0;
+
+      [dir='rtl'] & {
+        margin-left: 0;
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+.userCardFooterAction {
+  & > span {
+    color: $gray-600;
+    font-size: $font-size-base;
+    margin-right: 16px;
+
+    [dir='rtl'] & {
+      margin-right: 0;
+      margin-left: 16px;
+    }
+  }
+}
+
+.feedback {
+  position: relative;
+  top: -10px;
+}
+
+.userSocialLink {
+  & button {
+    background-color: transparent;
+    box-shadow: none;
+    border: 0 none;
+    padding: 5px;
+    border-radius: $border-radius-circle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+
+    &:hover {
+      background-color: fade($tooltip-bg, 4);
+    }
+
+    &:focus {
+      background-color: fade($tooltip-bg, 15);
+    }
+
+    &:after {
+      box-shadow: none;
+    }
+
+    & .anticon {
+      font-size: $font-size-base;
+      display: block;
+
+      @include media-breakpoint-up(md) {
+        font-size: $font-size-lg;
+      }
+
+      & svg {
+        display: block;
+      }
+    }
+  }
+}
+
+.userCardFooter {
+  color: $gray-700;
+  font-size: $font-size-base;
+  margin-top: 20px;
+}
+
+.userCardFooterLink {
+  margin-left: 8px;
+  color: $primary;
+  cursor: pointer;
+  display: inline-block;
+
+  [dir='rtl'] & {
+    margin-left: 0;
+    margin-right: 8px;
+  }
+}
+
+.userCardPara {
+  margin-bottom: 24px;
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 48px;
+  }
+}
+
+.userCardForPassword {
+  padding: 0;
+
+  & > .ant-row {
+    margin: 0 !important;
+  }
+
+  & > .ant-row > .ant-col {
+    padding: 0 !important;
+  }
+
+  & .userStyledImg {
+    padding-right: 0;
+    height: 100%;
+    object-fit: cover;
+
+    [dir='rtl'] & {
+      padding-left: 0;
+    }
+  }
+}
+
+.userStyledForPassword {
+  padding: 32px;
+
+  @include media-breakpoint-up(lg) {
+    padding: 48px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    padding: 48px 64px;
+  }
+}
+
+.userStyledResetImgCol {
+  text-align: center;
+
+  @include media-breakpoint-up(lg) {
+    align-self: center;
+  }
+}
+
+.checkboxWrapper {
+  margin-right: 4px;
+
+  [dir='rtl'] & {
+    margin-left: 4px;
+    margin-right: 0;
+  }
+}

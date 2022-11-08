@@ -1,0 +1,9 @@
+@import '../../../../shared/styles/variable';
+
+.packageThreeRow {
+  max-width: 1000px;
+
+  & :global(.row) {
+    justify-content: center;
+  }
+}

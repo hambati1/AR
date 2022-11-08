@@ -1,0 +1,44 @@
+@import '../../../shared/styles/variable.scss';
+
+.card {
+  position: relative;
+  box-shadow: $box-shadow;
+  border-radius: $card-radius;
+  display: flex;
+  flex-direction: column;
+  border: 0 none;
+
+  &.heightFull {
+    height: 100%;
+  }
+}
+
+.cardBody {
+  padding: 16px 20px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  padding: 16px 20px 0;
+  border-bottom: 0 none;
+}
+
+.cardTitle {
+  color: $text-color;
+  font-weight: $font-weight-semi-bold;
+  font-size: $font-size-lg;
+  width: 100%;
+}
+
+.action {
+  white-space: nowrap;
+}
+
+.cardFooter {
+  padding: 0 20px 16px;
+  border-top: 0 none;
+  background-color: transparent;
+}

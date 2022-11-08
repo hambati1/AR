@@ -1,0 +1,340 @@
+@import '../../../../shared/styles/variable';
+
+.appLayoutUserMiniHeader {
+  min-height: 100vh;
+  position: relative;
+  padding-top: 56px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+
+  @include media-breakpoint-up(md) {
+    padding-top: 70px;
+  }
+
+  &.appMainFixedFooter {
+    padding-bottom: 46px;
+
+    & .appMainFooter {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 9;
+      width: 100%;
+    }
+  }
+}
+
+.appLayoutUserMiniHeaderInner {
+  display: flex;
+}
+
+.userMiniHeaderSidebar {
+    flex: 0 0 auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    width: 17.5rem !important;
+    transition: all 0.1s linear;
+    background-color: transparent;
+    border-right: solid $border-width $border-color;
+    color: inherit;
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    [dir=rtl] & {
+      left: auto;
+      right: 0;
+      border-right: 0 none;
+      border-left: solid $border-width $border-color;
+    }
+
+  .appLayoutUserMiniHeaderCollapsed & {
+    @include media-breakpoint-up(xl) {
+
+      width: 4rem !important;
+      transition: all 200ms linear;
+
+      & .userMiniHeaderVerticalNavGroup {
+        display: none;
+      }
+
+      & .userMiniHeaderMenuVerticalItem {
+        padding-left: 12px !important;
+        width: calc(100% - 16px);
+        padding-right: 12px !important;
+        margin-left: 8px;
+        margin-right: 8px;
+        border-radius: $border-radius;
+
+        &:after {
+          display: none;
+        }
+      }
+
+      & .navItemIcon {
+        margin-right: 0;
+      }
+
+      & .navItemContent {
+        display: none;
+      }
+
+      & + .appLayoutUserMiniHeaderMain {
+        width: calc(100% - 4rem) !important;
+        margin-left: 4rem;
+        transition: all 200ms linear;
+
+        [dir=rtl] & {
+          margin-left: 0;
+          margin-right: 4rem;
+        }
+
+        & .appHeaderUserMiniHeader {
+          width: calc(100% - 4rem) !important;
+          transition: all 200ms linear;
+        }
+      }
+    }
+  }
+}
+
+.appHeaderUserMiniHeader {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: $text-color;
+  background-color: $component-bg;
+  border-bottom: solid $border-width $border-color;
+  height: 56px;
+  width: 100% !important;
+  transition: all 0.1s linear;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+
+  [dir=rtl] & {
+    right: auto;
+    left: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 70px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: calc(100% - 17.5rem) !important;
+  }
+
+  & .trigger {
+    font-size: 24px;
+    padding: 5.5px;
+    cursor: pointer;
+    color: $text-color;
+  }
+}
+
+.appLayoutUserMiniHeaderMain {
+  transition: all 0.1s linear;
+  width: 100% !important;
+  margin-left: 0;
+  position: relative;
+
+  [dir=rtl] & {
+    margin-right: 0;
+  }
+
+  @include media-breakpoint-up(xl) {
+    width: calc(100% - 17.5rem) !important;
+    margin-left: 17.5rem;
+
+    [dir=rtl] & {
+      margin-left: 0;
+      margin-right: 17.5rem;
+    }
+  }
+}
+
+.mainUserMiniHeaderScrollbar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-height: calc(100vh - 56px);
+
+  .appMainFixedFooter & {
+    max-height: calc(100vh - 104px);
+  }
+
+  @include media-breakpoint-up(sm) {
+    max-height: calc(100vh - 70px);
+
+    .appMainFixedFooter & {
+      max-height: calc(100vh - 118px);
+    }
+  }
+}
+
+.appSidebarUserMiniHeaderScrollbar {
+  height: 100vh !important;
+
+  .appMainFixedFooter & {
+    height: calc(100vh - 46px) !important;
+  }
+}
+
+// Sidebar Background Image
+.userMiniHeaderSidebarImgBackground {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  & > div {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+.dropdownToggleBtn {
+  color: inherit;
+  text-align: left;
+  font-size: $font-size-base;
+
+  [dir=rtl] & {
+    text-align: right;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+.userInfoContent {
+  display: none;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+    min-width: 160px;
+  }
+}
+
+
+.boxedLayout {
+  @include media-breakpoint-up(xxl) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1360px;
+    border-left: solid $border-width $border-color;
+    border-right: solid $border-width $border-color;
+    padding-top: 0;
+
+    & .userMiniHeaderSidebar {
+      position: sticky;
+
+      & + .appLayoutUserMiniHeaderMain .appHeaderUserMiniHeader {
+        width: 100% !important;
+      }
+    }
+
+    & .appHeaderUserMiniHeader,
+    &.appLayoutUserMiniHeaderCollapsed .appHeaderUserMiniHeader {
+      position: sticky;
+      width: 100% !important;
+    }
+
+    & .appLayoutUserMiniHeaderMain,
+    &.appLayoutUserMiniHeaderCollapsed .appLayoutUserMiniHeaderMain {
+      margin-left: 0;
+      width: 100% !important;
+
+      [dir=rtl] & {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+.framedLayout {
+  @include media-breakpoint-up(xxl) {
+    padding: 20px;
+    background-color: $primary;
+
+    & .appLayoutUserMiniHeaderInner {
+      border-radius: 12px;
+      background-color: $body-bg;
+    }
+
+    & .userMiniHeaderSidebar {
+      position: sticky;
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+
+      [dir=rtl] & {
+        border-radius: 0 12px 12px 0;
+      }
+
+      & + .appLayoutUserMiniHeaderMain .appHeaderUserMiniHeader {
+        width: 100% !important;
+
+        [dir=rtl] & {
+          border-top-left-radius: 12px;
+        }
+      }
+    }
+
+    & .appHeaderUserMiniHeader,
+    &.appLayoutUserMiniHeaderCollapsed .appHeaderUserMiniHeader {
+      position: sticky;
+      width: 100% !important;
+      border-top-right-radius: 12px;
+    }
+
+    & .appLayoutUserMiniHeaderMain,
+    &.appLayoutUserMiniHeaderCollapsed .appLayoutUserMiniHeaderMain {
+      margin-left: 0;
+      width: 100% !important;
+
+      [dir=rtl] & {
+        margin-right: 0;
+      }
+    }
+
+    & :global(.appMainFooter) {
+      border-bottom-right-radius: 12px;
+
+      [dir=rtl] & {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 12px;
+      }
+    }
+
+    & .appSidebarUserMiniHeaderScrollbar {
+      height: calc(100vh - 40px) !important;
+    }
+
+    & .mainUserMiniHeaderScrollbar {
+      max-height: calc(100vh - 110px);
+    }
+
+    & :global(.apps-container) {
+      height: calc(100vh - 212px);
+    }
+  }
+}
+

@@ -1,0 +1,63 @@
+.inputGroupBtnRight {
+  [dir='rtl'] & {
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+.inputGroupBtnLeft {
+  [dir='rtl'] & {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.dropDownDemoWrapper {
+  div {
+    &:nth-child(2) {
+      button {
+        &:first-child {
+          [dir='rtl'] & {
+            border-top-right-radius: 0.25rem !important;
+            border-bottom-right-radius: 0.25rem !important;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+          }
+        }
+        &:nth-child(2) {
+          [dir='rtl'] & {
+            border-top-left-radius: 0.25rem !important;
+            border-bottom-left-radius: 0.25rem !important;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+          }
+        }
+      }
+    }
+  }
+}
+.dropDownDemoWrapper2 {
+  div {
+    button {
+      &:first-child {
+        [dir='rtl'] & {
+          border-top-right-radius: 0.25rem !important;
+          border-bottom-right-radius: 0.25rem !important;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+      &:nth-child(2) {
+        [dir='rtl'] & {
+          border-top-left-radius: 0.25rem !important;
+          border-bottom-left-radius: 0.25rem !important;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.accHeader {
+  button {
+    &::after {
+      [dir='rtl'] & {
+        margin-left: 0;
+        margin-right: auto;
+      }
+    }
+  }
+}

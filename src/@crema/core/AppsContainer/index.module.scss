@@ -1,0 +1,229 @@
+@import '../../../shared/styles/variable.scss';
+@import '../../../shared/styles/mixin.scss';
+
+.appsWrap {
+  position: relative;
+}
+
+.appsWrapHeader {
+  margin-bottom: 16px;
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 20px;
+  }
+
+  & h2 {
+    color: $text-color;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-lg;
+    margin-bottom: 0;
+  }
+}
+
+.menuBtn {
+  display: block;
+  margin-right: 8px;
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+  border: 0 none;
+  width: 35px;
+  height: 35px;
+  font-size: 22px;
+  color: $text-color;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: $text-color;
+  }
+
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}
+
+.appsContainer {
+  height: calc(100vh - 147px);
+
+  .appMainFixedFooter & {
+    height: calc(100vh - 191px) !important;
+  }
+
+  @include media-breakpoint-up(sm) {
+    height: calc(100vh - 161px);
+
+    .appMainFixedFooter & {
+      height: calc(100vh - 207px);
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    height: calc(100vh - 181px);
+
+    .appMainFixedFooter & {
+      height: calc(100vh - 227px);
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    height: calc(100vh - 168px);
+
+    .appMainFixedFooter & {
+      height: calc(100vh - 214px);
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: calc(100vh - 168px);
+
+    .appMainFixedFooter &,
+    .appMainFooter & {
+      height: calc(100vh - 214px);
+    }
+  }
+
+  @include media-breakpoint-up(xxl) {
+    height: calc(100vh - 172px);
+
+    .appMainFixedFooter &,
+    .appMainFooter & {
+      height: calc(100vh - 218px);
+    }
+  }
+}
+
+.appsMainContent {
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    width: calc(100% - 17.5rem);
+    padding-left: 32px;
+
+    [dir='rtl'] & {
+      padding-right: 32px;
+      padding-left: 0;
+    }
+  }
+
+  &.appsMainContentFull {
+    @include media-breakpoint-up(lg) {
+      width: 100%;
+      padding-left: 0;
+    }
+  }
+}
+
+.appsContentContainer {
+  height: calc(100% - 56px) !important;
+
+  @include media-breakpoint-up(md) {
+    height: calc(100% - 64px) !important;
+  }
+
+  &.fullView {
+    height: 100% !important;
+  }
+
+  & .scrum-absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  & .react-trello-board {
+    height: 100%;
+    background-color: $body-bg !important;
+
+    & > div {
+      height: 100%;
+    }
+  }
+
+  & .scrum-row,
+  & .react-trello-board > div > .smooth-dnd-container.horizontal {
+    display: inline-flex;
+    min-width: 100%;
+    height: 100%;
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  & .scrum-col,
+  & .react-trello-board .smooth-dnd-container .react-trello-lane {
+    min-width: 280px;
+    max-width: 280px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: $card-radius;
+    background-color: rgba($white, 45);
+    height: 100% !important;
+    min-height: 100%;
+
+    @include media-breakpoint-up(md) {
+      min-width: 354px;
+      max-width: 354px;
+    }
+  }
+
+  &
+    .react-trello-board
+    .smooth-dnd-container
+    .react-trello-lane
+    > div:not(.scrum-board-list-header-card) {
+    align-self: normal;
+    overflow: hidden;
+    max-height: none;
+  }
+
+  & .scroll-scrum-item {
+    height: auto !important;
+  }
+
+  & .react-trello-board .smooth-dnd-container.vertical {
+    overflow-y: auto;
+    height: calc(100% - 72px);
+  }
+}
+
+.appsFooter {
+  padding: 8px 24px;
+  border-top: 1px solid $border-color;
+}
+
+.appsHeader {
+  padding: 4px 24px;
+  min-height: 56px;
+  border-bottom: solid 1px $border-color;
+
+  @include media-breakpoint-up(md) {
+    min-height: 64px;
+  }
+}
+
+.appsSidebar {
+  height: 100%;
+
+  @include media-breakpoint-up(lg) {
+    width: 17.5rem;
+  }
+}
+
+.card {
+  position: relative;
+  box-shadow: $box-shadow;
+  border-radius: $card-radius;
+  display: flex;
+  flex-direction: column;
+  border: 0 none;
+
+  &.heightFull {
+    height: 100%;
+  }
+}
+
+.appsOffcanvas {
+  width: 17.5rem !important;
+}

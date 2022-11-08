@@ -1,0 +1,125 @@
+.inputGroupBtnRight {
+  [dir='rtl'] & {
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+.inputFormControlLeft {
+  [dir='rtl'] & {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: none;
+  }
+}
+.inputFormControlLeftBorder {
+  [dir='rtl'] & {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.inputGroupBtnLeft {
+  [dir='rtl'] & {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+.inputFormControlRight {
+  [dir='rtl'] & {
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+}
+
+.checkboxWrapper {
+  span {
+    [dir='rtl'] & {
+      border-top-right-radius: 0.25rem !important;
+      border-bottom-right-radius: 0.25rem !important;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
+
+.dropDownDemoWrapper1 {
+  button {
+    [dir='rtl'] & {
+      border-top-right-radius: 0.25rem !important;
+      border-bottom-right-radius: 0.25rem !important;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
+
+.dropDownDemoWrapper2 {
+  button {
+    [dir='rtl'] & {
+      border-top-left-radius: 0.25rem !important;
+      border-bottom-left-radius: 0.25rem !important;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+.dropDownDemoWrapper3 {
+  button {
+    &:first-child {
+      [dir='rtl'] & {
+        border-top-right-radius: 0.25rem !important;
+        border-bottom-right-radius: 0.25rem !important;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    &:not(:first-child) {
+      [dir='rtl'] & {
+        border-top-left-radius: 0.25rem !important;
+        border-bottom-left-radius: 0.25rem !important;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+  }
+}
+
+.segmentedWrapper1 {
+  button {
+    &:first-child {
+      [dir='rtl'] & {
+        border-top-right-radius: 0.25rem !important;
+        border-bottom-right-radius: 0.25rem !important;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-left: none;
+      }
+    }
+  }
+}
+.segmentedWrapper2 {
+  button {
+    &:nth-child(3) {
+      [dir='rtl'] & {
+        border-top-left-radius: 0.25rem !important;
+        border-bottom-left-radius: 0.25rem !important;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: none;
+      }
+    }
+  }
+}

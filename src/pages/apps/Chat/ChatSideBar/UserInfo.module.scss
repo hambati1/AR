@@ -1,0 +1,125 @@
+@import '../../../../shared/styles/variable';
+
+.chatUserAvatar {
+  font-size: 24px;
+  border-radius: $border-radius-circle;
+  background-color: orange;
+}
+
+.chatUserStatus {
+  z-index: 1;
+
+  [dir='rtl'] & {
+    right: auto;
+    left: 0;
+  }
+
+  &:hover {
+    & .chatUserStatusDot {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+.chatUserStatusDot {
+  width: 12px;
+  height: 12px;
+  border-radius: $border-radius-circle;
+  border: solid $border-width $white;
+  display: block;
+  transition: all 0.3s ease;
+  right: 0;
+  bottom: 0;
+
+  @media screen and (min-width: 1600px) {
+    width: 14px;
+    height: 14px;
+  }
+
+  &.chatUserStatusDotOnly {
+    z-index: 1;
+
+    [dir='rtl'] & {
+      right: auto;
+      left: 0;
+    }
+  }
+}
+
+.chatUserInfoContent {
+  padding-left: 14px;
+  width: calc(100% - 45px);
+
+  [dir='rtl'] & {
+    padding-left: 0;
+    padding-right: 16px;
+  }
+}
+
+.chatUserName {
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  margin-bottom: 2px;
+}
+
+.chatUserStatusText {
+  color: $text-color-secondary;
+  font-size: $font-size-base;
+}
+
+.userDropdownMenu {
+  padding: 0;
+
+  & :global(.dropdown-item.active) {
+    background-color: transparent;
+    color: $text-color;
+
+    &:hover {
+      background-color: $gray-200;
+    }
+
+    & .icon {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 20px;
+  opacity: 0;
+  visibility: hidden;
+  display: inline-block;
+  color: $text-color;
+}
+
+.dropDownLink {
+  width: 12px;
+  height: 12px;
+  color: $text-color;
+  font-size: 9px;
+  border-radius: 50%;
+  background-color: $component-bg;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: -14px;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 6px;
+
+  &:hover {
+    visibility: visible;
+    opacity: 1;
+    background-color: $component-bg;
+    color: $text-color;
+  }
+}

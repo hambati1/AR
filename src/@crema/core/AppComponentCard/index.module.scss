@@ -1,0 +1,28 @@
+@import '../../../shared/styles/variable.scss';
+@import '../../../shared/styles/mixin.scss';
+
+.compCardTitleDescription {
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  color: $text-color-secondary;
+}
+
+.preTag {
+  border-radius: $border-radius-lg;
+  padding: 12px;
+  max-height: none !important;
+}
+
+.componentRoot {
+  border-radius: 8px;
+  background-color: $body-bg;
+
+  & > :global(.btn) {
+    margin: 5px;
+  }
+}
+
+.codeIcon {
+  font-size: 20px;
+  color: $text-color-secondary;
+}

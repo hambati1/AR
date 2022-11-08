@@ -1,0 +1,94 @@
+@import '../../../../shared/styles/variable.scss';
+
+.filterMain {
+  position: relative;
+  margin-bottom: 20px;
+
+  & .configuration-btn-view {
+    width: 100%;
+  }
+}
+
+.filterContent {
+  &.stay-row{
+    flex-direction: row;
+  }
+}
+
+.filterView {
+
+  @include media-breakpoint-up(md) {
+    margin-right: 15px;
+
+    [dir=rtl] & {
+      margin-right: 0;
+      margin-left: 15px;
+    }
+  }
+}
+
+.filterRightAction {
+  margin-left: -5px;
+
+  & .ant-btn {
+    min-width: 110px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+
+    @include media-breakpoint-up(md) {
+      margin-top: 0;
+    }
+
+    & img + span {
+      margin-left: 8px;
+    }
+  }
+}
+
+.filterCard {
+  transition: all 0.2s ease;
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  margin-top: 0;
+
+  &.visible {
+    // height: auto;
+    height: 100% !important;
+    opacity: 1;
+    visibility: visible;
+    margin-top: 10px;
+  }
+
+  & .ant-form-item {
+    margin-bottom: 10px;
+  }
+
+  & .float-label {
+    margin-bottom: 0;
+  }
+}
+
+.filterCardBody {
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  padding: 20px;
+}
+
+.filterCardBtnView {
+
+  & .btn {
+    min-width: 110px;
+
+    &:not(:first-child) {
+      margin-left: 10px;
+
+      [dir=rtl] & {
+        margin-left: 0;
+        margin-right: 10px;
+      }
+    }
+  }
+}

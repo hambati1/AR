@@ -1,0 +1,143 @@
+@import '../../../shared/styles/variable.scss';
+
+.signup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  & .signup-checkbox {
+    display: flex;
+    font-size: $font-size-base;;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 6px;
+    margin-bottom: 20px;
+  }
+}
+
+.signup-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-footer {
+  background-color: $body-bg;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 24px;
+  margin: 12px -24px -24px;
+
+  @include media-breakpoint-up(sm) {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: -20px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: -40px;
+    margin-right: -40px;
+    margin-bottom: -40px;
+  }
+
+  & .signup-btn {
+    text-transform: capitalize;
+  }
+}
+
+.signup-text {
+  font-size: $font-size-base;
+  margin-right: 10px;
+
+  @include media-breakpoint-up(md) {
+    margin-right: 16px;
+  }
+}
+
+.signup-text-grey {
+  color: $text-color-disabled;
+}
+
+.signup-socialLink {
+  display: flex;
+  align-items: center;
+}
+
+.signup-link {
+  color: $primary;
+  font-size: $font-size-base;
+  cursor: pointer;
+}
+
+.signup-btn {
+  border-radius: $border-radius;
+  width: 10rem;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-base;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.signup-btn-full {
+  width: 100%;
+}
+
+.signup-icon-btn {
+  color: $text-color-secondary;
+  padding: 6px 4px 4px;
+  border: 0 none;
+  box-shadow: none;
+  background-color: transparent;
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+
+  @include media-breakpoint-up(md) {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    padding: 8px 6px 6px;
+  }
+
+  &:hover, &:focus {
+    color: $primary;
+    background-color: transparent;
+  }
+}
+
+.signup-form {
+  position: relative;
+
+  & .form-field {
+    margin-bottom: 20px;
+  }
+
+  & .form-btn-field {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  & .form-field-action {
+    font-size: $font-size-base;
+    color: $text-color-secondary;
+
+    & span {
+      margin-right: 8px;
+      display: inline-block;
+    }
+  }
+}
+
+.underlineNone {
+  text-decoration: none;
+}
+
+.colorTextPrimary {
+  color: $primary;
+}

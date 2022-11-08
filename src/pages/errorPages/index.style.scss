@@ -1,0 +1,125 @@
+@import '../../shared/styles/variable.scss';
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+
+  @include media-breakpoint-up(xxl) {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+.error-img {
+  width: 100%;
+  margin-bottom: 16px;
+  max-width: 200px;
+
+  @include media-breakpoint-up(sm) {
+    max-width: 300px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 32px;
+    max-width: 706px;
+  }
+
+  & svg {
+    width: 100%;
+    height: 400px;
+    // fill: $primary;
+    fill: #db7100;
+  }
+}
+
+.error-img-lg {
+  width: 100%;
+  margin-bottom: 16px;
+  max-width: 300px;
+
+  @include media-breakpoint-up(sm) {
+    max-width: 400px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 32px;
+    max-width: 500px;
+  }
+
+  & svg {
+    width: 100%;
+    height: 400px;
+    fill: $primary;
+  }
+}
+
+.error-content {
+  margin-bottom: 16px;
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 20px;
+  }
+
+  & h3 {
+    margin-bottom: 12px;
+    font-size: 20px;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 22px;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      margin-bottom: 40px;
+      font-size: 24px;
+    }
+  }
+
+  &-lg {
+    margin-bottom: 32px;
+
+    @include media-breakpoint-up(xxl) {
+      margin-bottom: 64px;
+    }
+  }
+}
+
+.error-para {
+  margin-bottom: 16px;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $gray-600;
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 40px;
+  }
+}
+
+.error-btn {
+  font-weight: $font-weight-medium;
+  // font-size: $font-size-lg;
+  text-transform: capitalize;
+  background-color: #db7100;
+  border: 1px solid #db7100;
+  font-size: 12px;
+}
+
+.error-form-coming {
+  max-width: 384px;
+  margin: 0 auto 20px;
+}
+
+.error-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+  text-align: left;
+
+  & .form-field {
+    margin-bottom: 20px;
+  }
+}

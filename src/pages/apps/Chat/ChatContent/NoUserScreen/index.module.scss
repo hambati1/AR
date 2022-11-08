@@ -1,0 +1,12 @@
+@import '../../../../../shared/styles/variable';
+@import '../../../../../shared/styles/mixin';
+
+.messageIcon {
+  font-size: 3rem;
+  color: $gray-500;
+  margin-bottom: 20px;
+
+  @include media-breakpoint-up(lg) {
+    font-size: 5rem;
+  }
+}

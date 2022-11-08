@@ -1,0 +1,59 @@
+@import '../../../shared/styles/variable';
+
+.portfolio {
+  width: 100%;
+}
+
+.portfolioHeader {
+  max-width: 672px;
+  margin-bottom: 24px;
+
+  & h2 {
+    color: $text-color;
+    margin-bottom: 16px;
+    font-weight: $font-weight-medium;
+    font-size: 20px;
+  }
+
+  & p {
+    color: $text-color-secondary;
+    margin-bottom: 12px;
+  }
+}
+
+.portfolioTabs {
+  margin-bottom: 20px;
+
+  & button {
+    background-color: transparent !important;
+  }
+}
+
+.reactPhotoGallery {
+  & img {
+    border-radius: $card-radius;
+  }
+}
+
+.tab {
+  font-size: 16px !important;
+  text-transform: capitalize;
+  padding: 6px 12px !important;
+  min-width: 10px;
+  margin-left: 6px;
+  margin-right: 6px;
+  color: $text-color;
+
+  &:active,
+  &:focus,
+  &:visited {
+    color: $primary !important;
+    border: none !important;
+    border-bottom: 2px solid $primary !important;
+    text-shadow: 0 0 0.25px currentColor;
+  }
+  &:hover {
+    color: $primary;
+    border: none;
+  }
+}

@@ -1,0 +1,16 @@
+@import '../../../../shared/styles/variable.scss';
+@import '../../../../shared/styles/mixin.scss';
+
+.appMainFooter {
+  padding: 5.5px 20px;
+  color: $text-color;
+  background-color: $component-bg;
+
+  @include media-breakpoint-up(md) {
+    padding: 5.5px 32px;
+  }
+
+  & p {
+    margin-bottom: 0;
+  }
+}

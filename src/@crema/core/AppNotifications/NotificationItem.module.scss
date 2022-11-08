@@ -1,0 +1,34 @@
+@import '../../../shared/styles/variable.scss';
+
+.notifyListItem {
+  padding: 8px 20px;
+  border-bottom: 0 none !important;
+}
+
+.notifyMessageAvatar {
+  margin-right: 16px;
+  width: 48px;
+  height: 48px;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 16px;
+  }
+}
+
+.notifyMessageContent {
+  position: relative;
+  font-size: $font-size-base;
+  color: $text-color-secondary;
+
+  & h3 {
+    font-size: $font-size-base;
+    color: $text-color;
+    font-weight: $font-weight-medium;
+    margin-bottom: 2px;
+  }
+
+  & p {
+    margin-bottom: 0;
+  }
+}

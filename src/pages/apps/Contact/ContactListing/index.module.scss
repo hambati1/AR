@@ -1,0 +1,485 @@
+@import '../../../../shared/styles/variable';
+
+.contactListDesktop {
+  display: none;
+
+  @include media-breakpoint-up(sm) {
+    display: block;
+  }
+}
+
+.contactListMobile {
+  display: block;
+
+  @include media-breakpoint-up(sm) {
+    display: none;
+  }
+}
+
+.contactFooter {
+  @include media-breakpoint-up(sm) {
+    display: none;
+  }
+}
+
+.contactHeaderPagination {
+  padding-left: 8px;
+  padding-right: 8px;
+
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}
+
+.contactContentHeader {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.contactHeaderCheckboxView {
+  margin-right: 20px;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 20px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    margin-right: 10px;
+
+    [dir=rtl] & {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+}
+
+.contactCheckedAction {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+}
+
+.dropdownToggleBtn {
+  color: inherit;
+  text-align: left;
+  font-size: $font-size-base;
+
+  [dir=rtl] & {
+    text-align: right;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+.contactViewSelect {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+
+  [dir=rtl] & {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+
+.contactGridView {
+  padding: 24px;
+}
+
+.contactGridCard {
+  border-radius: $card-radius;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+  position: relative;
+  cursor: pointer;
+  padding: 16px;
+
+  & .contactListItemActionHover {
+    top: 0;
+    transform: inherit;
+  }
+
+  &:hover {
+    & .contactListItemActionHover {
+      right: 0;
+      opacity: 1;
+      visibility: visible;
+      width: 118px;
+
+      [dir=rtl] & {
+        right: auto;
+        left: 0;
+      }
+    }
+
+    & .contactGridCardHeaderAction {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}
+
+.contactGridCardHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.contactGridCardHeaderCheckbox {
+  min-width: 36px;
+}
+
+.contactGridCardHeaderAction {
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+.contactGridCardAvatar {
+  width: 50px;
+  height: 50px;
+  background-color: $primary;
+}
+
+.contactGridCardContent {
+  text-align: center;
+  margin-bottom: 12px;
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 16px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 20px;
+  }
+}
+
+.contactGridCardTitle {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-base;
+}
+
+.contactGridCardAction {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  font-size: $font-size-base;
+  border-top: solid 2px $border-color;
+
+  @include media-breakpoint-up(xxl) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+.contactGridCardActionItem {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include media-breakpoint-up(xxl) {
+    width: 50%;
+  }
+
+  &:not(:first-child) {
+    border-top: solid $border-width $border-color;
+
+    @include media-breakpoint-up(xxl) {
+      border-top: 0 none;
+      border-left: solid $border-width $border-color;
+
+      [dir=rtl] & {
+        border-left: 0 none;
+        border-right: solid $border-width $border-color;
+      }
+    }
+  }
+}
+
+.contactGridCardIcon {
+  font-size: $font-size-lg;
+  margin-right: 8px;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 8px;
+  }
+}
+
+.contactListItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: solid $border-width $border-color;
+  padding: 7px 24px;
+  cursor: pointer;
+  position: relative;
+
+  &:global(.rootCheck) {
+    font-weight: $font-weight-light;
+    background-color: rgba($primary, 0.2);
+  }
+
+  &:hover {
+    & .contactListItemActionHover {
+      opacity: 1;
+      visibility: visible;
+      width: 118px;
+    }
+
+    & .contactListItemAction {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    & .contactListItemCompany {
+      transform: translateX(-16px);
+
+      [dir=rtl] & {
+        transform: translateX(16px);
+      }
+    }
+  }
+}
+
+.contactListItemCheckboxView,
+.contactListItemStar {
+  margin-right: 16px;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 16px;
+  }
+}
+
+.contactListItemCompany {
+  transition: all 0.4s ease;
+  transform: translateX(0);
+}
+
+.contactListAvatarMobileView {
+  margin-right: 14px;
+  margin-top: 3px;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 14px;
+  }
+
+  &:global(.checked) {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+    background-color: $primary;
+    color: $white;
+    border-radius: $border-radius-circle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.contactListItemAvatarView {
+  position: relative;
+
+  @include media-breakpoint-up(sm) {
+    margin-right: 16px;
+
+    [dir=rtl] & {
+      margin-right: 0;
+      margin-left: 16px;
+    }
+  }
+}
+
+.contactListItemAvatar {
+  background-color: $primary;
+  min-width: 36px;
+  width: 36px;
+  height: 36px;
+}
+
+.contactListItemTitle {
+  font-weight: $font-weight-medium;
+  flex: 1;
+  margin-right: 16px;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 16px;
+  }
+}
+
+.contactListItemCol {
+  flex: 1;
+  margin-right: 16px;
+  display: none;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 16px;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
+}
+
+.contactListItemEmail {
+
+  @include media-breakpoint-up(sm) {
+    display: block;
+  }
+}
+
+.contactListItemAction {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  transition: all 0.5s ease;
+
+  [dir=rtl] & {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+
+.contactListExportIcon {
+  margin-left: 8px;
+  display: none;
+
+  [dir=rtl] & {
+    margin-left: 0;
+    margin-right: 8px;
+  }
+
+  @include media-breakpoint-up(sm) {
+    display: block;
+  }
+}
+
+.contactListItemMenuView {
+  margin-left: 8px;
+
+  [dir=rtl] & {
+    margin-left: 0;
+    margin-right: 8px;
+  }
+}
+
+.contactSearch {
+  position: relative;
+  max-width: 165px;
+  flex-wrap: nowrap;
+}
+
+.contactListItemActionHover {
+  display: flex;
+  align-items: center;
+  transform: translateY(-50%);
+  transition: all 0.4s ease;
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  overflow: hidden;
+
+  [dir=rtl] & {
+    right: auto;
+    left: 24px;
+  }
+
+  & :global(.btn) {
+    margin: 0 2px;
+  }
+}
+
+.contactListItemMobile {
+  display: flex;
+  align-items: center;
+  border-bottom: solid $border-width $border-color;
+  padding: 7px 24px;
+  cursor: pointer;
+  position: relative;
+
+  &:global(.rootCheck) {
+    font-weight: $font-weight-light;
+    background-color: rgba($primary, 0.2);
+  }
+}
+
+.contactListItemMainContentMobile {
+  position: relative;
+  width: calc(100% - 60px);
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+
+  [dir=rtl] & {
+    padding-right: 0;
+    padding-left: 10px;
+  }
+}
+
+.contactListItemContentMobile {
+  display: flex;
+  flex-direction: column;
+  color: $text-color-secondary;
+}
+
+.contactListItemActionMobile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 60px;
+}
+
+.contactListItemStarMobile {
+  margin-left: 10px;
+
+  [dir=rtl] & {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+}
+
+.contactListExportMobileIcon {
+  font-size: 20px;
+}
+
+.contactListItemMobileTitle {
+  font-weight: $font-weight-medium;
+  color: $text-color;
+}
+.searchInput {
+  [dir='rtl'] & {
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+  }
+}
+.searchBtn {
+  [dir='rtl'] & {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

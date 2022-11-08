@@ -1,0 +1,103 @@
+@import '../../../../shared/styles/variable';
+@import '../../../../shared/styles/mixin';
+
+.chatNoUserScreen {
+  font-size: 18px;
+
+  @include media-breakpoint-up(xl) {
+    font-size: 20px;
+  }
+}
+
+.messageScreenScrollbar {
+  height: calc(100% - 132px);
+}
+
+.noMessage {
+  font-size: 18px;
+  color: $text-color-secondary;
+}
+
+.addNewMessageAction {
+  margin-left: 8px;
+
+  [dir='rtl'] & {
+    margin-left: 0;
+    margin-right: 8px;
+  }
+
+  & .messageBtn {
+    background-color: darken($body-bg, 5);
+    color: $text-color-disabled;
+    border: 0 none;
+    border-radius: $border-radius-circle;
+    height: 40px;
+    width: 40px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    font-size: 20px;
+
+    & .anticon-send {
+      margin-left: 3px;
+
+      [dir='rtl'] & {
+        margin-left: 0;
+        margin-right: 3px;
+      }
+    }
+
+    & + .messageBtn {
+      margin-left: 10px;
+
+      [dir='rtl'] & {
+        margin-left: 0;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.addNewMessageActionFirst {
+  margin-left: 0;
+  margin-right: 8px;
+
+  [dir='rtl'] & {
+    margin-right: 0;
+    margin-left: 8px;
+  }
+}
+
+.chatHeaderAction {
+  margin-left: auto;
+
+  [dir='rtl'] & {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  & :global(.btn) {
+    color: $text-color-secondary;
+    background-color: rgba($primary, 0.05);
+    margin-left: 5px;
+    margin-right: 5px;
+
+    &:hover,
+    &:focus {
+      background-color: rgba($black, 0.05);
+      color: $text-color;
+    }
+
+    &:global(.active)  {
+      color: $primary;
+
+      &:hover,
+      &:focus {
+        background-color: rgba($black, 0.05);
+        color: $primary;
+      }
+    }
+  }
+}

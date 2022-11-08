@@ -1,0 +1,82 @@
+@import '../../../shared/styles/variable';
+
+.faqHeader {
+  min-height: 224px;
+  padding: 20px;
+  margin-bottom: 32px;
+  background-color: $blue;
+  border-radius: $card-radius;
+  color: $white;
+  font-size: $font-size-lg;
+
+  & h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: $font-weight-medium;
+    color: $white;
+  }
+}
+
+.accHeader {
+  button {
+    padding: 12px 16px;
+    background: $gray-200;
+
+    &::after {
+      [dir='rtl'] & {
+        margin-left: 0;
+        margin-right: auto;
+      }
+    }
+    &:not(.collapsed) {
+      color: $text-color;
+      background: $gray-200;
+    }
+  }
+}
+
+.faqSidebarCard {
+  border-radius: $card-radius;
+
+  & .cardBody {
+    padding: 20px;
+  }
+
+  & h3 {
+    margin-bottom: 16px;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-lg;
+  }
+}
+
+.faqSidebarListItem {
+  padding: 10px 0;
+  border-bottom: 0 none !important;
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &.active {
+    color: $primary;
+  }
+
+  & p {
+    margin-top: 2px;
+    margin-bottom: 0;
+  }
+}
+
+.faqSidebarIcon {
+  margin-right: 12px;
+  color: $text-color;
+
+  [dir='rtl'] & {
+    margin-right: 0;
+    margin-left: 12px;
+  }
+}
+
+.faq-list {
+  width: 100%;
+  height: 100%;
+}

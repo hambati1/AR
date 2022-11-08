@@ -1,0 +1,15 @@
+
+.table {
+  border-collapse: separate;
+  margin-bottom: 0;
+  table-layout: auto;
+  border-spacing: 0;
+
+  & th, & td {
+    overflow-wrap: break-word;
+    white-space: nowrap;
+  }
+}
+
+
+

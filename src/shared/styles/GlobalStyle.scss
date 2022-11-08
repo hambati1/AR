@@ -1,0 +1,86 @@
+@import "variable";
+
+.item-hover {
+  transition: all .2s ease;
+  transform: scale(1);
+
+  &:hover {
+    background-color: rgba($primary, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px 0 rgba($black, 0.2);
+  }
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+  transform: scale(1);
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .45);
+    transform: scale(1.05);
+  }
+}
+
+.background-image {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  display: block;
+  border-radius: $border-radius-circle;
+}
+
+.close-btn {
+  background-color: transparent;
+  box-shadow: none;
+  border: 0 none;
+  padding: 0;
+  height: auto;
+
+  &:hover, &:focus {
+    border: 0 none;
+    background-color: transparent;
+
+    & svg {
+      color: $primary !important;
+    }
+  }
+}
+
+.page-title {
+  color: $text-color;
+  font-weight: $font-weight-bold;
+  margin-bottom: 16px;
+  font-size: $font-size-lg;
+  display: inline-block;
+}
+
+.slick-slider-global .slick-dots li {
+  width: 12px;
+  height: 12px;
+  margin: 0 2px;
+  vertical-align: middle;
+
+  & button {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+  }
+
+  & button::before {
+    width: 12px;
+    height: 12px;
+    font-size: 10px;
+    line-height: 12px;
+    color: #be8658;
+  }
+}
+
+.slick-slider-global .slick-dots li.slick-active button::before {
+  color: #825a44;
+  opacity: 0.75;
+}

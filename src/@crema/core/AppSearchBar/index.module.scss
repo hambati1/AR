@@ -1,0 +1,41 @@
+@import '../../../shared/styles/variable.scss';
+
+.appSearchBar {
+  max-width: 220px;
+
+  & :global(.form-control) {
+    width: 135px;
+    transition: all .2s ease;
+
+    @include media-breakpoint-down(sm) {
+      width: 120px;
+    }
+
+    &:focus {
+      width: 165px;
+
+      @include media-breakpoint-down(sm) {
+        width: 145px;
+      }
+    }
+
+    [dir='rtl'] & {
+      border-top-right-radius: 0.25rem !important;
+      border-bottom-right-radius: 0.25rem !important;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: none;
+    }
+  }
+}
+
+.searchBtn {
+  cursor: pointer;
+
+  [dir='rtl'] & {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

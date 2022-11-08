@@ -1,0 +1,48 @@
+@import '../../../../../../shared/styles/variable.scss';
+
+.menuVerticalCollapse {
+  height: 40px;
+  margin-left: 1px;
+  margin-right: 1px;
+  padding-left: 31px;
+  padding-right: 16px;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  transition: all 0.4s ease;
+  cursor: pointer;
+
+  & .navItemText {
+    font-weight: $font-weight-medium;
+  }
+
+  & .navItemIcon {
+    font-size: 20px;
+    display: block;
+    margin-right: 16px;
+
+    [dir=rtl] & {
+      margin-right: 0;
+      margin-left: 16px;
+    }
+  }
+
+  & .navItemIconArrow {
+    font-size: 20px;
+  }
+}
+
+.subMenuCollapse {
+  position: relative;
+
+  &.open {
+    color: inherit;
+  }
+}
+
+.navItemContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}

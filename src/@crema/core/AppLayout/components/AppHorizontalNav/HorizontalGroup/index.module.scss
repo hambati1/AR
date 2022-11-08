@@ -1,0 +1,24 @@
+@import '../../../../../../shared/styles/variable.scss';
+
+.horizontalGroupItem {
+  border: 0 none;
+  border-radius: $border-radius;
+  cursor: pointer;
+}
+
+.horizontalGroupItemIcon {
+  margin-right: 14px;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 14px;
+  }
+}
+
+.horizontalGroupItemText {
+  font-weight: $font-weight-medium;
+}
+
+.horizontalGroupItemArrowIcon {
+  font-size: 18px;
+}

@@ -1,0 +1,47 @@
+@import '../../../shared/styles/variable.scss';
+
+.notifyText {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-normal;
+}
+
+.notifyBtnAll {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 100%;
+  text-transform: capitalize;
+}
+
+.notifyList {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.notifyScrollSubmenu {
+  height: calc(100vh - 96px);
+
+  @include media-breakpoint-up(sm) {
+    height: calc(100vh - 110px);
+  }
+}
+
+.offcanvaView {
+  width: 300px;
+
+  @include media-breakpoint-up(sm) {
+    width: 400px;
+  }
+}
+
+.offcanvasHeader {
+  border-bottom: solid $border-width $border-color;
+  min-height: 56px;
+
+  @include media-breakpoint-up(sm) {
+    min-height: 70px;
+  }
+}
+
+.notifyFooterView {
+  min-height: 40px;
+}

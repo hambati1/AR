@@ -1,0 +1,108 @@
+@import '../../../shared/styles/variable.scss';
+
+.forgetLink {
+  font-size: $font-size-base;
+  cursor: pointer;
+  font-weight: $font-weight-medium;
+}
+
+.radioText {
+  color: $text-color-secondary;
+}
+
+.signBtn {
+  // min-width: 160px;
+  width: 100%;
+  font-size: 14px;
+  color: white;
+}
+
+.signLink {
+  font-weight: $font-weight-medium;
+
+  & a {
+    text-decoration: none;
+  }
+}
+.signFooter {
+  margin: 0 -20px -20px;
+  padding: 8px 20px;
+  background-color: $body-bg;
+  color: $text-color-secondary;
+  display: none !important;
+
+  @include media-breakpoint-up(lg) {
+    margin: 0 -40px -40px;
+    padding: 8px 40px;
+  }
+}
+.text-white{
+  color: white;
+}
+.login-input{
+  background-color: transparent;
+}
+.sign-icon-btn {
+  color: $text-color-secondary;
+  padding: 6px 4px 4px;
+  border: 0 none;
+  box-shadow: none;
+  background-color: transparent;
+  width: 26px;
+  min-width: 26px;
+  height: 26px;
+
+  @include media-breakpoint-up(md) {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    padding: 8px 6px 6px;
+  }
+
+  &:hover, &:focus {
+    color: $primary;
+    background-color: transparent;
+  }
+}
+
+.sign-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  & .form-field {
+    margin-bottom: 20px;
+  }
+
+  & .form-btn-field {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  & .form-field-action {
+    font-size: $font-size-base;
+    color: $text-color-secondary;
+    margin-top: auto;
+
+    & span {
+      margin-right: 8px;
+      display: inline-block;
+    }
+  }
+}
+
+.underlineNone {
+  text-decoration: none;
+}
+
+.colorTextPrimary {
+  color: $primary;
+}
+
+.rememberMe {
+  position: relative;
+
+  & label {
+    margin-bottom: 10px;
+  }
+}

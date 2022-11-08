@@ -1,0 +1,50 @@
+@import '../../../../../../shared/styles/variable.scss';
+
+.horizontalCollapseNav {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.horizontalCollapseNavItem {
+  color: $text-color;
+  background-color: white;
+  padding: 8px 12px;
+
+  &.active, &.active:hover, &.active:focus {
+    background-color: $component-bg;
+    color: $text-color;
+  }
+
+  &.open {
+    background-color: rgba(0,0,0,.08);
+  }
+
+  &.dense {
+    & .horizontalCollapseNavItemText {
+      padding-left: 8px;
+    }
+  }
+}
+
+.horizontalCollapseNavItemIcon {
+  margin-right: 14px;
+  font-size: 16px;
+
+  [dir=rtl] & {
+    margin-right: 0;
+    margin-left: 14px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    font-size: 18px;
+  }
+}
+
+.horizontalCollapseNavItemText {
+  //padding-left: 16px;
+  //
+  //[dir=rtl] & {
+  //  padding-left: 0;
+  //  padding-right: 16px;
+  //}
+}

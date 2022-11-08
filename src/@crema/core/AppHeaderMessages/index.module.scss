@@ -1,0 +1,48 @@
+@import '../../../shared/styles/variable.scss';
+
+.headerMessageScrollSubmenu {
+   height: calc(100vh - 96px);
+
+  @include media-breakpoint-up(sm) {
+    height: calc(100vh - 110px);
+  }
+}
+
+.offcanvaView {
+  width: 300px;
+
+  @include media-breakpoint-up(sm) {
+    width: 400px;
+  }
+}
+
+.offcanvasHeader {
+  border-bottom: solid $border-width $border-color;
+  min-height: 56px;
+
+  @include media-breakpoint-up(sm) {
+    min-height: 70px;
+  }
+}
+
+.headerMessageList {
+  border: 0 none;
+  padding: 10px 0;
+}
+
+.headerMessageFooterView {
+  min-height: 40px;
+}
+
+.headerMessageBtn {
+  border-radius: 0;
+  width: 100%;
+  text-transform: capitalize;
+  background-color: #DB7100;
+  border: 1PX solid #DB7100;
+}
+
+.headerMessageText {
+   font-size: $font-size-lg;
+   font-weight: $font-weight-normal;
+ }

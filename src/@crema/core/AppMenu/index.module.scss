@@ -1,0 +1,19 @@
+@import '../../../shared/styles/variable.scss';
+
+.dropdownToggleBtn {
+  color: inherit;
+  text-align: left;
+  font-size: $font-size-base;
+
+  [dir=rtl] & {
+    text-align: right;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+.appDropdownMenu {
+  font-size: $font-size-base;
+}

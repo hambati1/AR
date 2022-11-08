@@ -1,0 +1,11 @@
+@import '../../../shared/styles/variable.scss';
+
+.appLoader {
+  min-height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #1C1C1E;
+}

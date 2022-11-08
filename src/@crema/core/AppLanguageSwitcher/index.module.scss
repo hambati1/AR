@@ -1,0 +1,55 @@
+@import '../../../shared/styles/variable.scss';
+
+.langDropdown {
+  position: relative;
+}
+
+.langItem {
+  width: 160px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & h4 {
+    margin-left: 16px;
+    margin-bottom: 0;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-base;
+
+    [dir=rtl] & {
+      margin-left: 0;
+      margin-right: 16px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+.dropdownToggleBtn {
+  color: inherit;
+  text-align: left;
+  font-size: $font-size-base;
+
+  [dir=rtl] & {
+    text-align: right;
+  }
+
+  &:hover {
+    color: $text-color;
+
+    & .languageText {
+      color: $text-color;
+    }
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+.languageText {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-normal;
+}

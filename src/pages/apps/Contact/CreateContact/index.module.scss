@@ -1,0 +1,108 @@
+@import '../../../../shared/styles/variable';
+
+.modalHeader {
+  border-bottom: 0 none;
+  padding: 0;
+
+  & :global(.btn-close) {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 1;
+  }
+}
+
+.contactModalScrollbar {
+  height: 400px;
+}
+
+.contactForm {
+  position: relative;
+}
+
+.contactFormHeader {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: solid $border-width $border-color;
+
+  & .dropzone {
+    margin-bottom: 0;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
+
+.contactFormAvatar {
+  width: 55px;
+  height: 55px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.contactFormHeaderTitle {
+  font-weight: $font-weight-medium;
+}
+
+.contactFormContent {
+  position: relative;
+}
+
+.contactFormContentItem {
+  padding: 20px;
+  @include media-breakpoint-up(lg) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  &:not(:last-child) {
+    border-bottom: solid $border-width $border-color;
+  }
+}
+
+.contactFormContentItemTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  margin-bottom: 16px;
+
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 24px;
+  }
+}
+
+.contactFormContentField {
+  position: relative;
+}
+
+.contactFormFooter {
+  padding: 16px 32px;
+  border-top: solid $border-width $border-color;
+  border-radius: 0 0 $card-radius $card-radius;
+  text-align: right;
+
+  [dir=rtl] & {
+    text-align: left;
+  }
+}
+
+.contactFormBtn {
+  padding: 8px 32px;
+  min-width: 100px;
+
+  &:not(:first-child) {
+    margin-left: 10px;
+
+    [dir=rtl] & {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  }
+}

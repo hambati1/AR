@@ -1,0 +1,137 @@
+@import '../../../shared/styles/variable';
+
+.userTabContainer {
+  display: flex;
+  flex-direction: column;
+
+  @include media-breakpoint-up(sm) {
+    flex-direction: row;
+  }
+
+  & :global(.user-tab-content) {
+    padding-top: 20px;
+
+    [dir='rtl'] & {
+      order: 2;
+    }
+
+    @include media-breakpoint-up(sm) {
+      padding-left: 20px;
+      padding-top: 0;
+      flex: 1;
+
+      [dir='rtl'] & {
+        padding-left: 0;
+        padding-right: 20px;
+      }
+    }
+
+    @include media-breakpoint-up(xl) {
+      padding-left: 32px;
+
+      [dir='rtl'] & {
+        padding-left: 0;
+        padding-right: 32px;
+      }
+    }
+  }
+}
+
+.userProfileContainer {
+  background-color: $component-bg;
+  border-radius: $card-radius;
+  padding: 20px;
+}
+
+.userProfileTabs {
+  min-width: 200px;
+  background-color: $component-bg;
+  border-radius: $card-radius;
+  padding: 20px 0;
+
+  @include media-breakpoint-up(xl) {
+    min-width: 280px;
+  }
+
+  & .navItem {
+    display: flex;
+    align-items: center;
+    padding: 1px 0;
+    margin-right: 20px !important;
+
+    [dir='rtl'] & {
+      margin-right: 0 !important;
+      margin-left: 20px !important;
+    }
+
+    & .navItemLink {
+      cursor: pointer;
+      border-radius: 0 30px 30px 0;
+      width: 100%;
+      padding: 12px 24px;
+      color: $text-color;
+
+      [dir='rtl'] & {
+        border-radius: 30px 0 0 30px;
+      }
+
+      &:global(.active) {
+        color: $primary;
+        background-color: rgba($primary, 0.1);
+      }
+    }
+  }
+
+  & .userProfileIcon {
+    & .icon {
+      font-size: $font-size-lg;
+      margin-right: 16px;
+
+      [dir='rtl'] & {
+        margin-right: 0;
+        margin-left: 16px;
+      }
+    }
+  }
+}
+
+.userProfileBtn {
+  margin-right: 12px;
+
+  [dir='rtl'] & {
+    margin-left: 12px;
+    margin-right: 0;
+  }
+}
+
+.userProfileFormTitle {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+}
+
+.notificationListItem {
+  margin-bottom: 20px;
+
+  & .label {
+    margin-left: 15px;
+
+    [dir='rtl'] & {
+      margin-left: 0;
+      margin-right: 15px;
+    }
+  }
+}
+
+.profileNotification {
+  position: relative;
+
+  & + .profileNotification {
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-top: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 24px;
+    border-top: $border-width solid $border-color;
+  }
+}

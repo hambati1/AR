@@ -1,0 +1,53 @@
+@import '../../../shared/styles/variable.scss';
+@import "../AuthWrapper.module";
+
+.forget-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.forget-para {
+  line-height: 1.5;
+  margin-bottom: 24px;
+  font-size: $font-size-base;
+
+  @include media-breakpoint-up(xxl) {
+    font-size: $font-size-lg;
+    margin-bottom: 48px;
+  }
+
+  & span {
+    margin-left: 4px;
+  }
+}
+
+.forget-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  & .form-field {
+    margin-bottom: 20px;
+  }
+}
+
+.forget-btn {
+  width: 100%;
+  font-weight: $font-weight-normal;
+  text-transform: capitalize;
+  font-size: $font-size-base;
+}
+
+.forget-footer {
+  margin-top: auto;
+  font-size: 15px;
+  color: $gray-500;
+  margin-bottom: 0;
+
+  & a {
+    text-decoration: none;
+    margin-left: 10px;
+    display: inline-block;
+  }
+}

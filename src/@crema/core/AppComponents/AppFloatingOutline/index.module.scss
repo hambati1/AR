@@ -1,0 +1,135 @@
+@import '../../../../shared/styles/variable.scss';
+
+.appFormControl {
+  border: 0;
+  margin: 0 0 8px 0;
+  display: inline-flex;
+  padding: 0;
+  position: relative;
+  min-width: 0;
+  flex-direction: column;
+  vertical-align: top;
+  width: 100%;
+
+  &.app-date-picker,
+  &.app-select {
+    width: 100%;
+  }
+
+  &.app-number-range-picker {
+    margin-bottom: 10px;
+
+    & .app-compact-input {
+      display: flex;
+      justify-content: space-between;
+
+      &  .separator {
+        color: $text-color-disabled;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 5%;
+        margin: 0 5px;
+      }
+    }
+  }
+
+  & .input-label.focused,
+  &:hover .input-label.shrink {
+    color: $primary;
+  }
+
+  &.app-textarea {
+    & .input-label {
+      top: 0;
+      transform: translate(11px, 4px) scale(1);
+
+      &.shrink {
+        transform: translate(11px, -6px) scale(0.75);
+        top: 0;
+      }
+    }
+  }
+}
+
+.inputLabel {
+  color: $text-color;
+  padding: 0;
+  display: block;
+  transform-origin: top left;
+  top: 50%;
+  left: 0;
+  line-height: 1;
+  position: absolute;
+  pointer-events: none;
+  transform: translate(11px, -50%) scale(1);
+  transition: color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms, all 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  z-index: 2;
+
+  &.shrink {
+    transform: translate(11px, -6px) scale(0.75);
+    top: 0;
+  }
+}
+
+.inputContainer {
+  color: $text-color;
+  cursor: text;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  border-radius: $border-radius;
+  height: 100%;
+  z-index: 1;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  & .app-form-item {
+    margin-bottom: 0;
+  }
+
+  & .form-control-fieldset {
+    top: -6px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    border-color: $border-color;
+    padding: 0 8px;
+    overflow: hidden;
+    position: absolute;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+
+    & .fieldset-legend {
+      width: auto;
+      height: 11px;
+      display: block;
+      padding: 0 ;
+      font-size: 10px;
+      max-width: 0.01px;
+      text-align: left;
+      transition: max-width 50ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+      visibility: hidden;
+
+      &.shrink {
+        max-width: 1000px;
+        padding: 0 4px 0 4px;
+        transition: max-width 100ms cubic-bezier(0.0, 0, 0.2, 1) 50ms;
+      }
+    }
+  }
+
+  &.focused,
+  &:hover {
+    & .form-control-fieldset {
+      border-color: $primary;
+    }
+  }
+
+}

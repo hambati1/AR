@@ -1,0 +1,125 @@
+@import '../../../../../shared/styles/variable';
+@import '../../../../../shared/styles/mixin';
+
+.pricingThreeCard {
+  box-shadow: none;
+  border: 0 none;
+  background-color: rgba($black, 0.9);
+  color: $white;
+  border-radius: $card-radius;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -25px;
+    z-index: 1;
+    height: 55px;
+    width: calc(100% + 30px);
+    background-color: rgba($white, 0.1);
+    transform: rotate(10deg);
+
+    [dir='rtl'] & {
+      left: auto;
+      right: 0;
+    }
+  }
+}
+
+.pricingThreeContent {
+  padding: 20px;
+}
+
+.pricingThreeTitle {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
+  color: $white;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-bottom: 20px;
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: 30px;
+  }
+}
+
+.pricingThreeCardList {
+  & .listItem {
+    padding: 0;
+    margin-bottom: 16px;
+    justify-content: flex-start;
+    border-bottom: 0 none !important;
+    color: $white;
+    background-color: transparent;
+    & .icon {
+      margin-right: 14px;
+      font-size: 16px;
+      color: lighten($success, 15%);
+      margin-top: 4px;
+
+      [dir='rtl'] & {
+        margin-right: 0;
+        margin-left: 14px;
+      }
+    }
+
+    & p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.pricingThreeCardPricingValue {
+  margin-top: 30px;
+
+  & h3 {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+    color: $white;
+
+    @include media-breakpoint-up(md) {
+      font-size: 18px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: 20px;
+    }
+  }
+
+  & .price {
+    font-weight: $font-weight-bold;
+    font-size: 26px;
+    line-height: 1;
+
+    @include media-breakpoint-up(md) {
+      font-size: 32px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: 44px;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      font-size: 54px;
+    }
+  }
+}
+
+.pricingThreeBtnView {
+  margin-top: 10px;
+}
+
+.pricingThreeBtn {
+  width: 100%;
+  font-weight: $font-weight-bold;
+  color: $white;
+  min-height: 46px;
+  border-radius: 0;
+  box-shadow: none;
+  border: 0 none;
+
+  &:hover,
+  &:focus {
+    color: $white;
+  }
+}

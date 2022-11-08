@@ -1,0 +1,10 @@
+@import '../../../shared/styles/variable.scss';
+
+.starIcon {
+  color: #F4B400;
+  display: block;
+
+  & svg {
+    display: block;
+  }
+}

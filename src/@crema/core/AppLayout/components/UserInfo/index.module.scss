@@ -1,0 +1,78 @@
+@import '../../../../../shared/styles/variable.scss';
+
+.crUserInfo {
+  padding: 7px 12px;
+  min-height: 56px;
+  transition: all .2s ease;
+  border-bottom: solid $border-width $border-color;
+
+  @include media-breakpoint-up(md) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 70px;
+  }
+
+  &.crUserInfoHasColor {
+    color: inherit;
+  }
+}
+
+.dropdownToggleBtn {
+  color: inherit !important;
+  text-align: left;
+  font-size: $font-size-base;
+
+  &:hover, &:focus, &:active {
+    color: inherit !important;
+  }
+
+  [dir=rtl] & {
+    text-align: right;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+.crUserInfoAvatar {
+  font-size: 24px;
+  background-color: $orange;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.crUserInfoContent {
+  width: calc(100% - 62px);
+  transition: all .2s ease;
+  margin-left: 16px;
+
+  [dir='rtl'] & {
+    margin-right: 16px;
+    margin-left: 0;
+  }
+}
+
+.crUserName {
+  margin-bottom: 0;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-medium;
+  color: inherit;
+}
+
+.crUserArrow {
+  margin-left: 12px;
+  width: 24px;
+
+  & svg {
+    display: block;
+  }
+}
+
+.crUserDesignation {
+  margin-top: -2px;
+  color: inherit;
+}

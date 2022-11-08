@@ -1,0 +1,157 @@
+@import '../../../../shared/styles/variable';
+
+.contactDetailModal {
+
+  & :global(.modal-content:hover) {
+    & .contactActionHover {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+.contactDetailModalHeader {
+  position: relative;
+  border-bottom: solid $border-width $border-color;
+  padding: 20px;
+}
+
+.contactDetailModalUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include media-breakpoint-up(sm) {
+    margin-top: -12px;
+  }
+
+  & h4 {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.contactDetailModalUserAvatar {
+  width: 55px;
+  height: 55px;
+  margin-bottom: 8px;
+}
+
+.contactDetailModalContent {
+  padding: 20px 24px;
+}
+
+.contactDetailModalScrollbar {
+  position: relative;
+  max-height: 400px;
+}
+
+.contactAction {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: $text-color-disabled;
+
+  & :global(.btn) {
+    margin: 0 2px;
+  }
+}
+
+.contactActionHover {
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  visibility: hidden;
+}
+
+.contactNote {
+  padding: 20px 20px 20px 0;
+
+  [dir=rtl] & {
+    padding-left: 20px;
+    padding-right: 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-right: 32px;
+
+    [dir=rtl] & {
+      padding-right: 0;
+      padding-left: 32px;
+    }
+  }
+
+  @include media-breakpoint-up(xxl) {
+    padding-right: 40px;
+
+    [dir=rtl] & {
+      padding-right: 0;
+      padding-left: 40px;
+    }
+  }
+}
+
+.contactDetailModalItem {
+  padding: 20px 0;
+}
+
+.contactDetailModalItemTitle {
+  font-weight: $font-weight-medium;
+  font-size: $font-size-lg;
+  margin-bottom: 8px;
+}
+
+.contactDetailModalItemContent {
+  position: relative;
+}
+
+.contactOtherDetailItem {
+  display: flex;
+  align-items: center;
+
+  &:not(:first-child) {
+    margin-top: 8px;
+  }
+}
+
+.contactOtherDetailItemContent {
+  margin-left: 8px;
+  color: $text-color-secondary;
+  font-size: $font-size-base;
+
+  [dir=rtl] & {
+    margin-left: 0;
+    margin-right: 8px;
+  }
+}
+
+.contactOtherDetailItemIcon {
+  font-size: $font-size-lg;
+  color: $text-color-secondary;
+}
+
+.contactFormFooter {
+  padding: 16px 32px;
+  border-top: solid $border-width $border-color;
+  border-radius: 0 0 $card-radius $card-radius;
+  text-align: right;
+
+  [dir=rtl] & {
+    text-align: left;
+  }
+}
+
+.contactFormBtn {
+  padding: 8px 32px;
+  min-width: 100px;
+
+  &:not(:first-child) {
+    margin-left: 10px;
+
+    [dir=rtl] & {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  }
+}

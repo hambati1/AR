@@ -1,0 +1,40 @@
+@import '../../../../../shared/styles/variable.scss';
+
+.customizeItem {
+  position: relative;
+
+  &:not(:last-child) {
+    border-bottom: solid 1px $border-color;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+
+    @include media-breakpoint-up(xxl) {
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
+  }
+
+  & h4 {
+    margin-bottom: 8px;
+
+    @include media-breakpoint-up(xxl) {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.navMenuStyle {
+  margin-right: -10px;
+  margin-left: -10px;
+}
+
+.navMenuStyleItem {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 20px;
+}
+
+.navMenuStyleItemCur {
+  position: relative;
+  cursor: pointer;
+}

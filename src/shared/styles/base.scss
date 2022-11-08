@@ -1,0 +1,63 @@
+@import "variable";
+
+:root {
+  --light: 300;
+  --regular: 400;
+  --medium: 500;
+  --semi-bold: 600;
+  --bold: 700;
+  font-family: 'Roboto', serif;
+}
+
+body {
+  line-height: 1.35 !important;
+  font-family: 'Roboto', serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+  line-height: 1.35;
+}
+
+img {
+  max-width: 100%;
+}
+
+abbr[title],
+abbr[data-bs-original-title] {
+  text-decoration: none;
+}
+
+.offcanvas-start {
+
+  [dir='rtl'] & {
+    left: auto;
+    transform: translateX(100%);
+
+    &.show {
+      transform: none;
+    }
+  }
+}
+
+.offcanvas-end {
+
+  [dir='rtl'] & {
+    right: auto;
+    transform: translateX(-100%);
+
+    &.show {
+      transform: none;
+    }
+  }
+}

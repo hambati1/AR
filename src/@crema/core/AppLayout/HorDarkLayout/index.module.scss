@@ -1,0 +1,275 @@
+@import '../../../../shared/styles/variable';
+
+.appLayoutHorDark {
+  min-height: 100vh;
+  position: relative;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column !important;
+
+  & .customizerOption {
+    position: fixed;
+    top: 205px;
+
+    @include media-breakpoint-up(xxl) {
+      top: 225px;
+    }
+  }
+
+  &.appMainFixedFooter {
+    padding-bottom: 46px;
+
+    & .appMainFooter {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      z-index: 9;
+      width: 100%;
+    }
+  }
+
+  &.boxedLayout {
+    @include media-breakpoint-up(xxl) {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1360px;
+      border-left: solid $border-width $border-color;
+      border-right: solid $border-width $border-color;
+    }
+  }
+
+  &.framedLayout {
+    @include media-breakpoint-up(xxl) {
+      padding: 20px;
+      background-color: $primary;
+
+      & .appLayoutHorDarkInner {
+        border-radius: 12px;
+        background-color: $body-bg;
+      }
+
+      & .appHeaderHorDark,
+      & .headerHorDarkMain,
+      & .headerAlertDark {
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+
+        [dir=rtl] & {
+          border-radius: 12px 12px 0 0;
+        }
+      }
+
+      & .appMainFooter {
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+.appLayoutHorDarkInner {
+  display: flex;
+  flex-direction: column !important;
+}
+
+.appMainHorDarkSidebar {
+  flex: 0 0 auto !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  transition: all 0.1s linear;
+  background-color: $sidebar-bg-color;
+  color: $sidebar-text-color;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 17.5rem !important;
+
+  [dir=rtl] & {
+    left: auto;
+    right: 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 17.5rem !important;
+  }
+}
+
+.appMainHorDarkSidebarInner {
+  display: flex;
+  flex-direction: column;
+}
+
+.appHeaderHorDark {
+  color: inherit;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.12);
+  width: 100% !important;
+  height: auto;
+  line-height: 1;
+  padding: 0;
+  background-color: inherit;
+
+  & .trigger {
+    font-size: 24px;
+    margin-right: 20px;
+    padding: 5.5px;
+    color: inherit;
+    cursor: pointer;
+
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+
+    [dir=rtl] & {
+      margin-right: 0;
+      margin-left: 20px;
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  @include media-breakpoint-up(xl) {
+    max-width: 1140px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    max-width: 1440px;
+  }
+
+  @media screen and (min-width: 1920px) {
+    max-width: 1720px;
+  }
+}
+
+.headerAlertDark {
+  text-align: center;
+  border: 0 none;
+  border-radius: 0;
+  border-bottom: solid $border-width $border-color;
+  padding: 16px 20px;
+  background-color: inherit;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.headerHorDarkMain {
+  position: relative;
+  background-color: inherit;
+  border-bottom: solid $border-width $border-color;
+  min-height: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include media-breakpoint-up(md) {
+    min-height: 70px;
+  }
+}
+
+.headerHorDarkMainFlex {
+  display: flex;
+  align-items: center;
+}
+
+.appLayoutHorDarkMain {
+  width: 100% !important;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & .mainContentView {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.appSidebarHorDarkScrollbar {
+  height: calc(100vh - 56px);
+
+  @include media-breakpoint-up(sm) {
+    height: calc(100vh - 70px);
+  }
+}
+
+.headerNavHorDark {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid $border-width $border-color;
+  display: none;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+  }
+}
+
+//Horizontal Main Menu
+.appMainHorDarkMenu {
+  background-color: inherit;
+  color: inherit;
+  border-bottom: 0 none;
+}
+
+// Sidebar Background Image
+.horDarkSidebarImgBackground {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  & > div {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+// Drawer
+.appHorDarkDrawer {
+  width: 17.5rem !important;
+
+  & :global(.offcanvas-body) {
+    padding: 0;
+  }
+}
+
+.dropdownToggleBtn {
+  color: inherit;
+  text-align: left;
+  font-size: $font-size-base;
+
+  [dir=rtl] & {
+    text-align: right;
+  }
+
+  &:after {
+    display: none;
+  }
+}
+
+.userInfoContent {
+  display: none;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+    min-width: 160px;
+  }
+}

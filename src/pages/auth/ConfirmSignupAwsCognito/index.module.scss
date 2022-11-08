@@ -1,0 +1,60 @@
+@import '../../../shared/styles/variable.scss';
+
+.auth-recon-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.confirm-content {
+  margin-bottom: 20px;
+  font-size: $font-size-base;
+
+  @include media-breakpoint-up(xxl) {
+    font-size: $font-size-lg;
+    margin-bottom: 40px;
+  }
+}
+
+.confirm-code-input {
+  margin-bottom: 24px;
+  @include media-breakpoint-up(xxl) {
+    margin-bottom: 40px;
+  }
+
+  & .react-code-input input {
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.confirm-btn,
+.reset-btn {
+  border-radius: $border-radius;
+  width: 100%;
+  font-weight: $font-weight-normal;
+  font-size: $font-size-base;
+}
+
+.reset-form {
+  position: relative;
+
+  & .form-field {
+    margin-bottom: 20px;
+
+    & p {
+      margin-bottom: 24px;
+      font-size: $font-size-base;
+      @include media-breakpoint-up(xxl) {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  & .react-code-input input {
+    &:focus {
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+@import '../../../shared/styles/variable.scss';
+
+.listItem {
+  border: 0 none !important;
+  cursor: pointer;
+  margin-bottom: 1px;
+
+  & a {
+    color: $text-color;
+    display: flex;
+    align-items: center;
+    padding: 8.5px 16px;
+    margin-right: 20px;
+    border-radius: 0 $border-radius-30 $border-radius-30 0;
+    text-decoration: none;
+
+    @include media-breakpoint-up(md) {
+      padding: 8.5px 20px;
+    }
+
+    &:hover,
+    &:focus,
+    &:global(.active) {
+      color: #FFF;
+      background-color: #DB7100;
+    }
+  }
+}
+
+.listItemIcon {
+  font-size: 18px;
+  margin-right: 16px;
+
+  [dir='rtl'] & {
+    margin-left: 16px;
+    margin-right: 0;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    margin-right: 20px;
+  }
+
+  &>svg {
+    display: block;
+  }
+}
+
+.listItemText {
+  font-weight: $font-weight-normal;
+  font-size: 15px;
+}
