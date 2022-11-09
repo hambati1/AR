@@ -16,7 +16,7 @@ import '@crema/services';
 import configureStore from './redux/store';
 
 const store = configureStore();
-
+    
 const App = () => (
   <AppContextProvider>
     <Provider store={store}>
