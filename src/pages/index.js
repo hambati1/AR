@@ -26,7 +26,7 @@ const authorizedStructure = {
 const unAuthorizedStructure = {
   fallbackPath: initialUrl,
   routes: authRouteConfig,
-};
+};      
 
 const anonymousStructure = {
   routes: errorPagesConfigs.concat([
