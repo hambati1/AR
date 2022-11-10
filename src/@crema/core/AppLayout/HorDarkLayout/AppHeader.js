@@ -49,9 +49,9 @@ const AppHeader = ({showDrawer}) => {
             </div>
 
             <div className='d-none d-md-flex mx-n2'>
-              <span className='px-2'>
+              {/* <span className='px-2'>
                 <AppLanguageSwitcher/>
-              </span>
+              </span> */}
               <span className='px-2'>
                 <AppNotifications/>
               </span>

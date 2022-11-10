@@ -52,7 +52,7 @@ const UserInfo = ({hasColor, userInfoClass, userInfoContentClass}) => {
                 styles.dropdownToggleBtn,
                 'p-0 bg-transparent border-0 d-flex align-items-center w-100 shadow-none',
               )}>
-              {user.photoURL ? (
+              {/* {user.photoURL ? (
                 <Image
                   className={styles.crUserInfoAvatar}
                   src={user.photoURL}
@@ -62,7 +62,7 @@ const UserInfo = ({hasColor, userInfoClass, userInfoContentClass}) => {
                 <span className={styles.crUserInfoAvatar}>
                   {getUserAvatar()}
                 </span>
-              )}
+              )} */}
               <span className={clsx(styles.crUserInfoContent, userInfoContentClass)}>
                 <span className='d-flex align-items-center justify-content-between'>
                   <h3
@@ -71,13 +71,13 @@ const UserInfo = ({hasColor, userInfoClass, userInfoContentClass}) => {
                     })}>
                     {user.displayName ? user.displayName : 'admin user '}
                   </h3>
-                  <span
+                  {/* <span
                     className={clsx(
                       styles.crUserArrow,
                       'd-flex justify-content-center align-items-center',
                     )}>
                     <FaChevronDown />
-                  </span>
+                  </span> */}
                 </span>
                 {/* <span
                   className={clsx(styles.crUserDesignation, 'text-truncate')}>
@@ -86,13 +86,13 @@ const UserInfo = ({hasColor, userInfoClass, userInfoContentClass}) => {
               </span>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            {/* <Dropdown.Menu>
               <Dropdown.Item
                 onClick={() => history.push('/extra-pages/user-profile')}>
                 My Profile
               </Dropdown.Item>
               <Dropdown.Item onClick={() => logout()}> Logout</Dropdown.Item>
-            </Dropdown.Menu>
+            </Dropdown.Menu> */}
           </Dropdown>
         </div>
       ) : (
@@ -131,13 +131,13 @@ const UserInfo = ({hasColor, userInfoClass, userInfoContentClass}) => {
                     })}>
                     {user.displayName ? user.displayName : 'admin user '}
                   </h3>
-                  <span
+                  {/* <span
                     className={clsx(
                       styles.crUserArrow,
                       'd-flex justify-content-center align-items-center',
                     )}>
                     <FaChevronDown />
-                  </span>
+                  </span> */}
                 </span>
                 {/* <span
                   className={clsx(styles.crUserDesignation, 'text-truncate')}>
@@ -146,13 +146,13 @@ const UserInfo = ({hasColor, userInfoClass, userInfoContentClass}) => {
               </span>
             </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            {/* <Dropdown.Menu>
               <Dropdown.Item
                 onClick={() => history.push('/extra-pages/user-profile')}>
                 My Profile
               </Dropdown.Item>
               <Dropdown.Item onClick={() => logout()}> Logout</Dropdown.Item>
-            </Dropdown.Menu>
+            </Dropdown.Menu> */}
           </Dropdown>
         </div>
       )}

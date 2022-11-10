@@ -78,7 +78,7 @@ const routesConfig = [
         messageId: 'sidebar.app.dashboard.eCommerce',
         type: 'item',
         icon: <AiOutlineFolderView />,
-        url: '/extra-pages/error-pages/error-401',
+        url: '/extra-pages/error-pages/error-402',
       },
       {
         id: 'academy',
@@ -94,7 +94,7 @@ const routesConfig = [
         messageId: 'sidebar.app.dashboard.archive',
         type: 'item',
         icon: <AiOutlineLineChart />,
-        url: '/dashboards/academy',
+        url: '/extra-pages/error-pages/error-404',
       }
     ],
   },

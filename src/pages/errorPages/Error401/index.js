@@ -22,19 +22,19 @@ import style from '../Error401/index.style.scss';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 
+
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
+
 // import { Paper } from '@material-ui/core';
 
-
-
 const actions = [
-  { id: 1, text: "Name" },
-  { id: 2, text: "FINS Number" },
-  { id: 3, text: "File Number(A#)" },
-  { id: 4, text: "State Number" },
-  { id: 5, text: "FBI Number" },
-  { id: 6, text: "Passport Number" },
-  { id: 7, text: "Date of Birth" },
-  { id: 8, text: "Country of Birth" },
+  { id: 1, text: "File Name" },
+  { id: 2, text: "Type" },
+  { id: 3, text: "Records Imported" },
+  { id: 4, text: "Records in Error" },
+  { id: 5, text: "Amount Imported" },
 
 ];
 const dropDownOptions = {
@@ -48,26 +48,26 @@ export const NonCitizenDetails = [
     type: 'Lockbox',
     recordsimported: '242',
     recordsinerror: '0',
-    amountimported: '',
-    
+    amountimported: '$8,418.99',
+
   },
   {
     filename: 'out.remit_pngc_10212022.txt',
     type: '1-Pay File',
     recordsimported: '3',
     recordsinerror: '0',
-    amountimported: '',
-    
+    amountimported: '$40.14',
+
   },
   {
     filename: 'pngpay.remit.20221018011236',
-    type: 'Check File',
+    type: 'Check Free',
     recordsimported: '23',
     recordsinerror: '2',
     amountimported: '$488.47',
-    
+
   },
-  
+
 ];
 
 
@@ -80,29 +80,91 @@ const NonCitizen = () => {
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
       </div>
-      <DataGrid
-        className='card-body'
-        dataSource={NonCitizenDetails}
-        keyExpr={'filename'}
-        allowColumnReordering={true}>
-        
-        <Column dataField={'filename'} caption={'File Name'} />
-        <Column dataField={'type'} caption={'Type'} />
-        <Column dataField={'recordsimported'} caption={'Records Imported'} />
-        <Column dataField={'recordsinerror'} caption={'Records in Error'}/>
-        <Column dataField={'amountimported'} caption={'Amount Imported'} />
-                <FilterRow visible={true} />
-        <ColumnChooser enabled={true} mode='select' />
-        <SearchPanel
-          className='float-start'
-          visible={true}
-          width={240}
-          placeholder="Search..."
-        />
-        <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
-        <Paging defaultPageSize={5} />
 
-      </DataGrid>
+      <Tabs
+        defaultActiveKey="profile"
+        id="uncontrolled-tab-example"
+        className="mb-3"
+      >
+        <Tab eventKey="home" title="Search">
+
+
+
+        </Tab>
+        <Tab eventKey="profile" title="File Import">
+
+          <div>
+
+            <form>
+              <div class="mb-3 row">
+                <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
+
+                <div class="col-sm-5 Dropdown">
+                  <input type="filetype" className='form-control Dropdown' id="inputFiletype" />
+                </div>
+              </div>
+
+
+              <div class="mb-3 row">
+                <label for="inputBrand" class="col-lg-1 col-form-label">Brand</label>
+                {/* <input type="" class="form-control" id="input" placeholder="PNG" /> */}
+                <div class="col-sm-5">
+                  <input type="Brand" class="form-control" id="inputBrand" />
+                </div>
+              </div>
+
+
+              <div class="row g-3">
+                <div class="col-lg-1">
+                  {/* <label for="" class="visually-hidden">File Name</label> */}
+                  <label for="Filename" class="col-sm-10 col-form-label">File Name</label>
+                  {/* <input type="text" readonly class="form-control-plaintext" id="" value="File Name" /> */}
+                </div>
+                <div class="col-auto">
+                  <label for="" class="visually-hidden"></label>
+                  <input type="" class="form-control" id="input" placeholder="" />
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn mb-3 btn-darkGray ">Browse</button>
+                </div>
+              </div>
+              <div>
+                <button type="submit" class="btn  mb-3 btn-Gray ">Import</button>
+                <button type="submit" class="btn  mb-3 btn-darkGray ">Clear</button>
+              </div>
+            </form>
+          </div>
+
+          <div className=''>
+            Import File Status
+          </div>
+          <DataGrid
+            className='card-body'
+            dataSource={NonCitizenDetails}
+            keyExpr={'filename'}
+            allowColumnReordering={true}>
+
+            <Column dataField={'filename'} caption={'File Name'} />
+            <Column dataField={'type'} caption={'Type'} />
+            <Column dataField={'recordsimported'} caption={'Records Imported'} />
+            <Column dataField={'recordsinerror'} caption={'Records in Error'} />
+            <Column dataField={'amountimported'} caption={'Amount Imported'} />
+            <FilterRow visible={true} />
+            <ColumnChooser enabled={true} mode='select' />
+            <SearchPanel
+              className='float-start'
+              visible={true}
+              width={240}
+              placeholder="Search..."
+            />
+            <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
+            <Paging defaultPageSize={5} />
+
+          </DataGrid>
+
+        </Tab>
+
+      </Tabs>
     </div>
 
     //    </Box>

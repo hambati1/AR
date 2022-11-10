@@ -17,10 +17,10 @@ export const DarkSidebar = {
 	mode: ThemeMode.DARK,
 };
 export const LightSidebar = {
-	sidebarBgColor: '#2B2B2B',
-	sidebarTextColor: '#FFFFFF',
+	sidebarBgColor: '#fff',
+	sidebarTextColor: '#000',
 	sidebarHeaderColor: '#fff',
-	sidebarMenuSelectedBgColor: '#DB7100',
+	sidebarMenuSelectedBgColor: '#9CD8D8',
 	sidebarMenuSelectedTextColor: 'rgba(0, 0, 0, 0.87)',
 	mode: ThemeMode.LIGHT,
 };
@@ -43,7 +43,7 @@ const defaultConfig = {
 	direction: ThemeDirection.LTR,
 	themeMode: ThemeMode.SEMI_DARK,
 	footerType: FooterType.FLUID,
-	navStyle: NavStyle.DRAWER,
+	navStyle: NavStyle.MINI,
 	layoutType: LayoutType.FULL_WIDTH,
 	footer: false,
 	rtlLocale: ['ar'],
