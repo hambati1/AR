@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import IntlMessages from '@crema/utility/IntlMessages';
 import AppAnimateGroup from '@crema/core/AppAnimateGroup';
 import '../index.style.scss';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
 // import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
 import '../../errorPages/Error401/index.style.scss'
 import DataGrid, {
   Column,
@@ -17,18 +16,15 @@ import DataGrid, {
   FilterRow,
   Toolbar
 } from 'devextreme-react/data-grid';
-// import 'devextreme/dist/css/dx.generic.ATD-DataGrid-md - Copy1.css';
 import DropDownButton from 'devextreme-react/drop-down-button';
 import style from '../Error401/index.style.scss';
 import { DropdownButton } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
-
+import {onPaymentList} from '../../../redux/actions/paymentList';
+import {onGetContactList} from '../../../redux/actions/ContactApp';
 
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-
-
-// import { Paper } from '@material-ui/core';
 
 const actions = [
   { id: 1, text: "File Name" },
@@ -58,7 +54,6 @@ export const NonCitizenDetails = [
     recordsimported: '3',
     recordsinerror: '0',
     amountimported: '$40.14',
-
   },
   {
     filename: 'pngpay.remit.20221018011236',
@@ -66,17 +61,79 @@ export const NonCitizenDetails = [
     recordsimported: '23',
     recordsinerror: '2',
     amountimported: '$488.47',
-
-  },
-
+  }
 ];
 
-
 const NonCitizen = () => {
+    const [searchType, setSearchTypes] = useState();
+    const [fileType, setFileTypes] = useState();
+    const [selectfileType, setselectfileType] = useState("")
+    const [brand, setBrand] = useState("")
+    const [selectedFile, setSelectedFile] = useState();
+    const [file, setFile] = useState();
+    const path='http://172.20.51.231:8761/cm/api';
+    const session="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjY4MDgwOTQ5LCJleHAiOjE2Njg2ODA5NDl9.pGLmio8UUaAIg0gDZ0ufMYg2STgxs0SYiA-DBWi4OUYlSYOhToRWxAu2jt1JiKmD4wxuqLGfARky4mSdX-qYpA";
+    const b0={"custId": 10040003,"importFileId": 10053782,"batchId": 10043555,"page": 1,"size": 3};
+
+ const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
+        setFunction(event.target.value)
+    }
+     const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
+            console.log(event);
+            setselectfileType(event);
+        }
+
+const handleChange = (event) => {
+    setFileTypes(event.target.value)
+  }
+
+const changeHandler=(event)=>{
+		setFile(event.target.files[0]);
+	};
+
+    const getSearchData = async () => {
+    const response = await fetch(path+"/ar/searchworklist",{ method: 'POST',
+       headers: {"Content-Type":'application/json',Session: session},
+       body:JSON.stringify(b0)}
+    ).then((response) => response.json());
+console.log(response.response);
+    setSearchTypes(response.response);
+  };
+
+const getFileTypeData = async () => {
+    const response = await fetch(path+"/cn/filetype?functionId=6&isActive=1&isImport=1",{ method: 'GET',
+       headers: {Session: session}}
+    ).then((response) => response.json());
+console.log(response.response);
+    setFileTypes(response.response);
+  };
+
+  useEffect(() => {
+    getSearchData();
+    getFileTypeData();
+  }, []);
+
+   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+         const form=event.target;
+         event.preventDefault();
+     const url = path+'/import/file';
+    const formData = new FormData();
+    formData.append('fileNames', file);
+     formData.append('brandId', 1);
+      formData.append('fileTypeId', selectfileType);
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data',
+        Session: session
+      },
+    };
+    axios.post(url, formData, config).then((response) => {
+      console.log(response.data);
+    });
+
+    }
 
   return (
-    // <Paper>
-    //   <Box>
     <div >
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
@@ -87,57 +144,51 @@ const NonCitizen = () => {
         id="uncontrolled-tab-example"
         className="mb-3"
       >
-        <Tab eventKey="search" title="Search">
+        <Tab eventKey="home" title="Search">
+
+
 
         </Tab>
-        <Tab eventKey="fileimport" title="File Import">
+        <Tab eventKey="profile" title="File Import">
 
           <div>
 
-          
-              <div className="mb-3 row">
-                <label for="inputFileType" className="col-lg-1 col-form-label">File Type</label>
-                <div className="col-sm-5">
-                  <select className="form-select" aria-label="Default select example">
-                    {/* <option value={}></option> */}
-                    <option value="1"></option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                  </div>
+            <form>
+              <div class="mb-3 row">
+                <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
 
-
-
-                {/* <div class="col-sm-5 Dropdown">
+                <div class="col-sm-5 Dropdown">
                   <input type="filetype" className='form-control Dropdown' id="inputFiletype" />
-                </div> */}
+                </div>
               </div>
 
 
               <div className="mb-3 row">
                 <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
                 {/* <input type="" class="form-control" id="input" placeholder="PNG" /> */}
-                <div className="col-sm-5">
-                  <input type="Brand" className="form-control" id="inputBrand"placeholder="PNG" />
+                <div class="col-sm-5">
+                  <input type="Brand" class="form-control" id="inputBrand" />
                 </div>
               </div>
 
 
-              <div className="row g-3">
-                <div className="col-lg-1">
-                  <label for="Filename" className="col-sm-10 col-form-label">File Name</label>
+              <div class="row g-3">
+                <div class="col-lg-1">
+                  {/* <label for="" class="visually-hidden">File Name</label> */}
+                  <label for="Filename" class="col-sm-10 col-form-label">File Name</label>
+                  {/* <input type="text" readonly class="form-control-plaintext" id="" value="File Name" /> */}
                 </div>
-                <div className="col-auto">
-                  <label for="" className="visually-hidden"></label>
-                  <input type="" className="form-control" id="input" placeholder="" />
+                <div class="col-auto">
+                  <label for="" class="visually-hidden"></label>
+                  <input type="" class="form-control" id="input" placeholder="" />
                 </div>
-                <div className="col-auto">
-                  <button type="submit" className="btn mb-3 btn-darkGray ">Browse</button>
+                <div class="col-auto">
+                  <button type="submit" class="btn mb-3 btn-darkGray ">Browse</button>
                 </div>
               </div>
               <div>
-                <button type="submit" className="btn  mb-3 btn-Gray ">Import</button>
-                <button type="submit" className="btn  mb-3 btn-darkGray ">Clear</button>
+                <button type="submit" class="btn  mb-3 btn-Gray ">Import</button>
+                <button type="submit" class="btn  mb-3 btn-darkGray ">Clear</button>
               </div>
            
           </div>
@@ -166,17 +217,10 @@ const NonCitizen = () => {
             />
             <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
             <Paging defaultPageSize={5} />
-
           </DataGrid>
-
         </Tab>
-
       </Tabs>
     </div>
-
-    //    </Box>
-    // </Paper>
-
   );
 };
 

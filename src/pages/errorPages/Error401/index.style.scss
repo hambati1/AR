@@ -106,7 +106,16 @@
     font-size: 10px;
     line-height: 12px;
     letter-spacing: 0.05em;
-    color: #404040;
+    color: #4b4b4b;
+}
+// Data-Grid SCSS End //
+
+
+
+.left{
+
+
+    margin-left:50px;
 }
 .nav-link{
     color: #000;
@@ -114,12 +123,3 @@
 .nav-link:hover{
     color: #000;
 }
-
-.dropdowm{
-    margin-left: 120px;
-    width: 100%;
-    
-    
-}
-
-// Data-Grid SCSS End //
