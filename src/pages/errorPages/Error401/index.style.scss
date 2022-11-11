@@ -13,15 +13,12 @@
     height: 37px;
     margin-left: 50px;
 
-
-}
-.btn-primary:hover{
-    color: #000;
-    background-color: #9cd8d8;
-    border-color: #9cd8d8;
 }
 
 .btn-Gray {
+    margin-left: 120px;
+    border: 1px solid #9cd8d8;
+
     background: #9cd8d8;
     border-radius: 5px;
     font-weight: 600;
@@ -31,8 +28,6 @@
     color: #000;
     width: 130px;
     height: 37px;
-    margin-left: 120px;
-
 
 }
 
@@ -44,11 +39,10 @@
 //     margin-top: 14px;
 //     font-weight: 500;
 //     font-size: 10px;
+//     line-height: 12px;
 //     background: #F2F2F2;
 //     border: 1px solid #DBDBDB;
 //     border-radius: 5px;
-//     margin-right: 20px;
-    
 
 // }
 .dx-button-mode-outlined {
@@ -66,7 +60,7 @@
 }
 
 .dx-widget {
-    font-family: 'Avant Garde Gothic std Book';
+    font-family: 'Roboto';
 }
 
 .search-header {
@@ -88,7 +82,7 @@
 
 .main-header {
     font-weight: 800;
-    font-size: 14.4px;
+    font-size: 14px;
     line-height: 16px;
     text-transform: uppercase;
     color: #404040;
@@ -101,32 +95,31 @@
 }
 
 .dx-datagrid-headers {
-    font-weight: 800;
-    font-size: 14.4px;
+    font-weight: 500;
+    font-size: 10px;
     line-height: 12px;
-    color: #4B4B4B;
+    color: #868686;
 }
 
 .dx-datagrid {
-    font-weight: 400;
-    font-size: 14.4px;
+    font-weight: 500;
+    font-size: 10px;
     line-height: 12px;
     letter-spacing: 0.05em;
-    color: #4b4b4b;
+    color: #404040;
 }
-// Data-Grid SCSS End //
-
-
-
-.left{
-
-
-    margin-left:50px;
-}
-
 .nav-link{
     color: #000;
 }
 .nav-link:hover{
     color: #000;
 }
+
+.dropdowm{
+    margin-left: 120px;
+    width: 100%;
+    
+    
+}
+
+// Data-Grid SCSS End //

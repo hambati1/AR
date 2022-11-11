@@ -5,6 +5,7 @@ import '../index.style.scss';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
 // import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
 import '../../errorPages/Error401/index.style.scss'
 import DataGrid, {
   Column,
@@ -19,7 +20,7 @@ import DataGrid, {
 // import 'devextreme/dist/css/dx.generic.ATD-DataGrid-md - Copy1.css';
 import DropDownButton from 'devextreme-react/drop-down-button';
 import style from '../Error401/index.style.scss';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { DropdownButton } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 
 
@@ -82,60 +83,66 @@ const NonCitizen = () => {
       </div>
 
       <Tabs
-        defaultActiveKey="profile"
+        defaultActiveKey="fileimport"
         id="uncontrolled-tab-example"
         className="mb-3"
       >
-        <Tab eventKey="home" title="Search">
-
-
+        <Tab eventKey="search" title="Search">
 
         </Tab>
-        <Tab eventKey="profile" title="File Import">
+        <Tab eventKey="fileimport" title="File Import">
 
           <div>
 
-            <form>
-              <div class="mb-3 row">
-                <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
+          
+              <div className="mb-3 row">
+                <label for="inputFileType" className="col-lg-1 col-form-label">File Type</label>
+                <div className="col-sm-5">
+                  <select className="form-select" aria-label="Default select example">
+                    {/* <option value={}></option> */}
+                    <option value="1"></option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                  </div>
 
-                <div class="col-sm-5 Dropdown">
+
+
+                {/* <div class="col-sm-5 Dropdown">
                   <input type="filetype" className='form-control Dropdown' id="inputFiletype" />
-                </div>
+                </div> */}
               </div>
 
 
-              <div class="mb-3 row">
-                <label for="inputBrand" class="col-lg-1 col-form-label">Brand</label>
+              <div className="mb-3 row">
+                <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
                 {/* <input type="" class="form-control" id="input" placeholder="PNG" /> */}
-                <div class="col-sm-5">
-                  <input type="Brand" class="form-control" id="inputBrand" />
+                <div className="col-sm-5">
+                  <input type="Brand" className="form-control" id="inputBrand"placeholder="PNG" />
                 </div>
               </div>
 
 
-              <div class="row g-3">
-                <div class="col-lg-1">
-                  {/* <label for="" class="visually-hidden">File Name</label> */}
-                  <label for="Filename" class="col-sm-10 col-form-label">File Name</label>
-                  {/* <input type="text" readonly class="form-control-plaintext" id="" value="File Name" /> */}
+              <div className="row g-3">
+                <div className="col-lg-1">
+                  <label for="Filename" className="col-sm-10 col-form-label">File Name</label>
                 </div>
-                <div class="col-auto">
-                  <label for="" class="visually-hidden"></label>
-                  <input type="" class="form-control" id="input" placeholder="" />
+                <div className="col-auto">
+                  <label for="" className="visually-hidden"></label>
+                  <input type="" className="form-control" id="input" placeholder="" />
                 </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn mb-3 btn-darkGray ">Browse</button>
+                <div className="col-auto">
+                  <button type="submit" className="btn mb-3 btn-darkGray ">Browse</button>
                 </div>
               </div>
               <div>
-                <button type="submit" class="btn  mb-3 btn-Gray ">Import</button>
-                <button type="submit" class="btn  mb-3 btn-darkGray ">Clear</button>
+                <button type="submit" className="btn  mb-3 btn-Gray ">Import</button>
+                <button type="submit" className="btn  mb-3 btn-darkGray ">Clear</button>
               </div>
-            </form>
+           
           </div>
 
-          <div className=''>
+          <div>
             Import File Status
           </div>
           <DataGrid
