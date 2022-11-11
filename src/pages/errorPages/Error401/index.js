@@ -4,7 +4,7 @@ import AppAnimateGroup from '@crema/core/AppAnimateGroup';
 import '../index.style.scss';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
-// import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 import '../../errorPages/Error401/index.style.scss'
 import DataGrid, {
   Column,
@@ -18,11 +18,10 @@ import DataGrid, {
 } from 'devextreme-react/data-grid';
 import DropDownButton from 'devextreme-react/drop-down-button';
 import style from '../Error401/index.style.scss';
-import { DropdownButton } from 'react-bootstrap';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 import {onPaymentList} from '../../../redux/actions/paymentList';
 import {onGetContactList} from '../../../redux/actions/ContactApp';
-
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
@@ -71,7 +70,7 @@ const NonCitizen = () => {
     const [brand, setBrand] = useState("")
     const [selectedFile, setSelectedFile] = useState();
     const [file, setFile] = useState();
-    const path='http://172.20.51.231:8761/cm/api';
+     const path='http://172.20.51.231:8761/cm/api';
     const session="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjY4MDgwOTQ5LCJleHAiOjE2Njg2ODA5NDl9.pGLmio8UUaAIg0gDZ0ufMYg2STgxs0SYiA-DBWi4OUYlSYOhToRWxAu2jt1JiKmD4wxuqLGfARky4mSdX-qYpA";
     const b0={"custId": 10040003,"importFileId": 10053782,"batchId": 10043555,"page": 1,"size": 3};
 
@@ -140,60 +139,73 @@ console.log(response.response);
       </div>
 
       <Tabs
-        defaultActiveKey="fileimport"
+        defaultActiveKey="profile"
         id="uncontrolled-tab-example"
-        className="mb-3"
-      >
+        className="mb-3">
         <Tab eventKey="home" title="Search">
+         <div class="form-group">
+           <div class="mb-3 row">
+                        <label for="inputFileType" class="col-lg-1 col-form-label">Search Type :</label>
+ <div class="col-sm-5 Dropdown">
+                         <select class="form-select" name="searchType" aria-label="Default select example">
+                              {searchType &&
+                                searchType.map((user) => (
+                                 <option value="{user.fileTypeId}">{user.fileTypeDesc}</option>
+                                ))}
+                         </select>
+                         </div>
 
-
-
+                         <div className="padding">
+                                         <button type="submit" class="btn  mb-3 btn-Gray ">Submit</button>
+                                         <button type="reset" value="Reset" class="btn  mb-3 btn-darkGray ">Reset</button>
+                         </div>
+           </div>
+           </div>
         </Tab>
+
         <Tab eventKey="profile" title="File Import">
-
-          <div>
-
-            <form>
+         <div class="form-group">
+            <form onSubmit={onSubmitHandler}>
               <div class="mb-3 row">
                 <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
 
                 <div class="col-sm-5 Dropdown">
-                  <input type="filetype" className='form-control Dropdown' id="inputFiletype" />
+                   <select class="form-select" name="selectfileType" aria-label="Default select example" onChange={(e)=>selectChangeHandler(selectfileType,e.target.value)}>
+                                               {fileType &&
+                                                 fileType.map((user) => (
+                                                  <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
+                                                 ))}
+                                          </select>
                 </div>
               </div>
 
 
-              <div className="mb-3 row">
-                <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
+              <div class="mb-3 row">
+                <label for="inputBrand" class="col-lg-1 col-form-label">Brand</label>
                 {/* <input type="" class="form-control" id="input" placeholder="PNG" /> */}
                 <div class="col-sm-5">
-                  <input type="Brand" class="form-control" id="inputBrand" />
+                  <input type="Brand" name="brand" class="form-control" id="inputBrand"  onChange={(e)=>inputChangeHandler(setBrand, e)} />
                 </div>
               </div>
-
 
               <div class="row g-3">
                 <div class="col-lg-1">
-                  {/* <label for="" class="visually-hidden">File Name</label> */}
                   <label for="Filename" class="col-sm-10 col-form-label">File Name</label>
-                  {/* <input type="text" readonly class="form-control-plaintext" id="" value="File Name" /> */}
                 </div>
                 <div class="col-auto">
                   <label for="" class="visually-hidden"></label>
-                  <input type="" class="form-control" id="input" placeholder="" />
+                  <input type="text" name="file" class="form-control" id="input" onChange={(e)=>inputChangeHandler(setFile, e)}  />
                 </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn mb-3 btn-darkGray ">Browse</button>
-                </div>
+
               </div>
               <div>
                 <button type="submit" class="btn  mb-3 btn-Gray ">Import</button>
-                <button type="submit" class="btn  mb-3 btn-darkGray ">Clear</button>
+                <button type="reset"  class="btn  mb-3 btn-darkGray ">Clear</button>
               </div>
-           
+            </form>
           </div>
 
-          <div>
+          <div className=''>
             Import File Status
           </div>
           <DataGrid
