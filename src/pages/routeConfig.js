@@ -46,7 +46,7 @@ const routesConfig = [
         messageId: 'sidebar.app.dashboard.crypto',
         type: 'item',
         icon: <AiOutlineImport />,
-        url: '/extra-pages/error-pages/error-401',
+        url: '/menupages',
       },
       {
         id: 'crm',

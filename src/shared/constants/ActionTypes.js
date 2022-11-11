@@ -144,3 +144,5 @@ export const UPDATE_CUSTOM_DATA = 'update_custom_data';
 
 //GALLERY
 export const GET_GALLERY_PHOTO = 'get_gallery_photo';
+
+export const PATH='http://172.20.51.231:8761/cm/api';
