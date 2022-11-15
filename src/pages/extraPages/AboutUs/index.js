@@ -13,7 +13,7 @@ const AboutUs = () => {
     (about) => about.alias === 'photography',
   );
   const seoData = aboutUsData.find((about) => about.alias === 'seo');
-  const nonCitizenDetailsData = aboutUsData.find((about) => about.alias === 'nonCitizenDetails');
+  const FileImportDetailsData = aboutUsData.find((about) => about.alias === 'nDetails');
   const PredicitveAnalyticsData = aboutUsData.find((about) => about.alias === 'PredicitveAnalytics');
   const geoDetectData = aboutUsData.find((about) => about.alias === 'geoDetect');
   const selfServiceBIData = aboutUsData.find((about) => about.alias === 'selfServiceBI');

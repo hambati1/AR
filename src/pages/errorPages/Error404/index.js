@@ -17,12 +17,12 @@ const Error404 = () => {
     <AppAnimateGroup type='bottom'>
       <AppPageMetadata title='Not Found' />
       <div className='error-container' key='a'>
-        <div className='error-img'>
+        {/* <div className='error-img'>
           <Logo />
-        </div>
+        </div> */}
         <div className='error-content'>
           <h3>
-            <IntlMessages id='error.404Error' />.
+            <IntlMessages id='error.404Error' />
           </h3>
           <div className='error-para'>
             <p className='mb-0'>

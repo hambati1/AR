@@ -6,14 +6,15 @@ import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
 import axios from 'axios';
 import '../../errorPages/Error401/index.style.scss'
-import DataGrid, {  Column,  Pager,  Paging,  SearchPanel,  Sorting,  ColumnChooser,  FilterRow,  Toolbar,Editing
+import DataGrid, {
+  Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
 import DropDownButton from 'devextreme-react/drop-down-button';
 import style from '../Error401/index.style.scss';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
-import {onPaymentList} from '../../../redux/actions/paymentList';
-import {onGetContactList} from '../../../redux/actions/ContactApp';
+import { onPaymentList } from '../../../redux/actions/paymentList';
+import { onGetContactList } from '../../../redux/actions/ContactApp';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
@@ -56,39 +57,43 @@ export const NonCitizenDetails = [
 ];
 
 const NonCitizen = () => {
-    const [searchType, setSearchTypes] = useState();
-    const [fileType, setFileTypes] = useState();
-    const [selectfileType, setselectfileType] = useState("")
-    const [brand, setBrand] = useState("")
-    const [selectedFile, setSelectedFile] = useState();
-    const [fileName, setFileName] = useState();
-     const path='http://172.20.51.231:8761/cm/api';
-    const session="eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjY4MTc2OTM2LCJleHAiOjE2Njg3NzY5MzZ9.Bmi-9CQ1eKIuqZK8tGfGfhcnB68JqYULbndiHgltlPZJKSSNQfdZezLA1CJq5rMukUisEV8w9-AbyAIHYDRACA";
-    const b0={"custId": 10040003,"importFileId": 10053782,"batchId": 10043555,"page": 1,"size": 3};
+  const [searchType, setSearchTypes] = useState();
+  const [fileType, setFileTypes] = useState();
+  const [selectfileType, setselectfileType] = useState("")
+  const [brand, setBrand] = useState("")
+  const [selectedFile, setSelectedFile] = useState();
+  const [fileName, setFileName] = useState();
+  const path = 'http://172.20.51.231:8761/cm/api';
+  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjY4NDkzNTUzLCJleHAiOjE2NjkwOTM1NTN9.sqykenZp5NSIn0wX6UZMagsHvSnIZP0mgG1SIi2SSLBB9eX0srs680gZo3mbXRK1kWNKpjGDiE3rs2V_l_zmRQ";
+  const b0 = { "custId": 10040003, "importFileId": 10053782, "batchId": 10043555, "page": 1, "size": 3 };
 
- const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
-        setFunction(event.target.value)
+  const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
+    setFunction(event.target.value)
+  }
+  const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event);
+    setselectfileType(event);
+    getFileNames(event);
+  }
+
+  const getSearchData = async () => {
+    const response = await fetch(path + "/ar/searchworklist", {
+      method: 'POST',
+      headers: { "Content-Type": 'application/json', Session: session },
+      body: JSON.stringify(b0)
     }
-     const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
-            console.log(event);
-            setselectfileType(event);
-            getFileNames(event);
-        }
-
-    const getSearchData = async () => {
-    const response = await fetch(path+"/ar/searchworklist",{ method: 'POST',
-       headers: {"Content-Type":'application/json',Session: session},
-       body:JSON.stringify(b0)}
     ).then((response) => response.json());
-console.log(response.response);
+    console.log(response.response);
     setSearchTypes(response.response);
   };
 
-const getFileTypeData = async () => {
-    const response = await fetch(path+"/cn/filetype?functionId=6&isActive=1&isImport=1",{ method: 'GET',
-       headers: {Session: session}}
+  const getFileTypeData = async () => {
+    const response = await fetch(path + "/cn/filetype?functionId=6&isActive=1&isImport=1", {
+      method: 'GET',
+      headers: { Session: session }
+    }
     ).then((response) => response.json());
-console.log(response.response);
+    console.log(response.response);
     setFileTypes(response.response);
   };
 
@@ -97,18 +102,18 @@ console.log(response.response);
     getFileTypeData();
   }, []);
 
-   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-         const form=event.target;
-         event.preventDefault();
-     const url = path+'/searchexportfile';
-     const formData = new FormData();
-     formData.append('fileNames', '%'+fileName+'%');
-     //formData.append('exportedBy', "bmccullars");
-     formData.append('fileTypeId', selectfileType);
-     formData.append('page', 1);
-       formData.append('size', 10);
-     const json = Object.fromEntries(formData);
-     const config = {
+  const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const form = event.target;
+    event.preventDefault();
+    const url = path + '/searchexportfile';
+    const formData = new FormData();
+    formData.append('fileNames', '%' + fileName + '%');
+    //formData.append('exportedBy', "bmccullars");
+    formData.append('fileTypeId', selectfileType);
+    formData.append('page', 1);
+    formData.append('size', 10);
+    const json = Object.fromEntries(formData);
+    const config = {
       headers: {
         'content-type': 'application/json',
         Session: session
@@ -119,18 +124,18 @@ console.log(response.response);
     });
   }
 
- const onExportHandler = (event: React.FormEvent<HTMLFormElement>) => {
-         const form=event.target;
-         event.preventDefault();
-     const url = path+'/searchexportfile';
-     const formData = new FormData();
-     formData.append('fileNames', '%'+fileName+'%');
-     //formData.append('exportedBy', "bmccullars");
-     formData.append('fileTypeId', selectfileType);
-     formData.append('page', 1);
-       formData.append('size', 10);
-     const json = Object.fromEntries(formData);
-     const config = {
+  const onExportHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const form = event.target;
+    event.preventDefault();
+    const url = path + '/searchexportfile';
+    const formData = new FormData();
+    formData.append('fileNames', '%' + fileName + '%');
+    //formData.append('exportedBy', "bmccullars");
+    formData.append('fileTypeId', selectfileType);
+    formData.append('page', 1);
+    formData.append('size', 10);
+    const json = Object.fromEntries(formData);
+    const config = {
       headers: {
         'content-type': 'application/json',
         Session: session
@@ -141,33 +146,34 @@ console.log(response.response);
     });
   }
 
-const getFileNames = async (event) => {
- console.log(event);
-    if(event!=undefined)
-    {
-       const url = path+'/ar/import/file/list?fileTypeId='+event+'&brandId=1';
-       const response = await fetch(url,{ method: 'GET',
-          headers: {Session: session}}
-        ).then((response) => response.json());
-          console.log(response.response);
-          setFileName(response.response);
+  const getFileNames = async (event) => {
+    console.log(event);
+    if (event != undefined) {
+      const url = path + '/ar/import/file/list?fileTypeId=' + event + '&brandId=1';
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: { Session: session }
+      }
+      ).then((response) => response.json());
+      console.log(response.response);
+      setFileName(response.response);
     }
   };
 
-const employees = [{
-  ID: 1,
-  FirstName: 'John',
-  LastName: 'Heart',
-  Prefix: 'Mr.',
-  Position: 'CEO',
-  BirthDate: '1964/03/16',
-  HireDate: '1995/01/15',
-  Notes: 'John has been in the Audio/Video industry since 1990. He has led DevAv as its CEO since 2003.\r\n\r\nWhen not working hard as the CEO, John loves to golf and bowl. He once bowled a perfect game of 300.',
-  Address: '351 S Hill St.',
-  StateID: 5,
-}];
+  const employees = [{
+    ID: 1,
+    FirstName: 'John',
+    LastName: 'Heart',
+    Prefix: 'Mr.',
+    Position: 'CEO',
+    BirthDate: '1964/03/16',
+    HireDate: '1995/01/15',
+    Notes: 'John has been in the Audio/Video industry since 1990. He has led DevAv as its CEO since 2003.\r\n\r\nWhen not working hard as the CEO, John loves to golf and bowl. He once bowled a perfect game of 300.',
+    Address: '351 S Hill St.',
+    StateID: 5,
+  }];
 
-return (
+  return (
     <div >
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
@@ -177,62 +183,67 @@ return (
         id="uncontrolled-tab-example"
         className="mb-3">
         <Tab eventKey="home" title="Search">
-         <div class="form-group">
-           <div class="mb-3 row">
-                        <label for="inputFileType" class="col-lg-1 col-form-label">Search Type :</label>
-                    <div class="col-sm-5 Dropdown">
-                         <select class="form-select" name="searchType" aria-label="Default select example">
-                         <option value=""></option>
-                              {searchType &&
-                                searchType.map((user) => (
-                                 <option value="{user.fileTypeId}">{user.fileTypeDesc}</option>
-                                ))}
-                         </select>
-                         </div>
-
-                         <div className="padding">
-                                         <button type="submit" class="btn  mb-3 btn-Gray ">Submit</button>
-                                         <button type="reset" value="Reset" class="btn  mb-3 btn-darkGray ">Reset</button>
-                         </div>
-           </div>
-           </div>
+          <div class="form-group">
+            <div class="mb-3 row">
+              <label for="inputFileType" class="col-lg-1 col-form-label">Search Type :</label>
+              <div class="col-sm-5 Dropdown">
+                <select class="form-select" name="searchType" aria-label="Default select example">
+                  <option value=""></option>
+                  {searchType &&
+                    searchType.map((user) => (
+                      <option value="{user.fileTypeId}">{user.fileTypeDesc}</option>
+                    ))}
+                </select>
+              </div>
+              <div class="padding">
+                <button type="submit" class="btn  mb-3 btn-Gray ">Submit</button>
+                <button type="reset" value="Reset" class="btn  mb-3 btn-darkGray ">Reset</button>
+              </div>
+              </div>
+            </div>
+      
         </Tab>
 
         <Tab eventKey="profile" title="File Import">
-         <div class="form-group">
+          <div class="form-group">
             <form onSubmit={onSubmitHandler}>
               <div class="mb-3 row">
                 <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
 
                 <div class="col-sm-5 Dropdown">
-                   <select class="form-select" name="selectfileType" aria-label="Default select example"
-                      onChange={(e)=>selectChangeHandler(selectfileType,e.target.value)}>
-                                              <option value=""></option>
-                                               {fileType &&
-                                                 fileType.map((user) => (
-                                                  <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
-                                                 ))}
-                    </select>
+                  <select class="form-select" name="selectfileType" aria-label="Default select example"
+                    onChange={(e) => selectChangeHandler(selectfileType, e.target.value)}>
+                    <option value=""></option>
+                    {fileType &&
+                      fileType.map((user) => (
+                        <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
+                      ))}
+                  </select>
                 </div>
               </div>
 
               <div class="mb-3 row">
                 <label for="inputBrand" class="col-lg-1 col-form-label">Brand</label>
                 <div class="col-sm-5">
-                  <input type="text" readonly name="brand" class="form-control" id="inputBrand" value="1"  onChange={(e)=>inputChangeHandler(setBrand, e)} />
+                  <input type="text" readonly name="brand" class="form-control" id="inputBrand" value="PNG" onChange={(e) => inputChangeHandler(setBrand, e)} />
                 </div>
               </div>
-
-              <div class="mb-3 row">
-                <label for="inputBrand" class="col-lg-1 col-form-label">File Name</label>
-                <div class="col-sm-5">
-                 <input type="text" name="fileName" value={fileName} class="form-control" id="input" readonly />
+              <div class="row g-3">
+                <div class="col-lg-1">
+               <label for="Filename" class="col-sm-10 col-form-label">File Name</label>
+                </div>
+                <div class="col-auto">
+                  <label for="" class="visually-hidden"></label>
+                  <input type="" class="form-control" id="input" placeholder="" />
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn mb-3 btn-darkGray ">Browse</button>
                 </div>
               </div>
 
               <div>
                 <button type="submit" class="btn  mb-3 btn-Gray ">Import</button>
-                <button type="reset"  class="btn  mb-3 btn-darkGray ">Clear</button>
+                <button type="reset" class="btn  mb-3 btn-darkGray ">Clear</button>
               </div>
             </form>
           </div>
@@ -264,69 +275,69 @@ return (
           </DataGrid>
         </Tab>
         <Tab eventKey="export" title="File Export">
-              <div class="form-group">
-                        <form onSubmit={onExportHandler}>
-                          <div class="mb-3 row">
-                            <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
+          <div class="form-group">
+            <form onSubmit={onExportHandler}>
+              <div class="mb-3 row">
+                <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
 
-                            <div class="col-sm-5 Dropdown">
-                               <select class="form-select" name="selectfileType" aria-label="Default select example"
-                                  onChange={(e)=>selectChangeHandler(selectfileType,e.target.value)}>
-                                                          <option value=""></option>
-                                                           {fileType &&
-                                                             fileType.map((user) => (
-                                                              <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
-                                                             ))}
-                                </select>
-                            </div>
-                          </div>
-                          <div class="mb-3 row">
-                                <label for="inputFileType" class="col-lg-1 col-form-label">Brand Name</label>
-                                 <div class="col-sm-5 Dropdown">
-                                                         <select class="form-select" name="selectfileType" aria-label="Default select example"
-                                                            onChange={(e)=>selectChangeHandler(selectfileType,e.target.value)}>
-                                                                                    <option value=""></option>
-                                                                                     {fileType &&
-                                                                                       fileType.map((user) => (
-                                                                                        <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
-                                                                                       ))}
-                                                          </select>
-                                 </div>
-                          </div>
-                           <div>
-                                          <button type="submit" class="btn  mb-3 btn-Gray ">Export</button>
-                                          <button type="reset"  class="btn  mb-3 btn-darkGray ">Clear</button>
-                           </div>
-                        </form>
+                <div class="col-sm-5 Dropdown">
+                  <select class="form-select" name="selectfileType" aria-label="Default select example"
+                    onChange={(e) => selectChangeHandler(selectfileType, e.target.value)}>
+                    <option value=""></option>
+                    {fileType &&
+                      fileType.map((user) => (
+                        <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
+                      ))}
+                  </select>
+                </div>
               </div>
+              <div class="mb-3 row">
+                <label for="inputFileType" class="col-lg-1 col-form-label">Brand Name</label>
+                <div class="col-sm-5 Dropdown">
+                  <select class="form-select" name="selectfileType" aria-label="Default select example"
+                    onChange={(e) => selectChangeHandler(selectfileType, e.target.value)}>
+                    <option value=""></option>
+                    {fileType &&
+                      fileType.map((user) => (
+                        <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
+                      ))}
+                  </select>
+                </div>
+              </div>
+              <div>
+                <button type="submit" class="btn  mb-3 btn-Gray ">Export</button>
+                <button type="reset" class="btn  mb-3 btn-darkGray ">Clear</button>
+              </div>
+            </form>
+          </div>
         </Tab>
 
         <Tab eventKey="batchPayment" title="Batch Payment">
-           <div class="form-group">
-              <div class="mb-5 row">
-                   <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                    <label class="form-check-label" for="flexCheckDefault">Active Only</label>
-              </div>
+          <div class="form-group">
+            <div class="mb-5 row">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+              <label class="form-check-label" for="flexCheckDefault">Active Only</label>
+            </div>
 
-              <div id="data-grid-demo">
-                      <DataGrid
-                        dataSource={employees}
-                        keyExpr="ID"
-                        showBorders={true}>
-                        <Paging enabled={false} />
-                         <Editing   mode="form"  allowAdding={true} />
-                        <Column dataField="batchName" caption="Batch ID" width={70} />
-                        <Column dataField="type" caption="Type" width={70} />
-                        <Column dataField="name" caption="Name" width={70} />
-                        <Column dataField="createdBy" caption="Created By" width={70} />
-                        <Column dataField="status" caption="Status" width={70} />
-                        <Column dataField="totalRecords" caption="Total Records" width={70} />
-                        <Column dataField="totalAmount" caption="Total Amount" width={70} />
-                        <Column dataField="totalAgencyFee" caption="Total Agency Fees" width={70} />
-                      </DataGrid>
-                    </div>
+            <div id="data-grid-demo">
+              <DataGrid
+                dataSource={employees}
+                keyExpr="ID"
+                showBorders={true}>
+                <Paging enabled={false} />
+                <Editing mode="form" allowAdding={true} />
+                <Column dataField="batchName" caption="Batch ID" width={70} />
+                <Column dataField="type" caption="Type" width={70} />
+                <Column dataField="name" caption="Name" width={70} />
+                <Column dataField="createdBy" caption="Created By" width={70} />
+                <Column dataField="status" caption="Status" width={70} />
+                <Column dataField="totalRecords" caption="Total Records" width={70} />
+                <Column dataField="totalAmount" caption="Total Amount" width={70} />
+                <Column dataField="totalAgencyFee" caption="Total Agency Fees" width={70} />
+              </DataGrid>
+            </div>
 
-           </div>
+          </div>
         </Tab>
       </Tabs>
     </div>

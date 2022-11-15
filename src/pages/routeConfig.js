@@ -46,7 +46,7 @@ const routesConfig = [
         messageId: 'sidebar.app.dashboard.crypto',
         type: 'item',
         icon: <AiOutlineImport />,
-        url: '/menupages',
+        url: '/import',
       },
       {
         id: 'crm',
