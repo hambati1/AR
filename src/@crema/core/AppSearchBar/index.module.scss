@@ -4,7 +4,7 @@
   max-width: 220px;
 
   & :global(.form-control) {
-    width: 135px;
+    // width: 135px;
     transition: all .2s ease;
 
     @include media-breakpoint-down(sm) {

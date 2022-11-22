@@ -64,7 +64,7 @@ const NonCitizen = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [fileName, setFileName] = useState();
   const path = 'http://172.20.51.231:8761/cm/api';
-  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjY4NDkzNTUzLCJleHAiOjE2NjkwOTM1NTN9.sqykenZp5NSIn0wX6UZMagsHvSnIZP0mgG1SIi2SSLBB9eX0srs680gZo3mbXRK1kWNKpjGDiE3rs2V_l_zmRQ";
+  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjY5MDk2MzQ5LCJleHAiOjE2Njk2OTYzNDl9.qpb8wobkLLLrS7sydWhxKO7LN0aFlyuW7tzc1-um9IkDBUm_pM8tRZVwZ8-BQRaJs2mIdrje3pczoQVtfYbl6Q";
   const b0 = { "custId": 10040003, "importFileId": 10053782, "batchId": 10043555, "page": 1, "size": 3 };
 
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -342,6 +342,7 @@ const NonCitizen = () => {
       </Tabs>
     </div>
   );
+  
 };
 
 export default NonCitizen;

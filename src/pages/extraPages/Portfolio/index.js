@@ -1,96 +1,239 @@
-import React, {useState} from 'react';
-import Gallery from 'react-photo-gallery';
-import photos from '@crema/services/db/gallery/photos';
-import IntlMessages from '@crema/utility/IntlMessages';
+import React, { useState } from 'react';
+// import Gallery from 'react-photo-gallery';
+// import photos from '@crema/services/db/gallery/photos';
+// import IntlMessages from '@crema/utility/IntlMessages';
 import styles from './index.module.scss';
-
-import {Tabs, Tab} from 'react-bootstrap';
+import DataGrid, {
+  Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
+} from 'devextreme-react/data-grid';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { Tabs, Tab } from 'react-bootstrap';
+import DropDownButton from 'devextreme-react/drop-down-button';
 import AppAnimateGroup from '@crema/core/AppAnimateGroup';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 
-const tabs = [
-  {id: 323, name: <IntlMessages id='common.all' />},
-  {id: 333, name: <IntlMessages id='portfolio.logo' />},
-  {id: 32323, name: <IntlMessages id='portfolio.painting' />},
-  {id: 421, name: <IntlMessages id='portfolio.graphicDesign' />},
-  {id: 4454, name: <IntlMessages id='portfolio.webDesign' />},
-  {id: 221, name: <IntlMessages id='portfolio.ui' />},
+import Button from 'devextreme-react/button';
+const actions = [
+  { id: 1, text: "File Name" },
+  { id: 2, text: "Type" },
+  { id: 3, text: "Records Imported" },
+  { id: 4, text: "Records in Error" },
+  { id: 5, text: "Amount Imported" },
+
+];
+
+
+const actions1 = [
+  { id: 1, text: "File Name" },
+  { id: 2, text: "Type" },
+  { id: 3, text: "RecordsExported" },
+  { id: 4, text: "Records in Error" },
+  { id: 5, text: "DebitAmount" },
+  { id: 6, text: "CreditAmount" },
+];
+const dropDownOptions = {
+  height: 150,
+  width: 130
+};
+
+export const portfolio = [
+  {
+    filename: 'PNG-POWERNET 10212022.txt',
+    type: 'Lockbox',
+    recordsimported: '242',
+    recordsinerror: '0',
+    amountimported: '$8,418.99',
+
+  },
+  {
+    filename: 'out.remit_pngc_10212022.txt',
+    type: '1-Pay File',
+    recordsimported: '3',
+    recordsinerror: '0',
+    amountimported: '$40.14',
+  },
+  {
+    filename: 'pngpay.remit.20221018011236',
+    type: 'Check Free',
+    recordsimported: '23',
+    recordsinerror: '2',
+    amountimported: '$488.47',
+  }
+];
+
+
+export const portfolio1 = [
+  {
+    filename: 'PNG_NACHA_BW_20221017084624',
+    type: 'ACH Web Export File',
+    recordsexported: '181',
+    recordsinerror: '0',
+    debitamount: '$20,640.22',
+    creditamount: '$0',
+
+  },
+
 ];
 
 const Portfolio = () => {
-  const [value, setValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  const shuffle = (arra1) => {
-    let ctr = arra1.length;
-    let temp;
-    let index;
-
-    // While there are elements in the array
-    while (ctr > 0) {
-      // Pick a random index
-      index = Math.floor(Math.random() * ctr);
-      // Decrease ctr by 1
-      ctr--;
-      // And swap the last element with it
-      temp = arra1[ctr];
-      arra1[ctr] = arra1[index];
-      arra1[index] = temp;
-    }
-    return arra1;
-  };
 
   return (
-    <AppAnimateGroup type='bottom'>
-      <AppPageMetadata title='Portfolio' />
-      <div className='w-100' key='a'>
-        <div
-          className={clsx(
-            styles.portfolioHeader,
-            'ms-auto me-auto text-center',
-          )}>
-          <h2>
-            <IntlMessages id='portfolio.heading' />
-          </h2>
-          <p>
-            <IntlMessages id='portfolio.content' />
-          </p>
-        </div>
 
-        <AppAnimateGroup type='bottom'>
-          <div key='b'>
-            <Tabs
-              className={clsx(
-                styles.portfolioTabs,
-                'd-flex align-items-center justify-content-center',
-              )}
-              defaultActiveKey={value}
-              onChange={handleChange}>
-              {tabs.map((tab, index) => {
-                return (
-                  <Tab
-                    title={tab.name}
-                    eventKey={index}
-                    tabClassName={clsx(styles.tab, 'border-0')}
-                  />
-                );
-              })}
-            </Tabs>
-            <div className={styles.reactPhotoGallery}>
-              <Gallery
-                margin={10}
-                photos={shuffle(photos)}
-                direction='column'
-              />
+    <div >
+      <div className='col-md-9 main-header'>
+        <p>Accounts Receivable</p>
+      </div>
+      <Tabs
+        defaultActiveKey="profile"
+        id="uncontrolled-tab-example"
+        className="mb-3">
+        <Tab eventKey="home" title="Search">
+          <div class="mb-3 row">
+            <label for="searchtype" class="col-lg-1 col-form-label">Search Type :</label>
+
+            <div class="col-sm-5 Dropdown">
+              <input type="searchtype" class='form-control Dropdown' id="searchtype" />
             </div>
           </div>
-        </AppAnimateGroup>
-      </div>
-    </AppAnimateGroup>
+          <div className="padding">
+            <button type="submit" class="btn mb-3 btn-Gray">submit</button>
+            <button type="reset" class="btn mb-3 btn-darkGray">Reset</button>
+          </div>
+
+        </Tab>
+        <Tab eventKey="profile" title="File Import">
+
+          <div>
+
+            <form>
+              <div class="mb-3 row">
+                <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
+
+                <div class="col-sm-5 Dropdown">
+                  <input type="filetype" class='form-control Dropdown' id="inputFiletype" />
+                </div>
+              </div>
+
+
+              <div class="mb-3 row">
+                <label for="inputBrand" class="col-lg-1 col-form-label">Brand</label>
+                <div class="col-sm-5">
+                  <input type="text" readonly name="brand" class="form-control" id="inputBrand" value="PNG" onChange={(e) => inputChangeHandler(setBrand, e)} />
+                </div>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-lg-1">
+                  <label for="Filename" class="col-sm-10 col-form-label">File Name</label>
+                </div>
+                <div class="col-auto">
+                  <label for="" class="visually-hidden"></label>
+                  <input type="" class="form-control" id="input" placeholder="" />
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn mb-3 btn-darkGray ">Browse</button>
+                </div>
+              </div>
+              <div>
+                <button type="submit" class="btn  mb-3 btn-Gray ">Import</button>
+                <button type="submit" class="btn  mb-3 btn-darkGray ">Clear</button>
+              </div>
+            </form>
+          </div>
+
+          <div className=''>
+            Import File Status
+          </div>
+          <DataGrid
+            className='card-body'
+            dataSource={portfolio}
+            keyExpr={'filename'}
+            allowColumnReordering={true}>
+
+            <Column dataField={'filename'} caption={'File Name'} />
+            <Column dataField={'type'} caption={'Type'} />
+            <Column dataField={'recordsimported'} caption={'Records Imported'} />
+            <Column dataField={'recordsinerror'} caption={'Records in Error'} />
+            <Column dataField={'amountimported'} caption={'Amount Imported'} />
+            <FilterRow visible={true} />
+            <ColumnChooser enabled={true} mode='select' />
+            <SearchPanel
+              className='float-start'
+              visible={true}
+              width={240}
+              placeholder="Search..."
+            />
+            <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
+            <Paging defaultPageSize={5} />
+          </DataGrid>
+        </Tab>
+
+
+        <Tab eventKey="export" title="File Export">
+
+
+          <div>
+
+            <form>
+              <div class="mb-3 row">
+                <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
+
+                <div class="col-sm-5 Dropdown">
+                  <input type="filetype" class='form-control Dropdown' id="inputFiletype" />
+                </div>
+              </div>
+
+
+              <div class="mb-3 row">
+                <label for="inputBrand" class="col-lg-1 col-form-label">Brand</label>
+                <div class="col-sm-5">
+                  <input type="text" readonly name="brand" class="form-control" id="inputBrand" value="" onChange={(e) => inputChangeHandler(setBrand, e)} />
+                </div>
+              </div>
+
+
+              <div>
+                <button type="submit" class="btn  mb-3 btn-Gray ">Export</button>
+                <button type="submit" class="btn  mb-3 btn-darkGray ">Clear</button>
+              </div>
+            </form>
+          </div>
+
+          <div className=''>
+            Export File Status
+          </div>
+          <DataGrid
+            className='card-body'
+            dataSource={portfolio1}
+            keyExpr={'filename'}
+            allowColumnReordering={true}>
+
+            <Column dataField={'filename'} caption={'File Name'} />
+            <Column dataField={'type'} caption={'Type'} />
+            <Column dataField={'recordsexported'} caption={'Records Exported'} />
+            <Column dataField={'recordsinerror'} caption={'Records in Error'} />
+            <Column dataField={'debitamount'} caption={'Debit Amount'} />
+            <Column dataField={'creditamount'} caption={'Credit Amount'} />
+            <FilterRow visible={true} />
+            <ColumnChooser enabled={true} mode='select' />
+            <SearchPanel
+              className='float-start'
+              visible={true}
+              width={240}
+              placeholder="Search..."
+            />
+            <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
+            <Paging defaultPageSize={5} />
+          </DataGrid>
+
+
+
+
+        </Tab>
+
+      </Tabs>
+    </div>
   );
 };
 

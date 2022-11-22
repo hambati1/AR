@@ -9,13 +9,13 @@ const AppSearch = () => {
   return (
     <InputGroup className={styles.appSearchBar}>
       <FormControl
-        placeholder={messages['common.searchHere']}
-        aria-label='Username'
-        aria-describedby='basic-addon1'
+        // placeholder={messages['common.searchHere']}
+        // aria-label='Username'
+        // aria-describedby='basic-addon1'
       />
-      <InputGroup.Text id='basic-addon1' className={styles.searchBtn}>
-        <AiOutlineSearch />
-      </InputGroup.Text>
+      {/* <InputGroup.Text id='basic-addon1' className={styles.searchBtn}> */}
+        {/* <AiOutlineSearch /> */}
+      {/* </InputGroup.Text> */}
     </InputGroup>
   );
 };

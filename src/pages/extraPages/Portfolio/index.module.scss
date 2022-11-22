@@ -1,59 +1,124 @@
-@import '../../../shared/styles/variable';
+.btn-darkGray {
+  border: 1px solid #9cd8d8;
+  border-radius: 5px;
+  background: #9cd8d8;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #000;
+  width: 130px;
+  height: 37px;
+  margin-left: 50px;
 
-.portfolio {
-  width: 100%;
 }
 
-.portfolioHeader {
-  max-width: 672px;
-  margin-bottom: 24px;
+.btn-Gray {
+  margin-left: 120px;
+  border: 1px solid #9cd8d8;
 
-  & h2 {
-    color: $text-color;
-    margin-bottom: 16px;
-    font-weight: $font-weight-medium;
-    font-size: 20px;
-  }
+  background: #9cd8d8;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  color: #000;
+  width: 130px;
+  height: 37px;
 
-  & p {
-    color: $text-color-secondary;
-    margin-bottom: 12px;
-  }
 }
 
-.portfolioTabs {
-  margin-bottom: 20px;
+// Data-Grid Button Scss End //
+// .btn-Dropdown {
+//     color: #404040;
+//     padding: 3px, 3px, 3px, 10px;
+//     width: 140px;
+//     margin-top: 14px;
+//     font-weight: 500;
+//     font-size: 10px;
+//     line-height: 12px;
+//     background: #F2F2F2;
+//     border: 1px solid #DBDBDB;
+//     border-radius: 5px;
 
-  & button {
-    background-color: transparent !important;
-  }
+// }
+.dx-button-mode-outlined {
+  background-color: transparent;
+  border-color: #ddd;
+  color: #404040;
+  font-size: 10px;
+  font-weight: 500;
+  width: 133px;
+  line-height: 12px;
+  background: #F2F2F2;
+  text-align: left;
+  border: 1px solid #DBDBDB;
+  border-radius: 5px;
 }
 
-.reactPhotoGallery {
-  & img {
-    border-radius: $card-radius;
-  }
+.dx-widget {
+  font-family: 'Roboto';
 }
 
-.tab {
-  font-size: 16px !important;
-  text-transform: capitalize;
-  padding: 6px 12px !important;
-  min-width: 10px;
-  margin-left: 6px;
-  margin-right: 6px;
-  color: $text-color;
-
-  &:active,
-  &:focus,
-  &:visited {
-    color: $primary !important;
-    border: none !important;
-    border-bottom: 2px solid $primary !important;
-    text-shadow: 0 0 0.25px currentColor;
-  }
-  &:hover {
-    color: $primary;
-    border: none;
-  }
+.search-header {
+  margin-top: 14px;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  color: #404040;
 }
+
+.search-profile {
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  color: #DB7100;
+}
+
+.main-header {
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: #404040;
+}
+
+// Data-Grid Table Start //
+.dx-datagrid .dx-column-lines>td {
+  border-left: 1px solid #ddd0;
+  border-right: 1px solid #ddd0;
+}
+
+.dx-datagrid-headers {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #868686;
+}
+
+.dx-datagrid {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.05em;
+  color: #4b4b4b;
+}
+// Data-Grid SCSS End //
+
+
+
+.left{
+
+
+  margin-left:50px;
+}
+.nav-link{
+  color: #000;
+}
+.nav-link:hover{
+  color: #000;
+}
+
