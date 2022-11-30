@@ -33,7 +33,7 @@ const dropDownOptions = {
 
 export const NonCitizenDetails = [
   {
-    filename: 'PNG-POWERNET 10212022.txt',
+    fileName: 'PNG-POWERNET 10212022.txt',
     type: 'Lockbox',
     recordsimported: '242',
     recordsinerror: '0',
@@ -41,14 +41,14 @@ export const NonCitizenDetails = [
 
   },
   {
-    filename: 'out.remit_pngc_10212022.txt',
+    fileName: 'out.remit_pngc_10212022.txt',
     type: '1-Pay File',
     recordsimported: '3',
     recordsinerror: '0',
     amountimported: '$40.14',
   },
   {
-    filename: 'pngpay.remit.20221018011236',
+    fileName: 'pngpay.remit.20221018011236',
     type: 'Check Free',
     recordsimported: '23',
     recordsinerror: '2',
@@ -64,7 +64,7 @@ const NonCitizen = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [fileName, setFileName] = useState();
   const path = 'http://172.20.51.231:8761/cm/api';
-  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjY5MDk2MzQ5LCJleHAiOjE2Njk2OTYzNDl9.qpb8wobkLLLrS7sydWhxKO7LN0aFlyuW7tzc1-um9IkDBUm_pM8tRZVwZ8-BQRaJs2mIdrje3pczoQVtfYbl6Q";
+  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjY5NjI5MjIwLCJleHAiOjE2NzAyMjkyMjB9.m2Xxkxh49l_DNsqfTVWHnnlLNLz_CdThAS-FJQGenl6TpEjXCHWEOX98_FXVUETMSvrFNRcKartwiQToCnd8yw";
   const b0 = { "custId": 10040003, "importFileId": 10053782, "batchId": 10043555, "page": 1, "size": 3 };
 
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -183,11 +183,11 @@ const NonCitizen = () => {
         id="uncontrolled-tab-example"
         className="mb-3">
         <Tab eventKey="home" title="Search">
-          <div class="form-group">
-            <div class="mb-3 row">
-              <label for="inputFileType" class="col-lg-1 col-form-label">Search Type :</label>
-              <div class="col-sm-5 Dropdown">
-                <select class="form-select" name="searchType" aria-label="Default select example">
+          <div className="form-group">
+            <div className="mb-3 row">
+              <label for="inputFileType" className="col-lg-1 col-form-label">Search Type :</label>
+              <div className="col-sm-5 Dropdown">
+                <select className="form-select" Name="searchType" aria-label="Default select example">
                   <option value=""></option>
                   {searchType &&
                     searchType.map((user) => (
@@ -195,9 +195,9 @@ const NonCitizen = () => {
                     ))}
                 </select>
               </div>
-              <div class="padding">
-                <button type="submit" class="btn  mb-3 btn-Gray ">Submit</button>
-                <button type="reset" value="Reset" class="btn  mb-3 btn-darkGray ">Reset</button>
+              <div className="padding">
+                <button type="submit" className="btn  mb-3 btn-Gray ">Submit</button>
+                <button type="reset" value="Reset" className="btn  mb-3 btn-darkGray ">Reset</button>
               </div>
               </div>
             </div>
@@ -205,13 +205,13 @@ const NonCitizen = () => {
         </Tab>
 
         <Tab eventKey="profile" title="File Import">
-          <div class="form-group">
+          <div className="form-group">
             <form onSubmit={onSubmitHandler}>
-              <div class="mb-3 row">
-                <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
+              <div className="mb-3 row">
+                <label for="inputFileType" className="col-lg-1 col-form-label">File Type</label>
 
-                <div class="col-sm-5 Dropdown">
-                  <select class="form-select" name="selectfileType" aria-label="Default select example"
+                <div className="col-sm-5 Dropdown">
+                  <select className="form-select" Name="selectfileType" aria-label="Default select example"
                     onChange={(e) => selectChangeHandler(selectfileType, e.target.value)}>
                     <option value=""></option>
                     {fileType &&
@@ -222,28 +222,28 @@ const NonCitizen = () => {
                 </div>
               </div>
 
-              <div class="mb-3 row">
-                <label for="inputBrand" class="col-lg-1 col-form-label">Brand</label>
-                <div class="col-sm-5">
-                  <input type="text" readonly name="brand" class="form-control" id="inputBrand" value="PNG" onChange={(e) => inputChangeHandler(setBrand, e)} />
+              <div className="mb-3 row">
+                <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
+                <div className="col-sm-5">
+                  <input type="text" readOnly Name="brand" className="form-control" id="inputBrand" value="PNG" onChange={(e) => inputChangeHandler(setBrand, e)} />
                 </div>
               </div>
-              <div class="row g-3">
-                <div class="col-lg-1">
-               <label for="Filename" class="col-sm-10 col-form-label">File Name</label>
+              <div className="row g-3">
+                <div className="col-lg-1">
+               <label for="FileName" className="col-sm-10 col-form-label">File Name</label>
                 </div>
-                <div class="col-auto">
-                  <label for="" class="visually-hidden"></label>
-                  <input type="" class="form-control" id="input" placeholder="" />
+                <div className="col-auto">
+                  <label for="" className="visually-hidden"></label>
+                  <input type="" className="form-control" id="input" placeholder="" />
                 </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn mb-3 btn-darkGray ">Browse</button>
+                <div className="col-auto">
+                  <button type="submit" className="btn mb-3 btn-darkGray ">Browse</button>
                 </div>
               </div>
 
               <div>
-                <button type="submit" class="btn  mb-3 btn-Gray ">Import</button>
-                <button type="reset" class="btn  mb-3 btn-darkGray ">Clear</button>
+                <button type="submit" className="btn  mb-3 btn-Gray ">Import</button>
+                <button type="reset" className="btn  mb-3 btn-darkGray ">Clear</button>
               </div>
             </form>
           </div>
@@ -254,10 +254,10 @@ const NonCitizen = () => {
           <DataGrid
             className='card-body'
             dataSource={NonCitizenDetails}
-            keyExpr={'filename'}
+            keyExpr={'fileName'}
             allowColumnReordering={true}>
 
-            <Column dataField={'filename'} caption={'File Name'} />
+            <Column dataField={'fileName'} caption={'File Name'} />
             <Column dataField={'type'} caption={'Type'} />
             <Column dataField={'recordsimported'} caption={'Records Imported'} />
             <Column dataField={'recordsinerror'} caption={'Records in Error'} />
@@ -274,14 +274,14 @@ const NonCitizen = () => {
             <Paging defaultPageSize={5} />
           </DataGrid>
         </Tab>
-        <Tab eventKey="export" title="File Export">
-          <div class="form-group">
+        {/* <Tab eventKey="export" title="File Export">
+          <div className="form-group">
             <form onSubmit={onExportHandler}>
-              <div class="mb-3 row">
-                <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
+              <div className="mb-3 row">
+                <label for="inputFileType" className="col-lg-1 col-form-label">File Type</label>
 
-                <div class="col-sm-5 Dropdown">
-                  <select class="form-select" name="selectfileType" aria-label="Default select example"
+                <div className="col-sm-5 Dropdown">
+                  <select className="form-select" Name="selectfileType" aria-label="Default select example"
                     onChange={(e) => selectChangeHandler(selectfileType, e.target.value)}>
                     <option value=""></option>
                     {fileType &&
@@ -291,10 +291,10 @@ const NonCitizen = () => {
                   </select>
                 </div>
               </div>
-              <div class="mb-3 row">
-                <label for="inputFileType" class="col-lg-1 col-form-label">Brand Name</label>
-                <div class="col-sm-5 Dropdown">
-                  <select class="form-select" name="selectfileType" aria-label="Default select example"
+              <div className="mb-3 row">
+                <label for="inputFileType" className="col-lg-1 col-form-label">Brand Name</label>
+                <div className="col-sm-5 Dropdown">
+                  <select className="form-select" Name="selectfileType" aria-label="Default select example"
                     onChange={(e) => selectChangeHandler(selectfileType, e.target.value)}>
                     <option value=""></option>
                     {fileType &&
@@ -305,18 +305,18 @@ const NonCitizen = () => {
                 </div>
               </div>
               <div>
-                <button type="submit" class="btn  mb-3 btn-Gray ">Export</button>
-                <button type="reset" class="btn  mb-3 btn-darkGray ">Clear</button>
+                <button type="submit" className="btn  mb-3 btn-Gray ">Export</button>
+                <button type="reset" className="btn  mb-3 btn-darkGray ">Clear</button>
               </div>
             </form>
           </div>
-        </Tab>
+        </Tab> */}
 
-        <Tab eventKey="batchPayment" title="Batch Payment">
-          <div class="form-group">
-            <div class="mb-5 row">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <label class="form-check-label" for="flexCheckDefault">Active Only</label>
+        {/* <Tab eventKey="batchPayment" title="Batch Payment">
+          <div className="form-group">
+            <div className="mb-5 row">
+              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+              <label className="form-check-label" for="flexCheckDefault">Active Only</label>
             </div>
 
             <div id="data-grid-demo">
@@ -328,7 +328,7 @@ const NonCitizen = () => {
                 <Editing mode="form" allowAdding={true} />
                 <Column dataField="batchName" caption="Batch ID" width={70} />
                 <Column dataField="type" caption="Type" width={70} />
-                <Column dataField="name" caption="Name" width={70} />
+                <Column dataField="Name" caption="Name" width={70} />
                 <Column dataField="createdBy" caption="Created By" width={70} />
                 <Column dataField="status" caption="Status" width={70} />
                 <Column dataField="totalRecords" caption="Total Records" width={70} />
@@ -338,7 +338,7 @@ const NonCitizen = () => {
             </div>
 
           </div>
-        </Tab>
+        </Tab> */}
       </Tabs>
     </div>
   );

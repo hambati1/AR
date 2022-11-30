@@ -39,7 +39,7 @@ const dropDownOptions = {
 
 export const portfolio = [
   {
-    filename: 'PNG-POWERNET 10212022.txt',
+    fileName: 'PNG-POWERNET 10212022.txt',
     type: 'Lockbox',
     recordsimported: '242',
     recordsinerror: '0',
@@ -47,14 +47,14 @@ export const portfolio = [
 
   },
   {
-    filename: 'out.remit_pngc_10212022.txt',
+    fileName: 'out.remit_pngc_10212022.txt',
     type: '1-Pay File',
     recordsimported: '3',
     recordsinerror: '0',
     amountimported: '$40.14',
   },
   {
-    filename: 'pngpay.remit.20221018011236',
+    fileName: 'pngpay.remit.20221018011236',
     type: 'Check Free',
     recordsimported: '23',
     recordsinerror: '2',
@@ -65,7 +65,7 @@ export const portfolio = [
 
 export const portfolio1 = [
   {
-    filename: 'PNG_NACHA_BW_20221017084624',
+    fileName: 'PNG_NACHA_BW_20221017084624',
     type: 'ACH Web Export File',
     recordsexported: '181',
     recordsinerror: '0',
@@ -89,16 +89,16 @@ const Portfolio = () => {
         id="uncontrolled-tab-example"
         className="mb-3">
         <Tab eventKey="home" title="Search">
-          <div class="mb-3 row">
-            <label for="searchtype" class="col-lg-1 col-form-label">Search Type :</label>
+          <div className="mb-3 row">
+            <label for="searchtype" className="col-lg-1 col-form-label">Search Type :</label>
 
-            <div class="col-sm-5 Dropdown">
+            <div className="col-sm-5 Dropdown">
               <input type="searchtype" class='form-control Dropdown' id="searchtype" />
             </div>
           </div>
           <div className="padding">
-            <button type="submit" class="btn mb-3 btn-Gray">submit</button>
-            <button type="reset" class="btn mb-3 btn-darkGray">Reset</button>
+            <button type="submit" className="btn mb-3 btn-Gray">submit</button>
+            <button type="reset" className="btn mb-3 btn-darkGray">Reset</button>
           </div>
 
         </Tab>
@@ -107,37 +107,37 @@ const Portfolio = () => {
           <div>
 
             <form>
-              <div class="mb-3 row">
+              <div className="mb-3 row">
                 <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
 
-                <div class="col-sm-5 Dropdown">
+                <div className="col-sm-5 Dropdown">
                   <input type="filetype" class='form-control Dropdown' id="inputFiletype" />
                 </div>
               </div>
 
 
-              <div class="mb-3 row">
-                <label for="inputBrand" class="col-lg-1 col-form-label">Brand</label>
-                <div class="col-sm-5">
-                  <input type="text" readonly name="brand" class="form-control" id="inputBrand" value="PNG" onChange={(e) => inputChangeHandler(setBrand, e)} />
+              <div className="mb-3 row">
+                <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
+                <div className="col-sm-5">
+                  <input type="text" readOnly Name="brand" className="form-control" id="inputBrand" value="PNG" onChange={(e) => inputChangeHandler(setBrand, e)} />
+                </div>
+              </div>
+              <div className="row g-3">
+                <div className="col-lg-1">
+                  <label for="FileName" className="col-sm-10 col-form-label">File Name</label>
+                </div>
+                <div className="col-auto">
+                  <label for="" className="visually-hidden"></label>
+                  <input type="" className="form-control" id="input" placeholder="" />
+                </div>
+                <div className="col-auto">
+                  <button type="submit" className="btn mb-3 btn-darkGray ">Browse</button>
                 </div>
               </div>
 
-              <div class="row g-3">
-                <div class="col-lg-1">
-                  <label for="Filename" class="col-sm-10 col-form-label">File Name</label>
-                </div>
-                <div class="col-auto">
-                  <label for="" class="visually-hidden"></label>
-                  <input type="" class="form-control" id="input" placeholder="" />
-                </div>
-                <div class="col-auto">
-                  <button type="submit" class="btn mb-3 btn-darkGray ">Browse</button>
-                </div>
-              </div>
               <div>
-                <button type="submit" class="btn  mb-3 btn-Gray ">Import</button>
-                <button type="submit" class="btn  mb-3 btn-darkGray ">Clear</button>
+                <button type="submit" className="btn  mb-3 btn-Gray ">Import</button>
+                <button type="reset" className="btn  mb-3 btn-darkGray ">Clear</button>
               </div>
             </form>
           </div>
@@ -148,10 +148,10 @@ const Portfolio = () => {
           <DataGrid
             className='card-body'
             dataSource={portfolio}
-            keyExpr={'filename'}
+            keyExpr={'fileName'}
             allowColumnReordering={true}>
 
-            <Column dataField={'filename'} caption={'File Name'} />
+            <Column dataField={'fileName'} caption={'File Name'} />
             <Column dataField={'type'} caption={'Type'} />
             <Column dataField={'recordsimported'} caption={'Records Imported'} />
             <Column dataField={'recordsinerror'} caption={'Records in Error'} />
@@ -176,26 +176,24 @@ const Portfolio = () => {
           <div>
 
             <form>
-              <div class="mb-3 row">
-                <label for="inputFileType" class="col-lg-1 col-form-label">File Type</label>
+              <div className="mb-3 row">
+                <label for="inputFileType" className="col-lg-1 col-form-label">File Type</label>
 
-                <div class="col-sm-5 Dropdown">
-                  <input type="filetype" class='form-control Dropdown' id="inputFiletype" />
+                <div className="col-sm-5 Dropdown">
+                  <input type="filetype" className='form-control Dropdown' id="inputFiletype" />
                 </div>
               </div>
 
 
-              <div class="mb-3 row">
-                <label for="inputBrand" class="col-lg-1 col-form-label">Brand</label>
-                <div class="col-sm-5">
-                  <input type="text" readonly name="brand" class="form-control" id="inputBrand" value="" onChange={(e) => inputChangeHandler(setBrand, e)} />
+              <div className="mb-3 row">
+                <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
+                <div className="col-sm-5">
+                  <input type="text" readOnly Name="brand" className="form-control" id="inputBrand" value="" onChange={(e) => inputChangeHandler(setBrand, e)} />
                 </div>
               </div>
-
-
               <div>
-                <button type="submit" class="btn  mb-3 btn-Gray ">Export</button>
-                <button type="submit" class="btn  mb-3 btn-darkGray ">Clear</button>
+                <button type="submit" className="btn  mb-3 btn-Gray ">Export</button>
+                <button type="submit" className="btn  mb-3 btn-darkGray ">Clear</button>
               </div>
             </form>
           </div>
@@ -206,10 +204,10 @@ const Portfolio = () => {
           <DataGrid
             className='card-body'
             dataSource={portfolio1}
-            keyExpr={'filename'}
+            keyExpr={'fileName'}
             allowColumnReordering={true}>
 
-            <Column dataField={'filename'} caption={'File Name'} />
+            <Column dataField={'fileName'} caption={'File Name'} />
             <Column dataField={'type'} caption={'Type'} />
             <Column dataField={'recordsexported'} caption={'Records Exported'} />
             <Column dataField={'recordsinerror'} caption={'Records in Error'} />
