@@ -57,20 +57,6 @@ const Error404 = () => {
         defaultActiveKey="profile"
         id="uncontrolled-tab-example"
         className="mb-3">
-        <Tab eventKey="home" title="Search">
-          <div className="mb-3 row">
-            <label for="searchtype" className="col-lg-1 col-form-label">Search Type :</label>
-
-            <div className="col-sm-5 Dropdown">
-              <input type="searchtype" className='form-control Dropdown' id="searchtype" />
-            </div>
-          </div>
-          <div className="padding">
-
-            <button type="submit" className="btn mb-3 btn-Gray">submit</button>
-            <button type="reset" className="btn mb-3 btn-darkGray">Reset</button>
-          </div>
-        </Tab>
         <Tab eventKey="batchPayment" title="Batch Payment">
           <div className="form-group">
             <div className="mb-5 row">

@@ -65,8 +65,6 @@ const NonCitizen = () => {
   const [fileName, setFileName] = useState();
   const path = 'http://172.20.51.231:8761/cm/api';
   const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjcwMzE4MjgxLCJleHAiOjE2NzA5MTgyODF9.Vc3DJOmtMHMXiKA3JfhiEaLIOHj0-D89aE3bgGEPHZJOpcckbmWPlfQF-tOsH9uEgVg2-uQYQPFILh1ZPZG7Mw";
-  const b0 = { "custId": 10040003, "importFileId": 10053782, "batchId": 10043555, "page": 1, "size": 3 };
-
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     setFunction(event.target.value)
   }
@@ -77,7 +75,17 @@ const NonCitizen = () => {
   }
 
   const getSearchData = async () => {
-    const response = await fetch(path + "/ar/searchworklist", {
+  const b0 = {
+                   "importedBy": "bmccullars",
+                       "fileName": "%Powernet%",
+                       "fileTypeId": 19,
+                       "page": 1,
+                       "size": 3,
+                       "sort": [
+                               "importDt,desc"
+                       ]
+               };
+    const response = await fetch(path + "/ar/searchimportfile", {
       method: 'POST',
       headers: { "Content-Type": 'application/json', Session: session },
       body: JSON.stringify(b0)
@@ -105,21 +113,22 @@ const NonCitizen = () => {
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.target;
     event.preventDefault();
-    const url = path + '/searchexportfile';
+    const url = path + '/ar/import/file';
     const formData = new FormData();
-    formData.append('fileNames', '%' + fileName + '%');
-    //formData.append('exportedBy', "bmccullars");
-    formData.append('fileTypeId', selectfileType);
-    formData.append('page', 1);
-    formData.append('size', 10);
-    const json = Object.fromEntries(formData);
+    const r=fileName;
+    let a=JSON.stringify(r);
+    console.log(a);
+    let json={"fileNames":fileName,"brandId":1,"fileTypeId":selectfileType,"page":1,"size":10};
+    console.log(json);
+     let ab=JSON.stringify(json);
+
     const config = {
       headers: {
         'content-type': 'application/json',
         Session: session
       },
     };
-    axios.post(url, json, config).then((response) => {
+    axios.post(url, ab, config).then((response) => {
       console.log(response.data);
     });
   }
@@ -129,8 +138,8 @@ const NonCitizen = () => {
     event.preventDefault();
     const url = path + '/searchexportfile';
     const formData = new FormData();
-    formData.append('fileNames', '%' + fileName + '%');
-    //formData.append('exportedBy', "bmccullars");
+    formData.append('fileNames','['+fileName+']');
+    formData.append('brandId', 1);
     formData.append('fileTypeId', selectfileType);
     formData.append('page', 1);
     formData.append('size', 10);
@@ -212,7 +221,7 @@ const NonCitizen = () => {
 
                 <div className="col-sm-5 Dropdown">
                   <select className="form-select" Name="selectfileType" aria-label="Default select example"
-                    onChange={(e) => selectChangeHandler(selectfileType, e.target.value)}>
+                    onChange={(e) => selectChangeHandler(selectfileType, e.target.value)} onChange={(e) => selectChangeHandler(setFileName, e.target.value)}>
                     <option value=""></option>
                     {fileType &&
                       fileType.map((user) => (
@@ -225,16 +234,16 @@ const NonCitizen = () => {
               <div className="mb-3 row">
                 <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
                 <div className="col-sm-5">
-                  <input type="text" readOnly Name="brand" className="form-control" id="inputBrand" value="PNG" onChange={(e) => inputChangeHandler(setBrand, e)} />
+                  <input type="text" readOnly Name="brand" className="form-control" id="inputBrand" value="PNG"  />
                 </div>
               </div>
               <div className="mb-3 row">
                 <div className="col-lg-1">
-               <label for="FileName" className="col-lg-1 col-form-label">FileName</label>
+               <label for="fileName" className="col-lg-1 col-form-label">FileName</label>
                 </div>
                 <div className="col-sm-5">
                   <label for="" className="visually-hidden"></label>
-                  <input type="" className="form-control" id="input" placeholder="" />
+                  <input type="text" readOnly Name="fileName" value={fileName}  className="form-control" id="inputFileName"  />
                 </div>
                 {/* <div className="col-auto">
                   <button type="submit" className="btn mb-3 btn-darkGray ">Browse</button>
@@ -274,71 +283,9 @@ const NonCitizen = () => {
             <Paging defaultPageSize={5} />
           </DataGrid>
         </Tab>
-        {/* <Tab eventKey="export" title="File Export">
-          <div className="form-group">
-            <form onSubmit={onExportHandler}>
-              <div className="mb-3 row">
-                <label for="inputFileType" className="col-lg-1 col-form-label">File Type</label>
+        {}
 
-                <div className="col-sm-5 Dropdown">
-                  <select className="form-select" Name="selectfileType" aria-label="Default select example"
-                    onChange={(e) => selectChangeHandler(selectfileType, e.target.value)}>
-                    <option value=""></option>
-                    {fileType &&
-                      fileType.map((user) => (
-                        <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
-                      ))}
-                  </select>
-                </div>
-              </div>
-              <div className="mb-3 row">
-                <label for="inputFileType" className="col-lg-1 col-form-label">Brand Name</label>
-                <div className="col-sm-5 Dropdown">
-                  <select className="form-select" Name="selectfileType" aria-label="Default select example"
-                    onChange={(e) => selectChangeHandler(selectfileType, e.target.value)}>
-                    <option value=""></option>
-                    {fileType &&
-                      fileType.map((user) => (
-                        <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
-                      ))}
-                  </select>
-                </div>
-              </div>
-              <div>
-                <button type="submit" className="btn  mb-3 btn-Gray ">Export</button>
-                <button type="reset" className="btn  mb-3 btn-darkGray ">Clear</button>
-              </div>
-            </form>
-          </div>
-        </Tab> */}
-
-        {/* <Tab eventKey="batchPayment" title="Batch Payment">
-          <div className="form-group">
-            <div className="mb-5 row">
-              <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-              <label className="form-check-label" for="flexCheckDefault">Active Only</label>
-            </div>
-
-            <div id="data-grid-demo">
-              <DataGrid
-                dataSource={employees}
-                keyExpr="ID"
-                showBorders={true}>
-                <Paging enabled={false} />
-                <Editing mode="form" allowAdding={true} />
-                <Column dataField="batchName" caption="Batch ID" width={70} />
-                <Column dataField="type" caption="Type" width={70} />
-                <Column dataField="Name" caption="Name" width={70} />
-                <Column dataField="createdBy" caption="Created By" width={70} />
-                <Column dataField="status" caption="Status" width={70} />
-                <Column dataField="totalRecords" caption="Total Records" width={70} />
-                <Column dataField="totalAmount" caption="Total Amount" width={70} />
-                <Column dataField="totalAgencyFee" caption="Total Agency Fees" width={70} />
-              </DataGrid>
-            </div>
-
-          </div>
-        </Tab> */}
+        {}
       </Tabs>
     </div>
   );
