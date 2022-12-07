@@ -42,30 +42,8 @@ const AppHeader = () => {
         <UserInfo userInfoContentClass={styles.userInfoContent} />
       </div>
       <div className='d-md-none'>
-        <Dropdown>
-          <Dropdown.Toggle
-            id='dropdown-custom-components'
-            className={clsx(
-              styles.dropdownToggleBtn,
-              'p-0 bg-transparent border-0 d-flex align-items-center w-100 shadow-none',
-            )}>
-            <AppIconBtn>
-              <FiMoreVertical />
-            </AppIconBtn>
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">
-              <AppHeaderMessages />
-            </Dropdown.Item>
-            <Dropdown.Item href="#/action-2">
-              <AppNotifications />
-            </Dropdown.Item>
-            <Dropdown.Item href="#/action-3">
-              <AppLanguageSwitcher />
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        
+          
       </div>
     </div>
   );

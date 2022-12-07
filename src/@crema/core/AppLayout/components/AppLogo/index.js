@@ -26,6 +26,9 @@ const AppLogo = ({hasSidebarColor}) => {
       )}
     </div>
     </div>
+
+    
+
   );
 };
 

@@ -47,6 +47,8 @@
       right: 0;
       border-right: 0 none;
       border-left: solid $border-width $border-color;
+
+      
     }
 
   .appLayoutMiniCollapsed & {
@@ -129,7 +131,10 @@
   [dir=rtl] & {
     right: auto;
     left: 0;
-  }
+
+      }
+
+  
 
   @include media-breakpoint-up(md) {
     padding-left: 30px;
@@ -312,6 +317,9 @@
       position: sticky;
       width: 100% !important;
       border-top-right-radius: 12px;
+
+
+      
     }
 
     & .appLayoutMiniMain,
@@ -335,10 +343,12 @@
 
     & .appSidebarMiniScrollbar {
       height: calc(100vh - 110px) !important;
+    
     }
 
     & .mainMiniScrollbar {
       max-height: calc(100vh - 110px);
+
     }
 
     & :global(.apps-container) {
@@ -346,5 +356,7 @@
     }
   }
 }
+
+
 
 

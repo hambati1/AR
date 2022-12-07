@@ -1,14 +1,14 @@
 import React from 'react';
 
-// import '../index.style.scss';
 import '../../errorPages/Error404/index.style.scss'
-
+import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 const actions = [
   { id: 1, text: "Batch Name" },
@@ -30,7 +30,7 @@ const dropDownOptions = {
 export const employees = [
   {
     batchId: '',
-    type: '',
+    type: '', 
     Name: '',
     createdBy: '',
     creationdate: '',
@@ -42,7 +42,10 @@ export const employees = [
 
   },
 ]
+
+
 const Error404 = () => {
+  
 
   return (
 
@@ -59,7 +62,7 @@ const Error404 = () => {
             <label for="searchtype" className="col-lg-1 col-form-label">Search Type :</label>
 
             <div className="col-sm-5 Dropdown">
-              <input type="searchtype" class='form-control Dropdown' id="searchtype" />
+              <input type="searchtype" className='form-control Dropdown' id="searchtype" />
             </div>
           </div>
           <div className="padding">
@@ -87,11 +90,11 @@ const Error404 = () => {
                 <Column dataField={"createdBy"} caption="Created By" width={70} />
                 <Column dataField={"status"} caption="Status" width={70} />
                 <Column dataField={"totalRecords"} caption="Total Records" width={70} />
-                <Column dataField="totalAmount" caption="Total Amount" width={70} />
-                <Column dataField="totalAgencyFee" caption="Total Agency Fees" width={70} />
+                <Column dataField={"totalAmount"} caption="Total Amount" width={70} />
+                <Column dataField={"totalAgencyFee"} caption="Total Agency Fees" width={70} />
               </DataGrid>
             </div>
- </div>
+           </div>
         </Tab>
       </Tabs>
     </div>

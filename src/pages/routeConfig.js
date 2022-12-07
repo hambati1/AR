@@ -62,7 +62,7 @@ const routesConfig = [
         messageId: 'sidebar.app.dashboard.analytics',
         type: 'item',
         icon: <AiFillDollarCircle />,
-        url: '/dashboards/analytics',
+        url: '/extra-pages/error-pages/error-404',
       },
       {
         id: 'health-care',
@@ -78,7 +78,7 @@ const routesConfig = [
         messageId: 'sidebar.app.dashboard.eCommerce',
         type: 'item',
         icon: <AiOutlineFolderView />,
-        url: '/extra-pages/error-pages/error-402',
+        url: '/extra-pages/error-pages/error-500',
       },
       {
         id: 'academy',
@@ -94,7 +94,7 @@ const routesConfig = [
         messageId: 'sidebar.app.dashboard.archive',
         type: 'item',
         icon: <AiOutlineLineChart />,
-        url: '/extra-pages/error-pages/error-404',
+        url: '/extra-pages/error-pages/error-402',
       }
     ],
   },

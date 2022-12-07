@@ -64,7 +64,7 @@ const NonCitizen = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [fileName, setFileName] = useState();
   const path = 'http://172.20.51.231:8761/cm/api';
-  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjY5NjI5MjIwLCJleHAiOjE2NzAyMjkyMjB9.m2Xxkxh49l_DNsqfTVWHnnlLNLz_CdThAS-FJQGenl6TpEjXCHWEOX98_FXVUETMSvrFNRcKartwiQToCnd8yw";
+  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjcwMzE4MjgxLCJleHAiOjE2NzA5MTgyODF9.Vc3DJOmtMHMXiKA3JfhiEaLIOHj0-D89aE3bgGEPHZJOpcckbmWPlfQF-tOsH9uEgVg2-uQYQPFILh1ZPZG7Mw";
   const b0 = { "custId": 10040003, "importFileId": 10053782, "batchId": 10043555, "page": 1, "size": 3 };
 
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -228,17 +228,17 @@ const NonCitizen = () => {
                   <input type="text" readOnly Name="brand" className="form-control" id="inputBrand" value="PNG" onChange={(e) => inputChangeHandler(setBrand, e)} />
                 </div>
               </div>
-              <div className="row g-3">
+              <div className="mb-3 row">
                 <div className="col-lg-1">
-               <label for="FileName" className="col-sm-10 col-form-label">File Name</label>
+               <label for="FileName" className="col-lg-1 col-form-label">FileName</label>
                 </div>
-                <div className="col-auto">
+                <div className="col-sm-5">
                   <label for="" className="visually-hidden"></label>
                   <input type="" className="form-control" id="input" placeholder="" />
                 </div>
-                <div className="col-auto">
+                {/* <div className="col-auto">
                   <button type="submit" className="btn mb-3 btn-darkGray ">Browse</button>
-                </div>
+                </div> */}
               </div>
 
               <div>

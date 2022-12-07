@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 // import Gallery from 'react-photo-gallery';
 // import photos from '@crema/services/db/gallery/photos';
 // import IntlMessages from '@crema/utility/IntlMessages';
@@ -6,11 +6,17 @@ import styles from './index.module.scss';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
+import axios from 'axios';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { Tabs, Tab } from 'react-bootstrap';
 import DropDownButton from 'devextreme-react/drop-down-button';
 import AppAnimateGroup from '@crema/core/AppAnimateGroup';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
+import {onexportList  } from '../../../redux/actions/paymentList';
+import { onPaymentList } from '../../../redux/actions/paymentList';
+
+
+
 // import clsx from 'clsx';
 
 import Button from 'devextreme-react/button';
@@ -36,6 +42,7 @@ const dropDownOptions = {
   height: 150,
   width: 130
 };
+
 
 export const portfolio = [
   {
@@ -65,18 +72,140 @@ export const portfolio = [
 
 export const portfolio1 = [
   {
-    fileName: 'PNG_NACHA_BW_20221017084624',
-    type: 'ACH Web Export File',
-    recordsexported: '181',
-    recordsinerror: '0',
-    debitamount: '$20,640.22',
-    creditamount: '$0',
+    fileName: '',
+    type: '',
+    recordsexported: '',
+    recordsinerror: '',
+    debitamount: '',
+    creditamount: '',
 
   },
 
 ];
 
 const Portfolio = () => {
+  const [searchType, setSearchTypes] = useState();
+  const [setFileType, setFileTypes] = useState();
+  const [ex_setFileType, ex_setFileTypes] = useState();
+  const [selectfileType, setselectfileType] = useState("")
+  const [fileName, setFileName] = useState();
+
+  // const path = 'http://172.20.51.231:8761/cm/api';
+  // const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjcwMzE4MjgxLCJleHAiOjE2NzA5MTgyODF9.Vc3DJOmtMHMXiKA3JfhiEaLIOHj0-D89aE3bgGEPHZJOpcckbmWPlfQF-tOsH9uEgVg2-uQYQPFILh1ZPZG7Mw";
+  const b0 = { "fileTypeId": 59,"brandId": 1,"fileName": "PrepaidCallRecs_Nov2022.txt","fromDate": "2022-01-01","toDate": "2022-10-31"};
+  const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
+    setFunction(event.target.value)
+  }
+  const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event);
+    setselectfileType(event);
+    getFileNames(event);
+  }
+  const getSearchData = async () => {
+    const response = await fetch(path + "/export/file", {
+      method: 'POST',
+      headers: { "Content-Type": 'application/json', Session: session },
+      body: JSON.stringify(b0)
+    }
+    ).then((response) => response.json());
+    console.log(response.response);
+    setSearchTypes(response.response);
+  };
+
+
+
+const getFileTypeData = async () => {
+  const response = await fetch(path + "/cn/filetype?functionId=6&isActive=1&isImport=0", {
+    method: 'GET',
+    headers: { Session: session }
+  }
+  ).then((response) => response.json());
+ 
+  setFileTypes(response.response);
+
+};
+
+// const portfolios1 = async () => {
+//   const response = await fetch(path + "/ar/import/file/list", {
+//     method: 'GET',
+//     headers: { Session: session }
+//   }
+//   ).then((response) => response.json());
+ 
+//   setFileTypes(response.response);
+
+// };
+
+
+
+
+  useEffect(() => {
+    getFileTypeData()
+  getSearchData()
+ 
+  }, []);
+
+  const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log("dd")
+    const form = event.target;
+    event.preventDefault();
+    const url = path + '/export/file';
+    const formData = new FormData();
+    formData.append('fileNames', '%' + fileName + '%');
+    //formData.append('exportedBy', "bmccullars");
+    formData.append('fileTypeId', selectfileType);
+    formData.append('page', 1);
+    formData.append('size', 10);
+    const json = Object.fromEntries(formData);
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        Session: session
+      },
+    };
+    axios.post(url, json, config).then((response) => {
+      console.log(response.data);
+    });
+  }
+
+  const onExportHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const form = event.target;
+    event.preventDefault();
+    const url = path + '/export/file';
+    const formData = new FormData();
+    formData.append('fileNames', '%' + fileName + '%');
+    //formData.append('exportedBy', "bmccullars");
+    formData.append('fileTypeId', selectfileType);
+    formData.append('page', 1);
+    formData.append('size', 10);
+    const json = Object.fromEntries(formData);
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        Session: session
+      },
+    };
+    axios.post(url, json, config).then((response) => {
+      console.log(response.data);
+    });
+  }
+  const getFileNames = async (event) => {
+    console.log(event);
+    if (event != undefined) {
+      const url = path + '/export/file/list?fileTypeId=' + event + '&brandId=1';
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: { Session: session }
+      }
+      ).then((response) => response.json());
+      console.log(response.response);
+      setFileName(response.response);
+    }
+  };
+
+
+
+
 
   return (
 
@@ -90,12 +219,23 @@ const Portfolio = () => {
         className="mb-3">
         <Tab eventKey="home" title="Search">
           <div className="mb-3 row">
-            <label for="searchtype" className="col-lg-1 col-form-label">Search Type :</label>
+            <label for="searchtype" className="col-lg-1 col-form-label">SearchType:</label>
+            <div className="col-sm-5 Dropdown">
+                <select className="form-select" Name="searchType" aria-label="Default select example">
+                  <option value=""></option>
+                  {searchType &&
+                    searchType.map((user) => (
+                      <option value="{user.fileTypeId}">{user.fileTypeDesc}</option>
+                    ))}
+                </select>
+              </div>
+</div>
 
+{/* 
             <div className="col-sm-5 Dropdown">
               <input type="searchtype" class='form-control Dropdown' id="searchtype" />
             </div>
-          </div>
+          </div> */}
           <div className="padding">
             <button type="submit" className="btn mb-3 btn-Gray">submit</button>
             <button type="reset" className="btn mb-3 btn-darkGray">Reset</button>
@@ -117,14 +257,14 @@ const Portfolio = () => {
 
 
               <div className="mb-3 row">
-                <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
+                <label for="inputBrand" className="col-lg-1 col-form-label">Brand </label>
                 <div className="col-sm-5">
                   <input type="text" readOnly Name="brand" className="form-control" id="inputBrand" value="PNG" onChange={(e) => inputChangeHandler(setBrand, e)} />
                 </div>
               </div>
-              <div className="row g-3">
+              {/* <div className="mb-3 row">
                 <div className="col-lg-1">
-                  <label for="FileName" className="col-sm-10 col-form-label">File Name</label>
+                  <label for="FileName" className="col-lg-1 col-form-label">FileName</label>
                 </div>
                 <div className="col-auto">
                   <label for="" className="visually-hidden"></label>
@@ -133,6 +273,16 @@ const Portfolio = () => {
                 <div className="col-auto">
                   <button type="submit" className="btn mb-3 btn-darkGray ">Browse</button>
                 </div>
+              </div> */}
+              <div className="mb-3 row">
+                <div className="col-lg-1">
+               <label for="FileName" className="col-lg-1 col-form-label">FileName</label>
+                </div>
+                <div className="col-sm-5">
+                  <label for="" className="visually-hidden"></label>
+                  <input type="" className="form-control" id="input" placeholder="" />
+                </div>
+                
               </div>
 
               <div>
@@ -175,25 +325,34 @@ const Portfolio = () => {
 
           <div>
 
-            <form>
+          <form onSubmit={onSubmitHandler}>
               <div className="mb-3 row">
                 <label for="inputFileType" className="col-lg-1 col-form-label">File Type</label>
 
-                <div className="col-sm-5 Dropdown">
-                  <input type="filetype" className='form-control Dropdown' id="inputFiletype" />
+
+
+              <div className="col-sm-5 Dropdown">
+                  <select className="form-select" Name="selectfileType" aria-label="Default select example"
+                    onChange={(e) => selectChangeHandler(setFileType, e.target.value)}>
+                    <option value=""></option>
+                    {setFileType &&
+                      setFileType.map((user) => (
+                        <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
+                      ))}
+                  </select>
                 </div>
               </div>
 
 
               <div className="mb-3 row">
-                <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
+                <label for="inputBrand" className="col-lg-1 col-form-label">Brand Name</label>
                 <div className="col-sm-5">
                   <input type="text" readOnly Name="brand" className="form-control" id="inputBrand" value="" onChange={(e) => inputChangeHandler(setBrand, e)} />
                 </div>
               </div>
               <div>
-                <button type="submit" className="btn  mb-3 btn-Gray ">Export</button>
-                <button type="submit" className="btn  mb-3 btn-darkGray ">Clear</button>
+                <button  type="submit" className="btn  mb-3 btn-Gray " >Export</button>
+                <button type="reset" className="btn  mb-3 btn-darkGray ">Clear</button>
               </div>
             </form>
           </div>
