@@ -12,6 +12,8 @@ import AppPageMetadata from '@crema/core/AppPageMetadata';
 import {onexportList  } from '../../../redux/actions/paymentList';
 import { onPaymentList } from '../../../redux/actions/paymentList';
 import Button from 'devextreme-react/button';
+import {getExportFileTypeData,getExportSearchData,getExportFileNames,onSubmitExportHandler} from '../../errorPages/APICalls.js'
+
 const actions = [
   { id: 1, text: "File Name" },
   { id: 2, text: "Type" },
@@ -53,8 +55,7 @@ const Portfolio = () => {
   const [ex_setFileType, ex_setFileTypes] = useState();
   const [selectfileType, setselectfileType] = useState("")
   const [fileName, setFileName] = useState();
-const path = 'http://172.20.51.231:8761/cm/api';
-  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjcwMzE4MjgxLCJleHAiOjE2NzA5MTgyODF9.Vc3DJOmtMHMXiKA3JfhiEaLIOHj0-D89aE3bgGEPHZJOpcckbmWPlfQF-tOsH9uEgVg2-uQYQPFILh1ZPZG7Mw";
+
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     setFunction(event.target.value)
   }
@@ -63,71 +64,40 @@ const path = 'http://172.20.51.231:8761/cm/api';
     setselectfileType(event);
     getFileNames(event);
   }
-  const getSearchData = async () => {
-  let b0={
-             "fileTypeId": 59,
-             "brandId": 1
-     };
-    const response = await fetch(path + "/ar/export/file", {
-      method: 'POST',
-      headers: { "Content-Type": 'application/json', Session: session },
-      body: JSON.stringify(b0)
-    }
-    ).then((response) => response.json());
-    console.log(response.response);
-    setSearchTypes(response.response);
-  };
 
-const getFileTypeData = async () => {
-console.log("sssssssssss");
-  const response = await fetch(path + "/cn/filetype?functionId=6&isActive=1&isImport=0", {
-    method: 'GET',
-    headers: { Session: session }
-  }
-  ).then((response) => response.json());
-   setFileTypes(response.response);
-};
+   useEffect(() => {
+      getFileTypeDataVal()
+      getSearchData()
+     }, []);
 
-  useEffect(() => {
-    getFileTypeData()
-    getSearchData()
-   }, []);
+async function getSearchData() {
+  var data=await  getExportSearchData(selectfileType,1);
+  var a=data.response;
+    console.log('getSearchData '+a);
+    setSearchTypes(a);
+}
+
+async function getFileTypeDataVal() {
+  var data=await  getExportFileTypeData();
+  var a=data.response;
+    console.log('Statement 2'+a);
+    setFileTypes(a);
+}
+
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     console.log("dd")
     const form = event.target;
     event.preventDefault();
-    const url = path + '/ar/export/file';
     const formData = new FormData();
-     formData.append('brandId', 1);
-     formData.append('fileTypeId', selectfileType);
-    const json = Object.fromEntries(formData);
-    const config = {
-      headers: {
-        'content-type': 'application/json',
-        Session: session
-      },
-    };
-    axios.post(url, json, config).then((response) => {
-      console.log(response.data);
-    });
+         formData.append('brandId', 1);
+         formData.append('fileTypeId', selectfileType);
+        const json = Object.fromEntries(formData);
+    onSubmitExportHandler(json);
   }
 
   const getFileNames = async (event) => {
-    console.log(event);
-    if (event != undefined) {
-    let b0={
-                 "fileTypeId": event,
-                 "brandId": 1
-         };
-      const response = await fetch(path + "/searchexportfile", {
-           method: 'POST',
-           headers: { "Content-Type": 'application/json', Session: session },
-           body: JSON.stringify(b0)
-         }
-         ).then((response) => response.json());
-         console.log(response.response);
-    }
+    getExportFileNames(event);
   };
 
   return (
@@ -197,12 +167,7 @@ console.log("sssssssssss");
             <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
             <Paging defaultPageSize={5} />
           </DataGrid>
-
-
-
-
         </Tab>
-
       </Tabs>
     </div>
   );
