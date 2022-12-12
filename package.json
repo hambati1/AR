@@ -85,6 +85,7 @@
     "react-tooltip": "^4.2.21",
     "react-trello": "^2.2.11",
     "react-window": "^1.8.6",
+    "reactstrap": "^9.1.5",
     "recharts": "^2.0.10",
     "recompose": "^0.30.0",
     "redux": "^4.1.0",

@@ -185,9 +185,6 @@ const NonCitizen = () => {
                   <label for="" className="visually-hidden"></label>
                   <input type="text" readOnly Name="fileName" value={fileName}  className="form-control" id="inputFileName"  />
                 </div>
-                {/* <div className="col-auto">
-                  <button type="submit" className="btn mb-3 btn-darkGray ">Browse</button>
-                </div> */}
               </div>
 
               <div>
