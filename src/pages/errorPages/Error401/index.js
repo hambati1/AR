@@ -30,32 +30,7 @@ const dropDownOptions = {
   height: 150,
   width: 130
 };
-
-export const NonCitizenDetails = [
-  {
-    fileName: 'PNG-POWERNET 10212022.txt',
-    type: 'Lockbox',
-    recordsimported: '242',
-    recordsinerror: '0',
-    amountimported: '$8,418.99',
-
-  },
-  {
-    fileName: 'out.remit_pngc_10212022.txt',
-    type: '1-Pay File',
-    recordsimported: '3',
-    recordsinerror: '0',
-    amountimported: '$40.14',
-  },
-  {
-    fileName: 'pngpay.remit.20221018011236',
-    type: 'Check Free',
-    recordsimported: '23',
-    recordsinerror: '2',
-    amountimported: '$488.47',
-  }
-];
-
+let NonCitizenDetails=[];
 const NonCitizen = () => {
   const [searchType, setSearchTypes] = useState();
   const [fileType, setFileTypes] = useState();
@@ -72,20 +47,19 @@ const NonCitizen = () => {
     console.log(event);
     setselectfileType(event);
     getFileNames(event);
+     getSearchData();
   }
 
   const getSearchData = async () => {
   const b0 = {
-                   "importedBy": "bmccullars",
-                       "fileName": "%Powernet%",
-                       "fileTypeId": 19,
+                    "fileTypeId": selectfileType,
                        "page": 1,
                        "size": 3,
                        "sort": [
                                "importDt,desc"
                        ]
                };
-    const response = await fetch(path + "/ar/searchimportfile", {
+    const response = await fetch(path + "/searchimportfile", {
       method: 'POST',
       headers: { "Content-Type": 'application/json', Session: session },
       body: JSON.stringify(b0)
@@ -93,6 +67,8 @@ const NonCitizen = () => {
     ).then((response) => response.json());
     console.log(response.response);
     setSearchTypes(response.response);
+     NonCitizenDetails=response.response;
+          console.log(NonCitizenDetails);
   };
 
   const getFileTypeData = async () => {
@@ -106,7 +82,6 @@ const NonCitizen = () => {
   };
 
   useEffect(() => {
-    getSearchData();
     getFileTypeData();
   }, []);
 
@@ -133,28 +108,6 @@ const NonCitizen = () => {
     });
   }
 
-  const onExportHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    const form = event.target;
-    event.preventDefault();
-    const url = path + '/searchexportfile';
-    const formData = new FormData();
-    formData.append('fileNames','['+fileName+']');
-    formData.append('brandId', 1);
-    formData.append('fileTypeId', selectfileType);
-    formData.append('page', 1);
-    formData.append('size', 10);
-    const json = Object.fromEntries(formData);
-    const config = {
-      headers: {
-        'content-type': 'application/json',
-        Session: session
-      },
-    };
-    axios.post(url, json, config).then((response) => {
-      console.log(response.data);
-    });
-  }
-
   const getFileNames = async (event) => {
     console.log(event);
     if (event != undefined) {
@@ -168,19 +121,6 @@ const NonCitizen = () => {
       setFileName(response.response);
     }
   };
-
-  const employees = [{
-    ID: 1,
-    FirstName: 'John',
-    LastName: 'Heart',
-    Prefix: 'Mr.',
-    Position: 'CEO',
-    BirthDate: '1964/03/16',
-    HireDate: '1995/01/15',
-    Notes: 'John has been in the Audio/Video industry since 1990. He has led DevAv as its CEO since 2003.\r\n\r\nWhen not working hard as the CEO, John loves to golf and bowl. He once bowled a perfect game of 300.',
-    Address: '351 S Hill St.',
-    StateID: 5,
-  }];
 
   return (
     <div >
@@ -265,12 +205,12 @@ const NonCitizen = () => {
             dataSource={NonCitizenDetails}
             keyExpr={'fileName'}
             allowColumnReordering={true}>
-
             <Column dataField={'fileName'} caption={'File Name'} />
-            <Column dataField={'type'} caption={'Type'} />
-            <Column dataField={'recordsimported'} caption={'Records Imported'} />
-            <Column dataField={'recordsinerror'} caption={'Records in Error'} />
-            <Column dataField={'amountimported'} caption={'Amount Imported'} />
+            <Column dataField={'cnFileType.fileTypeDesc'} caption={'Type'} />
+            <Column dataField={'importedBy'} caption={'Records Imported'} />
+            <Column dataField={'recsInError'} caption={'Records in Error'} />
+            <Column dataField={'recsImported'} caption={'Amount Imported'} />
+
             <FilterRow visible={true} />
             <ColumnChooser enabled={true} mode='select' />
             <SearchPanel

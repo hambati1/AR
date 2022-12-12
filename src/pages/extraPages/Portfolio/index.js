@@ -34,33 +34,6 @@ const dropDownOptions = {
   width: 130
 };
 
-
-export const portfolio = [
-  {
-    fileName: 'PNG-POWERNET 10212022.txt',
-    type: 'Lockbox',
-    recordsimported: '242',
-    recordsinerror: '0',
-    amountimported: '$8,418.99',
-
-  },
-  {
-    fileName: 'out.remit_pngc_10212022.txt',
-    type: '1-Pay File',
-    recordsimported: '3',
-    recordsinerror: '0',
-    amountimported: '$40.14',
-  },
-  {
-    fileName: 'pngpay.remit.20221018011236',
-    type: 'Check Free',
-    recordsimported: '23',
-    recordsinerror: '2',
-    amountimported: '$488.47',
-  }
-];
-
-
 export const portfolio1 = [
   {
     fileName: '',
@@ -93,12 +66,9 @@ const path = 'http://172.20.51.231:8761/cm/api';
   const getSearchData = async () => {
   let b0={
              "fileTypeId": 59,
-             "brandId": 1,
-             "fileName": "PrepaidCallRecs_Nov2022.txt",
-         "fromDate": "2022-01-01",
-         "toDate": "2022-10-31"
+             "brandId": 1
      };
-    const response = await fetch(path + "/export/file", {
+    const response = await fetch(path + "/ar/export/file", {
       method: 'POST',
       headers: { "Content-Type": 'application/json', Session: session },
       body: JSON.stringify(b0)
@@ -115,9 +85,7 @@ console.log("sssssssssss");
     headers: { Session: session }
   }
   ).then((response) => response.json());
- 
-  setFileTypes(response.response);
-
+   setFileTypes(response.response);
 };
 
   useEffect(() => {
@@ -129,13 +97,10 @@ console.log("sssssssssss");
     console.log("dd")
     const form = event.target;
     event.preventDefault();
-    const url = path + '/export/file';
+    const url = path + '/ar/export/file';
     const formData = new FormData();
-    formData.append('fileNames', '%' + fileName + '%');
      formData.append('brandId', 1);
-        formData.append('fileTypeId', selectfileType);
-        formData.append('fromDate', "2022-01-01");
-        formData.append('toDate', "2022-10-31");
+     formData.append('fileTypeId', selectfileType);
     const json = Object.fromEntries(formData);
     const config = {
       headers: {
@@ -151,15 +116,17 @@ console.log("sssssssssss");
   const getFileNames = async (event) => {
     console.log(event);
     if (event != undefined) {
-      const url = path + '/export/file?fileTypeId=' + event + '&brandId=1';
-      const response = await fetch(path + "/ar/searchimportfile", {
+    let b0={
+                 "fileTypeId": event,
+                 "brandId": 1
+         };
+      const response = await fetch(path + "/searchexportfile", {
            method: 'POST',
            headers: { "Content-Type": 'application/json', Session: session },
            body: JSON.stringify(b0)
          }
          ).then((response) => response.json());
          console.log(response.response);
-    //  setFileName(response.response);
     }
   };
 
