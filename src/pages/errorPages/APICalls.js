@@ -155,3 +155,19 @@ export const onSubmitExportHandler = (json) => {
   }
 
 /* End Export */
+
+/*Batch payment*/
+export const saveBatchName = (json,batchId) => {
+    const url = PATH + '/ar/batch/save/'+batchId;
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        Session: session
+      },
+    };
+    axios.post(url, json, config).then((response) => {
+      console.log(response.data);
+      return response.data;
+    });
+  }
+/*End Batch payment*/

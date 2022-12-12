@@ -9,6 +9,8 @@ import DataGrid, {
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+import {saveBatchName} from '../../errorPages/APICalls.js'
 
 const actions = [
   { id: 1, text: "Batch Name" },
@@ -32,6 +34,12 @@ const Error404 = () => {
 const [active, setactive] = useState(true);
 const [showModal, setShowModal] = useState(false);
 const [state,setState ]=useState(false);
+const [setFileType, setFileTypes] = useState();
+const [show, setShow] = useState(false);
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
+
+
 const activeChange=() =>{
 console.log("ssss");
 setactive(!active);
@@ -40,11 +48,11 @@ getSearchDataDetails();
 };
 
 const getSearchDataDetails= () => {
-batchData=[];
-let data = getSearchData(active);
-if(data.length >0) {
-batchData=data;
-}
+    batchData=[];
+    let data = getSearchData(active);
+    if(data.length >0) {
+         batchData=data;
+    }
 }
 
    const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,13 +60,62 @@ batchData=data;
     }
     const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
       console.log(event);
+      setShow(true);
     }
+
+const handleChange = event => {
+    console.log(event.target.value);
+    setShow(true);
+  };
+
+ const batchnamesave = event =>{
+    let json={
+                 "batchName": "BDM Test2",
+                 "isPayment": 1,
+                 "isClosed": 0,
+                 "cmImportFile":{
+                     "importFileId": 10155091
+                 }
+             }
+    saveBatchName(json,1);
+  };
 
   return (
     <div >
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
       </div>
+
+      <Modal
+              show={show}
+              onHide={handleClose}
+              backdrop="static"
+              keyboard={false}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Add Payment Batch</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+              <div>
+               Batch Name <input type="text" name="batchname"/>
+               </div>
+               <div>
+                 <Button variant="secondary" onClick={batchnamesave}>
+                  OK
+                </Button>
+                <Button variant="primary">Cancel</Button>
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+              <div>
+               Messages
+               </div>
+               <div>
+               Source Message
+               </div>
+              </Modal.Footer>
+            </Modal>
+
 
       <Tabs
         defaultActiveKey="profile"
@@ -72,9 +129,10 @@ batchData=data;
 
             </div>
   <div className="mb-5 row selectList">
-             <select name="selectList" id="selectList">
-                    <option value="option 1">Option 1</option>
-                    <option value="option 2">Option 2</option>
+             <select name="selectList" id="selectList" onChange={(e) => selectChangeHandler(setFileType, e.target.value)}>
+              <option value=""></option>
+                    <option value="1">Option 1</option>
+                    <option value="2">Option 2</option>
              </select>
             </div>
 
@@ -97,10 +155,8 @@ batchData=data;
            </div>
         </Tab>
       </Tabs>
-
     </div>
-
-  );
+   );
 };
 
 
