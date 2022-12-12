@@ -39,7 +39,7 @@ const NonCitizen = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [fileName, setFileName] = useState();
   const path = 'http://172.20.51.231:8761/cm/api';
-  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjcwMzE4MjgxLCJleHAiOjE2NzA5MTgyODF9.Vc3DJOmtMHMXiKA3JfhiEaLIOHj0-D89aE3bgGEPHZJOpcckbmWPlfQF-tOsH9uEgVg2-uQYQPFILh1ZPZG7Mw";
+  const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjcwODIzNjM1LCJleHAiOjE2NzE0MjM2MzV9.XvHAQEUdIx-Crmc_GpmHLmdw44grGSoVIFvr-Qx5lYmi8vRiGb_c7IjEZNGXfWKpDqSIQcHRIO-chmxwL7VZ9Q";
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     setFunction(event.target.value)
   }
@@ -207,9 +207,9 @@ const NonCitizen = () => {
             allowColumnReordering={true}>
             <Column dataField={'fileName'} caption={'File Name'} />
             <Column dataField={'cnFileType.fileTypeDesc'} caption={'Type'} />
-            <Column dataField={'importedBy'} caption={'Records Imported'} />
+            <Column dataField={'recsImported'} caption={'Records Imported'} />
             <Column dataField={'recsInError'} caption={'Records in Error'} />
-            <Column dataField={'recsImported'} caption={'Amount Imported'} />
+            <Column dataField={'amtImported'} caption={'Amount Imported'} />
 
             <FilterRow visible={true} />
             <ColumnChooser enabled={true} mode='select' />
