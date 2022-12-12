@@ -1,6 +1,7 @@
 import React, { useEffect, useState,useRef  } from "react";
 import '../../errorPages/Error404/index.style.scss'
 import axios from 'axios';
+import {getSearchData} from '../../errorPages/APICalls.js'
 import { Button } from 'react-bootstrap';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
@@ -27,10 +28,6 @@ const dropDownOptions = {
   width: 130
 };
 let batchData=[];
-
- const path = 'http://172.20.51.231:8761/cm/api';
- const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjcwMzE4MjgxLCJleHAiOjE2NzA5MTgyODF9.Vc3DJOmtMHMXiKA3JfhiEaLIOHj0-D89aE3bgGEPHZJOpcckbmWPlfQF-tOsH9uEgVg2-uQYQPFILh1ZPZG7Mw";
-
 const Error404 = () => {
 const [active, setactive] = useState(true);
 const [showModal, setShowModal] = useState(false);
@@ -39,20 +36,16 @@ const activeChange=() =>{
 console.log("ssss");
 setactive(!active);
 console.log(active);
-getSearchData();
+getSearchDataDetails();
 };
 
-const getSearchData = async () => {
-     const response = await fetch(path + '/ar/batch?isPayment='+active+'&isClosed=0', {
-      method: 'GET',
-      headers: { "Content-Type": 'application/json', Session: session }
-    }
-    ).then((response) => response.json());
-    console.log(response.response);
-     batchData=response.response;
-          console.log(batchData);
-  };
-
+const getSearchDataDetails= () => {
+batchData=[];
+let data = getSearchData(active);
+if(data.length >0) {
+batchData=data;
+}
+}
 
    const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
       setFunction(event.target.value)
@@ -84,9 +77,6 @@ const getSearchData = async () => {
                     <option value="option 2">Option 2</option>
              </select>
             </div>
-
-
-
 
             <div id="data-grid-demo">
               <DataGrid
