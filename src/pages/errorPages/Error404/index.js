@@ -1,15 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
 import '../../errorPages/Error404/index.style.scss'
 import axios from 'axios';
+import { getSearchData } from '../../errorPages/APICalls.js'
 import { Button } from 'react-bootstrap';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import { Dropdown, DropdownButton, Form, } from 'react-bootstrap';
+import { saveBatchName } from '../../errorPages/APICalls.js'
 
 const actions = [
   { id: 1, text: "Batch Name" },
@@ -29,50 +30,64 @@ const dropDownOptions = {
   width: 130
 };
 let batchData = [];
-
-const path = 'http://172.20.51.231:8761/cm/api';
-const session = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjcwMzE4MjgxLCJleHAiOjE2NzA5MTgyODF9.Vc3DJOmtMHMXiKA3JfhiEaLIOHj0-D89aE3bgGEPHZJOpcckbmWPlfQF-tOsH9uEgVg2-uQYQPFILh1ZPZG7Mw";
-
 const Error404 = () => {
   const [active, setactive] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [state, setState] = useState(false);
+  const [setFileType, setFileTypes] = useState();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
   const activeChange = () => {
     console.log("ssss");
     setactive(!active);
     console.log(active);
-    getSearchData();
+    getSearchDataDetails();
   };
 
-  const getSearchData = async () => {
-    const response = await fetch(path + '/ar/batch?isPayment=' + active + '&isClosed=0', {
-      method: 'GET',
-      headers: { "Content-Type": 'application/json', Session: session }
+  const getSearchDataDetails = () => {
+    batchData = [];
+    let data = getSearchData(active);
+    if (data.length > 0) {
+      batchData = data;
     }
-    ).then((response) => response.json());
-    console.log(response.response);
-    batchData = response.response;
-    console.log(batchData);
-  };
-
+  }
 
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     setFunction(event.target.value)
   }
   const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event);
+    setShow(true);
   }
-  const [show, setShow] = useState(false);
-  // const [show2, setShow2] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const handleClose2 = () => setShow(false);
-  const handleShow2 = () => setShow(true);
+
+  const handleChange = event => {
+    console.log(event.target.value);
+    setShow(true);
+  };
+
+  const batchnamesave = event => {
+    let json = {
+      "batchName": "BDM Test2",
+      "isPayment": 1,
+      "isClosed": 0,
+      "cmImportFile": {
+        "importFileId": 10155091
+      }
+    }
+    saveBatchName(json, 1);
+  };
+
   return (
     <div >
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
       </div>
+
+
+
 
       <Tabs
         defaultActiveKey="profile"
@@ -83,86 +98,71 @@ const Error404 = () => {
             <div className="mb-10 row">
               <input className="form-check-input" type="checkbox" name="active" value="" id="flexCheckDefault" onChange={activeChange} />
               <label className="form-check-label action" for="flexCheckDefault">Active Only</label>
+
             </div>
 
-            <>
-              {/* <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button> */}
-              <Dropdown style={{ textalign: 'right' }}>
+            <Dropdown style={{ textalign: 'right' }}>
 
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                  Actions
-                </Dropdown.Toggle>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Actions
+              </Dropdown.Toggle>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1" onClick={handleShow}>Add payment Batch</Dropdown.Item>
-                  {/* <Dropdown.Item href="#/action-2" onClick={handleShow2}>Another action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
-                </Dropdown.Menu>
-              </Dropdown>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1" onClick={handleShow}>Add payment Batch</Dropdown.Item>
+                {/* <Dropdown.Item href="#/action-2" onClick={handleShow2}>Another action</Dropdown.Item>
+  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+              </Dropdown.Menu>
+            </Dropdown>
 
-
-              {/* 
-              <Modal show={show2} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
-                  <Button variant="primary" onClick={handleClose}>
-                    Save Changes
-                  </Button>
-                </Modal.Footer>
-              </Modal> */}
-              <Modal show={show} onHide={handleClose2}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Add payment Batch</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm batch">
-                      <label>Batch Name
-                      </label>
-                    </div>
-
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
+            <Modal
+              show={show}
+              onHide={handleClose}
+              backdrop="static"
+              keyboard={false}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Add Payment Batch</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="d-flex">
+                  <div className="col-2 input-group-sm batch">
+                    <label>Batch Name
+                    </label>
                   </div>
 
-                  <div>
-                    <button type="submit" className="btn  mb-3 btn-Gray ">Ok</button>
-                    <button type="reset" className="btn  mb-3 btn-darkGray ">Cancel</button>
+                  <div className="input-group col input-group-sm">
+                    <input className="form-control" type="text"></input>
                   </div>
-                  <div>
-                    <h5>
-                      Messages
-                    </h5>
-                  </div>
-                  <div>
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th>Source</th>
-                          <th>Message</th>
+                </div>
+                <div>
 
-                        </tr>
-                      </thead>
-                    </table>
-                  </div>
+                  <button type="Ok" className="btn  mb-3 ok " onClick={batchnamesave}>Ok</button>
+                  <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
+                </div>
 
-                </Modal.Body>
-                {/* <Modal.Footer>
+                <div>
+                  <h5>
+                    Messages
+                  </h5>
+                </div>
+                <div>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Source</th>
+                        <th>Message</th>
 
-                  
-                </Modal.Footer> */}
-              </Modal>
-            </>
+                      </tr>
+                    </thead>
+                  </table>
+                </div>
+
+              </Modal.Body>
+              {/* <Modal.Footer>
+                
+              </Modal.Footer> */}
+            </Modal>
+
 
 
             <div id="data-grid-demo">
@@ -184,9 +184,7 @@ const Error404 = () => {
           </div>
         </Tab>
       </Tabs>
-
     </div>
-
   );
 };
 

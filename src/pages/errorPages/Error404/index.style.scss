@@ -1,34 +1,35 @@
 // Data-Grid SCSS Start //
 // Data-Grid Button Scss Start //
-.btn-darkGray {
+.cancel {
     border: 1px solid #0275D8;
     border-radius: 5px;
     background: #0275D8;
     border-radius: 5px;
     font-weight: 500;
-    font-size: 10px;
+    font-size: 14px;
     line-height: 12px;
-    color: #000;
+    color: #FFF;
     width: 70px;
     height: 37px;
-    margin-left: 50px;
+    margin-left: 20px;
     margin-top: 10px;
 
 }
 
-.btn-Gray {
+.ok {
     margin-left: 120px;
     border: 1px solid #0275D8;
 
     background: #0275D8;
     border-radius: 5px;
     font-weight: 600;
-    font-size: 10px;
+    font-size: 14px;
     line-height: 12px;
     letter-spacing: 0.05em;
-    color: #000;
+    color: #FFFF;
     width: 70px;
     height: 37px;
+    margin-left: 50px;
     margin-top: 10px;
 
 }
@@ -174,25 +175,10 @@
 .modal-body {
     position: relative;
     flex: 1 1 auto;
-    padding: 2rem;
+    padding: 1rem;
 }
 
-
-.btn-success {
-    color: #fff;
-    background-color: #0275D8;
-    border-color: #0275D8;
-}
-.btn-success.dropdown-toggle {
-    color: #fff;
-    background-color: #0275D8;
-    border-color: #0275D8;
-}
-
-btn-check:focus + .btn-success, .btn-success:focus {
-    color: #fff;
-    background-color: #0275d8;
-    border-color: #0275d8;
-    box-shadow:  #0275d8;
-}
+// .table{
+//     margin-bottom: 40px;
+// }
 
