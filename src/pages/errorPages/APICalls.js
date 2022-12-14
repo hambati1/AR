@@ -51,7 +51,7 @@ return result;
     }
     ).then((response) => response.json());
     console.log(response);
-    //setSearchTypes(response.response);
+    // setSearchTypes(response.response);
      const NonCitizenDetails=response;
      console.log(NonCitizenDetails);
      return NonCitizenDetails;

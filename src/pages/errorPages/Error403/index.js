@@ -1,37 +1,37 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
-import IntlMessages from '@crema/utility/IntlMessages';
-import AppAnimateGroup from '@crema/core/AppAnimateGroup';
-import '../index.style.scss';
-import AppPageMetadata from '@crema/core/AppPageMetadata';
-import {Button} from 'react-bootstrap';
+
+// import '../../errorPages/Error500/index.style.scss'
+import axios from 'axios';
+import { Button } from 'react-bootstrap';
+import DataGrid, {
+  Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
+} from 'devextreme-react/data-grid';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 const Error403 = () => {
-  const history = useHistory();
-
-  const onGoBackToHome = () => {
-    history.goBack();
-  };
-
   return (
-    <AppAnimateGroup type='bottom'>
-      <AppPageMetadata title='Unauthorized' />
-      <div className='error-container' key='a'>
-        <div className='error-img'>
-          <Logo />
-        </div>
-        <div className='error-content'>
-          <h3>Unauthorized</h3>
-          <div className='error-para'>
-            <p className='mb-0'>You are not authorized for this page!</p>
-          </div>
-          <Button type='primary' className='error-btn' onClick={onGoBackToHome}>
-            <IntlMessages id='error.goBackToHome' />
-          </Button>
-        </div>
+
+    <div >
+      <div className='col-md-9 main-header'>
+        <p>Accounts Receivable</p>
       </div>
-    </AppAnimateGroup>
+      <Tabs
+        defaultActiveKey="profile"
+        id="uncontrolled-tab-example"
+        className="mb-3">
+        <Tab eventKey="batchPayment" title="Tax Viewer">
+          
+      
+          
+
+
+
+        </Tab>
+      </Tabs>
+    </div>
+
   );
 };
-
 export default Error403;

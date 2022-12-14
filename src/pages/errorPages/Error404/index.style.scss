@@ -151,7 +151,7 @@
 
 .action {
     width: 150px;
-    
+
 }
 
 .selectList {
@@ -166,7 +166,8 @@
 .dropdown {
     text-align: right;
 }
-.batch{ 
+
+.batch {
     flex: 0 0 auto;
     width: 16.66666667%;
     margin-top: 1%;
@@ -178,7 +179,36 @@
     padding: 1rem;
 }
 
-// .table{
-//     margin-bottom: 40px;
-// }
+.payment {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 14.4px;
+    line-height: 12px;
+    color: #030202;
+    font-weight: bold;
+    font-family: Avant Garde Gothic Std Book !important;
+}
+
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link .nav-link:hover {
+    // color: #000;
+    background-color: #FFF !important;
+    // border-color: rgb(253, 251, 251);
+    border: 5px solid;
+
+    border-color: #3dcc6e ;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #0275D8;
+    border-color: #0275D8;
+    
+}
+
+
+    
 

@@ -70,7 +70,7 @@ const routesConfig = [
         messageId: 'sidebar.healthCare',
         type: 'item',
         icon: <AiFillAccountBook />,
-        url: '/ecommerce/confirmation',
+        url: '/extra-pages/error-pages/error-403',
       },
       {
         id: 'eCommerce',
