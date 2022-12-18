@@ -18,49 +18,41 @@ import {
 import {appIntl} from '@crema/utility/helper/Utils';
 import jwtAxios from '@crema/services/auth/jwt-auth';
 import axios from 'axios';
+
 const PATH='http://172.20.51.231:8761/cm/api/';
 let result='';
-let session='eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJoYW1iYXRpIiwic2NvcGVzIjpbIlJFRlJFU0hfVE9LRU4iXSwiaXNzIjoiUE5HIiwiaWF0IjoxNjcwOTA5NjQ2LCJleHAiOjE2NzE1MDk2NDZ9.7lN3e526GrNoU-Wt05SU4Ez2XdblYi_1Sw3gITfyYR_s8bU9HfuA04uPlSt4YZzQgh0uMIzuTMe0jK2hH9Pl7g';
+let session='';
 
-export const getSearchData= (active) => {
-  fetch(PATH + 'ar/batch?isPayment='+active+'&isClosed=0', {
-      method: 'GET',
-      headers: { "Content-Type": 'application/json', Session: session }
-    }
-    ).then((response) => response.json())
+/* TOKEN */
+const payload={"userName":"hambati","password":"indicatecropwouldmelrose3849practice!","brandType":"png"};
+ fetch('http://172.20.51.231:8761/home/userlogin', {
+       method: 'POST',
+       headers: { "Content-Type": 'application/json', Session: session },
+       body: JSON.stringify(payload)
+     }).then((response) => response.json())
+     .then(function(data) {
+         session = data.session;
+         console.log(session);
+     });
+/* END TOKEN */
+
+/* import */
+export const getimportSearchData= (selectfileType) => {
+ const b0 = {"fileTypeId": selectfileType,
+             "page": 1,"size": 3,
+             "sort": ["importDt,desc"]};
+  fetch(PATH + 'searchimportfile', {
+      method: 'POST',
+      headers: { "Content-Type": 'application/json', Session: session },
+      body: JSON.stringify(b0)
+    }).then((response) => response.json())
     .then(function(data) {
         result = data.response;
     });
 return result;
 }
 
-/* import */
- export const getimportSearchData=(selectfileType) => {
-  const b0 = {
-                    "fileTypeId": selectfileType,
-                       "page": 1,
-                       "size": 3,
-                       "sort": [
-                               "importDt,desc"
-                       ]
-               };
-    const response = fetch(PATH + "/searchimportfile", {
-      method: 'POST',
-      headers: { "Content-Type": 'application/json', Session: session },
-      body: JSON.stringify(b0)
-    }
-    ).then((response) => response.json());
-    console.log(response);
-    // setSearchTypes(response.response);
-     const NonCitizenDetails=response;
-     console.log(NonCitizenDetails);
-     return NonCitizenDetails;
-     
-  };
-
-
 export const getImportFileTypeData=(functionId) => {
-console.log("sssssssssss");
   const response = fetch(PATH + "/cn/filetype?functionId="+functionId+"&isActive=1&isImport=1", {
     method: 'GET',
     headers: { Session: session }
@@ -69,7 +61,6 @@ console.log("sssssssssss");
   console.log(response);
   return response;
 };
-
 
  export   const getImportFileNames = (event) => {
       console.log(event);
@@ -98,7 +89,7 @@ console.log("sssssssssss");
         });
       }
 
-    /* END import */
+ /* END import */
 
 /* Export */
 
@@ -160,7 +151,7 @@ export const onSubmitExportHandler = (json) => {
 
 /*Batch payment*/
 export const saveBatchName = (json,batchId) => {
-    const url = PATH + '/ar/batch/save/'+batchId;
+    const url = PATH + 'ar/batch/save/'+batchId;
     const config = {
       headers: {
         'content-type': 'application/json',
@@ -169,7 +160,31 @@ export const saveBatchName = (json,batchId) => {
     };
     axios.post(url, json, config).then((response) => {
       console.log(response.data);
-      return response.data;
+      result= response.data;
     });
+    return result;
   }
+
+export const getBatchDetailsByBatchIdService= (active) => {
+  fetch(PATH + 'ar/batch/'+active, {
+      method: 'GET',
+      headers: { "Content-Type": 'application/json', Session: session }
+    }).then((response) => response.json())
+    .then(function(data) {
+        result = data.response;
+    });
+return result;
+}
+
+export const getSearchData= (active) => {
+  fetch(PATH + 'ar/batch?isPayment='+active+'&isClosed=0', {
+      method: 'GET',
+      headers: { "Content-Type": 'application/json', Session: session }
+    }
+    ).then((response) => response.json())
+    .then(function(data) {
+        result = data.response;
+    });
+return result;
+}
 /*End Batch payment*/

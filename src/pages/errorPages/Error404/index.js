@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import '../../errorPages/Error404/index.style.scss'
 import axios from 'axios';
-import { getSearchData } from '../../errorPages/APICalls.js'
+import { getSearchData,getBatchDetailsByBatchIdService } from '../../errorPages/APICalls.js'
 import { Button } from 'react-bootstrap';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
@@ -13,47 +13,34 @@ import Modal from 'react-bootstrap/Modal';
 import { saveBatchName } from '../../errorPages/APICalls.js'
 import Table from 'react-bootstrap/Table';
 
-
-const actions = [
-  { id: 1, text: "Batch Name" },
-  { id: 2, text: "Type" },
-  { id: 3, text: "Name" },
-  { id: 4, text: "Created By" },
-  { id: 5, text: "Creation Date" },
-  { id: 6, text: "Status" },
-  { id: 7, text: "Total Records" },
-  { id: 8, text: "Total Amount" },
-  { id: 9, text: "Total Agency Fees" },
-
-]
-
-const dropDownOptions = {
-  height: 150,
-  width: 130
-};
 let batchData = [];
 const Error404 = () => {
   const [active, setactive] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [state, setState] = useState(false);
-  const [setFileType, setFileTypes] = useState();
   const [show, setShow] = useState(false);
+  const [batchName, setbatchName] = useState();
+  const [batchId, setbatchId] = useState();
+  const [importFileId, setimportFileId] = useState();
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [batchSubData,setbatchSubData] = useState([]);
+  const [show2, setShow2] = useState(false);
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
 
   const activeChange = () => {
-    console.log("ssss");
-    setactive(!active);
-    console.log(active);
-    getSearchDataDetails();
+   setbatchId('');
+   setbatchName('');
+   setactive(!active);
+   getSearchDataDetails();
   };
 
   const getSearchDataDetails = () => {
-    batchData = [];
     let data = getSearchData(active);
     if (data.length > 0) {
       batchData = data;
+      console.log(batchData);
     }
   }
 
@@ -65,57 +52,65 @@ const Error404 = () => {
     setShow(true);
   }
 
-  const handleChange = event => {
-    console.log(event.target.value);
-    setShow(true);
-  };
-  const [show2, setShow2] = useState(false);
-  const handleClose2 = () => setShow2(false);
-  const handleShow2 = () => setShow2(true);
-
-  const batchnamesave = event => {
-    let json = {
-      "batchName": "BDM Test2",
-      "isPayment": 1,
-      "isClosed": 0,
-      "cmImportFile": {
-        "importFileId": 10155091
-      }
-    }
-    saveBatchName(json, 1);
+  const handlebatchName = event => {
+   setbatchName(event.target.value);
   };
 
-  return (
+  const getBatchDetailsByBatchId = (batchId) => {
+    let subdata = getBatchDetailsByBatchIdService(batchId);
+    setbatchSubData(subdata);
+    console.log(subdata);
+   }
+
+const handleEvent: GridEventListener<'rowClick'> = (params,event, details, // GridCallbackDetails
+) => {
+console.log(params);
+if(params.data.cmImportFile!=undefined)
+{
+console.log(params.data.cmImportFile.importFileId);
+setimportFileId(params.data.cmImportFile.importFileId);
+}
+ setbatchId(params.data.batchId);
+ getBatchDetailsByBatchId(params.data.batchId);
+};
+
+  const batchNameSubmitForm= (event: React.FormEvent<HTMLFormElement>) => {
+          console.log('=batchName='+batchName+' = importFileId='+importFileId);
+          if(batchName!=undefined)
+          {
+              let json = {
+                   "batchName": batchName,"isPayment": 1, "isClosed": 0,
+                   "cmImportFile": {"importFileId": importFileId }
+                   }
+            let message=saveBatchName(json, batchId);
+             console.log('message=='+message);
+          }
+  }
+  const agencybatchnamesave= () => {
+        console.log('======'+batchName);
+  }
+
+return (
     <div >
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
       </div>
 
-
-
-
       <Tabs>
-        {/* // defaultActiveKey="profile"
-        // id="uncontrolled-tab-example"
-        // className="mb-3"> */}
         <Tab eventKey="batchPayment" title="Batch Payment" className="tab">
           <div className="form-group">
             <div className="row">
               <input className="form-check-input" type="checkbox" name="active" value="" id="flexCheckDefault" onChange={activeChange} />
               <label className="form-check-label action" for="flexCheckDefault">Active Only</label>
-
             </div>
 
             <Dropdown>
-
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Actions
               </Dropdown.Toggle>
-
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1" onClick={handleShow}>Add payment Batch</Dropdown.Item>
                 <Dropdown.Item href="#/action-2" onClick={handleShow2}>Add Agency Payment Batch</Dropdown.Item>
-                {/* <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
               </Dropdown.Menu>
             </Dropdown>
 
@@ -124,25 +119,22 @@ const Error404 = () => {
               show={show}
               onHide={handleClose}
               backdrop="static"
-              keyboard={false}
-            >
+              keyboard={false}>
               <Modal.Header closeButton>
                 <Modal.Title>Add Payment Batch</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <div className="d-flex">
+               <div className="d-flex">
                   <div className="col-2 input-group-sm batch">
                     <label>Batch Name
                     </label>
                   </div>
-
                   <div className="input-group col input-group-sm">
-                    <input className="form-control" type="text"></input>
+                    <input className="form-control" name="batchName" onChange={handlebatchName} type="text"></input>
                   </div>
                 </div>
                 <div>
-
-                  <button type="Ok" className="btn  mb-3 ok " onClick={batchnamesave}>Ok</button>
+                  <button type="submit" className="btn  mb-3 ok " onClick={batchNameSubmitForm}>Ok</button>
                   <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
                 </div>
 
@@ -152,8 +144,6 @@ const Error404 = () => {
                   </h5>
                 </div>
                 <div>
-
-
                   <Table bordered hover>
                     <thead>
                       <tr>
@@ -166,11 +156,7 @@ const Error404 = () => {
                     </tbody>
                   </Table>
                 </div>
-
               </Modal.Body>
-              {/* <Modal.Footer>
-                
-              </Modal.Footer> */}
             </Modal>
 
             <Modal
@@ -195,8 +181,7 @@ const Error404 = () => {
                   </div>
                 </div>
                 <div>
-
-                  <button type="Ok" className="btn  mb-3 ok " onClick={batchnamesave}>Ok</button>
+                  <button type="Ok" className="btn  mb-3 ok " onClick={agencybatchnamesave}>Ok</button>
                   <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
                 </div>
 
@@ -218,7 +203,6 @@ const Error404 = () => {
                     </tbody>
                   </Table>
                 </div>
-
               </Modal.Body>
               {/* <Modal.Footer>
                 
@@ -227,11 +211,10 @@ const Error404 = () => {
 
 
             <div id="data-grid-demo">
-              <DataGrid
+              <DataGrid onRowClick={handleEvent}
                 dataSource={batchData}
                 showBorders={true}>
                 <Paging enabled={false} />
-                <Editing mode="form" allowAdding={true} />
                 <Column dataField={"batchId"} caption="Batch ID" />
                 <Column dataField={"type"} caption="Type" />
                 <Column dataField={"batchName"} caption="Name" />
@@ -257,41 +240,52 @@ const Error404 = () => {
             </div>
           </div>
           <div>
+          Batch  {batchId}
+          </div>
+          <div>
             <Dropdown style={{ textalign: 'right' }}>
-
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Actions
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1" onClick={handleShow}>Add payment Batch</Dropdown.Item>
-
               </Dropdown.Menu>
             </Dropdown>
 
+         <div id="data-grid-demo2">
+              <DataGrid onRowClick={handleEvent}
+                dataSource={batchSubData}
+                showBorders={true}>
+                <Paging enabled={false} />
+                <Column dataField={"batchId"} caption="Batch ID" />
+                <Column dataField={"type"} caption="Type" />
+                <Column dataField={"batchName"} caption="Name" />
+                <Column dataField={"createdBy"} caption="Created By" />
+                <Column dataField={"creationDt"} caption="Creation Date" />
+                <Column dataField={"isClosed"} caption="Status" />
+                <Column dataField={"totalRecords"} caption="Total Records" />
+                <Column dataField={"totalAmount"} caption="Total Amount" />
+                <Column dataField={"totalAgencyFee"} caption="Total Agency Fees" />
 
-
-            <Table className=" payment border">
-              <thead >
-                <tr>
-                  <td>Customer Id <img src='/assets/images/sort-icon.png' /></td>
-                  <td>Customer Name<img src='/assets/images/sort-icon.png' /></td>
-                  <td>Payment Type<img src='/assets/images/sort-icon.png' /></td>
-                  <td>Payment Amount<img src='/assets/images/sort-icon.png' /></td>
-                  <td>Check Number<img src='/assets/images/sort-icon.png' /></td>
-                  <td>Payment Date<img src='/assets/images/sort-icon.png' /></td>
-                </tr>
-              </thead>
-            </Table>
+                <FilterRow visible={true} />
+                <ColumnChooser enabled={true} mode='select' />
+                <SearchPanel
+                  className='float-start'
+                  visible={true}
+                  width={240}
+                  placeholder="Search..."
+                />
+                <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
+                <Paging defaultPageSize={5} />
+              </DataGrid>
+            </div>
           </div>
-
         </Tab>
       </Tabs>
     </div>
   );
 };
-
-
 
 export default Error404;
 
