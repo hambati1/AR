@@ -49,14 +49,11 @@ const FileImport = () => {
     console.log(FileImportData);
     let data =getImportFileTypeData(event)
      console.log(data);
-      setselectfileType(data);
-
+      setselectfileType(event);
   }
 
   useEffect(() => {
   getFileTypeDataVal();
- 
-
   }, []);
 
 async function getFileTypeDataVal() {
@@ -65,14 +62,9 @@ async function getFileTypeDataVal() {
     setFileTypes(data.response);
 }
 
-
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.target;
     event.preventDefault();
-    const formData = new FormData();
-    const r=fileName;
-    let a=JSON.stringify(r);
-    console.log(a);
     let json={"fileNames":fileName,"brandId":1,"fileTypeId":parseInt(selectfileType),"page":1,"size":10};
     console.log(json);
      let ab=JSON.stringify(json);
@@ -107,7 +99,6 @@ async function getFileTypeDataVal() {
               </div>
               </div>
             </div>
-      
         </Tab>
 
         <Tab eventKey="profile" title="File Import">

@@ -53,7 +53,7 @@ return result;
 }
 
 export const getImportFileTypeData=(functionId) => {
-  const response = fetch(PATH + "/cn/filetype?functionId="+functionId+"&isActive=1&isImport=1", {
+  const response = fetch(PATH + "cn/filetype?functionId="+functionId+"&isActive=1&isImport=1", {
     method: 'GET',
     headers: { Session: session }
   }
@@ -65,7 +65,7 @@ export const getImportFileTypeData=(functionId) => {
  export   const getImportFileNames = (event) => {
       console.log(event);
       if (event != undefined) {
-        const url = PATH + '/ar/import/file/list?fileTypeId=' + event + '&brandId=1';
+        const url = PATH + 'ar/import/file/list?fileTypeId=' + event + '&brandId=1';
         const response = fetch(url, {
           method: 'GET',
           headers: { Session: session }
@@ -77,7 +77,7 @@ export const getImportFileTypeData=(functionId) => {
     };
 
   export const onSubmitImportHandler = (payload) => {
-       const url = PATH + '/ar/import/file';
+       const url = PATH + 'ar/import/file';
        const config = {
           headers: {
             'content-type': 'application/json',
@@ -95,7 +95,7 @@ export const getImportFileTypeData=(functionId) => {
 
 export const getExportFileTypeData=() => {
 console.log("sssssssssss");
-  const response = fetch(PATH + "/cn/filetype?functionId=6&isActive=1&isImport=0", {
+  const response = fetch(PATH + "cn/filetype?functionId=6&isActive=1&isImport=0", {
     method: 'GET',
     headers: { Session: session }
   }
@@ -134,7 +134,7 @@ export const getExportSearchData=(fileTypeId,brandId) => {
   };
 
 export const onSubmitExportHandler = (json) => {
-    const url = PATH + '/ar/export/file';
+    const url = PATH + 'ar/export/file';
     const config = {
       headers: {
         'content-type': 'application/json',

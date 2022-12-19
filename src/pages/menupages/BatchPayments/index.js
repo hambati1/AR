@@ -119,6 +119,9 @@ return (
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1" onClick={handleShow}>Add payment Batch</Dropdown.Item>
                 <Dropdown.Item href="#/action-2" onClick={handleShow2}>Add Agency Payment Batch</Dropdown.Item>
+                ------------------------
+                <Dropdown.Item href="#/action-1" onClick={handleShow}>Close</Dropdown.Item>
+                <Dropdown.Item href="#/action-2" onClick={handleShow2}>Close</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 

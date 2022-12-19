@@ -22,14 +22,6 @@ const actions = [
 
 ];
 
-const actions1 = [
-  { id: 1, text: "File Name" },
-  { id: 2, text: "Type" },
-  { id: 3, text: "RecordsExported" },
-  { id: 4, text: "Records in Error" },
-  { id: 5, text: "DebitAmount" },
-  { id: 6, text: "CreditAmount" },
-];
 const dropDownOptions = {
   height: 150,
   width: 130
@@ -66,7 +58,7 @@ const FileExport = () => {
 
    useEffect(() => {
       getFileTypeDataVal()
-      getSearchData()
+     // getSearchData()
      }, []);
 
 async function getSearchData() {
