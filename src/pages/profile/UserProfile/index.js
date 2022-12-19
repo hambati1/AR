@@ -2,11 +2,8 @@ import React from 'react';
 import styles from './index.module.scss';
 import {Nav, Tab} from 'react-bootstrap';
 import PersonalInfo from './PersonalInfo';
-import ChangePassword from './ChangePassword';
 import Information from './Information';
 import Notification from './Notification';
-import SocialLink from './SocialLink';
-
 import {HiUser} from 'react-icons/hi';
 import {AiFillLock} from 'react-icons/ai';
 import {FaBandcamp, FaNetworkWired} from 'react-icons/fa';
@@ -98,14 +95,8 @@ const UserProfile = () => {
           <Tab.Pane eventKey='1'>
             <PersonalInfo/>
           </Tab.Pane>
-          <Tab.Pane eventKey='2'>
-            <ChangePassword/>
-          </Tab.Pane>
           <Tab.Pane eventKey='3'>
             <Information/>
-          </Tab.Pane>
-          <Tab.Pane eventKey='4'>
-            <SocialLink socialLink={accountData.member}/>
           </Tab.Pane>
           <Tab.Pane eventKey='5'>
             <Notification notification={accountData.notification}/>

@@ -1,6 +1,4 @@
 import React from 'react';
-
-// import '../../errorPages/Error500/index.style.scss'
 import axios from 'axios';
 import { Button, Modal, ModalBody } from 'react-bootstrap';
 import DataGrid, {
@@ -10,9 +8,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import clsx from 'clsx';
-
 import '../../menupages/TaxViewer/index.style.scss'
-import { ModalHeader } from 'reactstrap';
 
 const TaxViewer = () => {
   return (

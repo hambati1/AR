@@ -4,10 +4,7 @@ import {initialUrl} from '../shared/constants/AppConst';
 import {Redirect} from 'react-router-dom';
 import Error403 from './errorPages/Error403';
 import React from 'react';
-import {samplePagesConfigs} from './sample';
-import {appsConfig} from './apps';
 import {componentConfigs} from './components';
-import {thirdPartyConfigs} from './thirdParty';
 import {extraPagesConfigs} from './extraPages';
 import {menuPagesConfigs} from './menupages'
 
@@ -15,10 +12,7 @@ const authorizedStructure = {
   fallbackPath: '/signin',
   unAuthorizedComponent: <Error403 />,
   routes: [
-    ...samplePagesConfigs,
-    ...appsConfig,
     ...componentConfigs,
-    ...thirdPartyConfigs,
     ...extraPagesConfigs,
     ...errorPagesConfigs,
     ...menuPagesConfigs
