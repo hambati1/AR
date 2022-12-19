@@ -9,6 +9,7 @@ import {appsConfig} from './apps';
 import {componentConfigs} from './components';
 import {thirdPartyConfigs} from './thirdParty';
 import {extraPagesConfigs} from './extraPages';
+import {menuPagesConfigs} from './menupages'
 
 const authorizedStructure = {
   fallbackPath: '/signin',
@@ -19,7 +20,8 @@ const authorizedStructure = {
     ...componentConfigs,
     ...thirdPartyConfigs,
     ...extraPagesConfigs,
-    ...errorPagesConfigs
+    ...errorPagesConfigs,
+    ...menuPagesConfigs
   ],
 };
 
