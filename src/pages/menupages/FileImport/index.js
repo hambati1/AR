@@ -5,12 +5,11 @@ import AppAnimateGroup from '@crema/core/AppAnimateGroup';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
 import axios from 'axios';
-// import '../../errorPages/Error401/index.style.scss'
+import '../../menupages/FileImport/index.style.scss'
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
 import DropDownButton from 'devextreme-react/drop-down-button';
-// import style from '../Error401/index.style.scss';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { Search } from 'react-bootstrap-icons';
 import { onPaymentList } from '../../../redux/actions/paymentList';

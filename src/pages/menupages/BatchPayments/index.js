@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 // import '../../errorPages/Error404/index.style.scss'
+import '../../menupages/BatchPayments/index.style.scss'
 import axios from 'axios';
 import { getSearchData,getBatchDetailsByBatchIdService } from '../../menupages/APICalls.js'
 import { Button } from 'react-bootstrap';
@@ -99,10 +100,17 @@ return (
       <Tabs>
         <Tab eventKey="batchPayment" title="Batch Payment" className="tab">
           <div className="form-group">
-            <div className="row">
+            {/* <div className="row">
               <input className="form-check-input" type="checkbox" name="active" value="" id="flexCheckDefault" onChange={activeChange} />
               <label className="form-check-label action" for="flexCheckDefault">Active Only</label>
-            </div>
+            </div> */}
+
+            <div class="form-check mx-2">
+
+<input type="checkbox" class="form-check-input" name="active" value="" id="flexCheckDefault" onChange={activeChange} />
+
+<label class="list">Active Only</label>
+</div>
 
             <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic">

@@ -1,0 +1,52 @@
+.checkbox{
+    margin-left: 20px;
+}
+// .form-control{
+//    margin-top: 10px;
+// }
+.pt-3{
+    height: 70px;
+}
+// .pop-up{
+//     width: 98%;
+// }
+
+.form-check-input type {
+    float: left;
+    margin-left: 9em;
+}
+
+.form {
+ margin-top: 20px;   
+    
+}
+
+
+.input-group-sm > .form-control, .input-group-sm > .form-select, .input-group-sm > .input-group-text, .input-group-sm > .btn {
+    margin-top: 6px;
+     padding: 0.25rem 0.5rem; 
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+}
+
+.save {
+    margin-left: 120px;
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF;
+    width: 70px;
+    height: 37px;
+    margin-left: 210px;
+    margin-top: 10px;
+}
+.input-selected{
+    padding: 0.25rem 0.5rem; 
+   font-size: 0.875rem;
+   border-radius: 0.2rem;
+    max-width: 50px;
+}

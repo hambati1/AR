@@ -1,10 +1,10 @@
 import React from 'react';
 
 export const errorPagesConfigs = [
-  {
-    path: '/import',
-    component: React.lazy(() => import('./Error401')),
-  },
+  // {
+  //   path: '/import',
+  //   component: React.lazy(() => import('./Error401')),
+  // },
   {
     path: '/extra-pages/error-pages/error-403',
     component: React.lazy(() => import('./Error403')),
