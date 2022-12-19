@@ -86,16 +86,16 @@ const routesConfig = [
         messageId: 'sidebar.app.dashboard.academy',
         type: 'item',
         icon: <AiOutlineTransaction />,
-        url: '/dashboards/academy',
+        url: '/sample/page-1',
       },
-      {
-        id: 'academy',
-        title: 'Archive Balances for Aging ',
-        messageId: 'sidebar.app.dashboard.archive',
-        type: 'item',
-        icon: <AiOutlineLineChart />,
-        url: '/extra-pages/error-pages/error-402',
-      }
+      // {
+      //   id: 'academy',
+      //   title: 'Archive Balances for Aging ',
+      //   messageId: 'sidebar.app.dashboard.archive',
+      //   type: 'item',
+      //   icon: <AiOutlineLineChart />,
+      //   url: '/extra-pages/error-pages/error-402',
+      // }
     ],
   },
 

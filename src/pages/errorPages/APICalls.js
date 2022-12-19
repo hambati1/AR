@@ -85,8 +85,10 @@ console.log("sssssssssss");
       }
     };
 
+    
+
   export const onSubmitImportHandler = (payload) => {
-       const url = PATH + '/ar/import/file';
+       const url = PATH + 'ar/import/file';
        const config = {
           headers: {
             'content-type': 'application/json',

@@ -90,35 +90,29 @@ const Error404 = () => {
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
       </div>
-
-
-
-
       <Tabs>
         {/* // defaultActiveKey="profile"
         // id="uncontrolled-tab-example"
         // className="mb-3"> */}
         <Tab eventKey="batchPayment" title="Batch Payment" className="tab">
           <div className="form-group">
-            <div className="row">
-              <input className="form-check-input" type="checkbox" name="active" value="" id="flexCheckDefault" onChange={activeChange} />
-              <label className="form-check-label action" for="flexCheckDefault">Active Only</label>
+            <div class="form-check mx-2">
+
+              <input type="checkbox" class="form-check-input" name="option1" value="Active Only" />
+
+              <label class="list">Active Only</label>
 
             </div>
-
             <Dropdown>
-
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Actions
               </Dropdown.Toggle>
-
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1" onClick={handleShow}>Add payment Batch</Dropdown.Item>
                 <Dropdown.Item href="#/action-2" onClick={handleShow2}>Add Agency Payment Batch</Dropdown.Item>
                 {/* <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
               </Dropdown.Menu>
             </Dropdown>
-
             <Modal
               className=""
               show={show}
@@ -128,6 +122,53 @@ const Error404 = () => {
             >
               <Modal.Header closeButton>
                 <Modal.Title>Add Payment Batch</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div className="d-flex">
+                  <div className="col-2 input-group-sm batch">
+                    <label>Batch Name
+                    </label>
+                  </div>
+                  <div className="input-group col input-group-sm">
+                    <input className="form-control" type="text"></input>
+                  </div>
+                </div>
+                <div>
+                  <button type="Ok" className="btn  mb-3 ok " onClick={batchnamesave}>Ok</button>
+                  <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
+                </div>
+                <div>
+                  <h5>
+                    Messages
+                  </h5>
+                </div>
+                <div>
+                  <Table bordered hover>
+                    <thead>
+                      <tr>
+                        <th>Source</th>
+                        <th>Messages</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </Table>
+                </div>
+              </Modal.Body>
+              {/* <Modal.Footer>
+                
+              </Modal.Footer> */}
+            </Modal>
+
+            <Modal
+              className=""
+              show={show2}
+              onHide={handleClose2}
+              backdrop="static"
+              keyboard={false}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Add Agency Payment Batch</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <div className="d-flex">
@@ -152,66 +193,12 @@ const Error404 = () => {
                   </h5>
                 </div>
                 <div>
-
-
                   <Table bordered hover>
                     <thead>
                       <tr>
                         <th>Source</th>
                         <th>Messages</th>
                       </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                  </Table>
-                </div>
-
-              </Modal.Body>
-              {/* <Modal.Footer>
-                
-              </Modal.Footer> */}
-            </Modal>
-
-            <Modal
-              className=""
-              show={show2}
-              onHide={handleClose2}
-              backdrop="static"
-              keyboard={false}
-            >
-              <Modal.Header closeButton>
-              <Modal.Title>Add Agency Payment Batch</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <div className="d-flex">
-                <div className="col-2 input-group-sm batch">
-                  <label>Batch Name
-                  </label>
-                  </div>
-
-                  <div className="input-group col input-group-sm">
-                   <input className="form-control" type="text"></input>
-                  </div>
-                </div>
-                <div>
-
-                  <button type="Ok" className="btn  mb-3 ok " onClick={batchnamesave}>Ok</button>
-                  <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
-                </div>
-
-                <div>
-                  <h5>
-                    Messages
-                  </h5>
-                </div>
-                <div>
-                  <Table bordered hover>
-                  <thead>
-                    <tr>
-                      <th>Source</th>
-                      <th>Messages</th>
-                    </tr>
                     </thead>
                     <tbody>
 
@@ -284,7 +271,29 @@ const Error404 = () => {
               </thead>
             </Table>
           </div>
+          <div>
+            <div className="mb-3 row">
+              <label for="inputcustomerid" className="col-lg-1 col-form-label">Customer ID</label>
+              <div className="col-sm-5">
+              <input type="text" className="form-control" id="inputcustomerid" />
+              </div>
 
+            </div>
+            <div className="mb-3 row">
+              <label for="inputpaymenttype" className="col-lg-1 col-form-label">Payment Type</label>
+              <div className="col-sm-5">
+                <input type="text" className="form-control" id="inputpaymenttype" />
+              </div>
+
+            </div>
+            <div className="mb-3 row">
+              <label for="inputaccountbalance" className="col-lg-1 col-form-label">AccountBalance</label>
+              <div className="col-sm-5">
+                <input type="text" className="form-control" id="inputaccountbalance" />
+              </div>
+
+            </div>
+          </div>
         </Tab>
       </Tabs>
     </div>

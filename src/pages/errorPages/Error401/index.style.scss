@@ -124,3 +124,11 @@
 .nav-link:hover{
     color: #000;
 }
+
+.nav-tabs .nav-link {
+     margin-bottom: -1px;
+     background: none;
+     border: transparent;
+      border-top-left-radius: 0.25rem;
+       border-top-right-radius: 0.25rem;
+    }

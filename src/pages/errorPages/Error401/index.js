@@ -47,13 +47,12 @@ const NonCitizen = () => {
   const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     console.log(event);
     setselectfileType(event);
-    NonCitizenDetails=getimportSearchData(event);
-        
+    NonCitizenDetails=getImportSearchData(event);
   }
 
   useEffect(() => {
   getFileTypeDataVal();
- 
+  
 
   }, []);
 
