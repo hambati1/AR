@@ -21,26 +21,13 @@ import axios from 'axios';
 
 const PATH='http://172.20.51.231:8761/cm/api/';
 let result='';
-let session='';
-
-/* TOKEN */
-const payload={"userName":"hambati","password":"indicatecropwouldmelrose3849practice!","brandType":"png"};
- fetch('http://172.20.51.231:8761/home/userlogin', {
-       method: 'POST',
-       headers: { "Content-Type": 'application/json', Session: session },
-       body: JSON.stringify(payload)
-     }).then((response) => response.json())
-     .then(function(data) {
-         session = data.session;
-         console.log(session);
-     });
-/* END TOKEN */
 
 /* import */
 export const getimportSearchData= (selectfileType) => {
  const b0 = {"fileTypeId": selectfileType,
              "page": 1,"size": 3,
              "sort": ["importDt,desc"]};
+  let session=localStorage.getItem('token');
   fetch(PATH + 'searchimportfile', {
       method: 'POST',
       headers: { "Content-Type": 'application/json', Session: session },
@@ -53,6 +40,7 @@ return result;
 }
 
 export const getImportFileTypeData=(functionId) => {
+let session=localStorage.getItem('token');
   const response = fetch(PATH + "cn/filetype?functionId="+functionId+"&isActive=1&isImport=1", {
     method: 'GET',
     headers: { Session: session }
@@ -64,6 +52,7 @@ export const getImportFileTypeData=(functionId) => {
 
  export   const getImportFileNames = (event) => {
       console.log(event);
+      let session=localStorage.getItem('token');
       if (event != undefined) {
         const url = PATH + 'ar/import/file/list?fileTypeId=' + event + '&brandId=1';
         const response = fetch(url, {
@@ -78,6 +67,7 @@ export const getImportFileTypeData=(functionId) => {
 
   export const onSubmitImportHandler = (payload) => {
        const url = PATH + 'ar/import/file';
+       let session=localStorage.getItem('token');
        const config = {
           headers: {
             'content-type': 'application/json',
@@ -95,6 +85,7 @@ export const getImportFileTypeData=(functionId) => {
 
 export const getExportFileTypeData=() => {
 console.log("sssssssssss");
+let session=localStorage.getItem('token');
   const response = fetch(PATH + "cn/filetype?functionId=6&isActive=1&isImport=0", {
     method: 'GET',
     headers: { Session: session }
@@ -106,6 +97,7 @@ console.log("sssssssssss");
 
 export const getExportSearchData=(fileTypeId,brandId) => {
   let b0={"fileTypeId": fileTypeId, "brandId": brandId};
+  let session=localStorage.getItem('token');
     const response = fetch(PATH + "ar/export/file", {
       method: 'POST',
       headers: { "Content-Type": 'application/json', Session: session },
@@ -118,6 +110,7 @@ export const getExportSearchData=(fileTypeId,brandId) => {
 
   export const getExportFileNames = (event) => {
     console.log(event);
+    let session=localStorage.getItem('token');
     if (event != undefined) {
     let b0={
                  "fileTypeId": event,
@@ -135,6 +128,7 @@ export const getExportSearchData=(fileTypeId,brandId) => {
 
 export const onSubmitExportHandler = (json) => {
     const url = PATH + 'ar/export/file';
+    let session=localStorage.getItem('token');
     const config = {
       headers: {
         'content-type': 'application/json',
@@ -152,6 +146,7 @@ export const onSubmitExportHandler = (json) => {
 /*Batch payment*/
 export const saveBatchName = (json,batchId) => {
     const url = PATH + 'ar/batch/save/'+batchId;
+    let session=localStorage.getItem('token');
     const config = {
       headers: {
         'content-type': 'application/json',
@@ -166,6 +161,7 @@ export const saveBatchName = (json,batchId) => {
   }
 
 export const getBatchDetailsByBatchIdService= (active) => {
+let session=localStorage.getItem('token');
   fetch(PATH + 'ar/batch/'+active, {
       method: 'GET',
       headers: { "Content-Type": 'application/json', Session: session }
@@ -177,6 +173,7 @@ return result;
 }
 
 export const getSearchData= (active) => {
+let session=localStorage.getItem('token');
   fetch(PATH + 'ar/batch?isPayment='+active+'&isClosed=0', {
       method: 'GET',
       headers: { "Content-Type": 'application/json', Session: session }

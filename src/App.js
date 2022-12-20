@@ -16,7 +16,23 @@ import '@crema/services';
 import configureStore from './redux/store';
 
 const store = configureStore();
-    
+
+let session='';
+
+/* TOKEN */
+const payload={"userName":"hambati","password":"indicatecropwouldmelrose3849practice!","brandType":"png"};
+ fetch('http://172.20.51.231:8761/home/userlogin', {
+       method: 'POST',
+       headers: { "Content-Type": 'application/json', Session: session },
+       body: JSON.stringify(payload)
+     }).then((response) => response.json())
+     .then(function(data) {
+         session = data.session;
+         console.log(session);
+         localStorage.setItem('token', session);
+     });
+/* END TOKEN */
+
 const App = () => (
   <AppContextProvider>
     <Provider store={store}>
