@@ -30,7 +30,7 @@ import {
   MdFolderShared
 } from 'react-icons/md';
 import { CgAttachment, CgFeed } from 'react-icons/cg';
-import { AiOutlineUnorderedList, AiFillHome, AiFillSignal, AiFillDatabase, AiOutlineLineChart,AiOutlineImport,AiOutlineExport,
+import { AiOutlineUnorderedList, AiFillHome, AiFillSignal, AiFillDatabase, AiOutlineLineChart ,AiOutlineSearch,AiOutlineImport,AiOutlineExport,
   AiFillDollarCircle,AiFillAccountBook,AiOutlineTransaction,AiOutlineFolderView } from 'react-icons/ai';
 import React from 'react';
 
@@ -40,6 +40,14 @@ const routesConfig = [
     messageId: 'sidebar.application',
     type: 'group',
     children: [
+      {
+        id: 'search',
+        title: 'Search',
+        messageId: 'sidebar.app.dashboard.Search',
+        type: 'item',
+        icon: < AiOutlineSearch />,
+        url: '/menu-pages/Search',
+      },
       {
         id: 'crypto',
         title: 'File Import',

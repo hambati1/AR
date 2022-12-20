@@ -32,4 +32,9 @@ export const menuPagesConfigs = [
     path: '/menu-pages/Credit-Card-Transaction-Worklist',
     component: React.lazy(() => import('./CreditCard/index')),
   },
+  {
+    permittedRole: RoutePermittedRole.user,
+    path: '/menu-pages/Search',
+    component: React.lazy(() => import('./Search/index')),
+  },
 ];

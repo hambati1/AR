@@ -34,7 +34,7 @@ const TaxViewer = () => {
                     <div className="input-group-btn">
                       <div className="btn-group" role="group">
                         <input type="text" className="form-control" id="search" autocmplete="off" />
-                        <Button type="button" className=" notepad btn mainsearchbtn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><img src="/assets/images/notepad.png" /></Button>
+                        <Button type="button" className=" notepad btn mainsearchbtn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><img src="/assets/images/notepad.svg" /></Button>
                    
                       </div>
                     </div>
@@ -84,22 +84,11 @@ const TaxViewer = () => {
               <input type="text" Name=" from date" className="form-control" id="inputfrom date" />
             </div>
           </div>
-
           <div className="mb-2 row">
             <label for="input transcation type" className="col-lg-2 col-form-label">Transcation Type</label>
             <div className="col-md-2">
               <select className="form-select" Name="status" aria-label="Default select example" >
-                <option value=""></option>
-                <option value=""></option>
-              </select>
-            </div>
-          </div>
-
-          <div className="mb-2 row">
-            <label for="input transcation type" className="col-lg-2 col-form-label">Transcation Type</label>
-            <div className="col-md-2">
-              <select className="form-select" Name="status" aria-label="Default select example" >
-                <option value=""></option>
+                <option value="Residential"> Residential</option>
                 <option value=""></option>
               </select>
             </div>
@@ -108,7 +97,7 @@ const TaxViewer = () => {
             <label for="input transcation type" className="col-lg-2 col-form-label">Incorporated</label>
             <div className="col-md-2">
               <select className="form-select" Name="status" aria-label="Default select example" >
-                <option value=""></option>
+                <option value="Withiin">Within</option>
                 <option value=""></option>
               </select>
             </div>
@@ -118,7 +107,7 @@ const TaxViewer = () => {
             <label for="input transcation type" className="col-lg-2 col-form-label">Regulated</label>
             <div className="col-md-2">
               <select className="form-select" Name="status" aria-label="Default select example" >
-                <option value=""></option>
+                <option value="Regulated">Regulated</option>
                 <option value=""></option>
               </select>
             </div>
@@ -128,7 +117,7 @@ const TaxViewer = () => {
             <label for="input transcation type" className="col-lg-2 col-form-label">Sale Type</label>
             <div className="col-md-2">
               <select className="form-select" Name="status" aria-label="Default select example" >
-                <option value=""></option>
+                <option value="Sale">Sale</option>
                 <option value=""></option>
               </select>
             </div>
@@ -139,6 +128,11 @@ const TaxViewer = () => {
               <input className='datepicker' type='date' />
             </div>
           </div>
+
+          <div>
+                <button type="Apply tax" className="btn  mb-3 Apply " >Apply Tax</button>
+                <button type="Clear" className="btn  mb-3 cancel ">Clear</button>
+              </div>
         </Tab>
 
         {/* ****************Tax View Results********************* */}

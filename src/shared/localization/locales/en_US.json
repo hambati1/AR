@@ -694,6 +694,7 @@
   "sidebar.app.dashboard.academy": "Academy",
   "sidebar.app.dashboard.archive":"Archive Balance for Aging",
   "sidebar.app.dashboard.fileImport":"File Import",
+  "sidebar.app.dashboard.Search": "Search",
   "sidebar.app.dashboard.fileExport":"File Export",
   "sidebar.app.dashboard.BatchPayment":"Batch Payment Entry",
   "sidebar.app.dashboard.TaxViewer":"Tax Viewer",

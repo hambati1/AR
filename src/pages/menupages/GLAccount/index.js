@@ -37,14 +37,14 @@ const GLAccount = () => {
   const handleShow = () => setShow(true);
 
 
- 
 
- 
+
+
   const [show2, setShow2] = useState(false);
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
 
-  
+
 
   return (
     <div >
@@ -122,17 +122,18 @@ const GLAccount = () => {
                 
               </Modal.Footer> */}
             </Modal>
-            <div id="data-grid-demo">
+
+            <div>
               <DataGrid
+                className='card-body'
                 dataSource={GLAccount}
-                showBorders={true}>
-                <Paging enabled={false} />
-                <Editing mode="form" allowAdding={true} />
-                <Column dataField={"account number"} caption="Account Number" />
-                <Column dataField={"description"} caption="Description" />
-                <Column dataField={"updated by"} caption="Updated By" />
-                <Column dataField={"update date"} caption="Update Date" />
-                <Column dataField={"comments"} caption="Comments" />
+                keyExpr={'fileName'}
+                allowColumnReordering={true}>
+                <Column dataField={'account number'} caption={'Account Number'} />
+                <Column dataField={'description'} caption={'Description'} />
+                <Column dataField={'updated by'} caption={'Updated By'} />
+                <Column dataField={'update date'} caption={'Update Date'} />
+                <Column dataField={'comments'} caption={'Comments'} />
 
                 <FilterRow visible={true} />
                 <ColumnChooser enabled={true} mode='select' />
@@ -145,7 +146,6 @@ const GLAccount = () => {
                 <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
                 <Paging defaultPageSize={5} />
               </DataGrid>
-
             </div>
             <div className="form-check mx-2">
               <input type="checkbox" className="form-check-input" name="option1" value="Is Active" />
@@ -153,28 +153,28 @@ const GLAccount = () => {
             </div>
             <form calssName=" input-selected record">
 
-            <div className="mb-2 row">
+              <div className="mb-2 row">
                 <label for="input account number" className="col-lg-2 col-form-label">Account Number</label>
                 <div className="col-sm-3">
-                  <input type="text"  className="form-control" id="input account number" />
+                  <input type="text" className="form-control" id="input account number" />
                 </div>
-                </div>
+              </div>
 
-                
-            <div className="mb-2 row">
+
+              <div className="mb-2 row">
                 <label for="input description" className="col-lg-2 col-form-label">Description</label>
                 <div className="col-sm-3">
-                  <input type="text"  className="form-control" id="input description" />
+                  <input type="text" className="form-control" id="input description" />
                 </div>
-                </div>
+              </div>
 
-                <div className="mb-2 row">
+              <div className="mb-2 row">
                 <label for="input commnets" className="col-lg-2 col-form-label">Comments</label>
                 <div className="col-sm-3">
-                  <input type="text"  className="form-control  pt-3" id="input comments" />
+                  <input type="text" className="form-control  pt-3" id="input comments" />
                 </div>
-                </div>
-                <div>
+              </div>
+              <div>
                 <button type="Save" className="btn  mb-3 save " >Save</button>
                 <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
               </div>

@@ -8,7 +8,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 12px;
-    color: #FFF;
+    color: #FFFF !important;
     width: 70px;
     height: 37px;
     margin-left: 20px;
@@ -26,10 +26,28 @@
     font-size: 14px;
     line-height: 12px;
     letter-spacing: 0.05em;
-    color: #FFFF;
+    color: #FFFF !important;
     width: 70px;
     height: 37px;
     margin-left: 50px;
+    margin-top: 10px;
+
+}
+
+.Save {
+    margin-left: 120px;
+    border: 1px solid #0275D8;
+
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    width: 70px;
+    height: 37px;
+    margin-left: 20px;
     margin-top: 10px;
 
 }
@@ -208,7 +226,6 @@
     border-color: #0275D8;
     
 }
-
 
     
 
