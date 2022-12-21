@@ -10,7 +10,6 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-// import { saveBatchName } from '../../errorPages/APICalls.js'
 import Table from 'react-bootstrap/Table';
 
 

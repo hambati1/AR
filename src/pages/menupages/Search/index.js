@@ -18,7 +18,7 @@ const Search = () => {
         <Tab eventKey="home" title="Search">
           <div className="form-group">
             <div className="mb-2 row">
-              <label for="inputFileType" className="col-lg-1 col-form-label">Search Type :</label>
+              <label for="inputFileType" className="col-lg-1 col-form-label">Search Type</label>
               <div className="col-sm-4 Dropdown">
                 <select className="form-select" Name="searchType" aria-label="Default select example" >
                   <option value=""></option>

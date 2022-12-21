@@ -7,6 +7,7 @@ import React from 'react';
 import {componentConfigs} from './components';
 import {extraPagesConfigs} from './extraPages';
 import {menuPagesConfigs} from './menupages'
+import {searchConfigs} from './SearchWorklist'
 
 const authorizedStructure = {
   fallbackPath: '/signin',
@@ -15,7 +16,8 @@ const authorizedStructure = {
     ...componentConfigs,
     ...extraPagesConfigs,
     ...errorPagesConfigs,
-    ...menuPagesConfigs
+    ...menuPagesConfigs,
+    ...searchConfigs
   ],
 };
 

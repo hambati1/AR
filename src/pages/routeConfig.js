@@ -40,6 +40,24 @@ const routesConfig = [
     messageId: 'sidebar.application',
     type: 'group',
     children: [
+
+
+      {
+        id: 'payments',
+        title: 'Payments',
+        messageId: 'sidebar.app.dashboard.payments',
+        type: 'item',
+        icon: <  MdOutlineDns/>,
+        url: '/Search-Worklist/Payments',
+      },
+      {
+        id: 'adjustments',
+        title: 'Adjustments',
+        messageId: 'sidebar.app.dashboard.adjustments',
+        type: 'item',
+        icon: <CgFeed/>,
+        url: '/Search-Worklist/Adjustments',
+      },
       {
         id: 'search',
         title: 'Search',
@@ -95,7 +113,16 @@ const routesConfig = [
         type: 'item',
         icon: <AiOutlineTransaction />,
         url: '/menu-pages/Credit-Card-Transaction-Worklist',
-      }
+      },
+      // {
+      //   id: 'globalsearch',
+      //   title: 'Global Search',
+      //   messageId: 'sidebar.app.dashboard.globalsearch',
+      //   type: 'item',
+      //   icon: < RiShieldUserLine />,
+      //   url: '/Search-Worklist/Global-Search',
+      // },
+      
     ],
   },
 
