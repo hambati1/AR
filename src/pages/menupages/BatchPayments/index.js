@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-// import '../../errorPages/Error404/index.style.scss'
 import '../../menupages/BatchPayments/index.style.scss'
 import axios from 'axios';
-import { getSearchData, getBatchDetailsByBatchIdService } from '../../menupages/APICalls.js'
+import { getSearchData, getBatchDetailsByBatchIdService,saveBatchName } from '../../menupages/APICalls.js'
 import { Button } from 'react-bootstrap';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
@@ -11,9 +10,10 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import { saveBatchName } from '../../menupages/APICalls.js'
 import Table from 'react-bootstrap/Table';
+import DataSource from 'devextreme/data/data_source';
 
+const newRowPositionOptions = ['first', 'last', 'pageTop', 'pageBottom', 'viewportTop', 'viewportBottom'];
 let batchData = [];
 const BatchPayment = () => {
   const [active, setactive] = useState(true);
@@ -35,6 +35,20 @@ const BatchPayment = () => {
   const handleClose4 = () => setShow4(false);
   const handleShow4 = () => setShow4(true);
   const [show4, setShow4] = useState(false);
+  const [source, setSource] = useState(false);
+  const [message, setMessage] = useState(false);
+
+ const onRowInserted = React.useCallback((e) => {
+    e.component.navigateToRow(e.key);
+  }, []);
+
+  const dataSource = new DataSource({
+      store: {
+          type: "array",
+          data: batchData
+      },
+      sort: { getter: "text", desc: true }
+  });
 
   const activeChange = () => {
     setbatchId('');
@@ -55,8 +69,7 @@ const BatchPayment = () => {
     setFunction(event.target.value)
   }
   const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
-    setShow(true);
+   setShow(true);
   }
 
   const handlebatchName = event => {
@@ -82,19 +95,42 @@ const BatchPayment = () => {
 
   const batchNameSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     console.log('=batchName=' + batchName + ' = importFileId=' + importFileId);
+      setSource('');
+      setMessage('');
     if (batchName != undefined) {
       let json = {
         "batchName": batchName, "isPayment": 1, "isClosed": 0,
         "cmImportFile": { "importFileId": importFileId }
       }
-      let message = saveBatchName(json, batchId);
-      console.log('message==' + message);
+     let message=saveBatchName(json).then(function(response) {
+             console.log(response)
+             if(response !=undefined && response.status=='error')
+             {
+               let data=response.data;
+               let source=data[0];
+               let message=data[1];
+               setSource(source);
+               setMessage(message);
+              console.log(response.data);
+             }
+             else if(response.status=='success')
+             {
+               console.log(response)
+               //dataSource.push([{ type: 'insert', data: response.data, index: 0 }]);
+               //dataSource.insert(response.data);
+             }
+             else
+             {
+               console.log(response)
+             }
+      });
+      console.log('==%%%==='+message);
+
     }
   }
   const agencybatchnamesave = () => {
     console.log('======' + batchName);
   }
-
   return (
     <div >
       <div className='col-md-9 main-header'>
@@ -108,11 +144,8 @@ const BatchPayment = () => {
               <input className="form-check-input" type="checkbox" name="active" value="" id="flexCheckDefault" onChange={activeChange} />
               <label className="form-check-label action" for="flexCheckDefault">Active Only</label>
             </div> */}
-
             <div class="form-check mx-2">
-
               <input type="checkbox" class="form-check-input" name="active" value="" id="flexCheckDefault" onChange={activeChange} />
-
               <label class="list">Active Only</label>
             </div>
 
@@ -169,7 +202,8 @@ const BatchPayment = () => {
                       </tr>
                     </thead>
                     <tbody>
-
+                         <td>{source}</td>
+                         <td>{message}</td>
                     </tbody>
                   </Table>
                 </div>
@@ -229,9 +263,13 @@ const BatchPayment = () => {
             </Modal>
             {/* ******************Action 2 POP UP Ends***************** */}
 
-            <div id="data-grid-demo">
+            <div id="batchData-grid">
               <DataGrid onRowClick={handleEvent}
-                dataSource={batchData}
+                dataSource={dataSource}
+                onRowInserted={onRowInserted}
+                focusedRowEnabled={true}
+                focusedRowIndex={0}
+                focusedColumnIndex={0}
                 showBorders={true}>
                 <Paging enabled={false} />
                 <Column dataField={"batchId"} caption="Batch ID" />

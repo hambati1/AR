@@ -22,6 +22,15 @@ import axios from 'axios';
 const PATH='http://172.20.51.231:8761/cm/api/';
 let result='';
 
+function responceSuccess(response) {
+  return { status: "success", data: response, error: response};
+}
+
+function responceFailure(error) {
+  return { status: "error", data: error, error: error };
+}
+
+
 /* import */
 export const getimportSearchData= (selectfileType) => {
  const b0 = {"fileTypeId": selectfileType,
@@ -144,33 +153,51 @@ export const onSubmitExportHandler = (json) => {
 /* End Export */
 
 /*Batch payment*/
-export const saveBatchName = (json,batchId) => {
-    const url = PATH + 'ar/batch/save/'+batchId;
-    let session=localStorage.getItem('token');
-    const config = {
-      headers: {
-        'content-type': 'application/json',
-        Session: session
-      },
-    };
-    axios.post(url, json, config).then((response) => {
-      console.log(response.data);
-      result= response.data;
-    });
-    return result;
-  }
 
-export const getBatchDetailsByBatchIdService= (active) => {
-let session=localStorage.getItem('token');
-  fetch(PATH + 'ar/batch/'+active, {
-      method: 'GET',
-      headers: { "Content-Type": 'application/json', Session: session }
-    }).then((response) => response.json())
-    .then(function(data) {
-        result = data.response;
+export const saveBatchName = (json) => {
+    let result='';
+    let session=localStorage.getItem('token');
+    const url = PATH + 'ar/batch/save';
+    if (json != undefined) {
+    const config = {headers: {'content-type': 'application/json', Session: session}};
+    let success=false;
+    return axios.post(url, json, config).then(async (response) =>  response)
+        .then(function(response) {
+            console.log(response.data.response);
+            result = response.data.response;
+            success=true;
+            return  responceSuccess(result);
+        }).catch((error) => error).then(function(response) {
+            if (success ===false)
+            {
+                console.log('aaaaaaa');
+                let errorMessage=response.response.data.errorMessage;
+                result =errorMessage.split(":");
+                 console.log(result);
+               return  responceFailure(result);
+            }
+            else
+            {
+               let data=response.data
+                return  responceSuccess(data);
+            }
+        });
+    }
+  };
+
+export const getBatchDetailsByBatchIdService= (batchId) => {
+    let session=localStorage.getItem('token');
+    if (batchId != undefined) {
+    let json={"batchId": "%"+batchId+"%"};
+    const config = {headers: {'content-type': 'application/json', Session: session}};
+    axios.post(PATH + "/ar/searchpayments", json, config).then((response) =>  response)
+    .then(function(response) {
+        console.log(response.data.response);
+       result = response.data.response;
     });
-return result;
-}
+    }
+     return  result;
+  };
 
 export const getSearchData= (active) => {
 let session=localStorage.getItem('token');
