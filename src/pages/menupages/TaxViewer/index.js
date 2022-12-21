@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from "react";
 import axios from 'axios';
 import { Button, Modal, ModalBody } from 'react-bootstrap';
 import DataGrid, {
@@ -7,10 +7,18 @@ import DataGrid, {
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
+
 import clsx from 'clsx';
 import '../../menupages/TaxViewer/index.style.scss'
 
 const TaxViewer = () => {
+
+  const [showModal, setShowModal] = useState(false);
+  const [state, setState] = useState(false);
+  const [setFileType, setFileTypes] = useState();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
 
     <div>
@@ -34,8 +42,127 @@ const TaxViewer = () => {
                     <div className="input-group-btn">
                       <div className="btn-group" role="group">
                         <input type="text" className="form-control" id="search" autocmplete="off" />
-                        <Button type="button" className=" notepad btn mainsearchbtn"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><img src="/assets/images/notepad.svg" /></Button>
-                   
+                        <Button href="#/action-1" className="btn-color" onClick={handleShow}> <img src="/assets/images/notepad.png" /> </Button>
+
+                        <Modal
+                          className=""
+                          show={show}
+                          onHide={handleClose}
+                          backdrop="static"
+                          keyboard={false}
+                        >
+                          <Modal.Header closeButton>
+                            <Modal.Title>Choose P-Code</Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body className="pop-up">
+                          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <div className="mb-2 row comment-margin">
+                  <label for="inputcardholder name" className="font col-form-label">Country</label>
+                  <div className="col">
+                  <select className="form-select" Name="status" aria-label="Default select example" >
+                <option value=""> </option>
+                <option value=""></option>
+              </select>
+                  </div>
+                </div>
+
+                <div className="mb-2 row comment-margin">
+                  <label for="inputcardholder name" className="col-lg-2 font col-form-label">State</label>
+                  <div className="col">
+                  <select className="form-select" Name="status" aria-label="Default select example" >
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+                  </div>
+                </div>
+
+                <div className="mb-2 row comment-margin">
+                  <label for="inputcardholder name" className="col-lg-2 font  col-form-label">County</label>
+                  <div className="col">
+                  <select className="form-select" Name="status" aria-label="Default select example" >
+                <option value=""> </option>
+                <option value=""></option>
+              </select>
+                  </div>
+                </div>
+
+                <div className="mb-2 row comment-margin">
+                  <label for="inputcardholder name" className="col-lg-2 font col-form-label">Locality</label>
+                  <div className="col">
+                  <select className="form-select" Name="status" aria-label="Default select example" >
+                <option value=""> </option>
+                <option value=""></option>
+              </select>                  </div>
+                </div>
+
+                <div className="mb-2 row comment-margin">
+                  <label for="inputcardholder name" className="col-lg-2 font col-form-label">Zip Start</label>
+                  <div className="col">
+                  <select className="form-select" Name="status" aria-label="Default select example" >
+                <option value=""> </option>
+                <option value=""></option>
+              </select>                  </div>
+                </div>
+
+                <div className="mb-2 row comment-margin">
+                  <label for="inputcardholder name" className="col-lg-2 font col-form-label">Zip End</label>
+                  <div className="col">
+                  <select className="form-select" Name="status" aria-label="Default select example" >
+                <option value=""> </option>
+                <option value=""></option>
+              </select>                  </div>
+                </div>
+              </div>
+<div className="vr"></div>
+              <div class="col-sm">
+                <div className="mb-2 row">
+                  <label for="inputcardholder name" className="col-lg-2 font col-form-label">P-Code</label>
+                  <div className="col">
+                    <input type="text" className="col-md-2 form-control" id="inputcardholder name" />
+                  </div>
+                </div>               
+              </div>
+            </div>
+          </div>
+
+                            {/* <div className="d-flex">
+                              <div className="col-2 input-group-sm batch">
+                                <label>Description
+                                </label>
+                              </div>
+                              <div className="input-group col input-group-sm">
+                                <input className="form-control" type="text"></input>
+                              </div>
+                            </div>
+
+                            <div className="d-flex">
+                              <div className="col-2 input-group-sm batch ">
+                                <label>Comments
+                                </label>
+                              </div>
+                              <div className="input-group col input-group-sm">
+                                <input className="form-control pt-3" type="text"></input>
+                              </div>
+                            </div> */}
+
+
+
+                              <button type="button" className="btn mt-3 code" >Find P-Codes</button>
+                              <button type="save" className="btn cancel">Clear</button>
+                            
+
+                          </Modal.Body>
+                          <Modal.Footer>
+                          <div>
+                              <button type="Save" className="btn ok" >Save</button>
+                              <button type="Cancel" className="btn cancel">Cancel</button>
+                            </div>
+                
+              </Modal.Footer>
+                        </Modal>
+
                       </div>
                     </div>
                   </div>
@@ -130,9 +257,9 @@ const TaxViewer = () => {
           </div>
 
           <div>
-                <button type="Apply tax" className="btn  mb-3 Apply " >Apply Tax</button>
-                <button type="Clear" className="btn  mb-3 cancel ">Clear</button>
-              </div>
+            <button type="Apply tax" className="btn  mb-3 Apply " >Apply Tax</button>
+            <button type="Clear" className="btn  mb-3 cancel ">Clear</button>
+          </div>
         </Tab>
 
         {/* ****************Tax View Results********************* */}
@@ -277,29 +404,29 @@ const TaxViewer = () => {
 
           {/* ****************Tax view results end***************** */}
           <div>
-          <DataGrid
-            className='card-body'
-            dataSource={TaxViewer}
-            keyExpr={'fileName'}
-            allowColumnReordering={true}>
-            <Column dataField={'tax type'} caption={'Tax Type'} />
-            <Column dataField={'description'} caption={'Description'} />
-            <Column dataField={'p-code'} caption={'P-Code'} />
-            <Column dataField={'level'} caption={'Level'} />
-            <Column dataField={'jurisdiction'} caption={'Jurisdiction'} />
-            <Column dataField={'tax rate'} caption={'Tax Rate'} />
+            <DataGrid
+              className='card-body'
+              dataSource={TaxViewer}
+              keyExpr={'fileName'}
+              allowColumnReordering={true}>
+              <Column dataField={'tax type'} caption={'Tax Type'} />
+              <Column dataField={'description'} caption={'Description'} />
+              <Column dataField={'p-code'} caption={'P-Code'} />
+              <Column dataField={'level'} caption={'Level'} />
+              <Column dataField={'jurisdiction'} caption={'Jurisdiction'} />
+              <Column dataField={'tax rate'} caption={'Tax Rate'} />
 
-            <FilterRow visible={true} />
-            <ColumnChooser enabled={true} mode='select' />
-            <SearchPanel
-              className='float-start'
-              visible={true}
-              width={240}
-              placeholder="Search..."
-            />
-            <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
-            <Paging defaultPageSize={5} />
-          </DataGrid>
+              <FilterRow visible={true} />
+              <ColumnChooser enabled={true} mode='select' />
+              <SearchPanel
+                className='float-start'
+                visible={true}
+                width={240}
+                placeholder="Search..."
+              />
+              <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
+              <Paging defaultPageSize={5} />
+            </DataGrid>
           </div>
         </Tab>
       </Tabs>
