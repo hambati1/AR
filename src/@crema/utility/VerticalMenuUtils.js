@@ -68,7 +68,10 @@ const renderMenuItemChildren = (item) => {
 
 const renderMenuItem = (item, sidebarColorSet, isSidebarBgImage, index) => {
   return item.type === 'collapse' ? (
-    <Nav.SubMenu
+    <Nav.SubMenu 
+    onclick={()=>{
+      console.log("test")
+    }}
       style={getStyles(item, sidebarColorSet, isSidebarBgImage, index, true)}
       key={item.path ? item.path : item.id}
       title={renderMenuItemChildren(item, sidebarColorSet, isSidebarBgImage)}>
@@ -79,6 +82,9 @@ const renderMenuItem = (item, sidebarColorSet, isSidebarBgImage, index) => {
   ) : (
     <Nav.Item
       key={item.id}
+      onclick={()=>{
+        console.log("test")
+      }}
       style={getStyles(item, sidebarColorSet, isSidebarBgImage, index)}>
       {item.children
         ? item.children

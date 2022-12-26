@@ -185,3 +185,59 @@ let session=localStorage.getItem('token');
 return result;
 }
 /*End Batch payment*/
+
+
+/*GL Account api*/
+export const getGLAccountData = (json) => {
+  console.log(json);
+  const url = PATH + 'ar/searchglcodes';
+  let session=localStorage.getItem('token');
+  const config = {
+    headers: {
+      'content-type': 'application/json',
+      Session: session
+    },
+  };
+  axios.post(url, json, config).then((response) => {
+    console.log(response.data);
+    result= response.data;
+  });
+  return result;
+}
+
+export const accountUpdate = (key,json) => {
+  console.log(json);
+  const url = PATH + 'ar/gl/cd/save/'+key;
+  let session=localStorage.getItem('token');
+  const config = {
+    headers: {
+      'content-type': 'application/json',
+      Session: session
+    },
+  };
+  axios.post(url, json, config).then((response) => {
+    console.log(response.data);
+    result= response.data;
+  });
+  return result;
+}
+
+
+export const saveGLAccount = (json) => {
+  console.log(json);
+  const url = PATH + 'ar/gl/cd/save';
+  /*let session=localStorage.getItem('token');
+  const config = {
+    headers: {
+      'content-type': 'application/json',
+      Session: session
+    },
+  };
+  axios.post(url, json, config).then((response) => {
+    console.log(response.data);
+    result= response.data;
+  });*/
+  let result={"glcode":10,"accountNumber":123,"description":"desc","updatedBy":"hambati","updateDate":"24-12-2022","comments":"comments"};
+  return result;
+}
+/* ENd GL account api */

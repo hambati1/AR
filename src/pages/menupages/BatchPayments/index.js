@@ -11,8 +11,9 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
-import { saveBatchName } from '../../menupages/APICalls.js'
+import { saveBatchName } from '../../menupages/APICalls.js';
 import Table from 'react-bootstrap/Table';
+import DataSource from 'devextreme/data/data_source';
 
 let batchData = [];
 const BatchPayment = () => {
@@ -29,12 +30,7 @@ const BatchPayment = () => {
   const [show2, setShow2] = useState(false);
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
-  const handleClose3 = () => setShow3(false);
-  const handleShow3 = () => setShow3(true);
-  const [show3, setShow3] = useState(false);
-  const handleClose4 = () => setShow4(false);
-  const handleShow4 = () => setShow4(true);
-  const [show4, setShow4] = useState(false);
+
 
   const activeChange = () => {
     setbatchId('');
@@ -223,9 +219,7 @@ const BatchPayment = () => {
                   </Table>
                 </div>
               </Modal.Body>
-              {/* <Modal.Footer>
-                
-              </Modal.Footer> */}
+
             </Modal>
             {/* ******************Action 2 POP UP Ends***************** */}
 
@@ -261,186 +255,77 @@ const BatchPayment = () => {
           <div>
             Batch  {batchId}
           </div>
-          <div>
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Actions
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-3" onClick={handleShow3}>Add Payment Records</Dropdown.Item>
-                <Dropdown.Item href="#/action-4" onClick={handleShow4}>Add Agency payment Records</Dropdown.Item>
-              </Dropdown.Menu>
 
-              <Modal
-                className=""
-                show={show3}
-                onHide={handleClose3}
-                backdrop="static"
-                keyboard={false}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Add  Payment Records</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm">
-                      <label>Customer ID</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm ">
-                      <label>payment Type</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm ">
-                      <label>Account Balance</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm ">
-                      <label>Payment Amount</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div className="form-check mx-2">
-                    <label className="list">Allocate to Invocies</label>
-                    <input type="checkbox" className="form-check-input" name="option1" value="Allocate to Invocies" />
-                  </div>
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm ">
-                      <label>Check Number</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div>
-                    <button type="Ok" className="btn  mb-3 ok " >Clear</button>
-                    <button type="Ok" className="btn  mb-3 Save " >Save</button>
-                    <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
-                  </div>
-                </Modal.Body>
-                {/* <Modal.Footer>
-                </Modal.Footer> */}
-              </Modal>
-
-              <Modal
-                className=""
-                show={show4}
-                onHide={handleClose4}
-                backdrop="static"
-                keyboard={false}
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title>Add Agency Payment Records</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm">
-                      <label>Customer ID</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm ">
-                      <label>payment Type</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm ">
-                      <label>Account Balance</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm ">
-                      <label>Payment Amount</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm ">
-                      <label>Agency Fee</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-                  <div className="d-flex">
-                    <div className="col-2 input-group-sm ">
-                      <label>Check Number</label>
-                    </div>
-                    <div className="input-group col input-group-sm">
-                      <input className="form-control" type="text"></input>
-                    </div>
-                  </div>
-
-                  <div>
-                    <button type="Ok" className="btn  mb-3 ok " >Clear</button>
-                    <button type="Ok" className="btn  mb-3 Save " >Save</button>
-                    <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
-                  </div>
-                </Modal.Body>
-                {/* <Modal.Footer>
-                </Modal.Footer> */}
-              </Modal>
-            </Dropdown>
-            <div id="data-grid-demo2">
-              <DataGrid onRowClick={handleEvent}
-                dataSource={batchSubData}
-                showBorders={true}>
-                <Paging enabled={false} />
-                <Column dataField={"batchId"} caption="Customer ID" />
-                <Column dataField={"type"} caption="Customer Name" />
-                <Column dataField={"batchName"} caption="Payment Type" />
-                <Column dataField={"createdBy"} caption="Payment Amount" />
-                <Column dataField={"creationDt"} caption="Agency Fee" />
-                <Column dataField={"isClosed"} caption="Check number" />
-                <Column dataField={"totalRecords"} caption="Payment Date" />
-
-
-                <FilterRow visible={true} />
-                <ColumnChooser enabled={true} mode='select' />
-                <SearchPanel
-                  className='float-start'
-                  visible={true}
-                  width={240}
-                  placeholder="Search..."
-                />
-                <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
-                <Paging defaultPageSize={5} />
-              </DataGrid>
+          <div id="data-grid-demo2">
+            <DataGrid onRowClick={handleEvent}
+              dataSource={batchSubData}
+              showBorders={true}>
+              <Paging enabled={false} />
+              <Column dataField={"batchId"} caption="Customer ID" />
+              <Column dataField={"type"} caption="Customer Name" />
+              <Column dataField={"batchName"} caption="Payment Type" />
+              <Column dataField={"createdBy"} caption="Payment Amount" />
+              <Column dataField={"creationDt"} caption="Agency Fee" />
+              <Column dataField={"isClosed"} caption="Check number" />
+              <Column dataField={"totalRecords"} caption="Payment Date" />
+              <FilterRow visible={true} />
+              <ColumnChooser enabled={true} mode='select' />
+              <SearchPanel
+                className='float-start'
+                visible={true}
+                width={240}
+                placeholder="Search..."
+              />
+              <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
+              <Paging defaultPageSize={5} />
+            </DataGrid>
+          </div>
+          <div className=" row my-2 ">
+            <label for="inputcustomer id" className="col-lg-2 col-form-label">Customer ID</label>
+            <div className="col-sm-3">
+              <input type="text" className="form-control" id="input customer id" />
             </div>
           </div>
+          <div className=" row my-2 ">
+            <label for="inputpayment type" className="col-lg-2 col-form-label">Payment Type</label>
+            <div className="col-sm-3">
+              <select className="form-select" Name="status" aria-label="Default select example" >
+                <option value="">Check Payment</option>
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+          <div className=" row my-2 ">
+            <label for="inputaccount balance" className="col-lg-2 col-form-label">Account Balance</label>
+            <div className="col-sm-3">
+              <input type="text" className="form-control" id="input account balance" />
+            </div>
+          </div>
+          <div className=" row my-2 ">
+            <label for="inputpayment amount" className="col-lg-2 col-form-label">Payment Amount</label>
+            <div className="col-sm-3">
+              <input type="text" className="form-control" id="input payment amount" />
+            </div>
+          </div>
+          <div class="form-check mx-2">
+              <input className="form-check-input" type="checkbox" name="active" value="" id="flexCheckDefault" />
+              <label className="form-check-label action" for="flexCheckDefault">Allocate to Invoices</label>
+              
+            </div> 
+
+          <div className=" row my-2 ">
+            <label for="inputcheck number" className="col-lg-2 col-form-label">Check Number</label>
+            <div className="col-sm-3">
+              <input type="text" className="form-control" id="input check number" />
+            </div>
+          </div>
+
+          <div>
+                  <button type="clear" className="btn  mb-3 Clear ">Clear</button>
+                  <button type="save" className="btn  mb-3 Save ">Save</button>
+                  <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
+                </div>
+
         </Tab>
       </Tabs>
     </div>

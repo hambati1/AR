@@ -1,4 +1,4 @@
-import React, { UseState } from 'react';
+import React, { useEffect, useState, useRef } from "react";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import DataGrid, {
@@ -6,11 +6,21 @@ import DataGrid, {
 } from 'devextreme-react/data-grid';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
 import '../../SearchWorklist/Adjustments/index.style.scss'
 
 
 
+
 const Adjustments = () => {
+
+    const [showModal, setShowModal] = useState(false);
+    const [state, setState] = useState(false);
+    const [setFileType, setFileTypes] = useState();
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
 
     return (
         <div>
@@ -111,8 +121,53 @@ const Adjustments = () => {
                         <button type="Cancel" className="btn  mb-3 cancel ">Reset</button>
                     </div>
                 </Tab>
-                <Tab eventKey="payments" title="Adjustments">
-                    <div>
+                <Tab eventKey="adjustments" title="Adjustments">
+                    <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            Actions
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item href="#/action-1" onClick={handleShow}>Adjustment Allotment</Dropdown.Item>
+
+                        </Dropdown.Menu>
+                    </Dropdown>
+                    <Modal
+                        className=""
+                        show={show}
+                        onHide={handleClose}
+                        backdrop="static"
+                        keyboard={false}
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Adjustment Allotment</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div>
+                                <Table bordered hover>
+                                    <thead>
+                                        <tr>
+                                            <th>Invoice ID</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                        <tr>
+                                            <th>41309169 </th>
+                                            <th>($2.00)</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </Table>
+                            </div>
+                        </Modal.Body>
+
+
+                        {/* <Modal.Footer>
+                
+              </Modal.Footer> */}
+                    </Modal>
+                     <div>
 
                         <DataGrid
                             className='card-body'
@@ -223,9 +278,32 @@ const Adjustments = () => {
                         </div>
                     </div>
 
-
-
-                </Tab>
+                    <div className="'float-start">
+                    <p>Associated Taxes</p>
+                    </div>
+                    <DataGrid
+                    className='card-body'
+                            dataSource={Adjustments}
+                            keyExpr={'fileName'}
+                            allowColumnReordering={true}>
+                            <Column dataField={'customer id'} caption={'Type'} />
+                            <Column dataField={'customer name'} caption={'Level'} />
+                            <Column dataField={'payment type'} caption={'Rate'} />
+                            <Column dataField={'amount'} caption={'Amount'} />
+                            
+                            <FilterRow visible={true} />
+                            <ColumnChooser enabled={true} mode='select' />
+                            <SearchPanel
+                                className='float-start'
+                                visible={true}
+                                width={240}
+                                placeholder="Search..."
+                            />
+                            <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
+                            <Paging defaultPageSize={5} />
+                        
+                    </DataGrid>
+                    </Tab>
             </Tabs>
         </div>
     );

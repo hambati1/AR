@@ -17,6 +17,8 @@ import miniHeaderToggleStyle from '../../../UserMiniHeader/index.module.scss';
 const VerticalItem = ({level, item}) => {
   const {user} = useAuthUser();
   const {pathname} = useLocation();
+  const location = useLocation();
+
   const {isSidebarBgImage} = useSidebarContext();
   const hasPermission = useMemo(
     () => checkPermission(item.permittedRole, user.role),
@@ -33,6 +35,9 @@ const VerticalItem = ({level, item}) => {
     sidebarMenuSelectedBgColor,
     sidebarMenuSelectedTextColor,
   } = sidebarColorSet;
+
+  console.log(location)
+
   return (
     <NavLink
       className={clsx(

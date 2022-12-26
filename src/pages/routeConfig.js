@@ -40,8 +40,6 @@ const routesConfig = [
     messageId: 'sidebar.application',
     type: 'group',
     children: [
-
-
       {
         id: 'payments',
         title: 'Payments',
@@ -49,6 +47,7 @@ const routesConfig = [
         type: 'item',
         icon: <  MdOutlineDns/>,
         url: '/Search-Worklist/Payments',
+        
       },
       {
         id: 'adjustments',
@@ -65,6 +64,7 @@ const routesConfig = [
         type: 'item',
         icon: < AiOutlineSearch />,
         url: '/menu-pages/Search',
+
       },
       {
         id: 'crypto',
@@ -99,7 +99,7 @@ const routesConfig = [
         url: '/menu-pages/GLAccount',
       },
       {
-        id: 'eCommerce',
+        id: 'Tax Viewer',
         title: 'Tax Viewer',
         messageId: 'sidebar.app.dashboard.TaxViewer',
         type: 'item',
@@ -114,15 +114,7 @@ const routesConfig = [
         icon: <AiOutlineTransaction />,
         url: '/menu-pages/Credit-Card-Transaction-Worklist',
       },
-      // {
-      //   id: 'globalsearch',
-      //   title: 'Global Search',
-      //   messageId: 'sidebar.app.dashboard.globalsearch',
-      //   type: 'item',
-      //   icon: < RiShieldUserLine />,
-      //   url: '/Search-Worklist/Global-Search',
-      // },
-      
+     
     ],
   },
 

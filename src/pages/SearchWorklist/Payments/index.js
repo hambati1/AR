@@ -1,22 +1,34 @@
-import React, { UseState } from 'react';
+import React, { useEffect, useState, useRef } from "react";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import DataGrid, {
     Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
+import { Dropdown, DropdownButton, ModalBody } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
 
 
 
 
 const Payments = () => {
+    // const [active, setactive] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [state, setState] = useState(false);
+    const [setFileType, setFileTypes] = useState();
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+  
+    
 
   return (
         <div>
             <div className='col-md-9 main-header'>
                 <p>Accounts Receivable</p>
             </div>
+            
+
 
             <Tabs
                 defaultActiveKey="profile"
@@ -129,9 +141,64 @@ const Payments = () => {
                         <button type="Cancel" className="btn  mb-3 cancel ">Reset</button>
                     </div>
                 </Tab>
+                  
                 <Tab eventKey="payments" title="Payments">
-                    <div>
 
+                <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Actions
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1" onClick={handleShow}>Payment Allotment</Dropdown.Item>
+
+              </Dropdown.Menu>
+            </Dropdown>
+            <Modal
+              className=""
+              show={show}
+              onHide={handleClose}
+              backdrop="static"
+              keyboard={false}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title>Payment Allotment</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                
+                  
+
+                
+                <div>
+                  <Table bordered hover>
+                    <thead>
+                      <tr>
+                        <th>Invoice ID</th>
+                        <th>Amount</th>
+                      </tr>
+                      <tr>
+                        <th>41309169 </th>
+                        <th>($2.00)</th>
+                      </tr>
+                
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </Table>
+                </div>
+              </Modal.Body> 
+
+              
+              {/* <Modal.Footer>
+                
+              </Modal.Footer> */}
+            </Modal>
+
+
+
+
+
+                    <div>
                         <DataGrid
                             className='card-body'
                             dataSource={Payments}
@@ -155,9 +222,7 @@ const Payments = () => {
                             <Paging defaultPageSize={5} />
                         </DataGrid>
                     </div>
-              
-
-                    <div class="container">
+                   <div class="container">
                         <div class="row">
                             <div class="col">
 
