@@ -43,9 +43,9 @@ constructor(props)
   this.activeChange=this.activeChange.bind(this);
   this.handleShow=this.handleShow.bind(this);
   this.inputChangeHandler=this.inputChangeHandler.bind(this);
-  this.addGLAccount=this.addGLAccount.bind(this);
+  this.onSubmitHandler=this.onSubmitHandler.bind(this);
+  this.handleClose=this.handleClose.bind(this);
   this.state = { connectionStarted: false, dataSource: null };
-
 }
 
  handleEvent: GridEventListener<'rowClick'> = (params, event, details, // GridCallbackDetails
@@ -68,13 +68,25 @@ constructor(props)
       "sort": ["glAccNum,asc"]
     }
     this.setState({ connectionStarted: true, dataSource: gldata });
-    console.log(this.state.dataSource);
     getGLAccountData(json);   
 };   
 handleShow =() =>
 {
   this.show=true;
 }
+handleClose=(event: React.FormEvent<HTMLFormElement>) => {
+    console.log("ssssssssssss");
+    this.show=false;
+ }
+
+onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const form = event.target;
+    event.preventDefault();
+    let json={"glcode":1234,"accountNumber":form[0].value,"description":form[1].value,"updatedBy":"hambati","updateDate":"24-12-2022","comments":form[2].value};
+     gldata.push(json);
+     this.setState({ connectionStarted: true, dataSource: gldata });
+     this.show=false;
+ }
 
 onEditingStart =(e) =>
 {
@@ -86,8 +98,6 @@ onRowUpdating =(e) =>
  console.log("onRowUpdating",e);
  let accounum=e.key;
  let newData=e.newData;
- console.log(accounum);
- console.log(newData); 
  accountUpdate(accounum,newData);
 }
 
@@ -101,30 +111,15 @@ updateFiled = event =>{
   console.log(event.target.value);
 }
 inputChangeHandler = event =>{}
-/*
-inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
-  //setFunction(event)
-  console.log("ddddddddddddd");
-}*/
-addGLAccount= () => 
+
+addGLAccount= () =>
 {
-
-  console.log("aaaaaaaaaaaaaa");
- const gldata={"accountNumber":"1233333","description":"desc","comments":"comm"};
- // let response= saveGLAccount(gldata);
-  //console.log(response);
- // event.setState({ connectionStarted: true, dataSource: gldata });
-   
+    console.log("addGLAccount");
 }
-  // const [show2, setShow2] = useState(false);
-  // const handleClose2 = () => setShow2(false);
-  // const handleShow2 = () => setShow2(true);
-
 
 render()
 {
   return (
-
     <div >
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
@@ -159,6 +154,7 @@ render()
                 <Modal.Title>Add GL Code</Modal.Title>
               </Modal.Header>
               <Modal.Body className="pop-up">
+               <form onSubmit={this.onSubmitHandler}>
                <div className="d-flex">
                   <div className="col-2 input-group-sm batch">
                     <label>Account Number
@@ -188,12 +184,11 @@ render()
                     <input className="form-control pt-3" name="comments" type="text" onChange={this.inputChangeHandler(this)} ></input>
                   </div>
                 </div>
-
-
                 <div>
-                  <button type="Save" className="btn  mb-3 ok " onClick={this.addGLAccount()} >Save</button>
-                  <button type="Cancel" className="btn  mb-3 cancel ">Cancel</button>
+                  <button type="submit" className="btn  mb-3 ok " >Save</button>
+                  <button type="reset" className="btn  mb-3 cancel ">Cancel</button>
                 </div>
+                </form>
               </Modal.Body>
               {/* <Modal.Footer>
                 
