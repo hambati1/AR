@@ -34,6 +34,11 @@ export const menuPagesConfigs = [
   },
   {
     permittedRole: RoutePermittedRole.user,
+    path: '/menu-pages/Batch-Payment-1',
+    component: React.lazy(() => import('./BatchPayments1/index')),
+  },
+  {
+    permittedRole: RoutePermittedRole.user,
     path: '/menu-pages/Search',
     component: React.lazy(() => import('./Search/index')),
   },

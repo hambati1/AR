@@ -2,6 +2,8 @@ import React, { useState ,useEffect } from 'react';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
+// import '../FileExport/index.module.scss'
+import '../index.style.scss';
 import axios from 'axios';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import { Tabs, Tab } from 'react-bootstrap';
@@ -108,7 +110,7 @@ async function getFileTypeDataVal() {
                 <label for="inputFileType" className="col-lg-1 col-form-label">File Type</label>
 
               <div className="col-sm-5 Dropdown">
-                  <select className="form-select" Name="selectfileType" aria-label="Default select example"
+                  <select className="form-select select-style" Name="selectfileType" aria-label="Default select example"
                     onChange={(e) => selectChangeHandler(setFileType, e.target.value)}>
                     <option value=""></option>
                     {setFileType &&
@@ -122,12 +124,12 @@ async function getFileTypeDataVal() {
               <div className="mb-3 row">
                 <label for="inputBrand" className="col-lg-1 col-form-label">Brand Name</label>
                 <div className="col-sm-5">
-                  <input type="text" readOnly Name="brand" className="form-control" id="inputBrand" value="PNG" />
+                  <input type="text" readOnly Name="brand" className="brandname" id="inputBrand" value="PNG" />
                 </div>
               </div>
               <div>
                 <button  type="submit" className="btn  mb-3 btn-Gray " >Export</button>
-                <button type="reset" className="btn  mb-3 btn-darkGray ">Clear</button>
+                <button type="reset" className="btn  mb-3 btn-Gray ">Clear</button>
               </div>
             </form>
           </div>

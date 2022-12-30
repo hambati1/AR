@@ -51,10 +51,15 @@
     border-color: #fff ;
 }
 
-.form-select {
+// .form-select {
+//     width: 60% !important;
+// }
+.select-style{
     width: 60% !important;
 }
-
+.mb-10{
+margin-bottom: 10px;
+}
 .Clear {
     margin-left: 120px;
     border: 1px solid #0275D8;
@@ -416,6 +421,10 @@ margin-left: 50px;
 }
 .Search-type{
 margin-left: 133px;
+width: 61%;
+}
+.mt-10{
+    margin-top: 10px;
 }
 .search-form-control{
     display: block;
@@ -436,3 +445,9 @@ margin-left: 133px;
  width: 82% !important;
 }
 // Search CSS ends
+
+// Tax viewer CSS Starts
+
+// Tax Viewer CSS Ends
+
+

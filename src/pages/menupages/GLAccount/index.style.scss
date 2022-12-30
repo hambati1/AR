@@ -1,15 +1,10 @@
 .checkbox{
     margin-left: 20px;
 }
-// .form-control{
-//    margin-top: 10px;
-// }
+
 .pt-3{
     height: 70px;
 }
-// .pop-up{
-//     width: 98%;
-// }
 
 .form-check-input type {
     float: left;
@@ -20,15 +15,21 @@
  margin-top: 20px;   
     
 }
-
-
+.align-center{
+    align-items: center;
+}
+.ml-60{
+    margin-left: 25%;
+}
 .input-group-sm > .form-control, .input-group-sm > .form-select, .input-group-sm > .input-group-text, .input-group-sm > .btn {
     margin-top: 6px;
      padding: 0.25rem 0.5rem; 
     font-size: 0.875rem;
     border-radius: 0.2rem;
 }
-
+.select-width{
+    width: 120% !important;
+}
 .save {
     margin-left: 120px;
     border: 1px solid #0275D8;
@@ -38,10 +39,24 @@
     font-size: 14px;
     line-height: 12px;
     letter-spacing: 0.05em;
-    color: #FFFF;
+    color: #FFFF !important;
     width: 70px;
     height: 37px;
     margin-left: 210px;
+    margin-top: 10px;
+}
+.cancel {
+    margin-left: 10px;
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    width: 70px;
+    height: 37px;
     margin-top: 10px;
 }
 .input-selected{
@@ -50,22 +65,23 @@
    border-radius: 0.2rem;
     max-width: 50px;
 }
-// .pop-up{
-//     position: relative;
-//     display: flex;
-//     flex-direction: column;
-//     /* width: 100%; */
-//     pointer-events: auto;
-//     background-color: #fff;
-//     background-clip: padding-box;
-//     border: 1px solid rgba(0, 0, 0, 0.2);
-//     border-radius: 0.3rem;
-//     outline: 0;
-//     width: 181% !important;
-//     height: 347px !important;
-// }
-// .btn-success:hover {
-//     color: #fff;
-//     background-color: blue;
-//     border-color: blue;
-// }
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    border-bottom: 6px solid #3cb13c !important;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #2a2a2a;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.nav-tabs .nav-link {
+    font-size: 14px;
+    color: #a4abb3;
+}
+
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    border-color: #fff ;
+}

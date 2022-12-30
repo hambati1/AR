@@ -84,20 +84,20 @@ const routesConfig = [
       },
 
     
-      {
-        id: 'analytics',
-        title: 'Batch Payment Entry',
-        messageId: 'sidebar.app.dashboard.BatchPayment',
-        type: 'item',
-        icon: <AiFillDollarCircle />,
-        url: '/menu-pages/Batch-Payment',
-      },
+      // {
+      //   id: 'analytics',
+      //   title: 'Batch Payment Entry',
+      //   messageId: 'sidebar.app.dashboard.BatchPayment',
+      //   type: 'item',
+      //   icon: <AiFillDollarCircle />,
+      //   url: '/menu-pages/Batch-Payment',
+      // },
       {
         id: 'payments',
         title: 'Batch Payments 1',
         messageId: 'sidebar.app.dashboard.BatchPayment1',
         type: 'item',
-        icon: <  MdOutlineDns/>,
+        icon: <AiFillDollarCircle />,
         url: '/menu-pages/Batch-Payment-1',
       },
       {

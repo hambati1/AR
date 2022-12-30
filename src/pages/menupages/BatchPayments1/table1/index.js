@@ -1,12 +1,10 @@
-import React, {useEffect, useState, useRef} from 'react';
-// import '../../errorPages/Error404/index.style.scss'
-// import '../../menupages/BatchPayments/index.style.scss';
-import axios from 'axios';
-import {
-  getSearchData,
-  getBatchDetailsByBatchIdService,
-} from '../../menupages/APICalls.js';
-import {Button} from 'react-bootstrap';
+import React, {useEffect, useState} from 'react';
+import IntlMessages from '@crema/utility/IntlMessages';
+import AppAnimateGroup from '@crema/core/AppAnimateGroup';
+import '../../index.style.scss';
+import AppPageMetadata from '@crema/core/AppPageMetadata';
+import Button from 'devextreme-react/button';
+import Modal from 'react-bootstrap/Modal';
 import DataGrid, {
   Column,
   Pager,
@@ -18,17 +16,18 @@ import DataGrid, {
   Toolbar,
   Editing,
 } from 'devextreme-react/data-grid';
+import DropDownButton from 'devextreme-react/drop-down-button';
+import {Dropdown, DropdownButton} from 'react-bootstrap';
+import {Search} from 'react-bootstrap-icons';
+// import { onPaymentList } from '../../../redux/actions/paymentList';
+// import { onGetContactList } from '../../../redux/actions/ContactApp';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import {Dropdown, DropdownButton} from 'react-bootstrap';
-import Modal from 'react-bootstrap/Modal';
-import {saveBatchName} from '../../menupages/APICalls.js';
+// import {getFileTypeData,getimportSearchData,getImportFileTypeData,getImportFileNames,onSubmitImportHandler} from '../../menupages/APICalls.js'
 import Table from 'react-bootstrap/Table';
-import DataSource from 'devextreme/data/data_source';
 
 let batchData = [];
-
-const BatchPayment = () => {
+const Table1 = () => {
   const [active, setactive] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [show, setShow] = useState(false);
@@ -49,38 +48,12 @@ const BatchPayment = () => {
     setactive(!active);
     getSearchDataDetails();
   };
-  const getSearchDataDetails = () => {
-    let data = getSearchData(active);
-    if (data.length > 0) {
-      batchData = data;
-      console.log(batchData);
-    }
-  };
-  const inputChangeHandler = (
-    setFunction: React.Dispatch<React.SetStateAction<string>>,
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setFunction(event.target.value);
-  };
-  const selectChangeHandler = (
-    setFunction: React.Dispatch<React.SetStateAction<string>>,
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    console.log(event);
-    setShow(true);
-  };
-  const handlebatchName = (event) => {
+
+  const handlebatchName = event => {
     setbatchName(event.target.value);
   };
-  const getBatchDetailsByBatchId = (batchId) => {
-    let subdata = getBatchDetailsByBatchIdService(batchId);
-    setbatchSubData(subdata);
-    console.log(subdata);
-  };
-  const handleEvent: GridEventListener<'rowClick'> = (
-    params,
-    event,
-    details, // GridCallbackDetails
+
+  const handleEvent: GridEventListener<'rowClick'> = (params, event, details, // GridCallbackDetails
   ) => {
     console.log(params);
     if (params.data.cmImportFile != undefined) {
@@ -90,22 +63,21 @@ const BatchPayment = () => {
     setbatchId(params.data.batchId);
     getBatchDetailsByBatchId(params.data.batchId);
   };
+
   const batchNameSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     console.log('=batchName=' + batchName + ' = importFileId=' + importFileId);
     if (batchName != undefined) {
       let json = {
-        batchName: batchName,
-        isPayment: 1,
-        isClosed: 0,
-        cmImportFile: {importFileId: importFileId},
-      };
+        "batchName": batchName, "isPayment": 1, "isClosed": 0,
+        "cmImportFile": { "importFileId": importFileId }
+      }
       let message = saveBatchName(json, batchId);
       console.log('message==' + message);
     }
-  };
+  }
   const agencybatchnamesave = () => {
     console.log('======' + batchName);
-  };
+  }
 
   return (
     <div>
@@ -124,10 +96,12 @@ const BatchPayment = () => {
                 id='flexCheckDefault'
                 onChange={activeChange}
               />
+
               <label class='list'>Active Only</label>
             </div>
+
             <Dropdown>
-              <Dropdown.Toggle variant='success' id='dropdown-basic' className='mb-10'>
+              <Dropdown.Toggle variant='primary' id='dropdown-basic' className='mb-10'>
                 Actions
               </Dropdown.Toggle>
               <Dropdown.Menu>
@@ -137,9 +111,10 @@ const BatchPayment = () => {
                 <Dropdown.Item href='#/action-2' onClick={handleShow2}>
                   Add Agency Payment Batch
                 </Dropdown.Item>
+
                 {/* ------------------------
-                <Dropdown.Item href="#/action-1" onClick={handleShow}>Close</Dropdown.Item>
-                <Dropdown.Item href="#/action-2" onClick={handleShow2}>Close</Dropdown.Item> */}
+    <Dropdown.Item href="#/action-1" onClick={handleShow}>Close</Dropdown.Item>
+    <Dropdown.Item href="#/action-2" onClick={handleShow2}>Close</Dropdown.Item> */}
               </Dropdown.Menu>
             </Dropdown>
             {/* **************Action 1 PoP UP Starts************** */}
@@ -176,6 +151,7 @@ const BatchPayment = () => {
                     Cancel
                   </button>
                 </div>
+
                 <div>
                   <h5>Messages</h5>
                 </div>
@@ -193,6 +169,7 @@ const BatchPayment = () => {
               </Modal.Body>
             </Modal>
             {/* ********************Action 1 POP UP end****************** */}
+
             {/* ************************Action 2 POP UP starts**************** */}
             <Modal
               className=''
@@ -208,6 +185,7 @@ const BatchPayment = () => {
                   <div className='col-2 input-group-sm batch'>
                     <label>Batch Name</label>
                   </div>
+
                   <div className='input-group col input-group-sm'>
                     <input className='form-control' type='text'></input>
                   </div>
@@ -223,6 +201,7 @@ const BatchPayment = () => {
                     Cancel
                   </button>
                 </div>
+
                 <div>
                   <h5>Messages</h5>
                 </div>
@@ -238,8 +217,12 @@ const BatchPayment = () => {
                   </Table>
                 </div>
               </Modal.Body>
+              {/* <Modal.Footer>
+    
+  </Modal.Footer> */}
             </Modal>
             {/* ******************Action 2 POP UP Ends***************** */}
+
             <div id='data-grid-demo'>
               <DataGrid
                 onRowClick={handleEvent}
@@ -258,6 +241,7 @@ const BatchPayment = () => {
                   dataField={'totalAgencyFee'}
                   caption='Total Agency Fees'
                 />
+
                 <FilterRow visible={true} />
                 <ColumnChooser enabled={true} mode='select' />
                 <SearchPanel
@@ -275,131 +259,10 @@ const BatchPayment = () => {
               </DataGrid>
             </div>
           </div>
-          <div>Batch {batchId}</div>
-
-          <div id='data-grid-demo2'>
-            <DataGrid
-              onRowClick={handleEvent}
-              dataSource={batchSubData}
-              showBorders={true}>
-              <Paging enabled={false} />
-              <Column dataField={'batchId'} caption='Customer ID' />
-              <Column dataField={'type'} caption='Customer Name' />
-              <Column dataField={'batchName'} caption='Payment Type' />
-              <Column dataField={'createdBy'} caption='Payment Amount' />
-              <Column dataField={'creationDt'} caption='Agency Fee' />
-              <Column dataField={'isClosed'} caption='Check number' />
-              <Column dataField={'totalRecords'} caption='Payment Date' />
-              <FilterRow visible={true} />
-              <ColumnChooser enabled={true} mode='select' />
-              <SearchPanel
-                className='float-start'
-                visible={true}
-                width={240}
-                placeholder='Search...'
-              />
-              <Pager
-                allowedPageSizes={[5, 10, 20]}
-                showPageSizeSelector={true}
-                showNavigationButtons={true}
-              />
-              <Paging defaultPageSize={5} />
-            </DataGrid>
-          </div>
-
-          <div className=' row my-2 '>
-            <label for='inputcustomer id' className='col-lg-2 col-form-label'>
-              Customer ID
-            </label>
-            <div className='col-sm-3'>
-              <input
-                type='text'
-                className='form-control'
-                id='input customer id'
-              />
-            </div>
-          </div>
-          <div className=' row my-2 '>
-            <label for='inputpayment type' className='col-lg-2 col-form-label'>
-              Payment Type
-            </label>
-            <div className='col-sm-3'>
-              <select
-                className='form-select'
-                name='status'
-                aria-label='Default select example'>
-                <option value=''>Check Payment</option>
-                <option value=''></option>
-              </select>
-            </div>
-          </div>
-          <div className=' row my-2 '>
-            <label
-              for='inputaccount balance'
-              className='col-lg-2 col-form-label'>
-              Account Balance
-            </label>
-            <div className='col-sm-3'>
-              <input
-                type='text'
-                className='form-control'
-                id='input account balance'
-              />
-            </div>
-          </div>
-          <div className=' row my-2 '>
-            <label
-              for='inputpayment amount'
-              className='col-lg-2 col-form-label'>
-              Payment Amount
-            </label>
-            <div className='col-sm-3'>
-              <input
-                type='text'
-                className='form-control'
-                id='input payment amount'
-              />
-            </div>
-          </div>
-          <div class='form-check mx-2'>
-            <input
-              className='form-check-input'
-              type='checkbox'
-              name='active'
-              value=''
-              id='flexCheckDefault'
-            />
-            <label className='form-check-label action' for='flexCheckDefault'>
-              Allocate to Invoices
-            </label>
-          </div>
-          <div className=' row my-2 '>
-            <label for='inputcheck number' className='col-lg-2 col-form-label'>
-              Check Number
-            </label>
-            <div className='col-sm-3'>
-              <input
-                type='text'
-                className='form-control'
-                id='input check number'
-              />
-            </div>
-          </div>
-          <div>
-            <button type='clear' className='btn  mb-3 Clear '>
-              Clear
-            </button>
-            <button type='save' className='btn  mb-3 Save '>
-              Save
-            </button>
-            <button type='Cancel' className='btn  mb-3 cancel '>
-              Cancel
-            </button>
-          </div>
         </Tab>
       </Tabs>
     </div>
   );
 };
 
-export default BatchPayment;
+export default Table1;

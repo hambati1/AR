@@ -26,7 +26,7 @@ const Search = () => {
               </label>
               <div className='col-sm-4 Dropdown'>
                 <select
-                  className='form-select Search-type'
+                  className='form-select Search-type '
                   Name='searchType'
                   aria-label='Default select example'
                   onChange={(event) => {
@@ -46,6 +46,19 @@ const Search = () => {
                   </option>
                 </select>
               </div>
+              {active == '' ? ( 
+                <div className='mt-10'>
+                   <button type='submit' className='btn  mb-3 btn-Gray '>
+                    Submit
+                  </button>
+                  <button
+                    type='reset'
+                    value='Reset'
+                    className='btn  mb-3 btn-darkGray '>
+                    Reset
+                  </button>
+                </div>
+              ) : null }
               {active == 'Payments' ? (
                 <div className='padding'>
                   {/* payments fields starts */}
