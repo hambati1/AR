@@ -6,7 +6,7 @@
  */
 .ql-container {
     box-sizing: border-box;
-    font-family: 'Poppins', serif;
+    font-family: 'itc-avant-garde-gothic-std-book-oblique', sans-serif;
     font-size: 13px;
     height: 100%;
     margin: 0px;
@@ -359,10 +359,10 @@
     color: #93f;
 }
 .ql-editor .ql-font-serif {
-    font-family: 'Poppins', serif;
+    font-family: 'itc-avant-garde-gothic-std-book-oblique', sans-serif;
 }
 .ql-editor .ql-font-monospace {
-    font-family: 'Poppins', serif;
+    font-family: 'itc-avant-garde-gothic-std-book-oblique', sans-serif;
 }
 .ql-editor .ql-size-small {
     font-size: 0.75em;
@@ -407,7 +407,7 @@
     border: none;
     cursor: pointer;
     display: inline-block;
-    float: left;
+    /* float: left; */
     height: 24px;
     padding: 3px 5px;
     width: 28px;
@@ -644,7 +644,7 @@
 .ql-snow .ql-picker {
     color: #444;
     display: inline-block;
-    float: left;
+    /* float: left; */
     font-size: 14px;
     font-weight: 500;
     height: 24px;
@@ -806,10 +806,10 @@
     content: 'Monospace';
 }
 .ql-snow .ql-picker.ql-font .ql-picker-item[data-value=serif]::before {
-    font-family: 'Poppins', serif;
+    font-family: 'itc-avant-garde-gothic-std-book-oblique', sans-serif;
 }
 .ql-snow .ql-picker.ql-font .ql-picker-item[data-value=monospace]::before {
-    font-family: 'Poppins', serif;
+    font-family: 'itc-avant-garde-gothic-std-book-oblique', sans-serif;
 }
 .ql-snow .ql-picker.ql-size {
     width: 98px;
@@ -848,7 +848,7 @@
 .ql-toolbar.ql-snow {
     border: 1px solid #ccc;
     box-sizing: border-box;
-    font-family: 'Poppins', serif;
+    font-family: 'itc-avant-garde-gothic-std-book-oblique', sans-serif;
     padding: 8px;
 }
 .ql-toolbar.ql-snow .ql-formats {

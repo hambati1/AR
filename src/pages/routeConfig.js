@@ -57,15 +57,15 @@ const routesConfig = [
       //   icon: <CgFeed/>,
       //   url: '/Search-Worklist/Adjustments',
       // },
-      // {
-      //   id: 'search',
-      //   title: 'Search',
-      //   messageId: 'sidebar.app.dashboard.Search',
-      //   type: 'item',
-      //   icon: < AiOutlineSearch />,
-      //   url: '/menu-pages/Search',
+      {
+        id: 'search',
+        title: 'Search',
+        messageId: 'sidebar.app.dashboard.Search',
+        type: 'item',
+        icon: < AiOutlineSearch />,
+        url: '/menu-pages/Search',
 
-      // },
+      },
       {
         id: 'crypto',
         title: 'File Import',
@@ -91,6 +91,14 @@ const routesConfig = [
         type: 'item',
         icon: <AiFillDollarCircle />,
         url: '/menu-pages/Batch-Payment',
+      },
+      {
+        id: 'payments',
+        title: 'Batch Payments 1',
+        messageId: 'sidebar.app.dashboard.BatchPayment1',
+        type: 'item',
+        icon: <  MdOutlineDns/>,
+        url: '/menu-pages/Batch-Payment-1',
       },
       {
         id: 'health-care',

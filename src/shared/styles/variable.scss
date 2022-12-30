@@ -7,7 +7,7 @@
 // Override default variables before the import
 
 // scss-docs-start theme-color-variables
-$primary: #DB7100;
+$primary: #0275D8;
 $secondary:     #404040;
 $success:       $green;
 $info:          #ACACAC;
@@ -93,7 +93,7 @@ $box-shadow-lg:               0 1rem 3rem rgba($black, .175);
 
 // scss-docs-start font-variables
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      'Roboto', sans-serif;
+$font-family-sans-serif:      'itc-avant-garde-gothic-std-book-oblique', sans-serif;
 // stylelint-enable value-keyword-case
 $font-family-base:            var(--#{$variable-prefix}font-sans-serif);
 
@@ -161,3 +161,4 @@ $sidebar-bg-color: $white;
 $sidebar-text-color: $text-color;
 $sidebar-dark-bg-color: #001529;
 $sidebar-curved-menu-color: #F4F7FE;
+
