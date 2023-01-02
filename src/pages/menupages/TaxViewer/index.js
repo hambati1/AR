@@ -14,17 +14,51 @@ import CodeForm from '../../menupages/TaxViewer/CodeForm';
 import TaxViewerResult from "./TaxViewerResult";
 
 
+import { getTaxFileTypeData, onSubmitTaxHandler } from '../../menupages/APICalls.js'
+import CloseButton from '../../../../src/pages/menupages/CloseButton';
+
+
+let TaxViewerData = [];
 
 const TaxViewer = () => {
   const [showModal, setShowModal] = useState(false);
   const [state, setState] = useState(false);
 
+  const [fileType, setFileTypes] = useState();
+  const [selectfileType, setselectfileType] = useState("")
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
 
+  const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event);
+    // TaxViewerData =getTaxSearchData(event);
+    console.log(TaxViewerData);
+    let data = getTaxFileTypeData(event)
+    console.log(data);
+    setselectfileType(event);
+  }
 
+
+  const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const form = event.target;
+    event.preventDefault();
+    let json = {"amt": 100.0,"taxTranTypeCd": 1,"taxSvcTypeCd": "02", "locations": 1,"lines": 1,"salesType": true,"acctType": false,"incorporated": false, "regulated": false,"date": "2022-12-07","pcode": 2887400,"origNpa": 513,"origNxx": 281,"termNpa": 513, "termNxx": 281
+    };
+    console.log(json);
+    let ab = JSON.stringify(json);
+    onSubmitTaxHandler(ab);
+  }
+  useEffect(() => {
+    getFileTypeDataVal();
+  }, []);
+
+  async function getFileTypeDataVal() {
+    var data = await getTaxFileTypeData();
+    console.log('Statement 2' + data);
+    setFileTypes(data.response);
+  }
 
   return (
 
@@ -38,9 +72,10 @@ const TaxViewer = () => {
         defaultActiveKey="profile"
         id='uncontrolled-tab-example'
         className="mb-3"
-        onHide={handleClose}     >
-
+        onHide={handleClose}>
         <Tab eventKey="batchPayment" title="Tax Viewer">
+        <form onSubmit={onSubmitHandler}>
+
             <div className="mb-2 row">
               <label for="inputfrom date" readOnly className="col-lg-2 col-form-label">P-Code</label>
               <div className="col-md-2">
@@ -84,7 +119,7 @@ const TaxViewer = () => {
                 <input type="text" name="from date" className="form-control" id="inputfrom date" />
               </div>
               <div className="col-md-2">
-                <input type="text" name=" from date" className="form-control mx-2" id="inputfrom date" />
+                <input type="text" name=" from date" className="form-control" id="inputfrom date" />
               </div>
             </div>
 
@@ -99,14 +134,21 @@ const TaxViewer = () => {
             </div>
             <div className="mb-2 row">
               <label for="input transcation type" className="col-lg-2 col-form-label">Transcation Type</label>
-              <div className="col-md-2">
-                
+              <div className="col-md-2 Dropdown">
+                <select className="form-select" Name="selectfileType" aria-label="Default select example"
+                  onChange={(e) => selectChangeHandler(selectfileType, e.target.value)} >
+                  <option value=""></option>
+                  {fileType &&
+                    fileType.map((user) => (
+                      <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
+                    ))}
+                </select>
               </div>
             </div>
             <div className="mb-2 row">
               <label for="input transcation type" className="col-lg-2 col-form-label">Incorporated</label>
               <div className="col-md-2">
-                <select className="form-select" name="status" placeholder="within" aria-label="Default select example" >
+                <select className="form-select" Name="status" aria-label="Default select example" >
                   <option value="Withiin">Within</option>
                   <option value=""></option>
                 </select>
@@ -126,7 +168,7 @@ const TaxViewer = () => {
             <div className="mb-2 row">
               <label for="input transcation type" className="col-lg-2 col-form-label">Sale Type</label>
               <div className="col-md-2">
-                <select className="form-select" name="status" aria-label="Default select example" >
+                <select className="form-select" Name="status" aria-label="Default select example" >
                   <option value="Sale">Sale</option>
                   <option value=""></option>
                 </select>
@@ -143,6 +185,7 @@ const TaxViewer = () => {
               <button type="submit" className="btn  mb-3 Apply" >Apply Tax</button>
               <button type="Clear" className="btn  mb-3 cancel ">Clear</button>
             </div>
+            </form>
         </Tab>
         <Tab eventKey="taxviewresult" title="Tax View Result">
           <TaxViewerResult />
@@ -152,7 +195,7 @@ const TaxViewer = () => {
               dataSource={TaxViewer}
               keyExpr={'fileName'}
               allowColumnReordering={true}>
-              <Column dataField={'tax type'} caption={'Tax Type'} />
+              <Column dataField={'taxtype'} caption={'Tax Type'} />
               <Column dataField={'description'} caption={'Description'} />
               <Column dataField={'p-code'} caption={'P-Code'} />
               <Column dataField={'level'} caption={'Level'} />
