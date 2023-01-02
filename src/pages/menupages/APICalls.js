@@ -241,3 +241,37 @@ export const saveGLAccount = (json) => {
   return result;
 }
 /* ENd GL account api */
+
+/*Tax api*/
+
+
+export const onSubmitTaxHandler = (payload) => {
+  const url = PATH + 'ar/tax/viewer';
+  let session=localStorage.getItem('token');
+  const config = {
+     headers: {
+       'content-type': 'application/json',
+       Session: session
+     },
+   };
+   axios.post(url, payload, config).then((response) => {
+     console.log(response.data);
+   });
+ }
+
+ export const getTaxFileTypeData=(functionId) => {
+  let session=localStorage.getItem('token');
+    const response = fetch(PATH + "tx/tax/cd", {
+      method: 'GET',
+      headers: { Session: session }
+    }
+    ).then((response) => response.json());
+    console.log(response);
+    return response;
+  };
+
+
+  
+
+
+/*end tax api*/

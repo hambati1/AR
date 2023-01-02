@@ -39,7 +39,8 @@ const CodeForm = () => {
                                     <label for="inputcardholder name" className="col-lg-2 font col-form-label">State</label>
                                     <div className="col">
                                         <select className="form-select" readOnly name="status" aria-label="Default select example" >
-                                            <option value=""></option>                                                             <option value=""></option>
+                                            <option value=""></option>                                                             
+                                            <option value=""></option>
                                         </select>
                                     </div>
                                 </div>
