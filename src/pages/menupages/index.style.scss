@@ -181,15 +181,15 @@
     line-height: 12px;
     letter-spacing: 0.05em;
     color: #FFFF !important;
-    width: 100px;
-    height: 37px;
-    margin-left: 210px;
-    margin-top: 10px;
+    // width: 100px;
+    // height: 37px;
+    // margin-left: 210px;
+    // margin-top: 10px;
 }
 
 .modal-content {
     width: 125%;
-    height: 100%;
+    // height: 100%;
 }
 
 .btn-color {
@@ -206,7 +206,6 @@
 
 .code {
     border: 1px solid #0275D8;
-    border-radius: 5px;
     background: #0275D8;
     border-radius: 5px;
     font-weight: 500;
@@ -215,7 +214,6 @@
     color: #FFFF !important;
     width: 20%;
     height: 37px;
-    margin-left: 19%;
     // margin-left: 20px;
     // margin-top: 10px;
 }
@@ -238,8 +236,8 @@
 }
 
 .modal-footer {
-    // margin-right: 35%;
-    width: 100%;
+    margin-right: 35%;
+    // width: 100%;
 }
 
 .btn-primary:hover {
@@ -260,13 +258,21 @@
     border-radius: 5px;
     font-weight: 600;
     font-size: 14px;
-    line-height: 12px;
+    // line-height: 12px;
     letter-spacing: 0.05em;
     color: #FFFF !important;
-    padding: 12px;
-    padding-left: 20px;
-    margin-right: 250px;
-    margin-top: 10px;
+    // padding: 12px;
+    // padding-left: 20px;
+    // margin-right: 250px;
+    // margin-top: 10px;
+}
+
+.borderbottom {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.bordertopremove {
+    border-top: 0px;
 }
 
 // tax viewer CSS ENDS //
@@ -568,12 +574,14 @@
 .select-width {
     width: 120% !important;
 }
+
 .input-selected {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
     border-radius: 0.2rem;
     max-width: 50px;
 }
+
 .gl-cancel {
     margin-left: 10px;
     border: 1px solid #0275D8;
@@ -588,6 +596,7 @@
     height: 37px;
     margin-top: 10px;
 }
+
 .gl-save {
     margin-left: 120px;
     border: 1px solid #0275D8;
@@ -603,9 +612,13 @@
     margin-left: 210px;
     margin-top: 10px;
 }
-.input-group-sm > .form-control, .input-group-sm > .form-select, .input-group-sm > .input-group-text, .input-group-sm > .btn {
+
+.input-group-sm>.form-control,
+.input-group-sm>.form-select,
+.input-group-sm>.input-group-text,
+.input-group-sm>.btn {
     margin-top: 6px;
-     padding: 0.25rem 0.5rem; 
+    padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
     border-radius: 0.2rem;
 }
@@ -628,9 +641,11 @@
 .comment-margin {
     margin-right: 30px !important;
 }
-.col-sm-3{
-    margin-left:-50px
+
+.col-sm-3 {
+    margin-left: -50px
 }
+
 .styles {
     margin-left: 120px;
     border: 1px solid #0275D8;
@@ -706,4 +721,5 @@
     margin-left: 20px;
     margin-top: 10px;
 }
+
 // Credit Card CSS Ends//
