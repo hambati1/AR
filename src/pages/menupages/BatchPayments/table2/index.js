@@ -15,7 +15,7 @@ import { Dropdown, DropdownButton } from 'react-bootstrap';
 // import { onGetContactList } from '../../../redux/actions/ContactApp';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-// import {getFileTypeData,getimportSearchData,getImportFileTypeData,getImportFileNames,onSubmitImportHandler} from '../../menupages/APICalls.js'
+// import {getBatchDetailsByBatchId,getImportFileTypeData,getImportFileNames,onSubmitImportHandler} from '../../APICalls.js'
 
 const Table2 = () => {
 

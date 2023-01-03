@@ -135,6 +135,7 @@ async function getFileTypeDataVal() {
             <Column dataField={'recsImported'} caption={'Records Imported'} />
             <Column dataField={'recsInError'} caption={'Records in Error'} />
             <Column dataField={'amtImported'} caption={'Amount Imported'} />
+            <Column dataField={'amtrejected'} caption={'Amount Rejected'} visible={false}/>
 
             <FilterRow visible={true} />
             <ColumnChooser enabled={true} mode='select' />

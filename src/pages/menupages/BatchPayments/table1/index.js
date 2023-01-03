@@ -23,7 +23,7 @@ import {Search} from 'react-bootstrap-icons';
 // import { onGetContactList } from '../../../redux/actions/ContactApp';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-// import {getFileTypeData,getimportSearchData,getImportFileTypeData,getImportFileNames,onSubmitImportHandler} from '../../menupages/APICalls.js'
+// import {saveBatchName,getSearchData} from '../../APICalls.js'
 import Table from 'react-bootstrap/Table';
 
 let batchData = [];

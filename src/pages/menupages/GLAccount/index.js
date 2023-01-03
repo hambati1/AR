@@ -350,10 +350,10 @@ class GLAccount extends React.Component {
                     </div>
                   </div>
                   <div>
-                    <button type='Save' className='btn  mb-3btn-Gray '>
+                    <button type='Save' className='btn  mb-3 btn-Gray '>
                       Save
                     </button>
-                    <button type='Cancel' className='btn  mb-3btn-darkGray '>
+                    <button type='Cancel' className='btn  mb-3 btn-darkGray '>
                       Cancel
                     </button>
                   </div>

@@ -269,9 +269,4 @@ export const onSubmitTaxHandler = (payload) => {
     console.log(response);
     return response;
   };
-
-
-  
-
-
 /*end tax api*/
