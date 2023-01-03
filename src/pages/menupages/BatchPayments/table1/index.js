@@ -147,7 +147,7 @@ const Table1 = () => {
                     onClick={batchNameSubmitForm}>
                     Ok
                   </button>
-                  <button type='Cancel' className='btn  mb-3 cancel '>
+                  <button type='Cancel' className='btn  mb-3 batch-cancel '>
                     Cancel
                   </button>
                 </div>
@@ -197,7 +197,7 @@ const Table1 = () => {
                     onClick={agencybatchnamesave}>
                     Ok
                   </button>
-                  <button type='Cancel' className='btn  mb-3 cancel '>
+                  <button type='Cancel' className='btn  mb-3 batch-cancel'>
                     Cancel
                   </button>
                 </div>

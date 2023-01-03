@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Button, Modal, ModalBody, ModalFooter, ModalTitle } from 'react-bootstrap';
 import { ModalHeader } from "reactstrap";
+
+
 const CodeForm = () => {
     const [showModal, setShowModal] = useState(false);
     const [state, setState] = useState(false);
@@ -19,9 +21,9 @@ const CodeForm = () => {
                 backdrop="static"
                 keyboard={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Choose P-Code</Modal.Title>
+                    <ModalTitle>Choose P-Code</ModalTitle>
                 </Modal.Header>
-                <Modal.Body className="">
+                <ModalBody className="">
                     <div class="container">
                         <div class="row">
                             <div class="col-6">
@@ -112,13 +114,13 @@ const CodeForm = () => {
                     </div>
                     <button type="button" className="btn code" >Find P-Codes</button>
                     <button type="button" className="btn mx-3 my-2 save">Clear</button>
-                </Modal.Body>
-                <Modal.Footer>
+                </ModalBody>
+                <ModalFooter>
                     <div className="taxviewerbutton">
                         <button type="save" className="btn btn-save mx-3" >Save</button>
                         <button type="cancel" className="btn btn-save">Cancel</button>
                     </div>
-                </Modal.Footer>
+                </ModalFooter>
             </Modal>
         </div>
     );

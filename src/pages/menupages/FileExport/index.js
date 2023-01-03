@@ -99,11 +99,11 @@ async function getFileTypeDataVal() {
         <p>Accounts Receivable</p>
       </div>
       <Tabs
-              defaultActiveKey="profile"
+              defaultActiveKey="fileexport"
               id="uncontrolled-tab-example"
               className="mb-3">
 
-        <Tab eventKey="export" title="File Export">
+        <Tab eventKey="fileexport" title="File Export">
           <div>
           <form onSubmit={onSubmitHandler}>
               <div className="mb-3 row">
@@ -129,7 +129,7 @@ async function getFileTypeDataVal() {
               </div>
               <div>
                 <button  type="submit" className="btn  mb-3 btn-Gray " >Export</button>
-                <button type="reset" className="btn  mb-3 btn-Gray ">Clear</button>
+                <button type="reset" className="btn  mb-3 btn-darkGray  ">Clear</button>
               </div>
             </form>
           </div>

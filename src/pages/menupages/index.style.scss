@@ -3,29 +3,29 @@
 .btn-darkGray {
     border: 1px solid #0275D8;
     border-radius: 5px;
-    background: #0275D8;
+    background: #0275D8 !important;
     border-radius: 5px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     line-height: 12px;
     color: #ffff !important;
-    width: 130px;
+    width: 80px;
     height: 37px;
-    margin-left: 50px;
+    margin-left: 15px;
+    padding: 5px;
 }
 
 .btn-Gray {
     margin-left: 120px;
     border: 1px solid #0275D8;
-
     background: #0275D8;
     border-radius: 5px;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 14px;
     line-height: 12px;
     letter-spacing: 0.05em;
     color: #ffff !important;
-    width: 130px;
+    width: 80px;
     height: 37px;
 
 }
@@ -39,6 +39,7 @@
     color: #2a2a2a;
     font-weight: 600;
     letter-spacing: 0.05em;
+    border: #fff;
 }
 
 .nav-tabs .nav-link {
@@ -48,18 +49,20 @@
 
 .nav-tabs .nav-link:hover,
 .nav-tabs .nav-link:focus {
-    border-color: #fff ;
+    border-color: #fff;
 }
 
 // .form-select {
 //     width: 60% !important;
 // }
-.select-style{
+.select-style {
     width: 60% !important;
 }
-.mb-10{
-margin-bottom: 10px;
+
+.mb-10 {
+    margin-bottom: 10px;
 }
+
 .Clear {
     margin-left: 120px;
     border: 1px solid #0275D8;
@@ -76,6 +79,7 @@ margin-bottom: 10px;
     margin-left: 200px;
     margin-top: 10px;
 }
+
 .filename {
     width: 76%;
     display: block;
@@ -117,10 +121,17 @@ margin-bottom: 10px;
     border: 1px solid #3dcc6e !important;
     box-shadow: 0 0 4px #3dcc6e;
 }
-.filename:focus{
-        outline: none !important;
-        border: 1px solid #3dcc6e !important;
-        box-shadow: 0 0 4px #3dcc6e;
+
+.form-control:focus {
+    outline: none !important;
+    border: 1px solid #3dcc6e !important;
+    box-shadow: 0 0 4px #3dcc6e;
+}
+
+.filename:focus {
+    outline: none !important;
+    border: 1px solid #3dcc6e !important;
+    box-shadow: 0 0 4px #3dcc6e;
 }
 
 // select:focus {
@@ -133,25 +144,31 @@ margin-bottom: 10px;
     box-shadow: 0 0 4px #3dcc6e;
     outline: none !important;
 }
+
 .f-right {
     float: right;
     margin-left: 10px !important;
 }
 
-.datepicker{
+// tax viewer CSS starts
+.datepicker {
     width: 100%;
     height: 40px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
 }
 
-.form-width{
-    width: 160px !important;
+.form-width {
+    width: 180px !important;
 }
-.comment-margin{
+
+.comment-margin {
     margin-right: 30px !important;
 }
 
-.notepad{
+.notepad {
     border: 1px solid;
+    border-color: #000 !important;
 }
 
 .Apply {
@@ -163,12 +180,98 @@ margin-bottom: 10px;
     font-size: 14px;
     line-height: 12px;
     letter-spacing: 0.05em;
-    color: #FFFF;
+    color: #FFFF !important;
     width: 100px;
     height: 37px;
     margin-left: 210px;
     margin-top: 10px;
 }
+
+.modal-content {
+    width: 125%;
+    height: 100%;
+}
+
+.btn-color {
+    color: #000;
+    background-color: #FFFF !important;
+    border: 1px solid #ced4da;
+}
+
+.font {
+    width: 85px;
+    display: flex;
+    margin-left: -5px;
+}
+
+.code {
+    border: 1px solid #0275D8;
+    border-radius: 5px;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 12px;
+    color: #FFFF !important;
+    width: 20%;
+    height: 37px;
+    margin-left: 19%;
+    // margin-left: 20px;
+    // margin-top: 10px;
+}
+
+.line {
+    --bs-gutter-x: 0.1rem !important;
+    color: #000;
+    opacity: none;
+    margin-left: 1%;
+}
+
+.row {
+    --bs-gutter-x: 0.1rem !important;
+    display: flex;
+    align-items: center;
+}
+
+.vr {
+    opacity: 0.25 !important;
+}
+
+.modal-footer {
+    // margin-right: 35%;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    color: #000;
+    background-color: #f1f1f1 !important;
+    border-color: #000;
+}
+
+.btn-check:focus+.btn-primary,
+.btn-primary:focus {
+    border-color: 1px solid #ced4da !important;
+    box-shadow: none !important;
+}
+
+.btn-save {
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    padding: 12px;
+    padding-left: 20px;
+    margin-right: 250px;
+    margin-top: 10px;
+}
+
+// tax viewer CSS ENDS //
+
+// Data-Grid Table Start //
 .dx-button-mode-outlined {
     background-color: transparent;
     border-color: #ddd;
@@ -187,7 +290,7 @@ margin-bottom: 10px;
     font-family: Avant Garde Gothic Std Book !important;
 }
 
-// Data-Grid Table Start //
+
 .dx-datagrid .dx-column-lines>td {
     border-left: 1px solid #ddd0;
     border-right: 1px solid #ddd0;
@@ -211,36 +314,16 @@ margin-bottom: 10px;
 
 // Data-Grid SCSS End //
 
-.left {
-margin-left: 50px;
-}
-.checkbox{
-    margin-left: 20px;
-}
-.pt-3{
-    height: 70px;
-}
-.form-check-input type {
-    float: left;
-    margin-left: 9em;
-}
-.form {
- margin-top: 20px;   
-    
-}
-.input-group-sm > .form-control, .input-group-sm > .form-select, .input-group-sm > .input-group-text, .input-group-sm > .btn {
+
+.input-group-sm>.form-control,
+.input-group-sm>.form-select,
+.input-group-sm>.input-group-text,
+.input-group-sm>.btn {
     margin-top: 6px;
-     padding: 0.25rem 0.5rem; 
+    padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
     border-radius: 0.2rem;
 }
-.input-selected{
-    padding: 0.25rem 0.5rem; 
-   font-size: 0.875rem;
-   border-radius: 0.2rem;
-    max-width: 50px;
-}
-
 
 .dx-button-mode-outlined {
     background-color: transparent;
@@ -254,43 +337,43 @@ margin-left: 50px;
     text-align: left;
     border: 1px solid #DBDBDB;
     border-radius: 5px;
-  }
-  
-  .search-header {
+}
+
+.search-header {
     margin-top: 14px;
     font-weight: 600;
     font-size: 10px;
     line-height: 12px;
     letter-spacing: 0.05em;
     color: #404040;
-  }
-  
-  .search-profile {
+}
+
+.search-profile {
     font-weight: 800;
     font-size: 14.4px;
     line-height: 12px;
     letter-spacing: 0.05em;
     color: #DB7100;
-  }
-  
-  .main-header {
+}
+
+.main-header {
     font-weight: 800;
     font-size: 14px;
     line-height: 16px;
     text-transform: uppercase;
     color: #404040;
-  }
-  
-  .action
-  {
-  width:150px;
-  }
-  .selectList{
-  width:100px;
-  }
-  
+}
+
+.action {
+    width: 150px;
+}
+
+.selectList {
+    width: 100px;
+}
+
 // batch payments CSS starts
-.cancel {
+.batch-cancel {
     border: 1px solid #0275D8;
     border-radius: 5px;
     background: #0275D8;
@@ -303,13 +386,11 @@ margin-left: 50px;
     height: 37px;
     margin-left: 20px;
     margin-top: 10px;
-
 }
 
 .ok {
-    margin-left: 120px;
-    border: 1px solid #0275D8;
 
+    border: 1px solid #0275D8;
     background: #0275D8;
     border-radius: 5px;
     font-weight: 600;
@@ -317,14 +398,12 @@ margin-left: 50px;
     line-height: 12px;
     letter-spacing: 0.05em;
     color: #FFFF !important;
-    width: 70px;
     height: 37px;
     margin-left: 50px;
     margin-top: 10px;
-
 }
 
-.Save {
+.batch-Save {
     margin-left: 120px;
     border: 1px solid #0275D8;
     background: #0275D8;
@@ -338,8 +417,8 @@ margin-left: 50px;
     height: 37px;
     margin-left: 20px;
     margin-top: 10px;
-
 }
+
 // batch payments CSS ends
 
 // popup CSS starts
@@ -376,6 +455,7 @@ margin-left: 50px;
     flex: 1 1 auto;
     padding: 1rem;
 }
+
 // popup CSS ends
 
 
@@ -385,6 +465,7 @@ margin-left: 50px;
     width: 16.66666667%;
     margin-top: 1%;
 }
+
 .payment {
     margin-top: 20px;
     font-weight: 500;
@@ -394,6 +475,7 @@ margin-left: 50px;
     font-weight: bold;
     font-family: Avant Garde Gothic Std Book !important;
 }
+
 .form-check-input {
     width: 1em;
     height: 1em;
@@ -406,12 +488,13 @@ margin-left: 50px;
     border: 1px solid rgba(0, 0, 0, 0.25);
     appearance: none;
 }
+
 .form-check-input[type=checkbox] {
     border-radius: 0em;
 }
 
 // Search CSS starts
-.padding{
+.padding {
     flex-shrink: 0;
     width: 100%;
     max-width: 100%;
@@ -419,14 +502,17 @@ margin-left: 50px;
     padding-left: calc(var(--bs-gutter-x) * 0.5);
     margin-top: 10px;
 }
-.Search-type{
-margin-left: 133px;
-width: 61%;
+
+.Search-type {
+    margin-left: 133px;
+    width: 61%;
 }
-.mt-10{
+
+.mt-10 {
     margin-top: 10px;
 }
-.search-form-control{
+
+.search-form-control {
     display: block;
     width: 82%;
     padding: 0.375rem 0.75rem;
@@ -441,13 +527,183 @@ width: 61%;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.search-form-select{
- width: 82% !important;
+
+.search-form-select {
+    width: 82% !important;
 }
+
 // Search CSS ends
 
-// Tax viewer CSS Starts
+//GL CSS starts
+.left {
+    margin-left: 50px;
+}
 
-// Tax Viewer CSS Ends
+.checkbox {
+    margin-left: 20px;
+}
 
+.pt-3 {
+    height: 70px;
+}
 
+.align-center {
+    align-items: center;
+}
+
+.form-check-input type {
+    float: left;
+    margin-left: 9em;
+}
+
+.form {
+    margin-top: 20px;
+
+}
+
+.ml-60 {
+    margin-left: 25%;
+}
+
+.select-width {
+    width: 120% !important;
+}
+.input-selected {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+    max-width: 50px;
+}
+.gl-cancel {
+    margin-left: 10px;
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    width: 70px;
+    height: 37px;
+    margin-top: 10px;
+}
+.gl-save {
+    margin-left: 120px;
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    width: 70px;
+    height: 37px;
+    margin-left: 210px;
+    margin-top: 10px;
+}
+.input-group-sm > .form-control, .input-group-sm > .form-select, .input-group-sm > .input-group-text, .input-group-sm > .btn {
+    margin-top: 6px;
+     padding: 0.25rem 0.5rem; 
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+}
+
+//GL CSS ends
+
+// Credit Card CSS Starts//
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+}
+
+.form-width {
+    width: 160px !important;
+}
+
+.comment-margin {
+    margin-right: 30px !important;
+}
+.col-sm-3{
+    margin-left:-50px
+}
+.styles {
+    margin-left: 120px;
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    width: 80px;
+    height: 37px;
+    margin-top: 10px;
+}
+
+.styles1 {
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    width: 80px;
+    height: 37px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.styles2 {
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    width: 80px;
+    height: 37px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.styles3 {
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    width: 80px;
+    height: 37px;
+    margin-left: 20px;
+    margin-top: 10px;
+
+}
+
+.styles4 {
+    border: 1px solid #0275D8;
+    background: #0275D8;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 12px;
+    letter-spacing: 0.05em;
+    color: #FFFF !important;
+    width: auto;
+    height: 37px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+// Credit Card CSS Ends//

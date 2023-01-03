@@ -1,100 +1,4 @@
-.dx-button-mode-outlined {
-    background-color: transparent;
-    border-color: #ddd;
-    color: #404040;
-    font-size: 10px;
-    font-weight: 500;
-    width: 133px;
-    line-height: 12px;
-    background: #F2F2F2;
-    text-align: left;
-    border: 1px solid #DBDBDB;
-    border-radius: 5px;
-}
-
-.dx-widget {
-    font-family: Avant Garde Gothic Std Book!important;
-}
-
-.search-header {
-    margin-top: 14px;
-    font-weight: 600;
-    font-size: 10px;
-    line-height: 12px;
-    letter-spacing: 0.05em;
-    color: #404040;
-}
-
-.search-profile {
-    font-weight: 800;
-    font-size: 10px;
-    line-height: 12px;
-    letter-spacing: 0.05em;
-    color: #DB7100;
-}
-
-.main-header {
-    font-weight: 800;
-    font-size: 14.4px;
-    line-height: 16px;
-    text-transform: uppercase;
-    color: #404040;
-}
-.flex-container {
-    display: flex;
-}
-.flex-child {
-    flex: 1;
-}  
-.form-width{
-    width: 160px !important;
-}
-.comment-margin{
-    margin-right: 30px !important;
-}
-// Data-Grid Table Start //
-.dx-datagrid .dx-column-lines>td {
-    border-left: 1px solid #ddd0;
-    border-right: 1px solid #ddd0;
-}
-
-.dx-datagrid-headers {
-    font-weight: 500;
-    font-size: 14.4px;
-    line-height: 12px;
-    color: #030202;
-    font-weight: bold;
-}
-
-.dx-datagrid {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 12px;
-    letter-spacing: 0.05em;
-    color:#4b4b4b;
-}
-
-
-// .main-header {
-//     font-weight: 800;
-//     font-size: 14.4px;
-//     line-height: 16px;
-//     text-transform: uppercase;
-//     color: #404040;
-// }
-
-// .Tarnasaction Information{
-//     margin-left:100px;
-// }
-
-
-
-
-.col-sm-3{
-    margin-left:-50px
-}
-
-.styles{
+.styles {
     margin-left: 120px;
     border: 1px solid #0275D8;
     background: #0275D8;
@@ -106,11 +10,11 @@
     color: #FFFF !important;
     width: 80px;
     height: 37px;
-    margin-left: 210px;
+
     margin-top: 10px;
 }
-.styles1{
-    margin-left: 100px;
+
+.styles1 {
     border: 1px solid #0275D8;
     background: #0275D8;
     border-radius: 5px;
@@ -124,8 +28,8 @@
     margin-left: 20px;
     margin-top: 10px;
 }
-.styles2{
-    margin-left: 80px;
+
+.styles2 {
     border: 1px solid #0275D8;
     background: #0275D8;
     border-radius: 5px;
@@ -139,8 +43,8 @@
     margin-left: 20px;
     margin-top: 10px;
 }
-.styles3{
-    margin-left: 80px;
+
+.styles3 {
     border: 1px solid #0275D8;
     background: #0275D8;
     border-radius: 5px;
@@ -155,8 +59,8 @@
     margin-top: 10px;
 
 }
-.styles4{
-    margin-left: 80px;
+
+.styles4 {
     border: 1px solid #0275D8;
     background: #0275D8;
     border-radius: 5px;
@@ -169,6 +73,4 @@
     height: 37px;
     margin-left: 20px;
     margin-top: 10px;
-
 }
-

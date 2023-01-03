@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import '../../menupages/GLAccount/index.style.scss';
+import '../../menupages/index.style.scss';
 import axios from 'axios';
 import {Button} from 'react-bootstrap';
 import DataGrid, {
@@ -24,6 +24,7 @@ import {
   saveGLAccount,
 } from '../../menupages/APICalls.js';
 import DataSource from 'devextreme/data/data_source';
+import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 
 const actions = [
   {id: 1, text: 'Account Number'},
@@ -164,12 +165,12 @@ class GLAccount extends React.Component {
         <div className='col-md-9 main-header'>
           <p>Accounts Receivable</p>
         </div>
-        <Tabs>
-          {/* // defaultActiveKey="profile"
-        // id="uncontrolled-tab-example"
-        // className="mb-3"> */}
+        <Tabs
+          defaultActiveKey="glaccountmaintenance"
+         id="uncontrolled-tab-example"
+         className="mb-3">
           <Tab
-            eventKey='GL account maintenance'
+            eventKey='glaccountmaintenance'
             title='GL Account Maintenance'
             className='tab'>
             <div className='form-group'>
@@ -184,9 +185,9 @@ class GLAccount extends React.Component {
                 <label class='list'>Active Only</label>
               </div>
               <Dropdown>
-                <Dropdown.Toggle variant='primary' id='dropdown-basic'>
+                <DropdownToggle  id='dropdown-basic' className='btn-darkGray'>
                   Actions
-                </Dropdown.Toggle>
+                </DropdownToggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href='#/action-1' onClick={this.handleShow}>
                     Add GL Code
@@ -246,7 +247,7 @@ class GLAccount extends React.Component {
                       <button type='submit' className='btn  mb-3 ok '>
                         Save
                       </button>
-                      <button type='reset' className='btn  mb-3 cancel '>
+                      <button type='reset' className='btn  mb-3 gl-cancel '>
                         Cancel
                       </button>
                     </div>
@@ -349,10 +350,10 @@ class GLAccount extends React.Component {
                     </div>
                   </div>
                   <div>
-                    <button type='Save' className='btn  mb-3 save '>
+                    <button type='Save' className='btn  mb-3btn-Gray '>
                       Save
                     </button>
-                    <button type='Cancel' className='btn  mb-3 cancel '>
+                    <button type='Cancel' className='btn  mb-3btn-darkGray '>
                       Cancel
                     </button>
                   </div>

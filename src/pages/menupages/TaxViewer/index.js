@@ -1,21 +1,26 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, {useEffect, useState, useRef} from 'react';
 import axios from 'axios';
-import { Button, Modal, ModalBody } from 'react-bootstrap';
+import {Button, Modal, ModalBody} from 'react-bootstrap';
 import DataGrid, {
-  Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
+  Column,
+  Pager,
+  Paging,
+  SearchPanel,
+  Sorting,
+  ColumnChooser,
+  FilterRow,
+  Toolbar,
+  Editing,
 } from 'devextreme-react/data-grid';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
-
+import {Dropdown, DropdownButton} from 'react-bootstrap';
 import clsx from 'clsx';
-import '../../menupages/TaxViewer/index.style.scss'
+import '../../menupages/index.style.scss'
 import CodeForm from '../../menupages/TaxViewer/CodeForm';
 import TaxViewerResult from "./TaxViewerResult";
-
-
 import { getTaxFileTypeData, onSubmitTaxHandler } from '../../menupages/APICalls.js'
-import CloseButton from '../../../../src/pages/menupages/CloseButton';
+// import CloseButton from '../../../../src/pages/menupages/CloseButton';
 
 
 let TaxViewerData = [];
@@ -61,15 +66,16 @@ const TaxViewer = () => {
   }
 
   return (
-
     <div>
-
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
       </div>
-      <Button href="#/action-1" className="btn-close float-end" onClick={handleShow}></Button>
+      <Button
+        href='#/action-1'
+        className='btn-close float-end'
+        onHide={handleClose}></Button>
       <Tabs
-        defaultActiveKey="profile"
+        defaultActiveKey='batchPayment'
         id='uncontrolled-tab-example'
         className="mb-3"
         onHide={handleClose}>
@@ -98,19 +104,33 @@ const TaxViewer = () => {
                 <input type="text" name=" from date" className="form-control" id="inputfrom date" />
               </div>
             </div>
+        
 
-            <div className="mb-2 row">
-              <label for="inputfrom date" className="col-lg-2 col-form-label">Lines</label>
-              <div className="col-md-2">
-                <input type="text" name=" from date" className="form-control" id="inputfrom date" />
-              </div>
+          <div className='mb-2 row'>
+            <label for='inputfrom date' className='col-lg-2 col-form-label'>
+              Lines
+            </label>
+            <div className='col-md-2'>
+              <input
+                type='text'
+                name='from date'
+                className='form-control'
+                id='inputfrom date'
+              />
             </div>
+          </div>
 
-            <div className="mb-2 row">
-              <label for="inputfrom date" className="col-lg-2 col-form-label">Locations</label>
-              <div className="col-md-2">
-                <input type="text" name=" from date" className="form-control" id="inputfrom date" />
-              </div>
+          <div className='mb-2 row'>
+            <label for='inputfrom date' className='col-lg-2 col-form-label'>
+              Locations
+            </label>
+            <div className='col-md-2'>
+              <input
+                type='text'
+                name=' from date'
+                className='form-control'
+                id='inputfrom date'
+              />
             </div>
 
             <div className="mb-2 row">
@@ -122,15 +142,27 @@ const TaxViewer = () => {
                 <input type="text" name=" from date" className="form-control" id="inputfrom date" />
               </div>
             </div>
+          </div>
 
-            <div className="mb-2 row">
-              <label for="inputfrom date" className="col-lg-2 col-form-label">Terminating NPA-NXX</label>
-              <div className="col-md-2">
-                <input type="text" name=" from date" className="form-control" id="inputfrom date" />
-              </div>
-              <div className="col-md-2">
-                <input type="text" name=" from date" className="form-control mx-2" id="inputfrom date" />
-              </div>
+          <div className='mb-2 row'>
+            <label for='inputfrom date' className='col-lg-2 col-form-label'>
+              Terminating NPA-NXX
+            </label>
+            <div className='col-md-2'>
+              <input
+                type='text'
+                name=' from date'
+                className='form-control'
+                id='inputfrom date'
+              />
+            </div>
+            <div className='col-md-2'>
+              <input
+                type='text'
+                name=' from date'
+                className='form-control mx-2'
+                id='inputfrom date'
+              />
             </div>
             <div className="mb-2 row">
               <label for="input transcation type" className="col-lg-2 col-form-label">Transcation Type</label>
@@ -154,16 +186,23 @@ const TaxViewer = () => {
                 </select>
               </div>
             </div>
-
-            <div className="mb-2 row">
-              <label for="input transcation type" className="col-lg-2 col-form-label">Regulated</label>
-              <div className="col-md-2">
-                <select className="form-select" name="status" aria-label="Default select example" >
-                  <option value="Regulated">Regulated</option>
-                  <option value=""></option>
-                </select>
-              </div>
+</div>
+          <div className='mb-2 row'>
+            <label
+              for='input transcation type'
+              className='col-lg-2 col-form-label'>
+              Regulated
+            </label>
+            <div className='col-md-2'>
+              <select
+                className='form-select'
+                name='status'
+                aria-label='Default select example'>
+                <option value='Regulated'>Regulated</option>
+                <option value=''></option>
+              </select>
             </div>
+          </div>
 
             <div className="mb-2 row">
               <label for="input transcation type" className="col-lg-2 col-form-label">Sale Type</label>
@@ -183,11 +222,11 @@ const TaxViewer = () => {
 
             <div>
               <button type="submit" className="btn  mb-3 Apply" >Apply Tax</button>
-              <button type="Clear" className="btn  mb-3 cancel ">Clear</button>
+              <button type="Clear" className="btn  mb-3 batch-cancel ">Clear</button>
             </div>
             </form>
         </Tab>
-        <Tab eventKey="taxviewresult" title="Tax View Result">
+        <Tab eventKey='taxviewresult' title='Tax View Result'>
           <TaxViewerResult />
           <div>
             <DataGrid
@@ -207,17 +246,19 @@ const TaxViewer = () => {
                 className='float-start'
                 visible={true}
                 width={240}
-                placeholder="Search..."
+                placeholder='Search...'
               />
-              <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
+              <Pager
+                allowedPageSizes={[5, 10, 20]}
+                showPageSizeSelector={true}
+                showNavigationButtons={true}
+              />
               <Paging defaultPageSize={5} />
             </DataGrid>
           </div>
         </Tab>
       </Tabs>
     </div>
-
-
   );
 };
 export default TaxViewer;

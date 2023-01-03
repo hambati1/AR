@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
-// import '../../menupages/Search/index.module.scss';
+import '../../menupages/index.style.scss';
 import Payments from 'pages/SearchWorklist/Payments';
 import Adjustments from 'pages/SearchWorklist/Adjustments';
 
@@ -15,10 +15,10 @@ const Search = () => {
         <p>Accounts Receivable</p>
       </div>
       <Tabs
-        defaultActiveKey='profile'
+        defaultActiveKey='search'
         id='uncontrolled-tab-example'
         className='mb-3'>
-        <Tab eventKey='home' title='Search'>
+        <Tab eventKey='search' title='Search'>
           <div className='form-group'>
             <div className='mb-2 row'>
               <label for='inputFileType' className='col-lg-1 col-form-label'>

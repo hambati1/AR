@@ -14,7 +14,7 @@ export const menuPagesConfigs = [
   },
   {
     permittedRole: RoutePermittedRole.user,
-    path: '/menu-pages/Batch-Payment',
+    path: '/menu-pages/Batch-Payments',
     component: React.lazy(() => import('./BatchPayments/index')),
   },
   {
@@ -32,11 +32,11 @@ export const menuPagesConfigs = [
     path: '/menu-pages/Credit-Card-Transaction-Worklist',
     component: React.lazy(() => import('./CreditCard/index')),
   },
-  {
-    permittedRole: RoutePermittedRole.user,
-    path: '/menu-pages/Batch-Payment-1',
-    component: React.lazy(() => import('./BatchPayments1/index')),
-  },
+  // {
+  //   permittedRole: RoutePermittedRole.user,
+  //   path: '/menu-pages/Batch-Payment-1',
+  //   component: React.lazy(() => import('./BatchPayments1/index')),
+  // },
   {
     permittedRole: RoutePermittedRole.user,
     path: '/menu-pages/Search',

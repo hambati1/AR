@@ -64,7 +64,6 @@ const routesConfig = [
         type: 'item',
         icon: < AiOutlineSearch />,
         url: '/menu-pages/Search',
-
       },
       {
         id: 'crypto',
@@ -82,23 +81,13 @@ const routesConfig = [
         icon: <AiOutlineExport />,
         url: '/menu-pages/File-Export',
       },
-
-    
-      // {
-      //   id: 'analytics',
-      //   title: 'Batch Payment Entry',
-      //   messageId: 'sidebar.app.dashboard.BatchPayment',
-      //   type: 'item',
-      //   icon: <AiFillDollarCircle />,
-      //   url: '/menu-pages/Batch-Payment',
-      // },
       {
-        id: 'payments',
-        title: 'Batch Payments 1',
-        messageId: 'sidebar.app.dashboard.BatchPayment1',
+        id: 'analytics',
+        title: 'Batch Payment Entry',
+        messageId: 'sidebar.app.dashboard.BatchPayment',
         type: 'item',
         icon: <AiFillDollarCircle />,
-        url: '/menu-pages/Batch-Payment-1',
+        url: '/menu-pages/Batch-Payments',
       },
       {
         id: 'health-care',

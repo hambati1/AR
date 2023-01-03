@@ -1,7 +1,7 @@
 import React from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import '../../menupages/CreditCard/index.module.scss'
+import '../../menupages/index.style.scss';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
@@ -31,15 +31,15 @@ const dropDownOptions = {
 const CreditCard = () => {
   return (
     <div>
-      <div calssName='col-md-9 main-header'>
-        <p>Account Receivable</p>
-      </div>
+    <div className='col-md-9 main-header'>
+          <p>Accounts Receivable</p>
+        </div>
    
       <Tabs
         defaultActiveKey="profile"
         id="uncontrolled-tab-example"
         className="mb-3">
-         <Tab eventKey="home" title="Search">
+         <Tab eventKey="profile" title="Search">
          <div className="mb-2 row">
                 <label for="inputCustomerid" className="col-lg-2 col-form-label">Customer ID</label>
                 <div className="col-sm-3">
@@ -109,7 +109,7 @@ const CreditCard = () => {
             </div>
             <div>
                 <button type="Ok" className="btn  mb-3 ok ">Submit</button>
-                <button type="Cancel" className="btn  mb-3 cancel ">Reset</button>
+                <button type="Cancel" className="btn  mb-3 batch-cancel ">Reset</button>
             </div>
     
 
