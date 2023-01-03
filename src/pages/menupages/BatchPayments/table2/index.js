@@ -39,34 +39,7 @@ const Table2 = () => {
 
   return (
     <>
-    <div>Batch {batchId}</div>
-    <div id='data-grid-demo2'>
-      <DataGrid
-        onRowClick={handleEvent}
-        dataSource={batchSubData}
-        showBorders={true}>
-        <Paging enabled={false} />
-        <Column dataField={'batchId'} caption='Customer ID' />
-        <Column dataField={'type'} caption='Customer Name' />
-        <Column dataField={'batchName'} caption='Payment Type' />
-        <Column dataField={'createdBy'} caption='Payment Amount' />
-        <Column dataField={'creationDt'} caption='Agency Fee' />
-        <Column dataField={'isClosed'} caption='Check number' />
-        <Column dataField={'totalRecords'} caption='Payment Date' />
-        <FilterRow visible={true} />
-        <ColumnChooser enabled={true} mode='select' />
-        <SearchPanel
-          className='float-start'
-          visible={true}
-          width={240}
-          placeholder='Search...' />
-        <Pager
-          allowedPageSizes={[5, 10, 20]}
-          showPageSizeSelector={true}
-          showNavigationButtons={true} />
-        <Paging defaultPageSize={5} />
-      </DataGrid>
-    </div></>
+   </>
   );
   
 };

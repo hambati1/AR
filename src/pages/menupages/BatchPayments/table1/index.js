@@ -19,11 +19,9 @@ import DataGrid, {
 import DropDownButton from 'devextreme-react/drop-down-button';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import {Search} from 'react-bootstrap-icons';
-// import { onPaymentList } from '../../../redux/actions/paymentList';
-// import { onGetContactList } from '../../../redux/actions/ContactApp';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-// import {saveBatchName,getSearchData} from '../../APICalls.js'
+import { getSearchData,getBatchDetailsByBatchIdService, saveBatchName } from '../../../menupages/APICalls.js'
 import Table from 'react-bootstrap/Table';
 
 let batchData = [];
@@ -49,9 +47,24 @@ const Table1 = () => {
     getSearchDataDetails();
   };
 
+
+  const getSearchDataDetails = () => {
+    let data = getSearchData(active);
+    if (data.length > 0) {
+      batchData = data;
+      console.log(batchData);
+    }
+  }
+
   const handlebatchName = event => {
     setbatchName(event.target.value);
   };
+
+const getBatchDetailsByBatchId = (batchId) => {
+    let subdata = getBatchDetailsByBatchIdService(batchId);
+    setbatchSubData(subdata);
+    console.log(subdata);
+  }
 
   const handleEvent: GridEventListener<'rowClick'> = (params, event, details, // GridCallbackDetails
   ) => {
@@ -258,6 +271,37 @@ const Table1 = () => {
                 <Paging defaultPageSize={5} />
               </DataGrid>
             </div>
+
+
+             <div>Batch {batchId}</div>
+                <div id='data-grid-demo2'>
+                  <DataGrid
+                    onRowClick={handleEvent}
+                    dataSource={batchSubData}
+                    showBorders={true}>
+                    <Paging enabled={false} />
+                    <Column dataField={'batchId'} caption='Customer ID' />
+                    <Column dataField={'type'} caption='Customer Name' />
+                    <Column dataField={'batchName'} caption='Payment Type' />
+                    <Column dataField={'createdBy'} caption='Payment Amount' />
+                    <Column dataField={'creationDt'} caption='Agency Fee' />
+                    <Column dataField={'isClosed'} caption='Check number' />
+                    <Column dataField={'totalRecords'} caption='Payment Date' />
+                    <FilterRow visible={true} />
+                    <ColumnChooser enabled={true} mode='select' />
+                    <SearchPanel
+                      className='float-start'
+                      visible={true}
+                      width={240}
+                      placeholder='Search...' />
+                    <Pager
+                      allowedPageSizes={[5, 10, 20]}
+                      showPageSizeSelector={true}
+                      showNavigationButtons={true} />
+                    <Paging defaultPageSize={5} />
+                  </DataGrid>
+                </div>
+
           </div>
         </Tab>
       </Tabs>

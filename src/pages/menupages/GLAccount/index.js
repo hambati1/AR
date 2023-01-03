@@ -114,11 +114,12 @@ class GLAccount extends React.Component {
     this.show = true;
   };
   handleClose = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log('ssssssssssss');
     this.show = false;
+    this.setState({show:false});
   };
 
   onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  console.log("data push");
     const form = event.target;
     event.preventDefault();
     let json = {
