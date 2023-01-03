@@ -45,7 +45,7 @@ const defaultConfig = {
 	footerType: FooterType.FLUID,
 	navStyle: NavStyle.MINI,
 	layoutType: LayoutType.FULL_WIDTH,
-	footer: false,
+	footer: true,
 	rtlLocale: ['ar'],
 };
 export default defaultConfig;

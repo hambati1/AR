@@ -139,7 +139,7 @@ const TaxViewer = () => {
                 <input type="text" name="from date" className="form-control" id="inputfrom date" />
               </div>
               <div className="col-md-2">
-                <input type="text" name=" from date" className="form-control" id="inputfrom date" />
+                <input type="text" name=" from date" className="form-control mx-2" id="inputfrom date" />
               </div>
             </div>
           </div>
@@ -172,7 +172,7 @@ const TaxViewer = () => {
                   <option value=""></option>
                   {fileType &&
                     fileType.map((user) => (
-                      <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
+                      <option value={user.taxSvcTypeCd}>{user.taxSvcTypeCd}</option>
                     ))}
                 </select>
               </div>
