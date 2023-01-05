@@ -1,6 +1,6 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import {Button, Modal, ModalBody} from 'react-bootstrap';
+import { Button, Modal, ModalBody } from 'react-bootstrap';
 import DataGrid, {
   Column,
   Pager,
@@ -14,7 +14,7 @@ import DataGrid, {
 } from 'devextreme-react/data-grid';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import {Dropdown, DropdownButton} from 'react-bootstrap';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import clsx from 'clsx';
 import '../../menupages/index.style.scss';
 import CodeForm from '../../menupages/TaxViewer/CodeForm';
@@ -97,26 +97,17 @@ const TaxViewer = () => {
         id='uncontrolled-tab-example'
         className='mb-3'
         onHide={handleClose}>
-        <Tab eventKey='batchPayment' title='Tax Viewer'>
+        <Tab eventKey="batchPayment" title="Tax Viewer">
           <form onSubmit={onSubmitHandler}>
-            <div className='mb-2 row'>
-              <label
-                for='inputfrom date'
-                readOnly
-                className='col-lg-2 col-form-label'>
-                P-Code
-              </label>
-              <div className='col-md-2'>
-                <div className='input-group col-sm-12 input-group-sm'>
-                  <div className='input-group col-md-12' id='adv-search'>
-                    <div className='input-group-btn'>
-                      <div className='btn-group' role='group'>
-                        <input
-                          type='text'
-                          className='form-control'
-                          id='search'
-                          autocmplete='off'
-                        />
+
+            <div className="mb-2 row">
+              <label for="inputp-code" readOnly className="col-lg-2 col-form-label">P-Code</label>
+              <div className="col-md-2">
+                <div className="input-group col-sm-12 input-group-sm">
+                  <div className="input-group col-md-12" id="adv-search">
+                    <div className="input-group-btn">
+                      <div className="btn-group" role="group">
+                        <input type="text" className="form-control" id="search" autocmplete="off" />
                         <CodeForm />
                       </div>
                     </div>
@@ -126,141 +117,141 @@ const TaxViewer = () => {
             </div>
 
             <div className='mb-2 row'>
-              <label for='inputfrom date' className='col-lg-2 col-form-label'>
+              <label for='inputamount' className='col-lg-2 col-form-label'>
                 Amount
               </label>
               <div className='col-md-2'>
                 <input
                   type='text'
-                  name=' from date'
+                  name=' amount'
                   className='form-control'
-                  id='inputfrom date'
+                  id='inputamount'
                 />
               </div>
             </div>
 
             <div className='mb-2 row'>
-              <label for='inputfrom date' className='col-lg-2 col-form-label'>
+              <label for='inputlines' className='col-lg-2 col-form-label'>
                 Lines
               </label>
               <div className='col-md-2'>
                 <input
                   type='text'
-                  name='from date'
+                  name='lines'
                   className='form-control'
-                  id='inputfrom date'
+                  id='inputlines'
                 />
               </div>
             </div>
 
             <div className='mb-2 row'>
-              <label for='inputfrom date' className='col-lg-2 col-form-label'>
+              <label for='inputlocation' className='col-lg-2 col-form-label'>
                 Locations
               </label>
               <div className='col-md-2'>
                 <input
                   type='text'
-                  name=' from date'
+                  name=' locations'
                   className='form-control'
-                  id='inputfrom date'
+                  id='inputlocations'
                 />
               </div>
-              </div>
-
-              <div className='mb-2 row'>
-                <label for='inputfrom date' className='col-lg-2 col-form-label'>
-                  Origination NPA-NXX
-                </label>
-                <div className='col-md-2'>
-                  <input
-                    type='text'
-                    name='from date'
-                    className='form-control'
-                    id='inputfrom date'
-                  />
-                </div>
-                <div className='col-md-2'>
-                  <input
-                    type='text'
-                    name=' from date'
-                    className='form-control mx-2'
-                    id='inputfrom date'
-                  />
-                </div>
-              </div>
-         
+            </div>
 
             <div className='mb-2 row'>
-              <label for='inputfrom date' className='col-lg-2 col-form-label'>
+              <label for='inputorigination npa-nxx' className='col-lg-2 col-form-label'>
+                Origination NPA-NXX
+              </label>
+              <div className='col-md-2'>
+                <input
+                  type='text'
+                  name='origination npa-nxx'
+                  className='form-control'
+                  id='inputorigination npa-nxx'
+                />
+              </div>
+              <div className='col-md-2'>
+                <input
+                  type='text'
+                  name='origination npa-nxx'
+                  className='form-control mx-2'
+                  id='inputorigination npa-nxx'
+                />
+              </div>
+            </div>
+
+
+            <div className='mb-2 row'>
+              <label for='inputterminating npa-nxx' className='col-lg-2 col-form-label'>
                 Terminating NPA-NXX
               </label>
               <div className='col-md-2'>
                 <input
                   type='text'
-                  name=' from date'
+                  name=' terminating npa-nxx'
                   className='form-control'
-                  id='inputfrom date'
+                  id='inputterminating npa-nxx'
                 />
               </div>
               <div className='col-md-2'>
                 <input
                   type='text'
-                  name=' from date'
+                  name=' terminating npa-nxx'
                   className='form-control mx-2'
-                  id='inputfrom date'
+                  id='inputterminating npa-nxx'
                 />
               </div>
-              </div>
-              <div className='mb-2 row'>
-                <label
-                  for='input transcation type'
-                  className='col-lg-2 col-form-label'>
-                  Transcation Type
-                </label>
-                <div className='col-md-2 Dropdown'>
-                  <select
-                    className='form-select'
-                    Name='selectfileType'
-                    aria-label='Default select example'
-                    onChange={(e) =>
-                      selectChangeHandler(selectfileType, e.target.value)
-                    }>
-                    <option value=''></option>
-                    {fileType &&
-                      fileType.map((user) => (
-                        <option value={user.taxSvcTypeCd}>
-                          {user.taxSvcTypeCd}
-                        </option>
-                      ))}
-                  </select>
-                </div>
-              </div>
-              <div className='mb-2 row'>
-                <label
-                  for='input transcation type'
-                  className='col-lg-2 col-form-label'>
-                  Incorporated
-                </label>
-                <div className='col-md-2'>
-                  <select
-                    className='form-select'
-                    Name='status'
-                    aria-label='Default select example'>
-                    <option value='Withiin'>Within</option>
-                    <option value=''></option>
-                  </select>
-                </div>
-              </div>
+            </div>
             <div className='mb-2 row'>
               <label
                 for='input transcation type'
+                className='col-lg-2 col-form-label'>
+                Transcation Type
+              </label>
+              <div className='col-md-2 Dropdown'>
+                <select
+                  className='form-select'
+                  Name='selectfileType'
+                  aria-label='Default select example'
+                  onChange={(e) =>
+                    selectChangeHandler(selectfileType, e.target.value)
+                  }>
+                  <option value=''></option>
+                  {fileType &&
+                    fileType.map((user) => (
+                      <option value={user.taxCdDesc}>
+                        {user.taxCdDesc}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            </div>
+            <div className='mb-2 row'>
+              <label
+                for='inputincorporated'
+                className='col-lg-2 col-form-label'>
+                Incorporated
+              </label>
+              <div className='col-md-2'>
+                <select
+                  className='form-select'
+                  Name='incorporated'
+                  aria-label='Default select example'>
+                  <option value='Withiin'>Within</option>
+                  <option value=''></option>
+                </select>
+              </div>
+            </div>
+            <div className='mb-2 row'>
+              <label
+                for='inputregulated'
                 className='col-lg-2 col-form-label'>
                 Regulated
               </label>
               <div className='col-md-2'>
                 <select
                   className='form-select'
-                  name='status'
+                  name='regulated'
                   aria-label='Default select example'>
                   <option value='Regulated'>Regulated</option>
                   <option value=''></option>
@@ -270,14 +261,14 @@ const TaxViewer = () => {
 
             <div className='mb-2 row'>
               <label
-                for='input transcation type'
+                for='inputsaletype'
                 className='col-lg-2 col-form-label'>
                 Sale Type
               </label>
               <div className='col-md-2'>
                 <select
                   className='form-select'
-                  Name='status'
+                  Name='saletype'
                   aria-label='Default select example'>
                   <option value='Sale'>Sale</option>
                   <option value=''></option>
@@ -286,7 +277,7 @@ const TaxViewer = () => {
             </div>
             <div className='mb-2 row'>
               <label
-                for='input transcation type'
+                for='inputdate'
                 className='col-lg-2 col-form-label'>
                 Date
               </label>

@@ -7,7 +7,7 @@ import Payments from 'pages/SearchWorklist/Payments';
 import Adjustments from 'pages/SearchWorklist/Adjustments';
 
 const Search = () => {
-  const [active, setactive] = useState('Payments');
+  const [active, setactive] = useState('');
   console.log(active);
   return (
     <div>
