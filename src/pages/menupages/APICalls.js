@@ -269,4 +269,43 @@ export const onSubmitTaxHandler = (payload) => {
     console.log(response);
     return response;
   };
-/*end tax api*/
+
+  /*end tax api*/
+
+
+/* Start CC Card api*/
+
+export const getTranscationTypeData=(functionId) => {
+  let session=localStorage.getItem('token');
+    const response = fetch(PATH + "/ar/txn/type", {
+      method: 'GET',
+      headers: { Session: session }
+    }
+    ).then((response) => response.json());
+    console.log(response);
+    return response;
+  };
+
+
+  export const getCardTypeData=(functionId) => {
+    let session=localStorage.getItem('token');
+      const response = fetch(PATH + "/credit/card/type", {
+        method: 'GET',
+        headers: { Session: session }
+      }
+      ).then((response) => response.json());
+      console.log(response);
+      return response;
+    };
+
+    export const getStatusTypeData=(functionId) => {
+      let session=localStorage.getItem('token');
+        const response = fetch(PATH + "/ar/txn/status", {
+          method: 'GET',
+          headers: { Session: session }
+        }
+        ).then((response) => response.json());
+        console.log(response);
+        return response;
+      };
+/* end  CC Card api*/

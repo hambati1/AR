@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import '../../menupages/index.style.scss';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
+import { getTranscationTypeData, getCardTypeData, getStatusTypeData } from '../../menupages/APICalls.js';
 // import { CreditCard } from 'react-bootstrap-icons';
 
 
@@ -27,94 +28,196 @@ const dropDownOptions = {
 };
 
 
-
+let CCCardData = [];
 const CreditCard = () => {
+
+
+  const [TranscationType, setTranscationTypes] = useState();
+  const [selectTranscationType, setselectTranscationType] = useState('');
+
+  const [CardType, setCardTypes] = useState();
+  const [selectCardType, setselectCardType] = useState('');
+
+  const [StatusType, setStatusTypes] = useState();
+  const [selectStatusType, setselectStatusType] = useState('');
+
+
+  const selectChangeHandler = (
+    setFunction: React.Dispatch<React.SetStateAction<string>>,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    console.log(event);
+   console.log(CCCardData);
+    let data = getTranscationTypeData(event);
+    console.log(data);
+    setselectTranscationType(event);
+  };
+  const selectChangeHandler2 = (
+    setFunction: React.Dispatch<React.SetStateAction<string>>,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    console.log(event);
+
+    console.log(CCCardData);
+    let data = getCardTypeData(event);
+    console.log(data);
+    setselectCardType(event);
+  };
+
+  const selectChangeHandler3 = (
+    setFunction: React.Dispatch<React.SetStateAction<string>>,
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    console.log(event);
+
+    console.log(CCCardData);
+    let data = getStatusTypeData(event);
+    console.log(data);
+    setselectStatusType(event);
+  };
+   useEffect(() => {
+    getTranscationTypeDataVal();
+    getCardDataVal();
+    getStatusDataVal();
+  }, []);
+
+  async function getTranscationTypeDataVal() {
+    var data = await getTranscationTypeData();
+    console.log('Statement 2' + data);
+    setTranscationTypes(data.response);
+
+  }
+
+  async function getCardDataVal() {
+    var data = await getCardTypeData();
+    console.log('Statement 2' + data);
+    setCardTypes(data.response);
+  }
+
+  async function getStatusDataVal() {
+    var data = await getStatusTypeData();
+    console.log('Statement 2' + data);
+    setStatusTypes(data.response);
+  }
   return (
     <div>
-    <div className='col-md-9 main-header'>
-          <p>Accounts Receivable</p>
-        </div>
-   
+      <div className='col-md-9 main-header'>
+        <p>Accounts Receivable</p>
+      </div>
+
       <Tabs
         defaultActiveKey="profile"
         id="uncontrolled-tab-example"
         className="mb-3">
-         <Tab eventKey="profile" title="Search">
-         <div className="mb-2 row">
-                <label for="inputCustomerid" className="col-lg-2 col-form-label">Customer ID</label>
-                <div className="col-sm-3">
-                    <input type="text" className="form-control" id="inputCustomerid" />
-                </div>
+        <Tab eventKey="profile" title="Search">
+          <div className="mb-2 row">
+            <label for="inputCustomerid" className="col-lg-2 col-form-label">Customer ID</label>
+            <div className="col-sm-3">
+              <input type="text" className="form-control" id="inputCustomerid" />
             </div>
-            <div className="mb-2 row">
-                <label for="inputCustomername" className="col-lg-2 col-form-label">Customer Name</label>
-                <div className="col-sm-3">
-                    <input type="text" className="form-control" id="inputCustomername" />
-                </div>
+          </div>
+          <div className="mb-2 row">
+            <label for="inputCustomername" className="col-lg-2 col-form-label">Customer Name</label>
+            <div className="col-sm-3">
+              <input type="text" className="form-control" id="inputCustomername" />
             </div>
-            <div className="mb-2 row">
-                <label for="inputfrom date" className="col-lg-2 col-form-label">From Date</label>
-                <div className="col-sm-3">
-                    <input type="date" className="datepicker" id="inputfrom date" />
-                </div>
+          </div>
+          <div className="mb-2 row">
+            <label for="inputfrom date" className="col-lg-2 col-form-label">From Date</label>
+            <div className="col-sm-3">
+              <input type="date" className="datepicker" id="inputfrom date" />
             </div>
-            <div className="mb-2 row">
-                <label for="inputTo date" className="col-lg-2 col-form-label">To Date</label>
-                <div className="col-sm-3">
-                    <input type="date" className="datepicker" id="inputTodate" />
-                </div>
+          </div>
+          <div className="mb-2 row">
+            <label for="inputTo date" className="col-lg-2 col-form-label">To Date</label>
+            <div className="col-sm-3">
+              <input type="date" className="datepicker" id="inputTodate" />
             </div>
-            <div className="mb-2 row">
-                <label for="inputfrom amount" className="col-lg-2 col-form-label">From Amount</label>
-                <div className="col-sm-3">
-                    <input type="text" className="form-control" id="inputfrom amount" />
-                </div>
+          </div>
+          <div className="mb-2 row">
+            <label for="inputfrom amount" className="col-lg-2 col-form-label">From Amount</label>
+            <div className="col-sm-3">
+              <input type="text" className="form-control" id="inputfrom amount" />
             </div>
+          </div>
 
-            <div className="mb-2 row">
-                <label for="input to amount" className="col-lg-2 col-form-label">To Amount</label>
-                <div className="col-sm-3">
-                    <input type="text" className="form-control" id="input to amount" />
-                </div>
+          <div className="mb-2 row">
+            <label for="inputto amount" className="col-lg-2 col-form-label">To Amount</label>
+            <div className="col-sm-3">
+              <input type="text" className="form-control" id="input to amount" />
             </div>
+          </div>
 
-            <div className="mb-2 row">
-                <label for="input transcation type" className="col-lg-2 col-form-label">Transcation Type</label>
-                <div className="col-sm-3">
-                    <select className="form-select" name="status" aria-label="Default select example" >
-                        <option value=""></option>
-                        <option value=""></option>
-                    </select>
-                </div>
+          <div className="mb-2 row">
+            <label for="inputtranscation type" className="col-lg-2 col-form-label">Transcation Type</label>
+            <div className="col-sm-3">
+              <select
+                className='form-select'
+                Name='selectTranscationType'
+                aria-label='Default select example'
+                onChange={(e) =>
+                  selectChangeHandler(selectTranscationType, e.target.value)
+                }>
+                <option value=''></option>
+                {TranscationType &&
+                  TranscationType.map((user) => (
+                    <option value={user.txnTypeDesc}>
+                      {user.txnTypeDesc}
+                    </option>
+                  ))}
+              </select>
             </div>
+          </div>
 
-            <div className="mb-2 row">
-                <label for="input card type" className="col-lg-2 col-form-label">Card Type</label>
-                <div className="col-sm-3">
-                    <select className="form-select" name="status" aria-label="Default select example" >
-                        <option value=""></option>
-                        <option value=""></option>
-                    </select>
-                </div>
+          <div className="mb-2 row">
+            <label for="inputcard type" className="col-lg-2 col-form-label">Card Type</label>
+            <div className="col-sm-3">
+              <select
+                className='form-select'
+                Name='selectCardType'
+                aria-label='Default select example'
+                onChange={(e) =>
+                  selectChangeHandler2(selectCardType, e.target.value)
+                }>
+                <option value=''></option>
+                {CardType &&
+                  CardType.map((user) => (
+                    <option value={user.creditCardTypeDesc}>
+                      {user.creditCardTypeDesc}
+                    </option>
+                  ))}
+              </select>
             </div>
+          </div>
 
-            <div className="mb-2 row">
-                <label for="input status" className="col-lg-2 col-form-label">Status</label>
-                <div className="col-sm-3">
-                    <select className="form-select" name="status" aria-label="Default select example" >
-                        <option value=""></option>
-                        <option value=""></option>
-                    </select>
-                </div>
+          <div className="mb-2 row">
+            <label for="inputstatus" className="col-lg-2 col-form-label">Status</label>
+            <div className="col-sm-3">
+              <select
+                className='form-select'
+                Name='selectStatusType'
+                aria-label='Default select example'
+                onChange={(e) =>
+                  selectChangeHandler3(selectStatusType, e.target.value)
+                }>
+                <option value=''></option>
+                {StatusType &&
+                  StatusType.map((user) => (
+                    <option value={user.txnStatusDesc}>
+                      {user.txnStatusDesc}
+                    </option>
+                  ))}
+              </select>
             </div>
-            <div>
-                <button type="Ok" className="btn  mb-3 ok ">Submit</button>
-                <button type="Cancel" className="btn  mb-3 batch-cancel ">Reset</button>
-            </div>
-    
+          </div>
+          <div>
+            <button type="Ok" className="btn  mb-3 ok ">Submit</button>
+            <button type="Cancel" className="btn  mb-3 batch-cancel ">Reset</button>
+          </div>
 
-         </Tab> 
-         <Tab eventKey="credit card" title="Credit Card Transactions">
+
+        </Tab>
+        <Tab eventKey="credit card" title="Credit Card Transactions">
           <DataGrid
             className='card-body'
             dataSource={CreditCard}
@@ -151,9 +254,9 @@ const CreditCard = () => {
                   </div>
                 </div>
                 <div className="mb-2 row comment-margin">
-                  <label for="inputcardholder name" className="col-lg-2 form-width col-form-label">Card Number Last 4</label>
+                  <label for="inputcard number last 4" className="col-lg-2 form-width col-form-label">Card Number Last 4</label>
                   <div className="col">
-                    <input type="text" className="form-control" id="inputcardholder name" />
+                    <input type="text" className="form-control" id="inputcard number lastt 4" />
                   </div>
                 </div>
                 <div className="mb-2 row comment-margin">
@@ -175,74 +278,74 @@ const CreditCard = () => {
                   </div>
                 </div>
                 <div className="mb-2 row comment-margin">
-                  <label for="input commnets" className="col-lg-2 form-width col-form-label">Comments</label>
+                  <label for="inputcommnets" className="col-lg-2 form-width col-form-label">Comments</label>
                   <div className="col">
                     <input type="text" className="form-control  pt-3" id="input comments" />
                   </div>
                 </div>
               </div>
               <div class="col">
-              <p>Results Information</p>
-              <div className="mb-2 row comment-margin">
+                <p>Results Information</p>
+                <div className="mb-2 row comment-margin">
                   <label for="inputresult code" className="col-lg-2 form-width col-form-label">Result Code</label>
                   <div className="col">
                     <input type="text" className="form-control " id="inputresult code" />
                   </div>
                 </div>
                 <div className="mb-2 row comment-margin">
-                  <label for="inputcardholder name" className="col-lg-2 form-width col-form-label">Response Message</label>
+                  <label for="inputresponse message" className="col-lg-2 form-width col-form-label">Response Message</label>
                   <div className="col">
-                    <input type="text" className="form-control " id="inputcardholder name" />
+                    <input type="text" className="form-control " id="inputresponse message" />
                   </div>
                 </div>
 
 
                 <div className="mb-2 row comment-margin">
-                  <label for="inputcardholder name" className="col-lg-2 form-width col-form-label">Transaction ID</label>
+                  <label for="inputtransaction id" className="col-lg-2 form-width col-form-label">Transaction ID</label>
                   <div className="col">
-                    <input type="text" className="form-control " id="inputcardholder name" />
+                    <input type="text" className="form-control " id="inputtransaction id" />
                   </div>
                 </div>
 
                 <div className="mb-2 row comment-margin">
-                  <label for="inputcardholder name" className="col-lg-2 form-width col-form-label">CSC Match</label>
+                  <label for="inputcsc match" className="col-lg-2 form-width col-form-label">CSC Match</label>
                   <div className="col">
-                    <input type="text" className="form-control " id="inputcardholder name" />
+                    <input type="text" className="form-control " id="inputcsc match" />
                   </div>
                 </div>
 
                 <div className="mb-2 row comment-margin">
-                  <label for="inputcardholder name" className="col-lg-2 form-width col-form-label">AVS Zip Code Match</label>
+                  <label for="inputavs zip code match" className="col-lg-2 form-width col-form-label">AVS Zip Code Match</label>
                   <div className="col">
-                    <input type="text" className="form-control " id="inputcardholder name" />
+                    <input type="text" className="form-control " id="inputavs zip code match" />
                   </div>
                 </div>
 
                 <div className="mb-2 row comment-margin">
-                  <label for="inputcardholder name" className="col-lg-2 form-width col-form-label">Created By</label>
+                  <label for="inputcreated by" className="col-lg-2 form-width col-form-label">Created By</label>
                   <div className="col">
-                  <input type="text" className="form-control " id="inputcardholder name" />
+                    <input type="text" className="form-control " id="inputcreated by" />
                   </div>
-                 </div>
+                </div>
 
                 <div className="mb-2 row comment-margin">
-                <label for="inputcardholder name" className="col-lg-2 form-width col-form-label">Parent Transction Id</label>
-                <div className="col">
-                <input type="text" className="form-control " id="inputcardholder name" />
-                </div>
+                  <label for="inputparent transction id" className="col-lg-2 form-width col-form-label">Parent Transction Id</label>
+                  <div className="col">
+                    <input type="text" className="form-control " id="inputparent transction id" />
+                  </div>
                 </div>
 
-                
+
               </div>
             </div>
           </div>
-         <div>
-        <button type="Approve" className="btn  mb-3 styles" >Approve</button>
-        <button type="Credit" className="btn  mb-3 styles1 ">Credit</button>
-        <button type="Capture" className="btn  mb-3 styles2 " >Capture</button>
-        <button type="Ignore" className="btn  mb-3 styles3 ">Ignore</button>
-        <button type="Send letter" className="btn  mb-3 styles4" >Send Letter</button>
-        </div>
+          <div>
+            <button type="Approve" className="btn  mb-3 styles" >Approve</button>
+            <button type="Credit" className="btn  mb-3 styles1 ">Credit</button>
+            <button type="Capture" className="btn  mb-3 styles2 " >Capture</button>
+            <button type="Ignore" className="btn  mb-3 styles3 ">Ignore</button>
+            <button type="Send letter" className="btn  mb-3 styles4" >Send Letter</button>
+          </div>
           {/* grid system */}
 
         </Tab>

@@ -42,7 +42,7 @@ const TaxViewer = () => {
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     console.log(event);
-    // TaxViewerData =getTaxSearchData(event);
+   
     console.log(TaxViewerData);
     let data = getTaxFileTypeData(event);
     console.log(data);
