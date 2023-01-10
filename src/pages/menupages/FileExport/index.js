@@ -2,7 +2,6 @@ import React, { useState ,useEffect } from 'react';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
-// import '../FileExport/index.module.scss'
 import '../index.style.scss';
 import axios from 'axios';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
@@ -15,33 +14,6 @@ import { onPaymentList } from '../../../redux/actions/paymentList';
 import Button from 'devextreme-react/button';
 import {getExportFileTypeData,getExportSearchData,getExportFileNames,onSubmitExportHandler} from '../../menupages/APICalls.js'
 
-const actions = [
-  { id: 1, text: "File Name" },
-  { id: 2, text: "Type" },
-  { id: 3, text: "Records Imported" },
-  { id: 4, text: "Records in Error" },
-  { id: 5, text: "Amount Imported" },
-
-];
-
-const dropDownOptions = {
-  height: 150,
-  width: 130
-};
-
-export const portfolio1 = [
-  {
-    fileName: '',
-    type: '',
-    recordsexported: '',
-    recordsinerror: '',
-    debitamount: '',
-    creditamount: '',
-
-  },
-
-];
-
 const FileExport = () => {
   const [searchType, setSearchTypes] = useState();
   const [setFileType, setFileTypes] = useState();
@@ -49,14 +21,17 @@ const FileExport = () => {
   const [selectfileType, setselectfileType] = useState("")
   const [fileName, setFileName] = useState();
 
-  const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
-    setFunction(event.target.value)
-  }
   const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
-    setselectfileType(event);
-    getFileNames(event);
+     setSearchTypes(event);
+     const data=getFileNames(event);
   }
+
+  const getFileNames = async (event) => {
+    const data= getExportFileNames(event);
+    console.log(data);
+    setselectfileType(data);
+  };
+
 
    useEffect(() => {
       getFileTypeDataVal()
@@ -75,23 +50,19 @@ async function getFileTypeDataVal() {
   var a=data.response;
     console.log('Statement 2'+a);
     setFileTypes(a);
+     console.log('Statement 12'+setFileType);
 }
-
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     console.log("dd")
     const form = event.target;
     event.preventDefault();
     const formData = new FormData();
-         formData.append('brandId', 1);
-         formData.append('fileTypeId', selectfileType);
-        const json = Object.fromEntries(formData);
+    formData.append('brandId', 1);
+    formData.append('fileTypeId', searchType);
+    const json = Object.fromEntries(formData);
     onSubmitExportHandler(json);
   }
-
-  const getFileNames = async (event) => {
-    getExportFileNames(event);
-  };
 
   return (
     <div >
@@ -108,7 +79,6 @@ async function getFileTypeDataVal() {
           <form onSubmit={onSubmitHandler}>
               <div className="mb-3 row">
                 <label for="inputFileType" className="col-lg-1 col-form-label">File Type</label>
-
               <div className="col-sm-5 Dropdown">
                   <select className="form-select select-style" Name="selectfileType" aria-label="Default select example"
                     onChange={(e) => selectChangeHandler(setFileType, e.target.value)}>
@@ -139,14 +109,14 @@ async function getFileTypeDataVal() {
           </div>
           <DataGrid
             className='card-body'
-            dataSource={portfolio1}
+            dataSource={selectfileType}
             keyExpr={'fileName'}
             allowColumnReordering={true}>
 
             <Column dataField={'fileName'} caption={'File Name'} />
             <Column dataField={'type'} caption={'Type'} />
-            <Column dataField={'recordsexported'} caption={'Records Exported'} />
-            <Column dataField={'recordsinerror'} caption={'Records in Error'} />
+            <Column dataField={'fileTypeId'} caption={'Records Exported'} />
+            <Column dataField={'exportedBy'} caption={'Records in Error'} />
             <Column dataField={'debitamount'} caption={'Debit Amount'} />
             <Column dataField={'creditamount'} caption={'Credit Amount'} />
             <FilterRow visible={true} />
