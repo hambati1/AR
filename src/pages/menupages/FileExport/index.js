@@ -1,6 +1,6 @@
 import React, { useState ,useEffect } from 'react';
 import DataGrid, {
-  Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
+  Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing,MasterDetail
 } from 'devextreme-react/data-grid';
 import '../index.style.scss';
 import axios from 'axios';
@@ -13,6 +13,8 @@ import {onexportList  } from '../../../redux/actions/paymentList';
 import { onPaymentList } from '../../../redux/actions/paymentList';
 import Button from 'devextreme-react/button';
 import {getExportFileTypeData,getExportSearchData,getExportFileNames,onSubmitExportHandler} from '../../menupages/APICalls.js'
+import DetailTemplate from './DetailTemplate.js';
+
 
 const FileExport = () => {
   const [searchType, setSearchTypes] = useState();
@@ -127,6 +129,8 @@ async function getFileTypeDataVal() {
               width={240}
               placeholder="Search..."
             />
+
+             <MasterDetail enabled={true}  component={DetailTemplate} />
             <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
             <Paging defaultPageSize={5} />
           </DataGrid>
