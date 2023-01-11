@@ -43,7 +43,7 @@ export const getimportSearchData = async (selectfileType) => {
 export const getImportFileTypeData=() => {
 console.log("sssssssssss");
 let session=localStorage.getItem('token');
-  const response = fetch(PATH + "cn/filetype?functionId=6&isActive=1&isImport=0", {
+  const response = fetch(PATH + "cn/filetype?functionId=6&isActive=1&isImport=1", {
     method: 'GET',
     headers: { Session: session }
   }
