@@ -20,28 +20,30 @@ import jwtAxios from '@crema/services/auth/jwt-auth';
 import axios from 'axios';
 
 const PATH='http://172.20.51.231:8761/cm/api/';
-let result='';
+let result=[];
 
-/* import */
-export const getimportSearchData= (selectfileType) => {
- const b0 = {"fileTypeId": selectfileType,
+export const getimportSearchData = async (selectfileType) => {
+  console.log(selectfileType)
+  const b0 = {"fileTypeId": selectfileType,
              "page": 1,"size": 3,
              "sort": ["importDt,desc"]};
   let session=localStorage.getItem('token');
-  fetch(PATH + 'searchimportfile', {
-      method: 'POST',
-      headers: { "Content-Type": 'application/json', Session: session },
-      body: JSON.stringify(b0)
-    }).then((response) => response.json())
-    .then(function(data) {
-        result = data.response;
-    });
-return result;
+  const config = {
+    headers: {
+      'content-type': 'application/json',
+      Session: session
+    },
+  };
+  const response = await axios.post(PATH + 'searchimportfile',  b0,config);
+   console.log(response.data.response,"data")
+   return response.data.response;
 }
 
-export const getImportFileTypeData=(functionId) => {
+
+export const getImportFileTypeData=() => {
+console.log("sssssssssss");
 let session=localStorage.getItem('token');
-  const response = fetch(PATH + "cn/filetype?functionId="+functionId+"&isActive=1&isImport=1", {
+  const response = fetch(PATH + "cn/filetype?functionId=6&isActive=1&isImport=1", {
     method: 'GET',
     headers: { Session: session }
   }
@@ -50,7 +52,7 @@ let session=localStorage.getItem('token');
   return response;
 };
 
- export   const getImportFileNames = (event) => {
+ export const getImportFileNames = (event) => {
       console.log(event);
       let session=localStorage.getItem('token');
       if (event != undefined) {
@@ -116,13 +118,16 @@ export const getExportSearchData=(fileTypeId,brandId) => {
                  "fileTypeId": event,
                  "brandId": 1
          };
-      const response = fetch(PATH + "/searchexportfile", {
+      fetch(PATH + "/searchexportfile", {
            method: 'POST',
            headers: { "Content-Type": 'application/json', Session: session },
            body: JSON.stringify(b0)
          }
-         ).then((response) => response.json());
-         return response;
+         ).then((response) => response.json())
+          .then(function(data) {
+                 result = data.response;
+             });
+         return result;
     }
   };
 

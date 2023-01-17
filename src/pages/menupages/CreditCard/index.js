@@ -46,36 +46,26 @@ const CreditCard = () => {
     setFunction: React.Dispatch<React.SetStateAction<string>>,
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    console.log(event);
-   console.log(CCCardData);
-    let data = getTranscationTypeData(event);
-    console.log(data);
-    setselectTranscationType(event);
+    // console.log(event);
+    setselectTranscationType(event.target.value);
   };
   const selectChangeHandler2 = (
     setFunction: React.Dispatch<React.SetStateAction<string>>,
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    console.log(event);
-
-    console.log(CCCardData);
-    let data = getCardTypeData(event);
-    console.log(data);
-    setselectCardType(event);
+    // console.log(event);
+    setselectCardType(event.target.value);
   };
 
   const selectChangeHandler3 = (
     setFunction: React.Dispatch<React.SetStateAction<string>>,
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    console.log(event);
-
-    console.log(CCCardData);
-    let data = getStatusTypeData(event);
-    console.log(data);
-    setselectStatusType(event);
+    // console.log(event);
+    setselectStatusType(event.target.value);
   };
-   useEffect(() => {
+  
+  useEffect(() => {
     getTranscationTypeDataVal();
     getCardDataVal();
     getStatusDataVal();

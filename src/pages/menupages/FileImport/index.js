@@ -5,6 +5,7 @@ import '../index.style.scss';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
 import axios from 'axios';
+// import styles from '../index.style.scss'
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
@@ -261,10 +262,45 @@ const FileImport = () => {
     <div >
       {/* <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
-      </div> */}
-      <Tablist>
-      </Tablist>
-      <Panellist></Panellist>
+      </div>
+      <Tabs
+        defaultActiveKey="fileimport"
+        id="uncontrolled-tab-example"
+        className="mb-3">
+
+        <Tab eventKey="fileimport" title="File Import">
+          <div className="form-group">
+            <form onSubmit={onSubmitHandler}>
+              <div className="mb-3 row">
+                <label for="inputFileType" className="col-lg-1 col-form-label ">File Type</label>
+
+                <div className="col-sm-5 Dropdown">
+                  <select className="form-select select-style" Name="selectfileType" aria-label="Default select example"
+                    onChange={(e) => selectChangeHandler(selectfileType, e.target.value)} >
+                    <option value=""></option>
+                    {fileType &&
+                      fileType.map((user) => (
+                        <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
+                      ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="mb-3 row">
+                <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
+                <div className="col-sm-4">
+                  <input type="text" readOnly Name="brand" className="filename" id="inputBrand" value="PNG"  />
+                </div>
+              </div>
+              <div className="mb-3 row">
+                <div className="col-lg-1">
+               <label for="fileName" className="col-lg-1 col-form-label">FileName</label>
+                </div>
+                <div className="col-sm-4">
+                  {/* <label for="" className="visually-hidden"></label> */}
+                  <input type="text" Name="fileName" value={fileName}  className="filename"  />
+                </div>
+              </div>
 
     </div>
   );
@@ -319,10 +355,8 @@ export const HandleButtons = () => {
         </div> */}
       </div>
     </div>
-
-
-
-  )
+  );
+  
 };
 
 export default FileImport;
