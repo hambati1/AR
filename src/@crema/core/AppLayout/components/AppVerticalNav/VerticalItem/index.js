@@ -13,98 +13,116 @@ import {useLayoutContext} from '../../../../../utility/AppContextProvider/Layout
 import miniStyle from '../../../MiniSidebar/index.module.scss';
 import miniToggleStyle from '../../../MiniSidebarToggle/index.module.scss';
 import miniHeaderToggleStyle from '../../../UserMiniHeader/index.module.scss';
+// import FileExportData from '../FileExport/index.js';
+// import BatchPaymentsData from '../BatchPayments/index.js';
+// import GLAccountData  from '../GLAccount/index.js';
+// import TaxViewerData from '../TaxViewer/index.js';
+import { HandleButtons }  from '../../../../../../pages/menupages/FileImport';
 
 const VerticalItem = ({level, item}) => {
-  const {user} = useAuthUser();
+  // const {user} = useAuthUser();
   const {pathname} = useLocation();
   const location = useLocation();
 
   const {isSidebarBgImage} = useSidebarContext();
-  const hasPermission = useMemo(
-    () => checkPermission(item.permittedRole, user.role),
-    [item.permittedRole, user.role],
-  );
-  if (!hasPermission) {
-    return null;
-  }
-  const {sidebarColorSet, menuStyle} = useSidebarContext();
-  const {navStyle} = useLayoutContext();
-  const {
-    sidebarBgColor,
-    sidebarTextColor,
-    sidebarMenuSelectedBgColor,
-    sidebarMenuSelectedTextColor,
-  } = sidebarColorSet;
-
+  // const hasPermission = useMemo(
+  //   () => checkPermission(item.permittedRole, user.role),
+  //   [item.permittedRole, user.role],
+  // );
+  // if (!hasPermission) {
+  //   return null;
+  // }
+  // const {sidebarColorSet, menuStyle} = useSidebarContext();
+  // const {navStyle} = useLayoutContext();
+  // const {
+  //   sidebarBgColor,
+  //   sidebarTextColor,
+  //   sidebarMenuSelectedBgColor,
+  //   sidebarMenuSelectedTextColor,
+  // } = sidebarColorSet;
+// const test =()=>{
+//   actions.fileExport
+// }
   console.log(location)
+ 
+ 
 
   return (
-    <NavLink
-      className={clsx(
-        styles.menuVerticalItem,
-        menuStyle === MenuStyle.STANDARD ? styles.standardMenu : '',
-        menuStyle === MenuStyle.ROUNDED ? styles.roundedMenu : '',
-        menuStyle === MenuStyle.ROUNDED_REVERSE
-          ? styles.roundedMenuReverse
-          : '',
-        pathname === item.url ? styles.active : '',
-        navStyle === NavStyle.MINI ? miniStyle.miniMenuVerticalItem : '',
-        navStyle === NavStyle.MINI_SIDEBAR_TOGGLE
-          ? miniToggleStyle.miniMenuVerticalItem
-          : '',
-        navStyle === NavStyle.HEADER_USER_MINI
-          ? miniHeaderToggleStyle.userMiniHeaderMenuVerticalItem
-          : '',
-      )}
-      style={{
-        paddingLeft: 22 + 36 * level,
-        color:
-          pathname === item.url
-            ? sidebarMenuSelectedTextColor
-            : sidebarTextColor,
-        backgroundColor:
-          pathname === item.url ? sidebarMenuSelectedBgColor : isSidebarBgImage ? '' : sidebarBgColor,
-      }}
-      level={level}
-      to={item.url}
-      activeClassName={styles.active}
-      exact={item.exact}>
-      {item.icon && (
-        <span
-          className={clsx(
-            styles.navItemIcon,
-            navStyle === NavStyle.MINI ? miniStyle.navItemIcon : '',
-            navStyle === NavStyle.MINI_SIDEBAR_TOGGLE
-              ? miniToggleStyle.navItemIcon
-              : '',
-            navStyle === NavStyle.HEADER_USER_MINI
-              ? miniHeaderToggleStyle.navItemIcon
-              : '',
-          )}>
-          {item.icon}
-        </span>
-      )}
-      <span
-        className={clsx(
-          styles.navItemContent,
-          navStyle === NavStyle.MINI ? miniStyle.navItemContent : '',
-          navStyle === NavStyle.MINI_SIDEBAR_TOGGLE
-            ? miniToggleStyle.navItemContent
-            : '',
-          navStyle === NavStyle.HEADER_USER_MINI
-            ? miniHeaderToggleStyle.navItemContent
-            : '',
-        )}>
-        <span className={styles.navItemText}>
-          {<IntlMessages id={item.messageId} />}
-        </span>
-        {item.count && (
-          <Badge className={clsx(styles.navBadge, 'me-3')} bg={item.color}>
-            {item.count}{' '}
-          </Badge>
-        )}
-      </span>
-    </NavLink>
+    <>
+     {/* <button >{<IntlMessages id={item.messageId} />}</button> */}
+
+     <HandleButtons />
+  {/* <button >Batch</button>
+  <button >GL</button>
+  <button >Tax</button> */}
+  </>
+
+    // <NavLink onClick={test}
+    //   className={clsx(
+    //     styles.menuVerticalItem,
+    //     menuStyle === MenuStyle.STANDARD ? styles.standardMenu : '',
+    //     menuStyle === MenuStyle.ROUNDED ? styles.roundedMenu : '',
+    //     menuStyle === MenuStyle.ROUNDED_REVERSE
+    //       ? styles.roundedMenuReverse
+    //       : '',
+    //     pathname === item.url ? styles.active : '',
+    //     navStyle === NavStyle.MINI ? miniStyle.miniMenuVerticalItem : '',
+    //     navStyle === NavStyle.MINI_SIDEBAR_TOGGLE
+    //       ? miniToggleStyle.miniMenuVerticalItem
+    //       : '',
+    //     navStyle === NavStyle.HEADER_USER_MINI
+    //       ? miniHeaderToggleStyle.userMiniHeaderMenuVerticalItem
+    //       : '',
+    //   )}
+    //   style={{
+    //     paddingLeft: 22 + 36 * level,
+    //     color:
+    //       pathname === item.url
+    //         ? sidebarMenuSelectedTextColor
+    //         : sidebarTextColor,
+    //     backgroundColor:
+    //       pathname === item.url ? sidebarMenuSelectedBgColor : isSidebarBgImage ? '' : sidebarBgColor,
+    //   }}
+    //   level={level}
+    //   to={item.url}
+    //   activeClassName={styles.active}
+    //   exact={item.exact}>
+    //   {item.icon && (
+    //     <span
+    //       className={clsx(
+    //         styles.navItemIcon,
+    //         navStyle === NavStyle.MINI ? miniStyle.navItemIcon : '',
+    //         navStyle === NavStyle.MINI_SIDEBAR_TOGGLE
+    //           ? miniToggleStyle.navItemIcon
+    //           : '',
+    //         navStyle === NavStyle.HEADER_USER_MINI
+    //           ? miniHeaderToggleStyle.navItemIcon
+    //           : '',
+    //       )}>
+    //       {item.icon}
+    //     </span>
+    //   )}
+    //   <span
+    //     className={clsx(
+    //       styles.navItemContent,
+    //       navStyle === NavStyle.MINI ? miniStyle.navItemContent : '',
+    //       navStyle === NavStyle.MINI_SIDEBAR_TOGGLE
+    //         ? miniToggleStyle.navItemContent
+    //         : '',
+    //       navStyle === NavStyle.HEADER_USER_MINI
+    //         ? miniHeaderToggleStyle.navItemContent
+    //         : '',
+    //     )}>
+    //     <span className={styles.navItemText}>
+    //       {<IntlMessages id={item.messageId} />}
+    //     </span>
+    //     {item.count && (
+    //       <Badge className={clsx(styles.navBadge, 'me-3')} bg={item.color}>
+    //         {item.count}{' '}
+    //       </Badge>
+    //     )}
+    //   </span>
+    // </NavLink>
   );
 };
 

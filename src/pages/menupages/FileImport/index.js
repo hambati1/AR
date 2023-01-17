@@ -24,6 +24,7 @@ import FileExportData from '../FileExport/index.js';
 import BatchPaymentsData from '../BatchPayments/index.js';
 import GLAccountData from '../GLAccount/index.js';
 import TaxViewerData from '../TaxViewer/index.js';
+
 import { AiFillAccountBook, AiFillDollarCircle, AiOutlineExport, AiOutlineFolderView } from "react-icons/ai";
 // const actions = [
 //   { id: 1, text: "File Name" },
@@ -159,8 +160,8 @@ const FileImport = () => {
     },
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const handleTrigger = () => setIsOpen(!isOpen);
+  // const [isOpen, setIsOpen] = useState(false);
+  // const handleTrigger = () => setIsOpen(!isOpen);
 
   function Panel1() {
     return <p>
@@ -260,56 +261,18 @@ const FileImport = () => {
   }
   return (
     <div >
-      {/* <div className='col-md-9 main-header'>
-        <p>Accounts Receivable</p>
-      </div>
-      <Tabs
-        defaultActiveKey="fileimport"
-        id="uncontrolled-tab-example"
-        className="mb-3">
-
-        <Tab eventKey="fileimport" title="File Import">
-          <div className="form-group">
-            <form onSubmit={onSubmitHandler}>
-              <div className="mb-3 row">
-                <label for="inputFileType" className="col-lg-1 col-form-label ">File Type</label>
-
-                <div className="col-sm-5 Dropdown">
-                  <select className="form-select select-style" Name="selectfileType" aria-label="Default select example"
-                    onChange={(e) => selectChangeHandler(selectfileType, e.target.value)} >
-                    <option value=""></option>
-                    {fileType &&
-                      fileType.map((user) => (
-                        <option value={user.fileTypeId}>{user.fileTypeDesc}</option>
-                      ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="mb-3 row">
-                <label for="inputBrand" className="col-lg-1 col-form-label">Brand</label>
-                <div className="col-sm-4">
-                  <input type="text" readOnly Name="brand" className="filename" id="inputBrand" value="PNG"  />
-                </div>
-              </div>
-              <div className="mb-3 row">
-                <div className="col-lg-1">
-               <label for="fileName" className="col-lg-1 col-form-label">FileName</label>
-                </div>
-                <div className="col-sm-4">
-                  {/* <label for="" className="visually-hidden"></label> */}
-                  <input type="text" Name="fileName" value={fileName}  className="filename"  />
-                </div>
-              </div>
-
+     
+          <Tablist></Tablist>
+          <Panellist></Panellist>
+       
     </div>
+
+
   );
 };
 
 export const HandleButtons = () => {
-
   const [isOpen, setIsOpen] = useState(true);
-
   const handleTrigger = () => setIsOpen(!isOpen);
 
   return (
@@ -318,7 +281,7 @@ export const HandleButtons = () => {
 
         <div className="sidebar-position">
           <AiOutlineExport icon={AiOutlineExport} />
-          <span onClick={actions.fileExport}>FileExport</span>
+          <span onClick={actions.fileExport}>File Export</span>
         </div>
 
         <div className="sidebar-position">
@@ -356,7 +319,7 @@ export const HandleButtons = () => {
       </div>
     </div>
   );
-  
+
 };
 
 export default FileImport;

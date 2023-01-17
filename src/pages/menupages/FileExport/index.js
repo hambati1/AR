@@ -37,7 +37,7 @@ const FileExport = () => {
 
    useEffect(() => {
       getFileTypeDataVal()
-     // getSearchData()
+     getSearchData()
      }, []);
 
 async function getSearchData() {
@@ -70,8 +70,8 @@ async function getFileTypeDataVal() {
     <div >
       <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
-      </div>
-      <Tabs
+      </div> 
+       <Tabs
               defaultActiveKey="fileexport"
               id="uncontrolled-tab-example"
               className="mb-3">
@@ -135,7 +135,7 @@ async function getFileTypeDataVal() {
             <Paging defaultPageSize={5} />
           </DataGrid>
         </Tab>
-      </Tabs>
+      </Tabs> 
     </div>
   );
 };

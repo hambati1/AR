@@ -25,6 +25,8 @@ import {
 } from '../../menupages/APICalls.js';
 import DataSource from 'devextreme/data/data_source';
 import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
+const allowedPageSizes = [10, 20, 50];
+
 
 const actions = [
   {id: 1, text: 'Account Number'},
@@ -292,7 +294,18 @@ class GLAccount extends React.Component {
                     showPageSizeSelector={true}
                     showNavigationButtons={true}
                   />
-                  <Paging defaultPageSize={5} />
+                   <ColumnChooser enabled={true} mode='select' />
+                                <SearchPanel
+                                  className='float-start'
+                                  visible={true}
+                                  width={240}
+                                  placeholder="Search..."
+                                />
+                   <Pager
+                    showPageSizeSelector={true}
+                    allowedPageSizes={allowedPageSizes}
+                    showNavigationButtons={true}
+                />
                 </DataGrid>
               </div>
               <div className='ml-60'>
@@ -305,7 +318,7 @@ class GLAccount extends React.Component {
                   />
                   <label className='list'> Is Active</label>
                 </div>
-                <form calssName=' input-selected record'>
+                <form calssName='input-selected record'>
                   <div className='mb-2 row'>
                     <label
                       for='input account number'

@@ -94,11 +94,11 @@ const getBatchDetailsByBatchId = (batchId) => {
 
   return (
     <div>
-      <div className='col-md-9 main-header'>
+      {/* <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
       </div>
       <Tabs>
-        <Tab eventKey='batchPayment' title='Batch Payment' className='tab'>
+        <Tab eventKey='batchPayment' title='Batch Payment' className='tab'> */}
           <div className='form-group'>
             <div class='form-check mx-2'>
               <input
@@ -303,8 +303,8 @@ const getBatchDetailsByBatchId = (batchId) => {
                 </div>
 
           </div>
-        </Tab>
-      </Tabs>
+        {/* </Tab>
+      </Tabs> */}
     </div>
   );
 };

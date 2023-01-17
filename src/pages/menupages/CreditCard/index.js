@@ -91,9 +91,9 @@ const CreditCard = () => {
   }
   return (
     <div>
-      <div className='col-md-9 main-header'>
+      {/* <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
-      </div>
+      </div> */}
 
       <Tabs
         defaultActiveKey="profile"
