@@ -5,6 +5,7 @@ import {Dropdown, DropdownButton} from 'react-bootstrap';
 import '../../menupages/index.style.scss';
 import Payments from 'pages/SearchWorklist/Payments';
 import Adjustments from 'pages/SearchWorklist/Adjustments';
+import FileImport from '../FileImport';
 
 const Search = () => {
   const [active, setactive] = useState('');
@@ -422,5 +423,7 @@ const Search = () => {
     </div>
   );
 };
+
+
 
 export default Search;

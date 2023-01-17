@@ -74,6 +74,30 @@ const routesConfig = [
         url: '/menu-pages/File-Import',
       },
       {
+        id: 'batch',
+        title: 'Batch',
+        messageId: 'sidebar.app.dashboard.batch',
+        type: 'item',
+        icon: <AiFillDollarCircle />,
+        url: '/menu-pages/File-Import',
+      },
+      {
+        id: 'gl',
+        title: 'GL',
+        messageId: 'sidebar.app.dashboard.gl',
+        type: 'item',
+        icon: <AiFillAccountBook />,
+        url: '/menu-pages/File-Import',
+      },
+      {
+        id: 'tax',
+        title: 'Tax',
+        messageId: 'sidebar.app.dashboard.tax',
+        type: 'item',
+        icon: <AiOutlineFolderView />,
+        url: '/menu-pages/File-Import',
+      },
+      {
         id: 'crm',
         title: 'File Export',
         messageId: 'sidebar.app.dashboard.fileExport',
@@ -113,7 +137,7 @@ const routesConfig = [
         icon: <AiOutlineTransaction />,
         url: '/menu-pages/Credit-Card-Transaction-Worklist',
       },
-     
+   
     ],
   },
 

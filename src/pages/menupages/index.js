@@ -42,4 +42,5 @@ export const menuPagesConfigs = [
     path: '/menu-pages/Search',
     component: React.lazy(() => import('./Search/index')),
   },
+
 ];

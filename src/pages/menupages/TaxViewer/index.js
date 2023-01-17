@@ -85,13 +85,13 @@ const TaxViewer = () => {
 
   return (
     <div>
-      <div className='col-md-9 main-header'>
+      {/* <div className='col-md-9 main-header'>
         <p>Accounts Receivable</p>
-      </div>
-      <Button
+      </div> */}
+      {/* <Button
         href='#/action-1'
         className='btn-close float-end'
-        onHide={handleClose}></Button>
+        onHide={handleClose}></Button> */}
       <Tabs
         defaultActiveKey='batchPayment'
         id='uncontrolled-tab-example'
