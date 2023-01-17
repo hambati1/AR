@@ -24,16 +24,7 @@ import FileExportData from '../FileExport/index.js';
 import BatchPaymentsData from '../BatchPayments/index.js';
 import GLAccountData from '../GLAccount/index.js';
 import TaxViewerData from '../TaxViewer/index.js';
-
 import { AiFillAccountBook, AiFillDollarCircle, AiOutlineExport, AiOutlineFolderView } from "react-icons/ai";
-// const actions = [
-//   { id: 1, text: "File Name" },
-//   { id: 2, text: "Type" },
-//   { id: 3, text: "Records Imported" },
-//   { id: 4, text: "Records in Error" },
-//   { id: 5, text: "Amount Imported" },
-
-// ];
 const dropDownOptions = {
   height: 150,
   width: 130
@@ -159,10 +150,6 @@ const FileImport = () => {
       console.log('[onDestroy]');
     },
   };
-
-  // const [isOpen, setIsOpen] = useState(false);
-  // const handleTrigger = () => setIsOpen(!isOpen);
-
   function Panel1() {
     return <p>
       <div className="form-group">
@@ -248,9 +235,6 @@ const FileImport = () => {
     console.log('Statement 2' + data);
     setFileTypes(data.response);
   }
-
-
-
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.target;
     event.preventDefault();
@@ -260,62 +244,47 @@ const FileImport = () => {
     onSubmitImportHandler(ab);
   }
   return (
-    <div >
-     
+    <div>     
           <Tablist></Tablist>
-          <Panellist></Panellist>
-       
+          <Panellist></Panellist>       
     </div>
-
-
   );
 };
-
 export const HandleButtons = () => {
   const [isOpen, setIsOpen] = useState(true);
   const handleTrigger = () => setIsOpen(!isOpen);
 
   return (
-    <div className="col-6 ">
+    <div className="col-6">
       <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
 
         <div className="sidebar-position">
-          <AiOutlineExport icon={AiOutlineExport} />
+        <img src="\assets\images\export-16.png" className="icons" onClick={actions.fileExport}/>         
+
+          {/* <AiOutlineExport icon={AiOutlineExport} /> */}
           <span onClick={actions.fileExport}>File Export</span>
         </div>
 
         <div className="sidebar-position">
-          {/* <img id="BatchImage" src={<AiFillDollarCircle icon={AiFillDollarCircle} } onClick={actions.batch} /> */}
-          <AiFillDollarCircle icon={AiFillDollarCircle} />
+        <img src="\assets\images\dollar-coin-16.png"   onClick={actions.batch}/>         
+
+          {/* <AiFillDollarCircle icon={AiFillDollarCircle} /> */}
 
           <span className="btn-side" onClick={actions.batch}>Batch</span>
         </div>
 
         <div className="sidebar-position">
-          <AiFillAccountBook icon={AiFillAccountBook} />
+        <img src="\assets\images\AiFillAccountBook.png" className="icons"  onClick={actions.gl}/>         
+
+          {/* <AiFillAccountBook icon={AiFillAccountBook} /> */}
           <span onClick={actions.gl}>GL</span>
         </div>
 
         <div className="sidebar-position">
-          <AiOutlineFolderView icon={AiOutlineFolderView} />
+        <img src="\assets\images\icons-T.png"   onClick={actions.tax}/>  
+          {/* <AiOutlineFolderView icon={AiOutlineFolderView} /> */}
           <span onClick={actions.tax}>Tax</span>
         </div>
-
-        {/* <AiOutlineExport />
-        <button className="btn-side"  onClick={actions.fileExport}>FileExport </button> 
-        <AiFillDollarCircle />
-        <button className="btn-side my-2" onClick={actions.batch}>Batch</button>
-        <AiFillAccountBook />
-        <button className="btn-side my-2" onClick={actions.gl}>GL</button>
-        <AiOutlineFolderView />
-        <button className="btn-side my-2" onClick={actions.tax}>Tax</button> */}
-
-        {/* <div >
-          <button onClick={actions.fileExport}>FileExport</button>
-          <button onClick={actions.batch}>Batch</button>
-          <button onClick={actions.gl}>GL</button>
-          <button onClick={actions.tax}>Tax</button>
-        </div> */}
       </div>
     </div>
   );
