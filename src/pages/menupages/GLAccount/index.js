@@ -44,7 +44,7 @@ class GLAccount extends React.Component {
   show = false;
   constructor(props) {
     super(props);
-    this.active = false;
+    this.active = false ;
     this.accountNumber;
     this.description;
     this.comments;
@@ -87,6 +87,8 @@ class GLAccount extends React.Component {
   };
   handleShow = () => {
     this.show = true;
+    this.setState({show:true});
+    console.log('show',this.show);
   };
   handleClose = (event: React.FormEvent<HTMLFormElement>) => {
     this.show = false;
