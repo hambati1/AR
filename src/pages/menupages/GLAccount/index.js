@@ -2,44 +2,16 @@ import React, {useEffect, useState, useRef} from 'react';
 import '../../menupages/index.style.scss';
 import axios from 'axios';
 import {Button} from 'react-bootstrap';
-import DataGrid, {
-  Column,
-  Pager,
-  Paging,
-  SearchPanel,
-  Sorting,
-  ColumnChooser,
-  FilterRow,
-  Toolbar,
-  Editing,
-} from 'devextreme-react/data-grid';
+import DataGrid, {Column,  Pager,  Paging,  SearchPanel,  Sorting,  ColumnChooser,  FilterRow,  Toolbar,  Editing} from 'devextreme-react/data-grid';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
-import {
-  getGLAccountData,
-  accountUpdate,
-  saveGLAccount,
-} from '../../menupages/APICalls.js';
+import {  getGLAccountData,  accountUpdate,  saveGLAccount} from '../../menupages/APICalls.js';
 import DataSource from 'devextreme/data/data_source';
 import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 const allowedPageSizes = [10, 20, 50];
-
-
-const actions = [
-  {id: 1, text: 'Account Number'},
-  {id: 2, text: 'Description'},
-  {id: 3, text: 'Updated By'},
-  {id: 4, text: 'Update Date'},
-  {id: 5, text: 'Comments'},
-];
-
-const dropDownOptions = {
-  height: 150,
-  width: 130,
-};
 
 const gldata = [
   {
@@ -72,7 +44,7 @@ class GLAccount extends React.Component {
   show = false;
   constructor(props) {
     super(props);
-    this.active = true;
+    this.active = false;
     this.accountNumber;
     this.description;
     this.comments;
@@ -83,6 +55,7 @@ class GLAccount extends React.Component {
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.state = {connectionStarted: false, dataSource: null};
+     this.activeChange();
   }
 
   handleEvent: GridEventListener<'rowClick'> = (
@@ -101,8 +74,8 @@ class GLAccount extends React.Component {
   };
 
   activeChange = () => {
-    console.log(this.active);
     this.active = !this.active;
+    console.log(this.active);
     let json = {
       isActive: this.active,
       page: 1,

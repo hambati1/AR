@@ -1,7 +1,5 @@
 import React, { useState ,useEffect } from 'react';
-import DataGrid, {
-  Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing,MasterDetail
-} from 'devextreme-react/data-grid';
+import DataGrid, {  Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing,MasterDetail} from 'devextreme-react/data-grid';
 import '../index.style.scss';
 import axios from 'axios';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
@@ -14,7 +12,6 @@ import { onPaymentList } from '../../../redux/actions/paymentList';
 import Button from 'devextreme-react/button';
 import {getExportFileTypeData,getExportSearchData,getExportFileNames,onSubmitExportHandler} from '../../menupages/APICalls.js'
 import DetailTemplate from './DetailTemplate.js';
-
 
 const FileExport = () => {
   const [searchType, setSearchTypes] = useState();
@@ -33,7 +30,6 @@ const FileExport = () => {
     console.log(data);
     setselectfileType(data);
   };
-
 
    useEffect(() => {
       getFileTypeDataVal()

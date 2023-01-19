@@ -314,3 +314,21 @@ export const getTranscationTypeData=(functionId) => {
         return response;
       };
 /* end  CC Card api*/
+
+/* Search Tab */
+export const onSearchPayment = (json) => {
+    const url = PATH + '/ar/searchpayments';
+    let session=localStorage.getItem('token');
+    const config = {
+      headers: {
+        'content-type': 'application/json',
+        Session: session
+      },
+    };
+    axios.post(url, json, config).then((response) => {
+      console.log(response.data);
+      return response.data;
+    });
+  }
+
+/* End Search Tab */

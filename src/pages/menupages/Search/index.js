@@ -5,15 +5,37 @@ import {Dropdown, DropdownButton} from 'react-bootstrap';
 import '../../menupages/index.style.scss';
 import Payments from 'pages/SearchWorklist/Payments';
 import Adjustments from 'pages/SearchWorklist/Adjustments';
-import FileImport from '../FileImport';
+import {onSearchPayment} from '../../menupages/APICalls.js'
 
 const Search = () => {
   const [active, setactive] = useState('');
   console.log(active);
+
+  const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+      const form = event.target;
+      event.preventDefault();
+      console.log("dd",form[1])
+      const formData = new FormData();
+      formData.append('custId', form[1].value);
+      formData.append('custName',  form[2].value);
+      formData.append('paymentTypeId',  form[3].value);
+      formData.append('fromAmt',  form[4].value);
+      formData.append('toAmt',  form[5].value);
+      formData.append('checkNum',  form[6].value);
+      formData.append('batchId',  form[7].value);
+      formData.append('paymentFromDate',  form[8].value);
+      formData.append('paymentToDate',  form[9].value);
+      formData.append('postedFromDate',  form[10].value);
+      formData.append('statuses',  form[11].value);
+      const json = Object.fromEntries(formData);
+      console.log(json);
+      onSearchPayment(json);
+    }
+
   return (
     <div>
-
           <div className='form-group'>
+          <form onSubmit={onSubmitHandler}>
             <div className='mb-2 row'>
               <label for='inputFileType' className='col-lg-1 col-form-label'>
                 Search Type
@@ -409,6 +431,7 @@ const Search = () => {
                 </div>
               ) : null}
             </div>
+            </form>
           </div>
     </div>
   );
