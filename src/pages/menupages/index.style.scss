@@ -786,7 +786,7 @@
   
 
   .rc-dyn-tabs-tablist.rc-dyn-tabs-ltr>.rc-dyn-tabs-tab>.rc-dyn-tabs-close {
-    margin-right: -532% !important; 
+    margin-right: -5% !important;
 font-size: 30px;    
 position: absolute;
 color: rgb(97, 94, 94);
@@ -811,7 +811,16 @@ border-bottom: 1px solid #dee2e6;
             margin-left: 10px;
         }
   
+.left{
+    width:140px;
+    float:left;
+    height:100%;
+    margin-top:10px;
+}
 
+.right{
+    margin-left:140px;
+}
 
 //Side-Bar CSS End//
 

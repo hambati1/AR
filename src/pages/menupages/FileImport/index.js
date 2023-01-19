@@ -31,18 +31,50 @@ const dropDownOptions = {
 };
 let FileImportData = [];
 let _instance, isVertical;
+let tab=1;
 
 const actions = {
+  fileImport: () => {
+     _instance
+       .open({
+         title: 'File Import',
+         id: '1',
+         lazy: true,
+           tooltip: 'File Import',
+               disable: false,
+               closable: true,
+         panelComponent: function PanelComponent() {
+           return <p><FileImportData /> </p>;
+         },
+       })
+       .then(() => {
+       if (_instance.isOpen('1')) {
+                _instance.select('1').then(() => {
+                  console.log('(tab 1 is selected)');
+                });
+              }
+         console.log('(new tab is open)');
+       });
+   },
   fileExport: () => {
     _instance
       .open({
         title: 'File Export',
+        id: '2',
         lazy: true,
+          tooltip: 'File Export',
+              disable: false,
+              closable: true,
         panelComponent: function PanelComponent() {
           return <p><FileExportData /> </p>;
         },
       })
       .then(() => {
+      if (_instance.isOpen('2')) {
+               _instance.select('2').then(() => {
+                 console.log('(tab 2 is selected)');
+               });
+             }
         console.log('(new tab is open)');
       });
   },
@@ -50,12 +82,18 @@ const actions = {
     _instance
       .open({
         title: 'Batch Payments',
+        id: '3',
         lazy: true,
         panelComponent: function PanelComponent() {
           return <p><BatchPaymentsData /> </p>;
         },
       })
       .then(() => {
+      if (_instance.isOpen('3')) {
+                     _instance.select('3').then(() => {
+                       console.log('(tab 3 is selected)');
+                     });
+                   }
         console.log('(new tab is open)');
       });
   },
@@ -63,12 +101,18 @@ const actions = {
     _instance
       .open({
         title: 'GL Account',
+        id: '4',
         lazy: true,
         panelComponent: function PanelComponent() {
           return <p><GLAccountData /> </p>;
         },
       })
       .then(() => {
+      if (_instance.isOpen('4')) {
+                     _instance.select('4').then(() => {
+                       console.log('(tab 4 is selected)');
+                     });
+                   }
         console.log('(new tab is open)');
       });
   },
@@ -76,12 +120,18 @@ const actions = {
     _instance
       .open({
         title: 'Tax Viewer',
+        id: '5',
         lazy: true,
         panelComponent: function PanelComponent() {
           return <p><TaxViewerData /> </p>;
         },
       })
       .then(() => {
+      if (_instance.isOpen('5')) {
+                     _instance.select('5').then(() => {
+                       console.log('(tab 3 is selected)');
+                     });
+                   }
         console.log('(new tab is open)');
       });
   }
@@ -111,11 +161,12 @@ const FileImport = () => {
     getFileTypeDataVal();
   }, []);
 
+
   const options = {
     tabs: [
-      { id: '1', title: 'File Import', panelComponent: Panel1, iconClass: 'fa fa-home', closable: false }
+      { id: '1', title: 'File Import', panelComponent: Panel1, iconClass: 'fa fa-home', closable: false}
     ],
-    selectedTabID: '1',
+    selectedTabID: tab,
     onLoad: function () {
       console.log('[onLoad]');
     },
@@ -227,8 +278,11 @@ const FileImport = () => {
   const [Tablist, Panellist, ready] = useDynTabs(options);
   ready((instance) => {
     _instance = instance;
+     console.log(instance);
     isVertical = _instance.getOption('isVertical');
+    console.log("s");
   });
+
 
   async function getFileTypeDataVal() {
     var data = await getImportFileTypeData(6);
@@ -258,31 +312,28 @@ export const HandleButtons = () => {
     <div className="col-6">
       <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
 
+    <div className="sidebar-position">
+        <img src="\assets\images\export-16.png" className="icons" onClick={actions.fileImport}/>
+      <span onClick={actions.fileImport}>File Import</span>
+        </div>
+
         <div className="sidebar-position">
         <img src="\assets\images\export-16.png" className="icons" onClick={actions.fileExport}/>         
-
-          {/* <AiOutlineExport icon={AiOutlineExport} /> */}
           <span onClick={actions.fileExport}>File Export</span>
         </div>
 
         <div className="sidebar-position">
         <img src="\assets\images\dollar-coin-16.png"   onClick={actions.batch}/>         
-
-          {/* <AiFillDollarCircle icon={AiFillDollarCircle} /> */}
-
           <span className="btn-side" onClick={actions.batch}>Batch</span>
         </div>
 
         <div className="sidebar-position">
-        <img src="\assets\images\AiFillAccountBook.png" className="icons"  onClick={actions.gl}/>         
-
-          {/* <AiFillAccountBook icon={AiFillAccountBook} /> */}
+        <img src="\assets\images\dollar-coin-16.png" className="icons"  onClick={actions.gl}/>
           <span onClick={actions.gl}>GL</span>
         </div>
 
         <div className="sidebar-position">
         <img src="\assets\images\icons-T.png"   onClick={actions.tax}/>  
-          {/* <AiOutlineFolderView icon={AiOutlineFolderView} /> */}
           <span onClick={actions.tax}>Tax</span>
         </div>
       </div>

@@ -165,7 +165,7 @@ class GLAccount extends React.Component {
   render() {
     return (
       <div>
-        <div className='col-md-9 main-header'>
+        {/* <div className='col-md-9 main-header'>
           <p>Accounts Receivable</p>
         </div>
         <Tabs
@@ -175,18 +175,21 @@ class GLAccount extends React.Component {
           <Tab
             eventKey='glaccountmaintenance'
             title='GL Account Maintenance'
-            className='tab'>
+            className='tab'> */}
             <div className='form-group'>
-              <div className='form-check mx-2'>
+            <div>
+              <div className='left'>
                 <input
                   type='checkbox'
                   className='form-check-input'
                   name='active'
                   value='Active Only'
+                  checked="true"
                   onChange={this.activeChange}
                 />
                 <label class='list'>Active Only</label>
               </div>
+              <div className='right'>
               <Dropdown>
                 <DropdownToggle  id='dropdown-basic' className='btn-darkGray'>
                   Actions
@@ -197,6 +200,9 @@ class GLAccount extends React.Component {
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
+              </div>
+              </div>
+
               <Modal
                 className=''
                 show={this.show}
@@ -374,8 +380,8 @@ class GLAccount extends React.Component {
                 </form>
               </div>
             </div>
-          </Tab>
-        </Tabs>
+          {/* </Tab>
+        </Tabs> */}
       </div>
     );
   }

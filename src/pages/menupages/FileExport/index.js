@@ -68,15 +68,7 @@ async function getFileTypeDataVal() {
 
   return (
     <div >
-      <div className='col-md-9 main-header'>
-        <p>Accounts Receivable</p>
-      </div> 
-       <Tabs
-              defaultActiveKey="fileexport"
-              id="uncontrolled-tab-example"
-              className="mb-3">
 
-        <Tab eventKey="fileexport" title="File Export">
           <div>
           <form onSubmit={onSubmitHandler}>
               <div className="mb-3 row">
@@ -134,8 +126,7 @@ async function getFileTypeDataVal() {
             <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
             <Paging defaultPageSize={5} />
           </DataGrid>
-        </Tab>
-      </Tabs> 
+
     </div>
   );
 };

@@ -101,36 +101,41 @@ const getBatchDetailsByBatchId = (batchId) => {
         <Tab eventKey='batchPayment' title='Batch Payment' className='tab'> */}
           <div className='form-group'>
             <div class='form-check mx-2'>
+            <div className="left">
               <input
                 type='checkbox'
                 class='form-check-input'
                 name='active'
                 value=''
+                checked="true"
                 id='flexCheckDefault'
                 onChange={activeChange}
               />
 
               <label class='list'>Active Only</label>
+              </div>
+              <div className="right">
+                <Dropdown>
+                              <Dropdown.Toggle variant='primary' id='dropdown-basic' className='mb-10'>
+                                Actions
+                              </Dropdown.Toggle>
+                              <Dropdown.Menu>
+                                <Dropdown.Item href='#/action-1' onClick={handleShow}>
+                                  Add payment Batch
+                                </Dropdown.Item>
+                                <Dropdown.Item href='#/action-2' onClick={handleShow2}>
+                                  Add Agency Payment Batch
+                                </Dropdown.Item>
+
+                                {/* ------------------------
+                    <Dropdown.Item href="#/action-1" onClick={handleShow}>Close</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2" onClick={handleShow2}>Close</Dropdown.Item> */}
+                              </Dropdown.Menu>
+                            </Dropdown>
+              </div>
             </div>
 
-            <Dropdown>
-              <Dropdown.Toggle variant='primary' id='dropdown-basic' className='mb-10'>
-                Actions
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item href='#/action-1' onClick={handleShow}>
-                  Add payment Batch
-                </Dropdown.Item>
-                <Dropdown.Item href='#/action-2' onClick={handleShow2}>
-                  Add Agency Payment Batch
-                </Dropdown.Item>
 
-                {/* ------------------------
-    <Dropdown.Item href="#/action-1" onClick={handleShow}>Close</Dropdown.Item>
-    <Dropdown.Item href="#/action-2" onClick={handleShow2}>Close</Dropdown.Item> */}
-              </Dropdown.Menu>
-            </Dropdown>
-            {/* **************Action 1 PoP UP Starts************** */}
             <Modal
               className=''
               show={show}
