@@ -5,17 +5,7 @@ import '../../index.style.scss';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
 import Modal from 'react-bootstrap/Modal';
-import DataGrid, {
-  Column,
-  Pager,
-  Paging,
-  SearchPanel,
-  Sorting,
-  ColumnChooser,
-  FilterRow,
-  Toolbar,
-  Editing,
-} from 'devextreme-react/data-grid';
+import DataGrid, {Column,Pager,Paging,SearchPanel,Sorting,ColumnChooser,FilterRow,Toolbar,Editing} from 'devextreme-react/data-grid';
 import DropDownButton from 'devextreme-react/drop-down-button';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import {Search} from 'react-bootstrap-icons';
@@ -41,15 +31,21 @@ const Table1 = () => {
   const handleShow2 = () => setShow2(true);
 
   const activeChange = () => {
+  console.log('activeChange',!active);
     setbatchId('');
     setbatchName('');
     setactive(!active);
-    getSearchDataDetails();
+    getSearchDataDetails(!active);
   };
 
+  useEffect(() => {
+   console.log("search active");
+   getSearchDataDetails(active);
+  }, []);
 
-  const getSearchDataDetails = () => {
-    let data = getSearchData(active);
+  const getSearchDataDetails = (val) => {
+  console.log('val==',val);
+    let data = getSearchData(val);
     if (data.length > 0) {
       batchData = data;
       console.log(batchData);
@@ -94,12 +90,7 @@ const getBatchDetailsByBatchId = (batchId) => {
 
   return (
     <div>
-      {/* <div className='col-md-9 main-header'>
-        <p>Accounts Receivable</p>
-      </div>
-      <Tabs>
-        <Tab eventKey='batchPayment' title='Batch Payment' className='tab'> */}
-          <div className='form-group'>
+      <div className='form-group'>
             <div class='form-check mx-2'>
             <div className="left">
               <input
@@ -107,8 +98,8 @@ const getBatchDetailsByBatchId = (batchId) => {
                 class='form-check-input'
                 name='active'
                 value=''
-                checked="true"
                 id='flexCheckDefault'
+                checked={active}
                 onChange={activeChange}
               />
 
@@ -126,15 +117,10 @@ const getBatchDetailsByBatchId = (batchId) => {
                                 <Dropdown.Item href='#/action-2' onClick={handleShow2}>
                                   Add Agency Payment Batch
                                 </Dropdown.Item>
-
-                                {/* ------------------------
-                    <Dropdown.Item href="#/action-1" onClick={handleShow}>Close</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2" onClick={handleShow2}>Close</Dropdown.Item> */}
                               </Dropdown.Menu>
                             </Dropdown>
               </div>
             </div>
-
 
             <Modal
               className=''
@@ -186,9 +172,6 @@ const getBatchDetailsByBatchId = (batchId) => {
                 </div>
               </Modal.Body>
             </Modal>
-            {/* ********************Action 1 POP UP end****************** */}
-
-            {/* ************************Action 2 POP UP starts**************** */}
             <Modal
               className=''
               show={show2}
@@ -235,13 +218,8 @@ const getBatchDetailsByBatchId = (batchId) => {
                   </Table>
                 </div>
               </Modal.Body>
-              {/* <Modal.Footer>
-    
-  </Modal.Footer> */}
             </Modal>
-            {/* ******************Action 2 POP UP Ends***************** */}
-
-            <div id='data-grid-demo'>
+           <div id='data-grid-demo'>
               <DataGrid
                 onRowClick={handleEvent}
                 dataSource={batchData}
@@ -306,10 +284,7 @@ const getBatchDetailsByBatchId = (batchId) => {
                     <Paging defaultPageSize={5} />
                   </DataGrid>
                 </div>
-
           </div>
-        {/* </Tab>
-      </Tabs> */}
     </div>
   );
 };

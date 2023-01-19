@@ -165,17 +165,6 @@ class GLAccount extends React.Component {
   render() {
     return (
       <div>
-        {/* <div className='col-md-9 main-header'>
-          <p>Accounts Receivable</p>
-        </div>
-        <Tabs
-          defaultActiveKey="glaccountmaintenance"
-         id="uncontrolled-tab-example"
-         className="mb-3">
-          <Tab
-            eventKey='glaccountmaintenance'
-            title='GL Account Maintenance'
-            className='tab'> */}
             <div className='form-group'>
             <div>
               <div className='left'>
@@ -184,7 +173,7 @@ class GLAccount extends React.Component {
                   className='form-check-input'
                   name='active'
                   value='Active Only'
-                  checked="true"
+                  checked={this.active}
                   onChange={this.activeChange}
                 />
                 <label class='list'>Active Only</label>
@@ -262,9 +251,6 @@ class GLAccount extends React.Component {
                     </div>
                   </form>
                 </Modal.Body>
-                {/* <Modal.Footer>
-                
-              </Modal.Footer> */}
               </Modal>
 
               <div>

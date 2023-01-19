@@ -5,7 +5,6 @@ import '../index.style.scss';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
 import axios from 'axios';
-// import styles from '../index.style.scss'
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
@@ -20,29 +19,49 @@ import { getFileTypeData, getimportSearchData, getImportFileTypeData, getImportF
 import 'react-dyn-tabs/style/react-dyn-tabs.min.css';
 import 'react-dyn-tabs/themes/react-dyn-tabs-basic.min.css';
 import useDynTabs from 'react-dyn-tabs';
+import SearchData from '../Search/index.js';
 import FileExportData from '../FileExport/index.js';
 import BatchPaymentsData from '../BatchPayments/index.js';
 import GLAccountData from '../GLAccount/index.js';
 import TaxViewerData from '../TaxViewer/index.js';
 import { AiFillAccountBook, AiFillDollarCircle, AiOutlineExport, AiOutlineFolderView } from "react-icons/ai";
-const dropDownOptions = {
-  height: 150,
-  width: 130
-};
+
 let FileImportData = [];
 let _instance, isVertical;
 let tab=1;
 
 const actions = {
+search: () => {
+     _instance
+       .open({
+         title: 'Search',
+         id: '0',
+         lazy: true,
+           tooltip: 'Search',
+               disable: false,
+               closable: true,
+         panelComponent: function PanelComponent() {
+           return <p><SearchData /> </p>;
+         },
+       })
+       .then(() => {
+       if (_instance.isOpen('0')) {
+                _instance.select('0').then(() => {
+                  console.log('(tab 0 is selected)');
+                });
+              }
+         console.log('(new tab is open)');
+       });
+   },
   fileImport: () => {
      _instance
        .open({
          title: 'File Import',
          id: '1',
          lazy: true,
-           tooltip: 'File Import',
-               disable: false,
-               closable: true,
+         tooltip: 'File Import',
+         disable: false,
+         closable: true,
          panelComponent: function PanelComponent() {
            return <p><FileImportData /> </p>;
          },
@@ -161,9 +180,9 @@ const FileImport = () => {
     getFileTypeDataVal();
   }, []);
 
-
   const options = {
     tabs: [
+    { id: '0', title: 'Search', panelComponent: Panel0, iconClass: 'fa fa-home', closable: false},
       { id: '1', title: 'File Import', panelComponent: Panel1, iconClass: 'fa fa-home', closable: false}
     ],
     selectedTabID: tab,
@@ -201,6 +220,10 @@ const FileImport = () => {
       console.log('[onDestroy]');
     },
   };
+
+    function Panel0() {
+   return <p><SearchData /> </p>;
+  }
   function Panel1() {
     return <p>
       <div className="form-group">
@@ -311,6 +334,11 @@ export const HandleButtons = () => {
   return (
     <div className="col-6">
       <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
+
+ <div className="sidebar-position">
+        <img src="\assets\images\export-16.png" className="icons" onClick={actions.search}/>
+      <span onClick={actions.search}>Search</span>
+        </div>
 
     <div className="sidebar-position">
         <img src="\assets\images\export-16.png" className="icons" onClick={actions.fileImport}/>
