@@ -24,7 +24,11 @@ import FileExportData from '../FileExport/index.js';
 import BatchPaymentsData from '../BatchPayments/index.js';
 import GLAccountData from '../GLAccount/index.js';
 import TaxViewerData from '../TaxViewer/index.js';
+import CreditCardData from "../CreditCard/index.js";
 import { AiFillAccountBook, AiFillDollarCircle, AiOutlineExport, AiOutlineFolderView } from "react-icons/ai";
+import { DiAptana } from "react-icons/di";
+import { BsBarChartLine, BsFonts, BsGear, BsGrid3X3Gap, BsStar } from "react-icons/bs";
+import { IoFlameOutline } from "react-icons/io5";
 
 let FileImportData = [];
 let _instance, isVertical;
@@ -153,7 +157,28 @@ search: () => {
                    }
         console.log('(new tab is open)');
       });
-  }
+  },
+  creditcard: () => {
+    _instance
+      .open({
+        title: 'Credit Card Transactions',
+        id: '6',
+        lazy: true,
+        panelComponent: function PanelComponent() {
+          return <p><CreditCardData /> </p>;
+        },
+      })
+      .then(() => {
+      if (_instance.isOpen('6')) {
+                     _instance.select('6').then(() => {
+                       console.log('(tab 6 is selected)');
+                     });
+                   }
+        console.log('(new tab is open)');
+      });
+  },
+
+  
 }
 
 const FileImport = () => {
@@ -335,35 +360,37 @@ export const HandleButtons = () => {
     <div className="col-6">
       <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
 
- <div className="sidebar-position">
-        <img src="\assets\images\export-16.png" className="icons" onClick={actions.search}/>
-      <span onClick={actions.search}>Search</span>
-        </div>
-
     <div className="sidebar-position">
-        <img src="\assets\images\export-16.png" className="icons" onClick={actions.fileImport}/>
+        <BsGear onClick={actions.fileImport} icon={BsGear} />
       <span onClick={actions.fileImport}>File Import</span>
         </div>
 
-        <div className="sidebar-position">
-        <img src="\assets\images\export-16.png" className="icons" onClick={actions.fileExport}/>         
+        <div className="sidebar-position">      
+            <BsBarChartLine onClick={actions.fileExport} icon={BsBarChartLine} />
           <span onClick={actions.fileExport}>File Export</span>
         </div>
 
         <div className="sidebar-position">
-        <img src="\assets\images\dollar-coin-16.png"   onClick={actions.batch}/>         
-          <span className="btn-side" onClick={actions.batch}>Batch</span>
+        <BsGrid3X3Gap onClick={actions.batch} icon={BsGrid3X3Gap} />
+          <span className="btn-side" onClick={actions.batch}>Batch Payment</span>
         </div>
 
         <div className="sidebar-position">
-        <img src="\assets\images\dollar-coin-16.png" className="icons"  onClick={actions.gl}/>
-          <span onClick={actions.gl}>GL</span>
+        <IoFlameOutline onClick={actions.gl} icon={IoFlameOutline} />
+          <span onClick={actions.gl}>GL Account</span>
         </div>
 
         <div className="sidebar-position">
-        <img src="\assets\images\icons-T.png"   onClick={actions.tax}/>  
-          <span onClick={actions.tax}>Tax</span>
+        <BsFonts onClick={actions.tax} icon={BsFonts} />
+          <span onClick={actions.tax}>Tax Viewer</span>
         </div>
+
+        <div className="sidebar-position">
+        <BsStar onClick={actions.creditcard} icon={BsStar} />
+          <span onClick={actions.creditcard}>Credit Card</span>
+        </div>
+
+      
       </div>
     </div>
   );

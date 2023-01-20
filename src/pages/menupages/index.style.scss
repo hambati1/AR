@@ -759,6 +759,7 @@
   .sidebar svg {
     color: rgb(97, 94, 94);
     min-width: 25px;
+    block-size: auto;
   }
   
   .sidebar span {
@@ -806,10 +807,10 @@ border-bottom: 1px solid #dee2e6;
         border-top: none;
         }
 
-        .icons{
-            // display: flex;
-            margin-left: 10px;
-        }
+        // .icons{
+        //     // display: flex;
+        //     margin-left: 10px;
+        // }
   
 .left{
     width:140px;
