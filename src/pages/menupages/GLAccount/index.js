@@ -247,14 +247,11 @@ class GLAccount extends React.Component {
                     caption={'GL Code'}
                     visible={false}
                   />
-                  <Column
-                    dataField={'accountNumber'}
-                    caption={'Account Number'}
-                  />
-                  <Column dataField={'description'} caption={'Description'} />
-                  <Column dataField={'updatedBy'} caption={'Updated By'} />
-                  <Column dataField={'updateDate'} caption={'Update Date'} />
-                  <Column dataField={'comments'} caption={'Comments'} />
+                  <Column dataField={'accountNumber'}caption={'Account Number'} minWidth={100} alignment="left"/>
+                  <Column dataField={'description'} caption={'Description'} minWidth={100} alignment="left" />
+                  <Column dataField={'updatedBy'} caption={'Updated By'} minWidth={100} alignment="left" />
+                  <Column dataField={'updateDate'} caption={'Update Date'}  minWidth={100} alignment="left"/>
+                  <Column dataField={'comments'} caption={'Comments'}  minWidth={100} alignment="left"/>
                   <FilterRow visible={true} />
                   <Pager
                     allowedPageSizes={[5, 10, 20]}

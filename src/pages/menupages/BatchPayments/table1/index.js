@@ -225,18 +225,15 @@ const getBatchDetailsByBatchId = (batchId) => {
                 dataSource={batchData}
                 showBorders={true}>
                 <Paging enabled={false} />
-                <Column dataField={'batchId'} caption='Batch ID' />
-                <Column dataField={'type'} caption='Type' />
-                <Column dataField={'batchName'} caption='Name' />
-                <Column dataField={'createdBy'} caption='Created By' />
-                <Column dataField={'creationDt'} caption='Creation Date' />
-                <Column dataField={'isClosed'} caption='Status' />
-                <Column dataField={'totalRecords'} caption='Total Records' />
-                <Column dataField={'totalAmount'} caption='Total Amount' />
-                <Column
-                  dataField={'totalAgencyFee'}
-                  caption='Total Agency Fees'
-                />
+                <Column dataField={'batchId'} caption={'Batch ID'} minWidth={100} alignment="left"/>
+                <Column dataField={'type'} caption={'Type'} minWidth={100} alignment="left"/>
+                <Column dataField={'batchName'} caption={'Name'}minWidth={100} alignment="left" />
+                <Column dataField={'createdBy'} caption={'Created By'} minWidth={100} alignment="left"/>
+                <Column dataField={'creationDt'} caption={'Creation Date'} minWidth={100} alignment="left"/>
+                <Column dataField={'status'} caption={'Status'} minWidth={100} alignment="left"/>
+                <Column dataField={'totalRecords'} caption={'Total Records'} minWidth={100} alignment="left"/>
+                <Column dataField={'totalAmount'} caption={'Total Amount'} minWidth={100} alignment="left"/>
+                <Column dataField={'totalAgencyFee'}caption={'Total Agency Fees'} minWidth={100} alignment="left"/>
 
                 <FilterRow visible={true} />
                 <ColumnChooser enabled={true} mode='select' />
@@ -263,13 +260,13 @@ const getBatchDetailsByBatchId = (batchId) => {
                     dataSource={batchSubData}
                     showBorders={true}>
                     <Paging enabled={false} />
-                    <Column dataField={'batchId'} caption='Customer ID' />
-                    <Column dataField={'type'} caption='Customer Name' />
-                    <Column dataField={'batchName'} caption='Payment Type' />
-                    <Column dataField={'createdBy'} caption='Payment Amount' />
-                    <Column dataField={'creationDt'} caption='Agency Fee' />
-                    <Column dataField={'isClosed'} caption='Check number' />
-                    <Column dataField={'totalRecords'} caption='Payment Date' />
+                    <Column dataField={'batchId'} caption={'Customer ID'} minWidth={100} alignment="left" />
+                    <Column dataField={'type'} caption={'Customer Name'} minWidth={100} alignment="left" />
+                    <Column dataField={'batchName'} caption='Payment Type'minWidth={100} alignment="left" />
+                    <Column dataField={'createdBy'} caption='Payment Amount'minWidth={100} alignment="left" />
+                    <Column dataField={'creationDt'} caption='Agency Fee' minWidth={100} alignment="left"/>
+                    <Column dataField={'isClosed'} caption='Check number' minWidth={100} alignment="left"/>
+                    <Column dataField={'totalRecords'} caption='Payment Date' minWidth={100} alignment="left"/>
                     <FilterRow visible={true} />
                     <ColumnChooser enabled={true} mode='select' />
                     <SearchPanel

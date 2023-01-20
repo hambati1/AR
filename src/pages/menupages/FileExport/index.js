@@ -100,15 +100,17 @@ async function getFileTypeDataVal() {
           <DataGrid
             className='card-body'
             dataSource={selectfileType}
-            keyExpr={'fileName'}
+            // keyExpr={'fileName'}
             allowColumnReordering={true}>
 
-            <Column dataField={'fileName'} caption={'File Name'} />
-            <Column dataField={'type'} caption={'Type'} />
-            <Column dataField={'fileTypeId'} caption={'Records Exported'} />
-            <Column dataField={'exportedBy'} caption={'Records in Error'} />
-            <Column dataField={'debitamount'} caption={'Debit Amount'} />
-            <Column dataField={'creditamount'} caption={'Credit Amount'} />
+            <Column dataField={'fileName'} caption={'File Name'} minWidth={300} alignment="left"/>
+            <Column dataField={'exportFileId'} caption={'ExportFile ID'} minWidth={100} alignment="left"/>
+            <Column dataField={'fileTypeId'} caption={'FileType ID'} minWidth={100} alignment="left" />
+            <Column dataField={'recsExported'} caption={'Records Exported'} minWidth={100} alignment="left" />
+            <Column dataField={'recsError'} caption={'Records in Error'} minWidth={100} alignment="left"/>
+            <Column dataField={'exportedBy'} caption={'Exported By'} minWidth={100} alignment="left" />
+            <Column dataField={'debitamount'} caption={'Debit Amount'} minWidth={100} alignment="left"/>
+            <Column dataField={'creditamount'} caption={'Credit Amount'} minWidth={100} alignment="left"/>
             <FilterRow visible={true} />
             <ColumnChooser enabled={true} mode='select' />
             <SearchPanel

@@ -107,6 +107,7 @@ search: () => {
         title: 'Batch Payments',
         id: '3',
         lazy: true,
+        tooltip: 'Batch',
         panelComponent: function PanelComponent() {
           return <p><BatchPaymentsData /> </p>;
         },
@@ -193,12 +194,21 @@ const FileImport = () => {
     setFunction(event.target.value)
   }
   const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
-    FileImportData = getimportSearchData(event);
-    console.log(FileImportData);
-    let data = getImportFileTypeData(event)
-    console.log(data);
-    setselectfileType(event);
+    console.log("###### ",event);
+    getimportSearchData(event).then((result) => {
+      FileImportData =  result;
+  })
+  .catch((error) => {
+      console.log(error);
+  });
+    console.log('datagrid',FileImportData);
+  //   (async()=>{
+  //     FileImportData=getimportSearchData(event);
+  //  })()
+    let data =getImportFileTypeData(event)
+     console.log(data);
+     // setFileTypes(event.response);
+      setselectfileType(event);
   }
 
   useEffect(() => {
@@ -250,7 +260,7 @@ const FileImport = () => {
    return <p><SearchData /> </p>;
   }
   function Panel1() {
-    return <p>
+    return  <p>
       <div className="form-group">
         <form onSubmit={onSubmitHandler}>
           <div className="mb-3 row">
@@ -299,12 +309,15 @@ const FileImport = () => {
         dataSource={FileImportData}
         keyExpr={'fileName'}
         allowColumnReordering={true}>
-        <Column dataField={'fileName'} caption={'File Name'} />
-        <Column dataField={'cnFileType.fileTypeDesc'} caption={'Type'} />
-        <Column dataField={'recsImported'} caption={'Records Imported'} />
-        <Column dataField={'recsInError'} caption={'Records in Error'} />
-        <Column dataField={'amtImported'} caption={'Amount Imported'} />
-        <Column dataField={'amtrejected'} caption={'Amount Rejected'} visible={false} />
+          <Column dataField={'importFileId'} caption={'Import FileId'} visible={false}/>
+          <Column dataField={'fileName'} caption={'File Name'} />
+         <Column dataField={'cnFileType.fileTypeDesc'} caption={'Type'} />
+          <Column dataField={'recsImported'} caption={'Records Imported'} />
+          <Column dataField={'recsInError'} caption={'Records in Error'} />
+          <Column dataField={'amtImported'} caption={'Amount Imported'} />
+          <Column dataField={'amtrejected'} caption={'Amount Rejected'} visible={false}/>
+          <Column dataField={'importDt'} caption={'Imported Date'} visible={false}/>
+          <Column dataField={'importedBy'} caption={'Imported By'} visible={false}/>
 
         <FilterRow visible={true} />
         <ColumnChooser enabled={true} mode='select' />
@@ -333,8 +346,8 @@ const FileImport = () => {
 
 
   async function getFileTypeDataVal() {
-    var data = await getImportFileTypeData(6);
-    console.log('Statement 2' + data);
+    var data=await  getImportFileTypeData(6);
+    console.log('Statement 2'+data);
     setFileTypes(data.response);
   }
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -372,7 +385,7 @@ export const HandleButtons = () => {
 
         <div className="sidebar-position">
         <BsGrid3X3Gap onClick={actions.batch} icon={BsGrid3X3Gap} />
-          <span className="btn-side" onClick={actions.batch}>Batch Payment</span>
+          <span  onClick={actions.batch}>Batch Payment</span>
         </div>
 
         <div className="sidebar-position">
