@@ -8,13 +8,13 @@ import axios from 'axios';
 import DataGrid, {
   Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
-import DropDownButton from 'devextreme-react/drop-down-button';
-import { Dropdown, DropdownButton } from 'react-bootstrap';
-import { Search } from 'react-bootstrap-icons';
-import { onPaymentList } from '../../../redux/actions/paymentList';
-import { onGetContactList } from '../../../redux/actions/ContactApp';
-import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs';
+// import DropDownButton from 'devextreme-react/drop-down-button';
+// import { Dropdown, DropdownButton } from 'react-bootstrap';
+// import { Search } from 'react-bootstrap-icons';
+// import { onPaymentList } from '../../../redux/actions/paymentList';
+// import { onGetContactList } from '../../../redux/actions/ContactApp';
+// import Tab from 'react-bootstrap/Tab';
+// import Tabs from 'react-bootstrap/Tabs';
 import { getFileTypeData, getimportSearchData, getImportFileTypeData, getImportFileNames, onSubmitImportHandler } from '../../menupages/APICalls.js'
 import 'react-dyn-tabs/style/react-dyn-tabs.min.css';
 import 'react-dyn-tabs/themes/react-dyn-tabs-basic.min.css';
@@ -25,79 +25,77 @@ import BatchPaymentsData from '../BatchPayments/index.js';
 import GLAccountData from '../GLAccount/index.js';
 import TaxViewerData from '../TaxViewer/index.js';
 import CreditCardData from "../CreditCard/index.js";
-import { AiFillAccountBook, AiFillDollarCircle, AiOutlineExport, AiOutlineFolderView } from "react-icons/ai";
-import { DiAptana } from "react-icons/di";
 import { BsBarChartLine, BsFonts, BsGear, BsGrid3X3Gap, BsStar } from "react-icons/bs";
 import { IoFlameOutline } from "react-icons/io5";
 
 let FileImportData = [];
 let _instance, isVertical;
-let tab=1;
+let tab = 1;
 
 const actions = {
-search: () => {
-     _instance
-       .open({
-         title: 'Search',
-         id: '0',
-         lazy: true,
-           tooltip: 'Search',
-               disable: false,
-               closable: true,
-         panelComponent: function PanelComponent() {
-           return <p><SearchData /> </p>;
-         },
-       })
-       .then(() => {
-       if (_instance.isOpen('0')) {
-                _instance.select('0').then(() => {
-                  console.log('(tab 0 is selected)');
-                });
-              }
-         console.log('(new tab is open)');
-       });
-   },
+  search: () => {
+    _instance
+      .open({
+        title: 'Search',
+        id: '0',
+        lazy: true,
+        tooltip: 'Search',
+        disable: false,
+        closable: true,
+        panelComponent: function PanelComponent() {
+          return <p><SearchData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('0')) {
+          _instance.select('0').then(() => {
+            console.log('(tab 0 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
   fileImport: () => {
-     _instance
-       .open({
-         title: 'File Import',
-         id: '1',
-         lazy: true,
-         tooltip: 'File Import',
-         disable: false,
-         closable: true,
-         panelComponent: function PanelComponent() {
-           return <p><FileImportData /> </p>;
-         },
-       })
-       .then(() => {
-       if (_instance.isOpen('1')) {
-                _instance.select('1').then(() => {
-                  console.log('(tab 1 is selected)');
-                });
-              }
-         console.log('(new tab is open)');
-       });
-   },
+    _instance
+      .open({
+        title: 'File Import',
+        id: '1',
+        lazy: true,
+        tooltip: 'File Import',
+        disable: false,
+        closable: true,
+        panelComponent: function PanelComponent() {
+          return <p><FileImportData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('1')) {
+          _instance.select('1').then(() => {
+            console.log('(tab 1 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
   fileExport: () => {
     _instance
       .open({
         title: 'File Export',
         id: '2',
         lazy: true,
-          tooltip: 'File Export',
-              disable: false,
-              closable: true,
+        tooltip: 'File Export',
+        disable: false,
+        closable: true,
         panelComponent: function PanelComponent() {
           return <p><FileExportData /> </p>;
         },
       })
       .then(() => {
-      if (_instance.isOpen('2')) {
-               _instance.select('2').then(() => {
-                 console.log('(tab 2 is selected)');
-               });
-             }
+        if (_instance.isOpen('2')) {
+          _instance.select('2').then(() => {
+            console.log('(tab 2 is selected)');
+          });
+        }
         console.log('(new tab is open)');
       });
   },
@@ -107,17 +105,16 @@ search: () => {
         title: 'Batch Payments',
         id: '3',
         lazy: true,
-        tooltip: 'Batch',
         panelComponent: function PanelComponent() {
           return <p><BatchPaymentsData /> </p>;
         },
       })
       .then(() => {
-      if (_instance.isOpen('3')) {
-                     _instance.select('3').then(() => {
-                       console.log('(tab 3 is selected)');
-                     });
-                   }
+        if (_instance.isOpen('3')) {
+          _instance.select('3').then(() => {
+            console.log('(tab 3 is selected)');
+          });
+        }
         console.log('(new tab is open)');
       });
   },
@@ -132,11 +129,11 @@ search: () => {
         },
       })
       .then(() => {
-      if (_instance.isOpen('4')) {
-                     _instance.select('4').then(() => {
-                       console.log('(tab 4 is selected)');
-                     });
-                   }
+        if (_instance.isOpen('4')) {
+          _instance.select('4').then(() => {
+            console.log('(tab 4 is selected)');
+          });
+        }
         console.log('(new tab is open)');
       });
   },
@@ -151,11 +148,11 @@ search: () => {
         },
       })
       .then(() => {
-      if (_instance.isOpen('5')) {
-                     _instance.select('5').then(() => {
-                       console.log('(tab 3 is selected)');
-                     });
-                   }
+        if (_instance.isOpen('5')) {
+          _instance.select('5').then(() => {
+            console.log('(tab 3 is selected)');
+          });
+        }
         console.log('(new tab is open)');
       });
   },
@@ -170,16 +167,16 @@ search: () => {
         },
       })
       .then(() => {
-      if (_instance.isOpen('6')) {
-                     _instance.select('6').then(() => {
-                       console.log('(tab 6 is selected)');
-                     });
-                   }
+        if (_instance.isOpen('6')) {
+          _instance.select('6').then(() => {
+            console.log('(tab 6 is selected)');
+          });
+        }
         console.log('(new tab is open)');
       });
   },
 
-  
+
 }
 
 const FileImport = () => {
@@ -194,21 +191,12 @@ const FileImport = () => {
     setFunction(event.target.value)
   }
   const selectChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("###### ",event);
-    getimportSearchData(event).then((result) => {
-      FileImportData =  result;
-  })
-  .catch((error) => {
-      console.log(error);
-  });
-    console.log('datagrid',FileImportData);
-  //   (async()=>{
-  //     FileImportData=getimportSearchData(event);
-  //  })()
-    let data =getImportFileTypeData(event)
-     console.log(data);
-     // setFileTypes(event.response);
-      setselectfileType(event);
+    console.log(event);
+    FileImportData = getimportSearchData(event);
+    console.log(FileImportData);
+    let data = getImportFileTypeData(event)
+    console.log(data);
+    setselectfileType(event);
   }
 
   useEffect(() => {
@@ -217,8 +205,8 @@ const FileImport = () => {
 
   const options = {
     tabs: [
-    { id: '0', title: 'Search', panelComponent: Panel0, iconClass: 'fa fa-home', closable: false},
-      { id: '1', title: 'File Import', panelComponent: Panel1, iconClass: 'fa fa-home', closable: false}
+      { id: '0', title: 'Search', panelComponent: Panel0, iconClass: 'fa fa-home', closable: false },
+      { id: '1', title: 'File Import', panelComponent: Panel1, iconClass: 'fa fa-home', closable: false }
     ],
     selectedTabID: tab,
     onLoad: function () {
@@ -256,11 +244,13 @@ const FileImport = () => {
     },
   };
 
-    function Panel0() {
-   return <p><SearchData /> </p>;
+
+  function Panel0() {
+    return <p><SearchData /> </p>;
+
   }
   function Panel1() {
-    return  <p>
+    return <p>
       <div className="form-group">
         <form onSubmit={onSubmitHandler}>
           <div className="mb-3 row">
@@ -289,7 +279,6 @@ const FileImport = () => {
               <label for="fileName" className="col-lg-1 col-form-label">FileName</label>
             </div>
             <div className="col-sm-4">
-              {/* <label for="" className="visually-hidden"></label> */}
               <input type="text" Name="fileName" value={fileName} className="filename" />
             </div>
           </div>
@@ -309,15 +298,12 @@ const FileImport = () => {
         dataSource={FileImportData}
         keyExpr={'fileName'}
         allowColumnReordering={true}>
-          <Column dataField={'importFileId'} caption={'Import FileId'} visible={false}/>
-          <Column dataField={'fileName'} caption={'File Name'} />
-         <Column dataField={'cnFileType.fileTypeDesc'} caption={'Type'} />
-          <Column dataField={'recsImported'} caption={'Records Imported'} />
-          <Column dataField={'recsInError'} caption={'Records in Error'} />
-          <Column dataField={'amtImported'} caption={'Amount Imported'} />
-          <Column dataField={'amtrejected'} caption={'Amount Rejected'} visible={false}/>
-          <Column dataField={'importDt'} caption={'Imported Date'} visible={false}/>
-          <Column dataField={'importedBy'} caption={'Imported By'} visible={false}/>
+        <Column dataField={'fileName'} caption={'File Name'} />
+        <Column dataField={'cnFileType.fileTypeDesc'} caption={'Type'} />
+        <Column dataField={'recsImported'} caption={'Records Imported'} />
+        <Column dataField={'recsInError'} caption={'Records in Error'} />
+        <Column dataField={'amtImported'} caption={'Amount Imported'} />
+        <Column dataField={'amtrejected'} caption={'Amount Rejected'} visible={false} />
 
         <FilterRow visible={true} />
         <ColumnChooser enabled={true} mode='select' />
@@ -339,15 +325,15 @@ const FileImport = () => {
   const [Tablist, Panellist, ready] = useDynTabs(options);
   ready((instance) => {
     _instance = instance;
-     console.log(instance);
+    console.log(instance);
     isVertical = _instance.getOption('isVertical');
     console.log("s");
   });
 
 
   async function getFileTypeDataVal() {
-    var data=await  getImportFileTypeData(6);
-    console.log('Statement 2'+data);
+    var data = await getImportFileTypeData(6);
+    console.log('Statement 2' + data);
     setFileTypes(data.response);
   }
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -359,10 +345,13 @@ const FileImport = () => {
     onSubmitImportHandler(ab);
   }
   return (
-    <div>     
-          <Tablist></Tablist>
-          <Panellist></Panellist>       
+
+    <div>
+      <h1 className="head">Accounts Receivable</h1>
+      <Tablist ></Tablist>
+      <Panellist></Panellist>
     </div>
+
   );
 };
 export const HandleButtons = () => {
@@ -372,38 +361,38 @@ export const HandleButtons = () => {
   return (
     <div className="col-6">
       <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
-
-    <div className="sidebar-position">
-        <BsGear onClick={actions.fileImport} icon={BsGear} />
-      <span onClick={actions.fileImport}>File Import</span>
+        
+        <div className="sidebar-position">
+          <BsGear onClick={actions.fileImport} icon={BsGear} />
+          <span onClick={actions.fileImport}>File Import</span>
         </div>
 
-        <div className="sidebar-position">      
-            <BsBarChartLine onClick={actions.fileExport} icon={BsBarChartLine} />
+        <div className="sidebar-position">
+          <BsBarChartLine onClick={actions.fileExport} icon={BsBarChartLine} />
           <span onClick={actions.fileExport}>File Export</span>
         </div>
 
         <div className="sidebar-position">
-        <BsGrid3X3Gap onClick={actions.batch} icon={BsGrid3X3Gap} />
-          <span  onClick={actions.batch}>Batch Payment</span>
+          <BsGrid3X3Gap onClick={actions.batch} icon={BsGrid3X3Gap} />
+          <span onClick={actions.batch}>Batch Payment</span>
         </div>
 
         <div className="sidebar-position">
-        <IoFlameOutline onClick={actions.gl} icon={IoFlameOutline} />
+          <IoFlameOutline onClick={actions.gl} icon={IoFlameOutline} />
           <span onClick={actions.gl}>GL Account</span>
         </div>
 
         <div className="sidebar-position">
-        <BsFonts onClick={actions.tax} icon={BsFonts} />
+          <BsFonts onClick={actions.tax} icon={BsFonts} />
           <span onClick={actions.tax}>Tax Viewer</span>
         </div>
 
         <div className="sidebar-position">
-        <BsStar onClick={actions.creditcard} icon={BsStar} />
+          <BsStar onClick={actions.creditcard} icon={BsStar} />
           <span onClick={actions.creditcard}>Credit Card</span>
         </div>
 
-      
+
       </div>
     </div>
   );
