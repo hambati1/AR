@@ -15,6 +15,7 @@ import { getSearchData,getBatchDetailsByBatchIdService, saveBatchName } from '..
 import Table from 'react-bootstrap/Table';
 
 let batchData = [];
+let batchEditdata={};
 const Table1 = () => {
   const [active, setactive] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -41,6 +42,8 @@ const Table1 = () => {
   useEffect(() => {
    console.log("search active");
    getSearchDataDetails(active);
+     var s=[];
+     setbatchSubData(s);
   }, []);
 
   const getSearchDataDetails = (val) => {
@@ -56,13 +59,15 @@ const Table1 = () => {
     setbatchName(event.target.value);
   };
 
-const getBatchDetailsByBatchId = (batchId) => {
-    let subdata = getBatchDetailsByBatchIdService(batchId);
-    setbatchSubData(subdata);
-    console.log(subdata);
-  }
+const getBatchDetailsByBatchId=async()=>{
+    const response=await getBatchDetailsByBatchIdService(batchId);
+    var s=[];
+    s.push(response);
+    setbatchSubData(s);
+    console.log(s);
+}
 
-  const handleEvent: GridEventListener<'rowClick'> = (params, event, details, // GridCallbackDetails
+const handleEvent: GridEventListener<'rowClick'> = (params, event, details, // GridCallbackDetails
   ) => {
     console.log(params);
     if (params.data.cmImportFile != undefined) {
@@ -72,6 +77,22 @@ const getBatchDetailsByBatchId = (batchId) => {
     setbatchId(params.data.batchId);
     getBatchDetailsByBatchId(params.data.batchId);
   };
+
+const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, // GridCallbackDetails
+  ) => {
+    console.log('handleEditEvent',params.data);
+    batchEditdata=params.data;
+    console.log('handleEditEvent',batchEditdata.batchId);
+  };
+
+
+  const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    const form = event.target;
+    event.preventDefault();
+    let json ="" ;//{ "fileNames": fileName, "brandId": 1, "fileTypeId": parseInt(selectfileType), "page": 1, "size": 10 };
+    console.log(json);
+    let ab = JSON.stringify(json);
+  }
 
   const batchNameSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
     console.log('=batchName=' + batchName + ' = importFileId=' + importFileId);
@@ -166,8 +187,14 @@ const getBatchDetailsByBatchId = (batchId) => {
                         <th>Source</th>
                         <th>Messages</th>
                       </tr>
+
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                    <tr>
+                    <td> {}</td>
+                    <td>{} </td>
+                    </tr>
+                    </tbody>
                   </Table>
                 </div>
               </Modal.Body>
@@ -214,7 +241,12 @@ const getBatchDetailsByBatchId = (batchId) => {
                         <th>Messages</th>
                       </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                    <tr>
+                    <td> {}</td>
+                     <td> {}</td>
+                    </tr>
+                    </tbody>
                   </Table>
                 </div>
               </Modal.Body>
@@ -252,16 +284,15 @@ const getBatchDetailsByBatchId = (batchId) => {
               </DataGrid>
             </div>
 
-
              <div>Batch {batchId}</div>
                 <div id='data-grid-demo2'>
                   <DataGrid
-                    onRowClick={handleEvent}
+                    onRowClick={handleEditEvent}
                     dataSource={batchSubData}
                     showBorders={true}>
                     <Paging enabled={false} />
                     <Column dataField={'batchId'} caption={'Customer ID'} minWidth={100} alignment="left" />
-                    <Column dataField={'type'} caption={'Customer Name'} minWidth={100} alignment="left" />
+                    <Column dataField={'batchEditdata.type'} caption={'Customer Name'} minWidth={100} alignment="left" />
                     <Column dataField={'batchName'} caption='Payment Type'minWidth={100} alignment="left" />
                     <Column dataField={'createdBy'} caption='Payment Amount'minWidth={100} alignment="left" />
                     <Column dataField={'creationDt'} caption='Agency Fee' minWidth={100} alignment="left"/>
@@ -282,6 +313,108 @@ const getBatchDetailsByBatchId = (batchId) => {
                   </DataGrid>
                 </div>
           </div>
+        <div class="col">
+          <div className="row my-2">
+               <label for='inputcustomer id' className='col-lg-2 col-form-label'>
+                  Customer ID
+                </label>
+               <div className='col-sm-3'>
+                    <input
+                      type='text'
+                      className='form-control'
+                      id='input customer id'
+                    />
+               </div>
+          </div>
+
+<div className=' row my-2 '>
+      <label for='inputpayment type' className='col-lg-2 col-form-label'>
+        Payment Type
+      </label>
+      <div className='col-sm-3'>
+        <select
+          className='form-select'
+          name='status'
+          aria-label='Default select example'>
+          <option value=''>Check Payment</option>
+          <option value=''></option>
+        </select>
+      </div>
+    </div>
+
+<form onSubmit={onSubmitHandler}>
+    <div className=' row my-2 '>
+      <label
+        for='inputaccount balance'
+        className='col-lg-2 col-form-label'>
+        Account Balance
+      </label>
+      <div className='col-sm-3'>
+        <input
+          type='text'
+          className='form-control'
+          id='input account balance'
+        />
+      </div>
+    </div>
+
+
+    <div className=' row my-2 '>
+      <label
+        for='inputpayment amount'
+        className='col-lg-2 col-form-label'>
+        Payment Amount
+      </label>
+      <div className='col-sm-3'>
+        <input
+          type='text'
+          className='form-control'
+          id='input payment amount'
+        />
+      </div>
+    </div>
+
+
+    <div class='form-check mx-2'>
+      <input
+        className='form-check-input'
+        type='checkbox'
+        name='active'
+        value=''
+        id='flexCheckDefault'
+      />
+      <label className='form-check-label action' for='flexCheckDefault'>
+        Allocate to Invoices
+      </label>
+    </div>
+
+
+    <div className=' row my-2 '>
+      <label for='inputcheck number' className='col-lg-2 col-form-label'>
+        Check Number
+      </label>
+      <div className='col-sm-3'>
+        <input
+          type='text'
+          className='form-control'
+          id='input check number'
+        />
+      </div>
+    </div>
+
+       <div>
+          <button type='clear' className='btn  mb-3 Clear '>
+            Clear
+          </button>
+          <button type='save' className='btn  mb-3 batch-Save '>
+            Save
+          </button>
+          <button type='Cancel' className='btn  mb-3 batch-cancel '>
+            Cancel
+          </button>
+        </div>
+</form>
+        </div>
     </div>
   );
 };

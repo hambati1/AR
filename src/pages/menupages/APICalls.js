@@ -1,19 +1,5 @@
 import React, { useEffect, useState,useRef  } from "react";
-
-import {
-  CREATE_NEW_CONTACT,
-  DELETE_CONTACT,
-  FETCH_ERROR,
-  FETCH_START,
-  FETCH_SUCCESS,
-  GET_CONTACT_FOLDER_LIST,
-  GET_CONTACT_LABEL_LIST,
-  GET_CONTACT_LIST,
-  SHOW_MESSAGE,
-  TOGGLE_CONTACT_DRAWER,
-  UPDATE_CONTACT_DETAIL,
-  UPDATE_CONTACT_LABEL,
-  UPDATE_CONTACT_STARRED_STATUS,
+import {  CREATE_NEW_CONTACT,  DELETE_CONTACT,  FETCH_ERROR,  FETCH_START,  FETCH_SUCCESS,  GET_CONTACT_FOLDER_LIST,  GET_CONTACT_LABEL_LIST,  GET_CONTACT_LIST,  SHOW_MESSAGE,  TOGGLE_CONTACT_DRAWER,  UPDATE_CONTACT_DETAIL,  UPDATE_CONTACT_LABEL,  UPDATE_CONTACT_STARRED_STATUS,
 } from 'shared/constants/ActionTypes';
 import {appIntl} from '@crema/utility/helper/Utils';
 import jwtAxios from '@crema/services/auth/jwt-auth';
@@ -43,7 +29,7 @@ export const getimportSearchData = async (selectfileType) => {
 export const getImportFileTypeData=() => {
 console.log("sssssssssss");
 let session=localStorage.getItem('token');
-  const response = fetch(PATH + "cn/filetype?functionId=6&isActive=1&isImport=1", {
+  const response = fetch(PATH + "cn/filetype?functionId=6&isActive=1&isImport=0", {
     method: 'GET',
     headers: { Session: session }
   }
@@ -150,6 +136,7 @@ export const onSubmitExportHandler = (json) => {
 
 /*Batch payment*/
 export const saveBatchName = (json,batchId) => {
+let message;
     const url = PATH + 'ar/batch/save/'+batchId;
     let session=localStorage.getItem('token');
     const config = {
@@ -158,23 +145,26 @@ export const saveBatchName = (json,batchId) => {
         Session: session
       },
     };
-    axios.post(url, json, config).then((response) => {
+ message=   axios.post(url, json, config).then((response) => {
       console.log(response.data);
-      result= response.data;
+      message= response.data;
     });
-    return result;
+    return message;
   }
 
 export const getBatchDetailsByBatchIdService= (active) => {
+let subdata;
 let session=localStorage.getItem('token');
-  fetch(PATH + 'ar/batch/'+active, {
+   subdata =  fetch(PATH + 'ar/batch/'+active, {
       method: 'GET',
       headers: { "Content-Type": 'application/json', Session: session }
     }).then((response) => response.json())
     .then(function(data) {
-        result = data.response;
+        subdata = data.response;
+           console.log('api=',subdata)
+        return subdata;
     });
-return result;
+  return subdata;
 }
 
 export const getSearchData= (active) => {

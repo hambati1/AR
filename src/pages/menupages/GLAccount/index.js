@@ -76,8 +76,12 @@ class GLAccount extends React.Component {
   activeChange = () => {
     this.active = !this.active;
     console.log(this.active);
+    let activeVal=0;
+    if(this.active)
+       activeVal=1;
+
     let json = {
-      isActive: this.active,
+      isActive: activeVal,
       page: 1,
       size: 20,
       sort: ['glAccNum,asc'],
