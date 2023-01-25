@@ -3,13 +3,215 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import '../../menupages/index.style.scss';
-import Payments from 'pages/SearchWorklist/Payments';
+import Payments from 'pages/SearchWorklist/Payments/index.js';
 import Adjustments from 'pages/SearchWorklist/Adjustments';
-import {onSearchPayment} from '../../menupages/APICalls.js'
+import { getFileTypeData, getimportSearchData, getImportFileTypeData, getImportFileNames, onSubmitImportHandler } from '../../menupages/APICalls.js'
+import 'react-dyn-tabs/style/react-dyn-tabs.min.css';
+import 'react-dyn-tabs/themes/react-dyn-tabs-basic.min.css';
+import useDynTabs from 'react-dyn-tabs';
+import SearchData from '../Search/index.js';
+import FileImportData from '../FileImport/index.js'
+import FileExportData from '../FileExport/index.js';
+import BatchPaymentsData from '../BatchPayments/index.js';
+import GLAccountData from '../GLAccount/index.js';
+import TaxViewerData from '../TaxViewer/index.js';
+import CreditCardData from "../CreditCard/index.js";
+import { BsBarChartLine, BsFonts, BsGear, BsGrid3X3Gap, BsStar } from "react-icons/bs";
+import { IoFlameOutline } from "react-icons/io5";
+import { AiOutlineSearch } from "react-icons/ai";
+import {onSearchPayment} from '../../menupages/APICalls.js';
+
+let _instance, isVertical;
+let tab = 0;
+const actions = {
+  search: () => {
+    _instance
+      .open({
+        title: 'Search',
+        id: '0',
+        lazy: true,
+        tooltip: 'Search',
+        disable: false,
+        closable: true,
+        panelComponent: function PanelComponent() {
+          return <p><SearchData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('0')) {
+          _instance.select('0').then(() => {
+            console.log('(tab 0 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
+  fileImport: () => {
+    _instance
+      .open({
+        title: 'File Import',
+        id: '1',
+        lazy: true,
+        tooltip: 'File Import',
+        disable: false,
+        closable: true,  
+        panelComponent: function PanelComponent() {
+          return <p><FileImportData/> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('1')) {
+          _instance.select('1').then(() => {
+            console.log('(tab 1 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
+  fileExport: () => {
+    _instance
+      .open({
+        title: 'File Export',
+        id: '2',
+        lazy: true,
+        tooltip: 'File Export',
+        disable: false,
+        closable: true,
+        panelComponent: function PanelComponent() {
+          return <p><FileExportData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('2')) {
+          _instance.select('2').then(() => {
+            console.log('(tab 2 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
+  batch: () => {
+    _instance
+      .open({
+        title: 'Batch Payments',
+        id: '3',
+        lazy: true,
+        panelComponent: function PanelComponent() {
+          return <p><BatchPaymentsData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('3')) {
+          _instance.select('3').then(() => {
+            console.log('(tab 3 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
+  gl: () => {
+    _instance
+      .open({
+        title: 'GL Account',
+        id: '4',
+        lazy: true,
+        panelComponent: function PanelComponent() {
+          return <p><GLAccountData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('4')) {
+          _instance.select('4').then(() => {
+            console.log('(tab 4 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
+  tax: () => {
+    _instance
+      .open({
+        title: 'Tax Viewer',
+        id: '5',
+        lazy: true,
+        panelComponent: function PanelComponent() {
+          return <p><TaxViewerData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('5')) {
+          _instance.select('5').then(() => {
+            console.log('(tab 3 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
+  creditcard: () => {
+    _instance
+      .open({
+        title: 'Credit Card Transactions',
+        id: '6',
+        lazy: true,
+        panelComponent: function PanelComponent() {
+          return <p><CreditCardData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('6')) {
+          _instance.select('6').then(() => {
+            console.log('(tab 6 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
+
+
+}
+
 
 const Search = () => {
-  const [active, setactive] = useState('');
-  console.log(active);
+  const options = {
+    tabs: [
+      { id: '0', title: 'Search', panelComponent: Panel0, iconClass: 'fa fa-home', closable: false },
+      // { id: '1', title: 'File Import', panelComponent: Panel1, iconClass: 'fa fa-home', closable: false }
+    ],
+    selectedTabID: tab,
+    onLoad: function () {
+      console.log('[onLoad]');
+    },
+    onInit: function () {
+      //don't use setState inside the onInit callback because it leads to an infinite loop.
+      console.log('[onInit]');
+    },
+    onChange: function () {
+      console.log('[onChange]');
+    },
+    onOpen: function () {
+      console.log('[onOpen]');
+    },
+    beforeSelect: function () {
+      console.log('[beforeSelect]');
+      return true;
+    },
+    onFirstSelect: function () {
+      console.log('[onFirstSelect]');
+    },
+    onSelect: function () {
+      console.log('[onSelect]');
+    },
+    beforeClose: function () {
+      console.log('[beforeClose]');
+      return true;
+    },
+    onClose: function () {
+      console.log('[onClose]');
+    },
+    onDestroy: function () {
+      console.log('[onDestroy]');
+    },
+  };
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
       const form = event.target;
@@ -31,8 +233,10 @@ const Search = () => {
       console.log(json);
       onSearchPayment(json);
     }
-
-  return (
+  function Panel0(){
+    const [active, setactive] = useState('');
+    console.log(active);
+  return <p>
     <div>
           <div className='form-group'>
           <form onSubmit={onSubmitHandler}>
@@ -50,11 +254,13 @@ const Search = () => {
                     console.log(event);
                   }}>
                     <option value=''></option>
+                    
                   <option
                     value='Payments'
                     onClick={() => setactive('payments')}>
                     Payments
                   </option>
+
                   <option
                     value='Adjustments'
                     onClick={() => setactive('Adjustments')}>
@@ -64,7 +270,7 @@ const Search = () => {
               </div>
               {active == '' ? (
                 <div className='mt-10'>
-                   <button type='submit' className='btn  mb-3 btn-Gray '>
+                   <button type='submit' className='btn mb-3 btn-Gray'>
                     Submit
                   </button>
                   <button
@@ -75,6 +281,7 @@ const Search = () => {
                   </button>
                 </div>
               ) : null }
+
               {active == 'Payments' ? (
                 <div className='padding'>
                   {/* payments fields starts */}
@@ -144,12 +351,13 @@ const Search = () => {
                         for='inputfrom amount'
                         className='col-lg-2 col-form-label'>
                         Posted From Date
+                        
                       </label>
                       <div className='col-sm-3'>
                         <input
-                          type='text'
+                          type='date'
                           className='form-control search-form-control'
-                          id='inputfrom amount'
+                          id='inputfromdate'
                         />
                       </div>
                     </div>
@@ -162,7 +370,7 @@ const Search = () => {
                       </label>
                       <div className='col-sm-3'>
                         <input
-                          type='text'
+                          type='date'
                           className='form-control search-form-control'
                           id='input to amount'
                         />
@@ -264,13 +472,13 @@ const Search = () => {
                   </div>
 
                   {/* payments fields ends */}
-                  <button type='submit' className='btn  mb-3 btn-Gray '>
+                  <button type='submit' className='btn mb-3 btn-Gray'>
                     Submit
                   </button>
                   <button
                     type='reset'
                     value='Reset'
-                    className='btn  mb-3 btn-darkGray '>
+                    className='btn mb-3 btn-darkGray '>
                     Reset
                   </button>
                 </div>
@@ -419,9 +627,11 @@ const Search = () => {
                       </div>
                     </div>
                   </div>
-                  <button type='submit' className='btn  mb-3 btn-Gray '>
-                    Submit
+                  <button type='submit'className='btn  mb-3 btn-Gray'>
+                    Submit 
                   </button>
+                 
+                 
                   <button
                     type='reset'
                     value='Reset'
@@ -434,7 +644,76 @@ const Search = () => {
             </form>
           </div>
     </div>
+    </p>
+  };
+  const [Tablist, Panellist, ready] = useDynTabs(options);
+  ready((instance) => {
+    _instance = instance;
+    console.log(instance);
+    isVertical = _instance.getOption('isVertical');
+    console.log("s");
+  });
+
+  return (
+
+    <div>
+      <h1 className="head">Accounts Receivable</h1>
+      <Tablist></Tablist>
+      <Panellist></Panellist>
+    </div>
+
   );
 };
+  export const HandleButtons = () => {
+    const [isOpen, setIsOpen] = useState(true);
+    const handleTrigger = () => setIsOpen(!isOpen);
+  
+    return (
+      <div className="col-6">
+        <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
+  
+        <div className="sidebar-position">
+            <AiOutlineSearch onClick={actions.search} icon={AiOutlineSearch} />
+            <span onClick={actions.search}>Search</span>
+          </div>
+          
+          <div className="sidebar-position">
+            <BsGear onClick={actions.fileImport} icon={BsGear} />
+            <span onClick={actions.fileImport}>File Import</span>
+          </div>
+  
+          <div className="sidebar-position">
+            <BsBarChartLine onClick={actions.fileExport} icon={BsBarChartLine} />
+            <span onClick={actions.fileExport}>File Export</span>
+          </div>
+  
+          <div className="sidebar-position">
+            <BsGrid3X3Gap onClick={actions.batch} icon={BsGrid3X3Gap} />
+            <span onClick={actions.batch}>Batch Payment</span>
+          </div>
+  
+          <div className="sidebar-position">
+            <IoFlameOutline onClick={actions.gl} icon={IoFlameOutline} />
+            <span onClick={actions.gl}>GL Account</span>
+          </div>
+  
+          <div className="sidebar-position">
+            <BsFonts onClick={actions.tax} icon={BsFonts} />
+            <span onClick={actions.tax}>Tax Viewer</span>
+          </div>
+  
+          <div className="sidebar-position">
+            <BsStar onClick={actions.creditcard} icon={BsStar} />
+            <span onClick={actions.creditcard}>Credit Card</span>
+          </div>
+  
+  
+        </div>
+      </div>
+    );
+  
+  };
+
+
 
 export default Search;

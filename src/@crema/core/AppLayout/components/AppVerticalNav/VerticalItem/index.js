@@ -17,7 +17,7 @@ import miniHeaderToggleStyle from '../../../UserMiniHeader/index.module.scss';
 // import BatchPaymentsData from '../BatchPayments/index.js';
 // import GLAccountData  from '../GLAccount/index.js';
 // import TaxViewerData from '../TaxViewer/index.js';
-import { HandleButtons }  from '../../../../../../pages/menupages/FileImport';
+import { HandleButtons }  from '../../../../../../pages/menupages/Search';
 
 const VerticalItem = ({level, item}) => {
   // const {user} = useAuthUser();

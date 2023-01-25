@@ -13,7 +13,7 @@ import Form2 from './form2';
 const BatchPayment = () => {
   return (
     <>
-      <AppPageMetadata title='Batch Payment' />
+      {/* <AppPageMetadata title='Batch Payment' /> */}
       <div>
         <Col>
           <Table1 />
