@@ -6,6 +6,7 @@ import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
 import Modal from 'react-bootstrap/Modal';
 import DataGrid, {Column,Pager,Paging,SearchPanel,Sorting,ColumnChooser,FilterRow,Toolbar,Editing} from 'devextreme-react/data-grid';
+import DataSource from 'devextreme/data/data_source';
 import DropDownButton from 'devextreme-react/drop-down-button';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import {Search} from 'react-bootstrap-icons';
@@ -15,13 +16,16 @@ import { getSearchData,getBatchDetailsByBatchIdService, saveBatchName } from '..
 import Table from 'react-bootstrap/Table';
 
 let batchData = [];
-let batchEditdata={};
+let editSample={batchId:""};
+const ds = new DataSource({
+    // ...
+});
 const Table1 = () => {
   const [active, setactive] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [show, setShow] = useState(false);
-  const [batchName, setbatchName] = useState();
   const [batchId, setbatchId] = useState();
+  const [batchName, setbatchName] = useState();
   const [importFileId, setimportFileId] = useState();
 
   const handleClose = () => setShow(false);
@@ -31,12 +35,18 @@ const Table1 = () => {
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
 
+ const [batchEditdata, setbatchEditdata] = useState(editSample);
+ const [source, setsource] = useState();
+ const [messages, setmessages] = useState();
+ const [state,setState] = useState({connectionStarted: false, dataSource: null});
+
   const activeChange = () => {
   console.log('activeChange',!active);
-    setbatchId('');
     setbatchName('');
     setactive(!active);
     getSearchDataDetails(!active);
+    setsource('');
+    setmessages('');
   };
 
   useEffect(() => {
@@ -44,14 +54,22 @@ const Table1 = () => {
    getSearchDataDetails(active);
      var s=[];
      setbatchSubData(s);
+     setbatchEditdata(editSample);
+      setsource('');
+      setmessages('');
   }, []);
 
   const getSearchDataDetails = (val) => {
   console.log('val==',val);
-    let data = getSearchData(val);
-    if (data.length > 0) {
+  let num=0;
+  if(val)
+   num=1;
+
+    let data = getSearchData(num);
+    if (data!=undefined && data.length > 0) {
       batchData = data;
       console.log(batchData);
+      setState({connectionStarted: true, dataSource: batchData});
     }
   }
 
@@ -59,54 +77,123 @@ const Table1 = () => {
     setbatchName(event.target.value);
   };
 
-const getBatchDetailsByBatchId=async()=>{
-    const response=await getBatchDetailsByBatchIdService(batchId);
+const getBatchDetailsByBatchId=async(bat)=>{
+    console.log('bat=',bat);
+    setbatchId(bat);
+    const response=await getBatchDetailsByBatchIdService(bat);
     var s=[];
     s.push(response);
     setbatchSubData(s);
-    console.log(s);
 }
 
 const handleEvent: GridEventListener<'rowClick'> = (params, event, details, // GridCallbackDetails
   ) => {
     console.log(params);
+    setbatchEditdata(editSample);
     if (params.data.cmImportFile != undefined) {
       console.log(params.data.cmImportFile.importFileId);
       setimportFileId(params.data.cmImportFile.importFileId);
     }
-    setbatchId(params.data.batchId);
     getBatchDetailsByBatchId(params.data.batchId);
   };
 
 const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, // GridCallbackDetails
   ) => {
     console.log('handleEditEvent',params.data);
-    batchEditdata=params.data;
-    console.log('handleEditEvent',batchEditdata.batchId);
+    setbatchEditdata(params.data);
+    console.log('handleEditEvent batchEditdata=',batchEditdata.batchId);
   };
-
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.target;
     event.preventDefault();
-    let json ="" ;//{ "fileNames": fileName, "brandId": 1, "fileTypeId": parseInt(selectfileType), "page": 1, "size": 10 };
+    let json ={ "fileNames": form[0].value, "brandId": 1, "fileTypeId": form[2].value, "page": 1, "size": 10 };
     console.log(json);
     let ab = JSON.stringify(json);
+    let message = saveBatchName(json, form[0].value);
   }
 
-  const batchNameSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
+  const batchNameSubmitForm = async(event: React.FormEvent<HTMLFormElement>) => {
     console.log('=batchName=' + batchName + ' = importFileId=' + importFileId);
+    setsource('');
+    setmessages('');
     if (batchName != undefined) {
       let json = {
         "batchName": batchName, "isPayment": 1, "isClosed": 0,
         "cmImportFile": { "importFileId": importFileId }
       }
-      let message = saveBatchName(json, batchId);
-      console.log('message==' + message);
+      let data = await saveBatchName(json, batchId);
+      let dataString=JSON.stringify(data);
+      console.log(dataString);
+      let obj = JSON.parse(dataString);
+      let errorMessage= obj.errorMessage;
+       console.log('errorMessage=',errorMessage)
+      if(errorMessage !=null)
+      {
+          var nameArr = errorMessage.split(':');
+           setsource(nameArr[0]);
+           setmessages(nameArr[1]);
+      }
+      else
+      {
+        batchData.push(obj.response);
+        // this.setState({connectionStarted: true, dataSource: batchData});
+        console.log('batchData=',batchData);
+        setState({connectionStarted: true, dataSource: batchData});
+        console.log('state=',state);
+      }
     }
   }
-  const agencybatchnamesave = () => {
+  const agencybatchnamesave = async() => {
     console.log('======' + batchName);
+     console.log('=batchName=' + batchName + ' = importFileId=' + importFileId);
+        setsource('');
+        setmessages('');
+        if (batchName != undefined) {
+          let json = {
+            "batchName": batchName, "isPayment": 1, "isClosed": 0,
+            "cmImportFile": { "importFileId": importFileId }
+          }
+          let data =await saveBatchName(json, batchId);
+          let dataString=JSON.stringify(data);
+          console.log(dataString);
+                let obj = JSON.parse(dataString);
+                let errorMessage= obj.errorMessage;
+                 console.log('errorMessage=',errorMessage)
+                if(errorMessage !=null)
+                {
+                    var nameArr = errorMessage.split(':');
+                     setsource(nameArr[0]);
+                     setmessages(nameArr[1]);
+                }
+                else
+                {
+                  batchData.push(obj.response);
+                  // this.setState({connectionStarted: true, dataSource: batchData});
+                  console.log('batchData=',batchData);
+                  setState({connectionStarted: true, dataSource: batchData});
+                  console.log('state=',state);
+                }
+          }
+  }
+
+const customizeCells = (e)=> {
+        if(e.column.dataField === 'isPayment') {
+            e.cellElement.style.fontSize = '14px';
+        }
+    }
+
+const  customizeIsPayment=(cellInfo)=> {
+      if(cellInfo.value==1)
+            return 'Payment';
+      else
+       return 'Adjustment';
+   }
+
+const  dateFormat=(cellInfo)=> {
+ let date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })
+ .format(cellInfo.value)
+   return date;
   }
 
   return (
@@ -187,12 +274,11 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
                         <th>Source</th>
                         <th>Messages</th>
                       </tr>
-
                     </thead>
                     <tbody>
                     <tr>
-                    <td> {}</td>
-                    <td>{} </td>
+                    <td> {source}</td>
+                    <td>{messages} </td>
                     </tr>
                     </tbody>
                   </Table>
@@ -215,7 +301,7 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
                   </div>
 
                   <div className='input-group col input-group-sm'>
-                    <input className='form-control' type='text'></input>
+                    <input className='form-control' type='text' name='batchName' onChange={handlebatchName} ></input>
                   </div>
                 </div>
                 <div>
@@ -243,8 +329,8 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
                     </thead>
                     <tbody>
                     <tr>
-                    <td> {}</td>
-                     <td> {}</td>
+                    <td> {source}</td>
+                     <td> {messages}</td>
                     </tr>
                     </tbody>
                   </Table>
@@ -254,14 +340,16 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
            <div id='data-grid-demo'>
               <DataGrid
                 onRowClick={handleEvent}
-                dataSource={batchData}
-                showBorders={true}>
+                dataSource={state.dataSource}
+                showBorders={true} onCellPrepared={customizeCells} >
                 <Paging enabled={false} />
                 <Column dataField={'batchId'} caption={'Batch ID'} minWidth={100} alignment="left"/>
-                <Column dataField={'type'} caption={'Type'} minWidth={100} alignment="left"/>
+
+                <Column dataField={'isPayment'} caption={'Type'} minWidth={100} alignment="left" customizeText={customizeIsPayment} />
+
                 <Column dataField={'batchName'} caption={'Name'}minWidth={100} alignment="left" />
                 <Column dataField={'createdBy'} caption={'Created By'} minWidth={100} alignment="left"/>
-                <Column dataField={'creationDt'} caption={'Creation Date'} minWidth={100} alignment="left"/>
+                <Column dataField={'creationDt'} caption={'Creation Date'} minWidth={100} alignment="left" customizeText={dateFormat} />
                 <Column dataField={'status'} caption={'Status'} minWidth={100} alignment="left"/>
                 <Column dataField={'totalRecords'} caption={'Total Records'} minWidth={100} alignment="left"/>
                 <Column dataField={'totalAmount'} caption={'Total Amount'} minWidth={100} alignment="left"/>
@@ -292,8 +380,8 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
                     showBorders={true}>
                     <Paging enabled={false} />
                     <Column dataField={'batchId'} caption={'Customer ID'} minWidth={100} alignment="left" />
-                    <Column dataField={'batchEditdata.type'} caption={'Customer Name'} minWidth={100} alignment="left" />
-                    <Column dataField={'batchName'} caption='Payment Type'minWidth={100} alignment="left" />
+                    <Column dataField={'batchName'} caption={'Customer Name'} minWidth={100} alignment="left" />
+                    <Column dataField={'paymentType'} caption='Payment Type'minWidth={100} alignment="left" />
                     <Column dataField={'createdBy'} caption='Payment Amount'minWidth={100} alignment="left" />
                     <Column dataField={'creationDt'} caption='Agency Fee' minWidth={100} alignment="left"/>
                     <Column dataField={'isClosed'} caption='Check number' minWidth={100} alignment="left"/>
@@ -314,6 +402,7 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
                 </div>
           </div>
         <div class="col">
+        <form onSubmit={onSubmitHandler}>
           <div className="row my-2">
                <label for='inputcustomer id' className='col-lg-2 col-form-label'>
                   Customer ID
@@ -323,6 +412,7 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
                       type='text'
                       className='form-control'
                       id='input customer id'
+                      value={batchEditdata.batchId}
                     />
                </div>
           </div>
@@ -342,7 +432,7 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
       </div>
     </div>
 
-<form onSubmit={onSubmitHandler}>
+
     <div className=' row my-2 '>
       <label
         for='inputaccount balance'
@@ -351,13 +441,12 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
       </label>
       <div className='col-sm-3'>
         <input
-          type='text'
+          type='text' value={batchEditdata.batchId}
           className='form-control'
           id='input account balance'
         />
       </div>
     </div>
-
 
     <div className=' row my-2 '>
       <label
@@ -370,10 +459,10 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
           type='text'
           className='form-control'
           id='input payment amount'
+           value={batchEditdata.batchId}
         />
       </div>
     </div>
-
 
     <div class='form-check mx-2'>
       <input
@@ -398,6 +487,7 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
           type='text'
           className='form-control'
           id='input check number'
+           value={batchEditdata.batchId}
         />
       </div>
     </div>

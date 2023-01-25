@@ -135,22 +135,25 @@ export const onSubmitExportHandler = (json) => {
 /* End Export */
 
 /*Batch payment*/
-export const saveBatchName = (json,batchId) => {
-let message;
-    const url = PATH + 'ar/batch/save/'+batchId;
-    let session=localStorage.getItem('token');
-    const config = {
-      headers: {
-        'content-type': 'application/json',
-        Session: session
-      },
-    };
- message=   axios.post(url, json, config).then((response) => {
-      console.log(response.data);
-      message= response.data;
-    });
-    return message;
-  }
+
+export const saveBatchName= (json,batchId) => {
+  let session=localStorage.getItem('token');
+  let message='';
+  const url = PATH + 'ar/batch/save/'+batchId;
+  console.log(JSON.stringify(json));
+  message= fetch(url, {
+      method: 'POST',
+      body:JSON.stringify(json),
+      headers: { "Content-Type": 'application/json', Session: session }
+    }
+  ).then((response) => response.json())
+   .then(function(data) {
+          console.log('data=',data)
+          return data;
+      });
+  console.log(message);
+return message;
+}
 
 export const getBatchDetailsByBatchIdService= (active) => {
 let subdata;
@@ -191,17 +194,14 @@ export const getGLAccountData = (json) => {
     headers: {
       'content-type': 'application/json',
       Session: session
-    },
-  };
-  axios.post(url, json, config).then((response) => {
-    console.log(response.data);
-    result= response.data;
-  });
-  return result;
+    }};
+      const response = axios.post(url,json,config);
+      console.log(response);
+  return response;
 }
 
 export const accountUpdate = (key,json) => {
-  console.log(json);
+  console.log('abc===',json);
   const url = PATH + 'ar/gl/cd/save/'+key;
   let session=localStorage.getItem('token');
   const config = {

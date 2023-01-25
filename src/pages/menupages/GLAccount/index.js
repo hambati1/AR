@@ -13,32 +13,7 @@ import DataSource from 'devextreme/data/data_source';
 import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 const allowedPageSizes = [10, 20, 50];
 
-const gldata = [
-  {
-    glcode: 1,
-    accountNumber: 123,
-    description: 'desc',
-    updatedBy: 'hambati',
-    updateDate: '24-12-2022',
-    comments: 'comments',
-  },
-  {
-    glcode: 2,
-    accountNumber: 456,
-    description: 'desc',
-    updatedBy: 'hambati',
-    updateDate: '24-12-2022',
-    comments: 'comments',
-  },
-  {
-    glcode: 3,
-    accountNumber: 789,
-    description: 'desc',
-    updatedBy: 'hambati',
-    updateDate: '24-12-2022',
-    comments: 'comments',
-  },
-];
+let gldata = [];
 
 class GLAccount extends React.Component {
   show = false;
@@ -73,7 +48,7 @@ class GLAccount extends React.Component {
     });
   };
 
-  activeChange = () => {
+   activeChange = async() => {
     this.active = !this.active;
     console.log(this.active);
     let activeVal=0;
@@ -84,10 +59,16 @@ class GLAccount extends React.Component {
       isActive: activeVal,
       page: 1,
       size: 20,
-      sort: ['glAccNum,asc'],
+      sort: ['glAcctNum,asc'],
     };
-    this.setState({connectionStarted: true, dataSource: gldata});
-    getGLAccountData(json);
+
+    let data=await getGLAccountData(json);
+     if (data!=undefined ) {
+            console.log(data.data);
+            gldata=data.data.response;
+            console.log(gldata);
+            this.setState({connectionStarted: true, dataSource: gldata});
+      }
   };
   handleShow = () => {
     this.show = true;
@@ -100,7 +81,7 @@ class GLAccount extends React.Component {
   };
 
   onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-  console.log("data push");
+    console.log("data push");
     const form = event.target;
     event.preventDefault();
     let json = {
@@ -111,7 +92,9 @@ class GLAccount extends React.Component {
       updateDate: '24-12-2022',
       comments: form[2].value,
     };
+    console.log("gldata",gldata);
     gldata.push(json);
+    console.log("gldata",gldata);
     this.setState({connectionStarted: true, dataSource: gldata});
     this.show = false;
   };
@@ -124,6 +107,7 @@ class GLAccount extends React.Component {
     console.log('onRowUpdating', e);
     let accounum = e.key;
     let newData = e.newData;
+    console.log('newData', newData);
     accountUpdate(accounum, newData);
   };
 
@@ -237,7 +221,7 @@ class GLAccount extends React.Component {
                   onRowClick={this.handleEvent}
                   className='card-body'
                   dataSource={this.state.dataSource}
-                  keyExpr={'glcode'}
+                  keyExpr={'glAcctNum'}
                   allowColumnReordering={true}
                   focusedRowEnabled={true}
                   showBorders={true}
@@ -247,15 +231,15 @@ class GLAccount extends React.Component {
                   id='gldata_id'>
                   <Editing mode='row' allowUpdating={true} />
                   <Column
-                    dataField={'glcode'}
+                    dataField={'glAcctNum'}
                     caption={'GL Code'}
                     visible={false}
                   />
-                  <Column dataField={'accountNumber'}caption={'Account Number'} minWidth={100} alignment="left"/>
-                  <Column dataField={'description'} caption={'Description'} minWidth={100} alignment="left" />
-                  <Column dataField={'updatedBy'} caption={'Updated By'} minWidth={100} alignment="left" />
-                  <Column dataField={'updateDate'} caption={'Update Date'}  minWidth={100} alignment="left"/>
-                  <Column dataField={'comments'} caption={'Comments'}  minWidth={100} alignment="left"/>
+                  <Column dataField={'glAcctNum'}caption={'Account Number'} minWidth={100} alignment="left"/>
+                  <Column dataField={'glCdDesc'} caption={'Description'} minWidth={100} alignment="left" />
+                  <Column dataField={'updtdBy'} caption={'Updated By'} minWidth={100} alignment="left" />
+                  <Column dataField={'updtDt'} caption={'Update Date'}  minWidth={100} alignment="left"/>
+                  <Column dataField={'glComment'} caption={'Comments'}  minWidth={100} alignment="left"/>
                   <FilterRow visible={true} />
                   <Pager
                     allowedPageSizes={[5, 10, 20]}
