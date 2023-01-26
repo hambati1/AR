@@ -3,8 +3,6 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import '../../menupages/index.style.scss';
-import Payments from 'pages/SearchWorklist/Payments/index.js';
-import Adjustments from 'pages/SearchWorklist/Adjustments';
 import { getFileTypeData, getimportSearchData, getImportFileTypeData, getImportFileNames, onSubmitImportHandler } from '../../menupages/APICalls.js'
 import 'react-dyn-tabs/style/react-dyn-tabs.min.css';
 import 'react-dyn-tabs/themes/react-dyn-tabs-basic.min.css';
@@ -16,6 +14,8 @@ import BatchPaymentsData from '../BatchPayments/index.js';
 import GLAccountData from '../GLAccount/index.js';
 import TaxViewerData from '../TaxViewer/index.js';
 import CreditCardData from "../CreditCard/index.js";
+import PaymentsData from "../../SearchWorklist/Payments/index.js"
+import AdjustmentsData from "../../SearchWorklist/Adjustments/index.js"
 import { BsBarChartLine, BsFonts, BsGear, BsGrid3X3Gap, BsStar } from "react-icons/bs";
 import { IoFlameOutline } from "react-icons/io5";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -161,6 +161,44 @@ const actions = {
         if (_instance.isOpen('6')) {
           _instance.select('6').then(() => {
             console.log('(tab 6 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
+  payments: () => {
+    _instance
+      .open({
+        title: 'Payments',
+        id: '7',
+        lazy: true,
+        panelComponent: function PanelComponent() {
+          return <p><PaymentsData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('7')) {
+          _instance.select('7').then(() => {
+            console.log('(tab 7 is selected)');
+          });
+        }
+        console.log('(new tab is open)');
+      });
+  },
+  adjustments: () => {
+    _instance
+      .open({
+        title: 'Adjustments',
+        id: '8',
+        lazy: true,
+        panelComponent: function PanelComponent() {
+          return <p><AdjustmentsData /> </p>;
+        },
+      })
+      .then(() => {
+        if (_instance.isOpen('8')) {
+          _instance.select('8').then(() => {
+            console.log('(tab 8 is selected)');
           });
         }
         console.log('(new tab is open)');
@@ -472,7 +510,7 @@ const Search = () => {
                   </div>
 
                   {/* payments fields ends */}
-                  <button type='submit' className='btn mb-3 btn-Gray'>
+                  <button type='submit' onClick={actions.payments} className='btn mb-3 btn-Gray'>
                     Submit
                   </button>
                   <button
@@ -627,7 +665,7 @@ const Search = () => {
                       </div>
                     </div>
                   </div>
-                  <button type='submit'className='btn  mb-3 btn-Gray'>
+                  <button type='submit'onClick={actions.adjustments} className='btn  mb-3 btn-Gray'>
                     Submit 
                   </button>
                  

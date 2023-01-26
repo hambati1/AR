@@ -7,10 +7,8 @@ import DataGrid, {
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
-import '../../SearchWorklist/Adjustments/index.style.scss'
-
-
-
+// import '../../SearchWorklist/Adjustments/index.style.scss'
+import '../../menupages/index.style.scss'
 
 const Adjustments = () => {
 
@@ -23,107 +21,10 @@ const Adjustments = () => {
 
 
     return (
-        <div>
-            <div className='col-md-9 main-header'>
-                <p>Accounts Receivable</p>
-            </div>
-
-            <Tabs
-                defaultActiveKey="profile"
-                id="uncontrolled-tab-example"
-                className="mb-3">
-                <Tab eventKey="home" title="Search">
-                    <div className="mb-2 row">
-                        <label for="input search type" className="col-lg-2 col-form-label">Search Type</label>
-                        <div className="col-sm-3">
-                            <select className="form-select" Name="status" aria-label="Default select example" >
-                                <option value="">Adjustments</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div className="mb-2 row">
-                        <label for="inputCustomerid" className="col-lg-2 col-form-label">Customer ID</label>
-                        <div className="col-sm-3">
-                            <input type="text" className="form-control" id="inputCustomerid" />
-                        </div>
-                    </div>
-
-                    <div className="mb-2 row">
-                        <label for="inputCustomername" className="col-lg-2 col-form-label">Customer Name</label>
-                        <div className="col-sm-3">
-                            <input type="text" className="form-control" id="inputCustomername" />
-                        </div>
-                    </div>
-
-                    <div className="mb-2 row">
-                        <label for="inputfrom date" className="col-lg-2 col-form-label"> From Date</label>
-                        <div className="col-sm-3">
-                            <input type="text" className="form-control" id="inputfrom date" />
-                        </div>
-                    </div>
-
-                    <div className="mb-2 row">
-                        <label for="inputTo date" className="col-lg-2 col-form-label">To Date</label>
-                        <div className="col-sm-3">
-                            <input type="text" className="form-control" id="inputTodate" />
-                        </div>
-                    </div>
-                    <div className="mb-2 row">
-                        <label for="inputfrom amount" className="col-lg-2 col-form-label">From Amount</label>
-                        <div className="col-sm-3">
-                            <input type="text" className="form-control" id="inputfrom amount" />
-                        </div>
-                    </div>
-
-                    <div className="mb-2 row">
-                        <label for="input to amount" className="col-lg-2 col-form-label">To Amount</label>
-                        <div className="col-sm-3">
-                            <input type="text" className="form-control" id="input to amount" />
-                        </div>
-                    </div>
-
-                    <div className="mb-2 row">
-                        <label for="input category" className="col-lg-2 col-form-label">Category</label>
-                        <div className="col-sm-3">
-                            <select className="form-select" Name="status" aria-label="Default select example" >
-                                <option value=""></option>
-                                <option value=""></option>
-                            </select>
-
-                        </div>
-                    </div>
-
-
-
-                    <div className="mb-2 row">
-                        <label for="input type" className="col-lg-2 col-form-label">Type</label>
-                        <div className="col-sm-3">
-                            <select className="form-select" Name="status" aria-label="Default select example" >
-                                <option value=""></option>
-                                <option value=""></option>
-                            </select>
-                        </div>
-
-                    </div>
-
-                    <div className="mb-2 row">
-                        <label for="input status" className="col-lg-2 col-form-label">Status</label>
-                        <div className="col-sm-3">
-                            <select className="form-select" Name="status" aria-label="Default select example" >
-                                <option value=""></option>
-                                <option value=""></option>
-                            </select>
-                        </div>
-                    </div>
+         
                     <div>
-                        <button type="Ok" className="btn  mb-3 ok ">Submit</button>
-                        <button type="Cancel" className="btn  mb-3 cancel ">Reset</button>
-                    </div>
-                </Tab>
-                <Tab eventKey="adjustments" title="Adjustments">
                     <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        <Dropdown.Toggle variant="primary" id="dropdown-basic">
                             Actions
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
@@ -301,11 +202,8 @@ const Adjustments = () => {
                             />
                             <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
                             <Paging defaultPageSize={5} />
-                        
                     </DataGrid>
-                    </Tab>
-            </Tabs>
-        </div>
+                    </div>
     );
 };
 export default Adjustments;
