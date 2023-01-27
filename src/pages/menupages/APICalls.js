@@ -29,7 +29,7 @@ export const getimportSearchData = async (selectfileType) => {
 export const getImportFileTypeData=() => {
 console.log("sssssssssss");
 let session=localStorage.getItem('token');
-  const response = fetch(PATH + "cn/filetype?functionId=6&isActive=1&isImport=0", {
+  const response = fetch(PATH + "cn/filetype?functionId=6&isActive=1&isImport=1", {
     method: 'GET',
     headers: { Session: session }
   }
@@ -111,7 +111,7 @@ export const getExportSearchData=(fileTypeId,brandId) => {
          }
          ).then((response) => response.json())
           .then(function(data) {
-                 result = data.response;
+               result = data.response;
              });
          return result;
     }
@@ -239,6 +239,21 @@ export const saveGLAccount = (json) => {
 
 /*Tax api*/
 
+export const onSubmitPcodeHandler =  async(payload) => {
+  console.log("ss")
+  let pcode = []
+  const url = PATH + 'tx/tax/pcodes';
+  let session=localStorage.getItem('token');
+  const config = {
+     headers: {
+       'content-type': 'application/json',
+       Session: session
+     },
+   };
+   return await axios.post(url, payload, config)
+   
+ }
+
 
 export const onSubmitTaxHandler = (payload) => {
   const url = PATH + 'ar/tax/viewer';
@@ -264,6 +279,32 @@ export const onSubmitTaxHandler = (payload) => {
     console.log(response);
     return response;
   };
+
+  
+  export const getStateTypeData=(functionId) => {
+    let session=localStorage.getItem('token');
+      const response = fetch(PATH + "statetypes", {
+        method: 'GET',
+        headers: { Session: session }
+      }
+      ).then((response) => response.json());
+      console.log(response);
+      return response;
+    };
+
+
+    export const getCountryTypeData=(functionId) => {
+      let session=localStorage.getItem('token');
+        const response = fetch(PATH + "countrytypes", {
+          method: 'GET',
+          headers: { Session: session }
+        }
+        ).then((response) => response.json());
+        console.log(response);
+        return response;
+      };
+ 
+  
 
   /*end tax api*/
 

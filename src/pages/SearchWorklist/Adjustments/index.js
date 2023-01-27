@@ -98,7 +98,7 @@ const Adjustments = () => {
 
                     <div class="container">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-lg-4">
 
                                 <div className="mb-2 row comment-margin">
                                     <label for="inputpayment id" className="col-lg-2 form-width col-form-label">Adjustment ID</label>
@@ -141,7 +141,7 @@ const Adjustments = () => {
 
 
                             </div>
-                            <div class="col">
+                            <div class="col-lg-4">
 
                                 <div className="mb-2 row comment-margin">
                                     <label for="inputposted date" className="col-lg-2 form-width col-form-label">Original Transaction Item</label>
@@ -179,11 +179,11 @@ const Adjustments = () => {
                         </div>
                     </div>
 
-                    <div className="'float-start">
+                    <div className="">
                     <p>Associated Taxes</p>
-                    </div>
+                   
                     <DataGrid
-                    className='card-body'
+                    className='float-adjustment'
                             dataSource={Adjustments}
                             keyExpr={'fileName'}
                             allowColumnReordering={true}>
@@ -203,6 +203,7 @@ const Adjustments = () => {
                             <Pager allowedPageSizes={[5, 10, 20]} showPageSizeSelector={true} showNavigationButtons={true} />
                             <Paging defaultPageSize={5} />
                     </DataGrid>
+                    </div>
                     </div>
     );
 };

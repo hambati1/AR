@@ -65,7 +65,7 @@ const CreditCard = () => {
   
   useEffect(() => {
     getTranscationTypeDataVal();
-    getCardDataVal();
+    // getCardDataVal();
     getStatusDataVal();
   }, []);
 

@@ -133,15 +133,15 @@ async function getFileTypeDataVal() {
             dataSource={FileImportData}
             keyExpr={'fileName'}
             allowColumnReordering={true}>
-            <Column dataField={'importFileId'} caption={'Import FileId'} visible={false}/>
-            <Column dataField={'fileName'} caption={'File Name'} />
-            <Column dataField={'cnFileType.fileTypeDesc'} caption={'Type'} />
-            <Column dataField={'recsImported'} caption={'Records Imported'} />
-            <Column dataField={'recsInError'} caption={'Records in Error'} />
-            <Column dataField={'amtImported'} caption={'Amount Imported'} />
-            <Column dataField={'amtrejected'} caption={'Amount Rejected'} visible={false}/>
-            <Column dataField={'importDt'} caption={'Imported Date'} visible={false}/>
-            <Column dataField={'importedBy'} caption={'Imported By'} visible={false}/>
+            <Column dataField={'importFileId'} caption={'Import FileId'} minWidth={70} alignment="left" visible={false}/>
+            <Column dataField={'fileName'} caption={'File Name'} minWidth={100} alignment="left"/>
+            <Column dataField={'cnFileType.fileTypeDesc'} caption={'Type'} minWidth={100} alignment="left"/>
+            <Column dataField={'recsImported'} caption={'Records Imported'}minWidth={100} alignment="left" />
+            <Column dataField={'recsInError'} caption={'Records in Error'} minWidth={100} alignment="left"/>
+            <Column dataField={'amtImported'} caption={'Amount Imported'} minWidth={100} alignment="left"/>
+            <Column dataField={'amtrejected'} caption={'Amount Rejected'} minWidth={100} alignment="left"visible={false}/>
+            <Column dataField={'importDt'} caption={'Imported Date'}minWidth={100} alignment="left" visible={false}/>
+            <Column dataField={'importedBy'} caption={'Imported By'}minWidth={100} alignment="left" visible={false}/>
 
             <FilterRow visible={true} />
             <ColumnChooser enabled={true} mode='select' />

@@ -21,8 +21,7 @@ import CodeForm from '../../menupages/TaxViewer/CodeForm';
 import TaxViewerResult from './TaxViewerResult';
 import {
   getTaxFileTypeData,
-  onSubmitTaxHandler,
-} from '../../menupages/APICalls.js';
+  onSubmitTaxHandler} from '../../menupages/APICalls.js';
 // import CloseButton from '../../../../src/pages/menupages/CloseButton';
 
 let TaxViewerData = [];
@@ -36,6 +35,12 @@ const TaxViewer = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [StateType, setStateTypes] = useState();
+
+  
+
+
+
 
   const selectChangeHandler = (
     setFunction: React.Dispatch<React.SetStateAction<string>>,
@@ -50,6 +55,7 @@ const TaxViewer = () => {
   };
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log()
     const form = event.target;
     event.preventDefault();
     let json = {
@@ -75,8 +81,15 @@ const TaxViewer = () => {
   };
   useEffect(() => {
     getFileTypeDataVal();
+    // getStateDataVal()
   }, []);
-
+  // getStateDataVal
+  // async function getStateDataVal() {
+  //   let data = await getStateTypeData();
+  //   // console.log('Statement 2' + data);
+  //   console.log(data)
+  //   setStateTypes(data);
+  // }
   async function getFileTypeDataVal() {
     var data = await getTaxFileTypeData();
     console.log('Statement 2' + data);
@@ -98,7 +111,7 @@ const TaxViewer = () => {
         className='mb-3'
         onHide={handleClose}>
         <Tab eventKey="batchPayment" title="Tax Viewer">
-          <form onSubmit={onSubmitHandler}>
+          <form >
 
             <div className="mb-2 row">
               <label for="inputp-code" readOnly className="col-lg-2 col-form-label">P-Code</label>
@@ -108,7 +121,7 @@ const TaxViewer = () => {
                     <div className="input-group-btn">
                       <div className="btn-group" role="group">
                         <input type="text" className="form-control" id="search" autocmplete="off" />
-                        <CodeForm />
+                        <CodeForm data={StateType}/>
                       </div>
                     </div>
                   </div>
@@ -121,99 +134,48 @@ const TaxViewer = () => {
                 Amount
               </label>
               <div className='col-md-2'>
-                <input
-                  type='text'
-                  name=' amount'
-                  className='form-control'
-                  id='inputamount'
-                />
+                <input type='text'name=' amount'className='form-control'id='inputamount'/>
               </div>
             </div>
 
             <div className='mb-2 row'>
-              <label for='inputlines' className='col-lg-2 col-form-label'>
-                Lines
-              </label>
+              <label for='inputlines' className='col-lg-2 col-form-label'> Lines</label>
               <div className='col-md-2'>
-                <input
-                  type='text'
-                  name='lines'
-                  className='form-control'
-                  id='inputlines'
-                />
+                <input type='text'name='lines'className='form-control'id='inputlines'/>
               </div>
             </div>
 
             <div className='mb-2 row'>
-              <label for='inputlocation' className='col-lg-2 col-form-label'>
-                Locations
-              </label>
+              <label for='inputlocation' className='col-lg-2 col-form-label'>Locations</label>
               <div className='col-md-2'>
-                <input
-                  type='text'
-                  name=' locations'
-                  className='form-control'
-                  id='inputlocations'
-                />
+                <input type='text'name=' locations'className='form-control'id='inputlocations'/>
               </div>
             </div>
 
             <div className='mb-2 row'>
-              <label for='inputorigination npa-nxx' className='col-lg-2 col-form-label'>
-                Origination NPA-NXX
-              </label>
+              <label for='inputorigination npa-nxx' className='col-lg-2 col-form-label'>Origination NPA-NXX</label>
               <div className='col-md-2'>
-                <input
-                  type='text'
-                  name='origination npa-nxx'
-                  className='form-control'
-                  id='inputorigination npa-nxx'
-                />
+                <input type='text'name='origination npa-nxx'className='form-control'id='inputorigination npa-nxx'/>
               </div>
               <div className='col-md-2'>
-                <input
-                  type='text'
-                  name='origination npa-nxx'
-                  className='form-control mx-2'
-                  id='inputorigination npa-nxx'
-                />
+                <input type='text'name='origination npa-nxx'className='form-control mx-2'id='inputorigination npa-nxx'/>
               </div>
             </div>
 
 
             <div className='mb-2 row'>
-              <label for='inputterminating npa-nxx' className='col-lg-2 col-form-label'>
-                Terminating NPA-NXX
-              </label>
+              <label for='inputterminating npa-nxx' className='col-lg-2 col-form-label'>Terminating NPA-NXX </label>
               <div className='col-md-2'>
-                <input
-                  type='text'
-                  name=' terminating npa-nxx'
-                  className='form-control'
-                  id='inputterminating npa-nxx'
-                />
+                <input type='text'name=' terminating npa-nxx'className='form-control'id='inputterminating npa-nxx'/>
               </div>
               <div className='col-md-2'>
-                <input
-                  type='text'
-                  name=' terminating npa-nxx'
-                  className='form-control mx-2'
-                  id='inputterminating npa-nxx'
-                />
+                <input type='text' name=' terminating npa-nxx'className='form-control mx-2'id='inputterminating npa-nxx'/>
               </div>
             </div>
             <div className='mb-2 row'>
-              <label
-                for='input transcation type'
-                className='col-lg-2 col-form-label'>
-                Transcation Type
-              </label>
+              <label for='input transcation type'className='col-lg-2 col-form-label'>Transcation Type</label>
               <div className='col-md-2 Dropdown'>
-                <select
-                  className='form-select'
-                  Name='selectfileType'
-                  aria-label='Default select example'
-                  onChange={(e) =>
+                <select className='form-select'Name='selectfileType' aria-label='Default select example' onChange={(e) =>
                     selectChangeHandler(selectfileType, e.target.value)
                   }>
                   <option value=''></option>
@@ -227,72 +189,43 @@ const TaxViewer = () => {
               </div>
             </div>
             <div className='mb-2 row'>
-              <label
-                for='inputincorporated'
-                className='col-lg-2 col-form-label'>
-                Incorporated
-              </label>
+              <label for='inputincorporated'className='col-lg-2 col-form-label'>Incorporated </label>
               <div className='col-md-2'>
-                <select
-                  className='form-select'
-                  Name='incorporated'
-                  aria-label='Default select example'>
+                <select className='form-select'Name='incorporated'aria-label='Default select example'>
                   <option value='Withiin'>Within</option>
-                  <option value=''></option>
+                  <option value='Outside'>Outside</option>
                 </select>
               </div>
             </div>
             <div className='mb-2 row'>
-              <label
-                for='inputregulated'
-                className='col-lg-2 col-form-label'>
-                Regulated
-              </label>
+              <label for='inputregulated'className='col-lg-2 col-form-label'>Regulated</label>
               <div className='col-md-2'>
-                <select
-                  className='form-select'
-                  name='regulated'
-                  aria-label='Default select example'>
+                <select className='form-select'name='regulated'aria-label='Default select example'>
                   <option value='Regulated'>Regulated</option>
-                  <option value=''></option>
+                  <option value='Unregulated'>Unregulated</option>
                 </select>
               </div>
             </div>
 
             <div className='mb-2 row'>
-              <label
-                for='inputsaletype'
-                className='col-lg-2 col-form-label'>
-                Sale Type
-              </label>
+              <label for='inputsaletype'className='col-lg-2 col-form-label'>Sale Type </label>
               <div className='col-md-2'>
-                <select
-                  className='form-select'
-                  Name='saletype'
-                  aria-label='Default select example'>
+                <select className='form-select'Name='saletype'aria-label='Default select example'>
                   <option value='Sale'>Sale</option>
-                  <option value=''></option>
+                  <option value='Wholesale'>Wholesale</option>
                 </select>
               </div>
             </div>
             <div className='mb-2 row'>
-              <label
-                for='inputdate'
-                className='col-lg-2 col-form-label'>
-                Date
-              </label>
+              <label for='inputdate'className='col-lg-2 col-form-label'> Date</label>
               <div className='col-md-2'>
                 <input className='datepicker' type='date' />
               </div>
             </div>
 
             <div>
-              <button type='submit' className='btn  mb-3 Apply'>
-                Apply Tax
-              </button>
-              <button type='Clear' className='btn  mb-3 batch-cancel '>
-                Clear
-              </button>
+              <button onClick={onSubmitHandler} className='btn  mb-3 Apply'>Apply Tax</button>
+              <button  className='btn  mb-3 batch-cancel'>Clear</button>
             </div>
           </form>
         </Tab>

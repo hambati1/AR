@@ -100,7 +100,7 @@ const Payments = () => {
         </div>
         <div class='container'>
           <div class='row'>
-            <div class='col'>
+            <div class='col-lg-4'>
               <div className='mb-2 row comment-margin'>
                 <label
                   for='inputpayment id'
@@ -158,22 +158,8 @@ const Payments = () => {
                 </div>
               </div>
 
-              <div className='mb-2 row comment-margin'>
-                <label
-                  for='input commnets'
-                  className='col-lg-2 form-width col-form-label'>
-                  Comments
-                </label>
-                <div className='col'>
-                  <input
-                    type='text'
-                    className='form-control'
-                    id='input comments'
-                  />
-                </div>
-              </div>
             </div>
-            <div class='col'>
+            <div class='col-lg-4'>
               <div className='mb-2 row comment-margin'>
                 <label
                   for='inputposted date'
