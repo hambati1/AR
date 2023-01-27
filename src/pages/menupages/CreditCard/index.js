@@ -8,8 +8,6 @@ import DataGrid, {
 import { getTranscationTypeData, getCardTypeData, getStatusTypeData } from '../../menupages/APICalls.js';
 // import { CreditCard } from 'react-bootstrap-icons';
 
-
-
 const actions = [
   { id: 1, text: "Customer ID" },
   { id: 2, text: "Customer Name" },
@@ -96,10 +94,10 @@ const CreditCard = () => {
       </div> */}
 
       <Tabs
-        defaultActiveKey="profile"
+        defaultActiveKey="search"
         id="uncontrolled-tab-example"
         className="mb-3">
-        <Tab eventKey="profile" title="Search">
+        <Tab eventKey="search" title="Search">
           <div className="mb-2 row">
             <label for="inputCustomerid" className="col-lg-2 col-form-label">Customer ID</label>
             <div className="col-sm-3">
@@ -270,7 +268,7 @@ const CreditCard = () => {
                 <div className="mb-2 row comment-margin">
                   <label for="inputcommnets" className="col-lg-2 form-width col-form-label">Comments</label>
                   <div className="col">
-                    <input type="text" className="form-control  pt-3" id="input comments" />
+                    <textarea type="text" className="form-control  pt-3" id="input comments" />
                   </div>
                 </div>
               </div>

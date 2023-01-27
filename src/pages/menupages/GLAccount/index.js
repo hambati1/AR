@@ -197,11 +197,11 @@ class GLAccount extends React.Component {
                         <label>Comments</label>
                       </div>
                       <div className='input-group col input-group-sm'>
-                        <input
+                        <textarea
                           className='form-control pt-3'
                           name='comments'
                           type='text'
-                          onChange={this.inputChangeHandler(this)}></input>
+                          onChange={this.inputChangeHandler(this)}></textarea>
                       </div>
                     </div>
                     <div>
@@ -308,7 +308,7 @@ class GLAccount extends React.Component {
                       Comments
                     </label>
                     <div className='col-sm-3'>
-                      <input
+                      <textarea
                         type='text'
                         className='form-control select-width  pt-3'
                         id='input comments'

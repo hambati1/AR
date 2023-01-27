@@ -172,7 +172,7 @@ const Adjustments = () => {
                                 <div className="mb-2 row comment-margin">
                                     <label for="inputcomments" className="col-lg-2 form-width col-form-label">Comments</label>
                                     <div className="col">
-                                        <input type="text" className="form-control pt-3" id="inputcomments" />
+                                        <textarea type="text" className="form-control pt-3" id="inputcomments" />
                                     </div>
                                 </div>
                             </div>

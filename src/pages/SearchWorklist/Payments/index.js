@@ -210,7 +210,7 @@ const Payments = () => {
                   Comments
                 </label>
                 <div className='col'>
-                  <input
+                  <textarea
                     type='text'
                     className='form-control pt-3'
                     id='inputcomments'
