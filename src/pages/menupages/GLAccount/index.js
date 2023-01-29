@@ -14,7 +14,7 @@ import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 const allowedPageSizes = [10, 20, 50];
 
 let gldata = [];
-
+let activeVal=0;
 class GLAccount extends React.Component {
   show = false;
   constructor(props) {
@@ -43,15 +43,14 @@ class GLAccount extends React.Component {
     const pageCount = params.component.pageCount();
     const pageIndex = params.component.pageIndex();
     const key = params.event && params.event.key;
-    params.component.pageIndex(pageIndex - 1).done(() => {
+   /* params.component.pageIndex(pageIndex - 1).done(() => {
       params.component.option('focusedRowIndex', rowsCount - 1);
-    });
+    });*/
   };
 
    activeChange = async() => {
     this.active = !this.active;
     console.log(this.active);
-    let activeVal=0;
     if(this.active)
        activeVal=1;
 
@@ -92,6 +91,7 @@ class GLAccount extends React.Component {
       updateDate: '24-12-2022',
       comments: form[2].value,
     };
+    addGLCode(json);
     console.log("gldata",gldata);
     gldata.push(json);
     console.log("gldata",gldata);
@@ -106,7 +106,14 @@ class GLAccount extends React.Component {
   onRowUpdating = (e) => {
     console.log('onRowUpdating', e);
     let accounum = e.key;
+    let oldData=e.oldData;
+    console.log('oldData', oldData);
     let newData = e.newData;
+    console.log('activeVal', activeVal);
+    if(activeVal==undefined)
+      activeVal=1;
+
+    newData.isAcive=activeVal;
     console.log('newData', newData);
     accountUpdate(accounum, newData);
   };
@@ -230,19 +237,14 @@ class GLAccount extends React.Component {
                   onRowUpdated={this.onRowUpdated}
                   id='gldata_id'>
                   <Editing mode='row' allowUpdating={true} />
-                  <Column
-                    dataField={'glAcctNum'}
-                    caption={'GL Code'}
-                    visible={false}
-                  />
                   <Column dataField={'glAcctNum'}caption={'Account Number'} minWidth={100} alignment="left"/>
                   <Column dataField={'glCdDesc'} caption={'Description'} minWidth={100} alignment="left" />
-                  <Column dataField={'updtdBy'} caption={'Updated By'} minWidth={100} alignment="left" />
-                  <Column dataField={'updtDt'} caption={'Update Date'}  minWidth={100} alignment="left"/>
+                  <Column dataField={'updtdBy'} caption={'Updated By'} allowEditing={false} minWidth={100} alignment="left" />
+                  <Column dataField={'updtDt'} caption={'Update Date'} allowEditing={false}  dataType="date" minWidth={100} alignment="left"/>
                   <Column dataField={'glComment'} caption={'Comments'}  minWidth={100} alignment="left"/>
                   <FilterRow visible={true} />
                   <Pager
-                    allowedPageSizes={[5, 10, 20]}
+                    allowedPageSizes={allowedPageSizes}
                     showPageSizeSelector={true}
                     showNavigationButtons={true}
                   />
@@ -260,74 +262,7 @@ class GLAccount extends React.Component {
                 />
                 </DataGrid>
               </div>
-              <div className='ml-60'>
-                <div className='form-check mx-2'>
-                  <input
-                    type='checkbox'
-                    className='form-check-input'
-                    name='option1'
-                    value='Is Active'
-                  />
-                  <label className='list'> Is Active</label>
-                </div>
-                <form calssName='input-selected record'>
-                  <div className='mb-2 row'>
-                    <label
-                      for='input account number'
-                      className='col-lg-2 col-form-label'>
-                      Account Number
-                    </label>
-                    <div className='col-sm-3'>
-                      <input
-                        type='text'
-                        className='form-control select-width'
-                        id='input account number'
-                      />
-                    </div>
-                  </div>
-
-                  <div className='mb-2 row'>
-                    <label
-                      for='input description'
-                      className='col-lg-2 col-form-label'>
-                      Description
-                    </label>
-                    <div className='col-sm-3'>
-                      <input
-                        type='text'
-                        className='form-control select-width'
-                        id='input description'
-                      />
-                    </div>
-                  </div>
-
-                  <div className='mb-2 row'>
-                    <label
-                      for='input commnets'
-                      className='col-lg-2 col-form-label'>
-                      Comments
-                    </label>
-                    <div className='col-sm-3'>
-                      <textarea
-                        type='text'
-                        className='form-control select-width  pt-3'
-                        id='input comments'
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <button type='Save' className='btn  mb-3 btn-Gray '>
-                      Save
-                    </button>
-                    <button type='Cancel' className='btn  mb-3 btn-darkGray '>
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-              </div>
             </div>
-          {/* </Tab>
-        </Tabs> */}
       </div>
     );
   }

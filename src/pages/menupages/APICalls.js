@@ -8,6 +8,35 @@ import axios from 'axios';
 const PATH='http://172.20.51.231:8761/cm/api/';
 let result=[];
 
+/* Search Adjestment Type*/
+
+export const getAdjestmentTypeData=() => {
+console.log("sssssssssss");
+let session=localStorage.getItem('token');
+  const adjtyeps = fetch(PATH + "/pp/adjtype", {
+    method: 'GET',
+    headers: { Session: session }
+  }
+  ).then((response) => response.json());
+  console.log(adjtyeps);
+  return adjtyeps;
+};
+
+
+export const getAdjestmentadjcat=() => {
+console.log("sssssssssss");
+let session=localStorage.getItem('token');
+  const adjadjcat  = fetch(PATH + "/pp/adjcat ", {
+    method: 'GET',
+    headers: { Session: session }
+  }
+  ).then((response) => response.json());
+  console.log(adjadjcat);
+  return adjadjcat;
+};
+
+/* END Search Adjestment Type*/
+
 export const getimportSearchData = async (selectfileType) => {
   console.log(selectfileType)
   const b0 = {"fileTypeId": selectfileType,
@@ -217,6 +246,22 @@ export const accountUpdate = (key,json) => {
   return result;
 }
 
+export const addGLCode = (json) => {
+  console.log('abc===',json);
+  const url = PATH + 'ar/gl/cd/save/';
+  let session=localStorage.getItem('token');
+  const config = {
+    headers: {
+      'content-type': 'application/json',
+      Session: session
+    },
+  };
+  axios.post(url, json, config).then((response) => {
+    console.log(response.data);
+    result= response.data;
+  });
+  return result;
+}
 
 export const saveGLAccount = (json) => {
   console.log(json);

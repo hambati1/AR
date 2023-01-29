@@ -3,7 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import '../../menupages/index.style.scss';
-import { getFileTypeData, getimportSearchData, getImportFileTypeData, getImportFileNames, onSubmitImportHandler } from '../../menupages/APICalls.js'
+import { getFileTypeData, getimportSearchData, getImportFileTypeData, getImportFileNames, onSubmitImportHandler,getAdjestmentTypeData,getAdjestmentadjcat} from '../../menupages/APICalls.js'
 import 'react-dyn-tabs/style/react-dyn-tabs.min.css';
 import 'react-dyn-tabs/themes/react-dyn-tabs-basic.min.css';
 import useDynTabs from 'react-dyn-tabs';
@@ -23,6 +23,7 @@ import {onSearchPayment} from '../../menupages/APICalls.js';
 
 let _instance, isVertical;
 let tab = 0;
+
 const actions = {
   search: () => {
     _instance
@@ -204,12 +205,12 @@ const actions = {
         console.log('(new tab is open)');
       });
   },
-
-
 }
 
-
 const Search = () => {
+const [adjType, setadjTypes] = useState();
+const [adjCat, setadjCats] = useState();
+
   const options = {
     tabs: [
       { id: '0', title: 'Search', panelComponent: Panel0, iconClass: 'fa fa-home', closable: false },
@@ -250,6 +251,27 @@ const Search = () => {
       console.log('[onDestroy]');
     },
   };
+
+
+  useEffect(() => {
+  getAdjestmentTypeDataMethod();
+  getAdjestmentadjcatData();
+  }, []);
+
+  async function getAdjestmentTypeDataMethod() {
+    var data=await  getAdjestmentTypeData();
+      console.log('Statement 2'+data);
+      setadjTypes(data.response);
+      console.log('Statement ='+adjType);
+  }
+
+  async function getAdjestmentadjcatData() {
+      var data=await  getAdjestmentadjcat();
+        console.log('Statement 2'+data);
+        setadjCats(data.response);
+        console.log('adjCat ='+adjCat);
+    }
+
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
       const form = event.target;
@@ -452,14 +474,15 @@ const Search = () => {
                         Type
                       </label>
                       <div className='col-sm-3'>
-                        <select
-                          className='form-select search-form-select'
-                          Name='status'
-                          aria-label='Default select example'>
-                          <option value=''></option>
-                          <option value=''></option>
-                        </select>
-                      </div>
+                       <select className="form-select select-style" Name="adjType" aria-label="Default select example"
+                                          onChange={(e) => selectChangeHandler(adjType, e.target.value)} >
+                                          <option value=""></option>
+                                          {adjType &&
+                                            adjType.map((user) => (
+                                              <option value={user.adjTypeId}>{user.adjTypeName}</option>
+                                            ))}
+                                        </select>
+                       </div>
                     </div>
 
                     <div className='mb-2 row'>
@@ -621,13 +644,14 @@ const Search = () => {
                         Category
                       </label>
                       <div className='col-sm-3'>
-                        <select
-                          className='form-select search-form-select'
-                          Name='status'
-                          aria-label='Default select example'>
-                          <option value=''></option>
-                          <option value=''></option>
-                        </select>
+                         <select className="form-select select-style" Name="adjType" aria-label="Default select example"
+                                                                  onChange={(e) => selectChangeHandler(adjCat, e.target.value)} >
+                                                                  <option value=""></option>
+                                                                  {adjCat &&
+                                                                    adjCat.map((user) => (
+                                                                      <option value={user.adjCatId}>{user.adjCatDesc}</option>
+                                                                    ))}
+                                                                </select>
                       </div>
                     </div>
 
@@ -638,13 +662,14 @@ const Search = () => {
                         Type
                       </label>
                       <div className='col-sm-3'>
-                        <select
-                          className='form-select search-form-select'
-                          Name='status'
-                          aria-label='Default select example'>
-                          <option value=''></option>
-                          <option value=''></option>
-                        </select>
+                         <select className="form-select select-style" Name="adjType" aria-label="Default select example"
+                                                                  onChange={(e) => selectChangeHandler(adjType, e.target.value)} >
+                                                                  <option value=""></option>
+                                                                  {adjType &&
+                                                                    adjType.map((user) => (
+                                                                      <option value={user.adjTypeId}>{user.adjTypeName}</option>
+                                                                    ))}
+                                                                </select>
                       </div>
                     </div>
 

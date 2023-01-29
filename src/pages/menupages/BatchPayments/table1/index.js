@@ -66,7 +66,7 @@ const Table1 = () => {
    num=1;
 
     let data = getSearchData(num);
-    if (data!=undefined && data.length > 0) {
+    if (data!=undefined) {
       batchData = data;
       console.log(batchData);
       setState({connectionStarted: true, dataSource: batchData});

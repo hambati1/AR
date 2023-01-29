@@ -19,21 +19,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {getFileTypeData,getimportSearchData,getImportFileTypeData,getImportFileNames,onSubmitImportHandler} from '../../menupages/APICalls.js'
 
-const actions = [
-  { id: 1, text: "File Name" },
-  { id: 2, text: "Type" },
-  { id: 3, text: "Records Imported" },
-  { id: 4, text: "Records in Error" },
-  { id: 5, text: "Amount Imported" },
-
-];
-const dropDownOptions = {
-  height: 150,
-  width: 130
-};
 let FileImportData=[];
-
-
 
 const FileImport = () => {
   const [searchType, setSearchTypes] = useState();
