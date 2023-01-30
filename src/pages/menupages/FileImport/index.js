@@ -6,9 +6,7 @@ import '../index.style.scss';
 import AppPageMetadata from '@crema/core/AppPageMetadata';
 import Button from 'devextreme-react/button';
 import axios from 'axios';
-// import styles from '../index.style.scss'
-import DataGrid, {
-  Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
+import DataGrid, {Column, Pager, Paging, SearchPanel, Sorting, ColumnChooser, FilterRow, Toolbar, Editing
 } from 'devextreme-react/data-grid';
 import DropDownButton from 'devextreme-react/drop-down-button';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
@@ -28,7 +26,8 @@ const FileImport = () => {
   const [brand, setBrand] = useState("")
   const [selectedFile, setSelectedFile] = useState();
   const [fileName, setFileName] = useState();
-  
+  const [state,setState] = useState({connectionStarted: false, dataSource: null});
+
   const inputChangeHandler = (setFunction: React.Dispatch<React.SetStateAction<string>>, event: React.ChangeEvent<HTMLInputElement>) => {
     setFunction(event.target.value)
   }
@@ -36,14 +35,13 @@ const FileImport = () => {
     console.log("###### ",event);
     getimportSearchData(event).then((result) => {
       FileImportData =  result;
+      console.log("ddddddddd",FileImportData);
+      setState({connectionStarted: true, dataSource: FileImportData});
   })
   .catch((error) => {
       console.log(error);
   });
-    console.log('datagrid',FileImportData);
-  //   (async()=>{
-  //     FileImportData=getimportSearchData(event);
-  //  })()
+
     let data =getImportFileTypeData(event)
      console.log(data);
       setselectfileType(event);
@@ -70,8 +68,7 @@ async function getFileTypeDataVal() {
 
   return (
     <div >
-    
-          <div className="form-group">
+        <div className="form-group">
             <form onSubmit={onSubmitHandler}>
               <div className="mb-3 row">
                 <label for="inputFileType" className="col-lg-1 col-form-label ">File Type</label>
@@ -116,7 +113,7 @@ async function getFileTypeDataVal() {
           </div>
           <DataGrid
             className='card-body'
-            dataSource={FileImportData}
+            dataSource={state.dataSource}
             keyExpr={'fileName'}
             allowColumnReordering={true}>
             <Column dataField={'importFileId'} caption={'Import FileId'} minWidth={70} alignment="left" visible={false}/>

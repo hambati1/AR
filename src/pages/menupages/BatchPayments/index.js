@@ -6,10 +6,6 @@ import AppPageMetadata from '@crema/core/AppPageMetadata';
 import {Col} from 'react-bootstrap';
 // import styles from './index.module.scss';
 import Table1 from './table1';
-import Table2 from './table2';
-import Form1 from './form1';
-import Form2 from './form2';
-
 const BatchPayment = () => {
   return (
     <>
@@ -18,15 +14,7 @@ const BatchPayment = () => {
         <Col>
           <Table1 />
         </Col>
-        <Col>
-          <Table2 />
-        </Col>
-        <Col>
-          <Form1 />
-        </Col>
-        {/* <Col>
-            <Form2/>
-          </Col>  */}
+
       </div>
       <AppInfoView />
     </>

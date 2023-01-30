@@ -12,7 +12,7 @@ import {Dropdown, DropdownButton} from 'react-bootstrap';
 import {Search} from 'react-bootstrap-icons';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { getSearchData,getBatchDetailsByBatchIdService, saveBatchName } from '../../../menupages/APICalls.js'
+import { getSearchData,getBatchDetailsByBatchIdService, saveBatchName,closeBatchAPI } from '../../../menupages/APICalls.js'
 import Table from 'react-bootstrap/Table';
 
 let batchData = [];
@@ -59,19 +59,23 @@ const Table1 = () => {
       setmessages('');
   }, []);
 
-  const getSearchDataDetails = (val) => {
-  console.log('val==',val);
-  let num=0;
-  if(val)
-   num=1;
+async function getSearchDataDetails(val) {
+    console.log('val==',val);
+      let num=0;
+      if(val)
+       num=1;
 
-    let data = getSearchData(num);
-    if (data!=undefined) {
-      batchData = data;
-      console.log(batchData);
-      setState({connectionStarted: true, dataSource: batchData});
-    }
-  }
+        var data =await getSearchData(num);
+        if (data!=undefined) {
+          batchData = data;
+          setState({connectionStarted: true, dataSource: batchData});
+        }
+        else
+        {
+        batchData=[];
+        setState({connectionStarted: true, dataSource: batchData});
+        }
+}
 
   const handlebatchName = event => {
     setbatchName(event.target.value);
@@ -110,7 +114,7 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
     let json ={ "fileNames": form[0].value, "brandId": 1, "fileTypeId": form[2].value, "page": 1, "size": 10 };
     console.log(json);
     let ab = JSON.stringify(json);
-    let message = saveBatchName(json, form[0].value);
+    let message = saveBatchName(json);
   }
 
   const batchNameSubmitForm = async(event: React.FormEvent<HTMLFormElement>) => {
@@ -122,7 +126,7 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
         "batchName": batchName, "isPayment": 1, "isClosed": 0,
         "cmImportFile": { "importFileId": importFileId }
       }
-      let data = await saveBatchName(json, batchId);
+      let data = await saveBatchName(json);
       let dataString=JSON.stringify(data);
       console.log(dataString);
       let obj = JSON.parse(dataString);
@@ -137,10 +141,10 @@ const handleEditEvent: GridEventListener<'rowClick'> = (params, event, details, 
       else
       {
         batchData.push(obj.response);
-        // this.setState({connectionStarted: true, dataSource: batchData});
         console.log('batchData=',batchData);
         setState({connectionStarted: true, dataSource: batchData});
         console.log('state=',state);
+        setShow(false);
       }
     }
   }
@@ -189,6 +193,18 @@ const  customizeIsPayment=(cellInfo)=> {
       else
        return 'Adjustment';
    }
+const customIsStatus=(cellInfo) =>{
+  if(cellInfo.value==1)
+            return 'Closed';
+      else
+       return 'Open';
+}
+const closeBatch =async() =>
+{
+console.log("closeBatch",batchId);
+ var response=await closeBatchAPI(batchId);
+ console.log("response=",response);
+}
 
 const  dateFormat=(cellInfo)=> {
  let date = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' })
@@ -225,6 +241,10 @@ const  dateFormat=(cellInfo)=> {
                                 <Dropdown.Item href='#/action-2' onClick={handleShow2}>
                                   Add Agency Payment Batch
                                 </Dropdown.Item>
+                                -----------------------------------
+                                 <Dropdown.Item href='#/action-2' onClick={closeBatch}>
+                                                                  Close Batch
+                                                                </Dropdown.Item>
                               </Dropdown.Menu>
                             </Dropdown>
               </div>
@@ -350,7 +370,7 @@ const  dateFormat=(cellInfo)=> {
                 <Column dataField={'batchName'} caption={'Name'}minWidth={100} alignment="left" />
                 <Column dataField={'createdBy'} caption={'Created By'} minWidth={100} alignment="left"/>
                 <Column dataField={'creationDt'} caption={'Creation Date'} minWidth={100} alignment="left" customizeText={dateFormat} />
-                <Column dataField={'status'} caption={'Status'} minWidth={100} alignment="left"/>
+                <Column dataField={'status'} caption={'Status'} minWidth={100} alignment="left" customizeText={customIsStatus}  />
                 <Column dataField={'totalRecords'} caption={'Total Records'} minWidth={100} alignment="left"/>
                 <Column dataField={'totalAmount'} caption={'Total Amount'} minWidth={100} alignment="left"/>
                 <Column dataField={'totalAgencyFee'}caption={'Total Agency Fees'} minWidth={100} alignment="left"/>
@@ -379,7 +399,7 @@ const  dateFormat=(cellInfo)=> {
                     dataSource={batchSubData}
                     showBorders={true}>
                     <Paging enabled={false} />
-                    <Column dataField={'batchId'} caption={'Customer ID'} minWidth={100} alignment="left" />
+                    <Column dataField={''} caption={'Customer ID'} minWidth={100} alignment="left" />
                     <Column dataField={'batchName'} caption={'Customer Name'} minWidth={100} alignment="left" />
                     <Column dataField={'paymentType'} caption='Payment Type'minWidth={100} alignment="left" />
                     <Column dataField={'createdBy'} caption='Payment Amount'minWidth={100} alignment="left" />
@@ -411,9 +431,7 @@ const  dateFormat=(cellInfo)=> {
                     <input
                       type='text'
                       className='form-control'
-                      id='input customer id'
-                      value={batchEditdata.batchId}
-                    />
+                      id='input customer id'/>
                </div>
           </div>
 

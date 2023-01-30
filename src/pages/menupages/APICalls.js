@@ -165,10 +165,10 @@ export const onSubmitExportHandler = (json) => {
 
 /*Batch payment*/
 
-export const saveBatchName= (json,batchId) => {
+export const saveBatchName= (json) => {
   let session=localStorage.getItem('token');
   let message='';
-  const url = PATH + 'ar/batch/save/'+batchId;
+  const url = PATH + 'ar/batch/save';
   console.log(JSON.stringify(json));
   message= fetch(url, {
       method: 'POST',
@@ -201,16 +201,33 @@ let session=localStorage.getItem('token');
 
 export const getSearchData= (active) => {
 let session=localStorage.getItem('token');
-  fetch(PATH + 'ar/batch?isPayment='+active+'&isClosed=0', {
+var res;
+  res=fetch(PATH + 'ar/batch?isPayment='+active+'&isClosed=0', {
       method: 'GET',
       headers: { "Content-Type": 'application/json', Session: session }
     }
     ).then((response) => response.json())
     .then(function(data) {
-        result = data.response;
+        res = data.response;
+        return res;
     });
-return result;
+    return res;
 }
+export const closeBatchAPI=async(batId)=>
+{
+let session=localStorage.getItem('token');
+const url = PATH + 'ar/batch/close';
+  const config = {
+    headers: {
+      'content-type': 'application/json',
+      Session: session
+    }};
+  const json={'batchId':batId};
+      const response =await axios.post(url,json,config);
+      console.log(response.data.response);
+  return response.data.response;
+}
+
 /*End Batch payment*/
 
 
@@ -246,9 +263,10 @@ export const accountUpdate = (key,json) => {
   return result;
 }
 
-export const addGLCode = (json) => {
+export const addGLCode =async (json) => {
   console.log('abc===',json);
   const url = PATH + 'ar/gl/cd/save/';
+  let res='';
   let session=localStorage.getItem('token');
   const config = {
     headers: {
@@ -256,11 +274,12 @@ export const addGLCode = (json) => {
       Session: session
     },
   };
-  axios.post(url, json, config).then((response) => {
+  res=await axios.post(url, json, config).then((response) => {
     console.log(response.data);
-    result= response.data;
+    res= response.data.response;
+      console.log('123===',res);
+      return res;
   });
-  return result;
 }
 
 export const saveGLAccount = (json) => {

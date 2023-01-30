@@ -8,7 +8,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import {Dropdown, DropdownButton} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
-import {  getGLAccountData,  accountUpdate,  saveGLAccount} from '../../menupages/APICalls.js';
+import {  getGLAccountData,  accountUpdate,  saveGLAccount,addGLCode} from '../../menupages/APICalls.js';
 import DataSource from 'devextreme/data/data_source';
 import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 const allowedPageSizes = [10, 20, 50];
@@ -83,17 +83,19 @@ class GLAccount extends React.Component {
     console.log("data push");
     const form = event.target;
     event.preventDefault();
+    let a=0;
+    if(this.active)
+     a=1;
+
     let json = {
-      glcode: 1234,
-      accountNumber: form[0].value,
-      description: form[1].value,
-      updatedBy: 'hambati',
-      updateDate: '24-12-2022',
-      comments: form[2].value,
+      glAcctNum: form[0].value,
+      glCdDesc: form[1].value,
+      glComment: form[2].value,
+      isActive:a
     };
-    addGLCode(json);
-    console.log("gldata",gldata);
-    gldata.push(json);
+    let response= addGLCode(json);
+    console.log("response",response);
+    gldata.push(response);
     console.log("gldata",gldata);
     this.setState({connectionStarted: true, dataSource: gldata});
     this.show = false;
