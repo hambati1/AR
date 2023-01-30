@@ -14,7 +14,6 @@ const Adjustments = () => {
 
     const [showModal, setShowModal] = useState(false);
     const [state, setState] = useState(false);
-    const [setFileType, setFileTypes] = useState();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

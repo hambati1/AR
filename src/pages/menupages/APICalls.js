@@ -13,7 +13,7 @@ let result=[];
 export const getAdjestmentTypeData=() => {
 console.log("sssssssssss");
 let session=localStorage.getItem('token');
-  const adjtyeps = fetch(PATH + "/pp/adjtype", {
+  const adjtyeps = fetch(PATH + "pp/adjtype", {
     method: 'GET',
     headers: { Session: session }
   }
@@ -26,7 +26,7 @@ let session=localStorage.getItem('token');
 export const getAdjestmentadjcat=() => {
 console.log("sssssssssss");
 let session=localStorage.getItem('token');
-  const adjadjcat  = fetch(PATH + "/pp/adjcat ", {
+  const adjadjcat  = fetch(PATH + "pp/adjcat ", {
     method: 'GET',
     headers: { Session: session }
   }

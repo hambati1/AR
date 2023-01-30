@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import {Dropdown, DropdownButton} from 'react-bootstrap';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../../menupages/index.style.scss';
-import { getFileTypeData, getimportSearchData, getImportFileTypeData, getImportFileNames, onSubmitImportHandler,getAdjestmentTypeData,getAdjestmentadjcat} from '../../menupages/APICalls.js'
+import { getAdjestmentTypeData, getAdjestmentadjcat } from '../../menupages/APICalls.js'
 import 'react-dyn-tabs/style/react-dyn-tabs.min.css';
 import 'react-dyn-tabs/themes/react-dyn-tabs-basic.min.css';
 import useDynTabs from 'react-dyn-tabs';
@@ -19,7 +19,8 @@ import AdjustmentsData from "../../SearchWorklist/Adjustments/index.js"
 import { BsBarChartLine, BsFonts, BsGear, BsGrid3X3Gap, BsStar } from "react-icons/bs";
 import { IoFlameOutline } from "react-icons/io5";
 import { AiOutlineSearch } from "react-icons/ai";
-import {onSearchPayment} from '../../menupages/APICalls.js';
+import { onSearchPayment } from '../../menupages/APICalls.js';
+import { BiSleepy } from 'react-icons/bi';
 
 let _instance, isVertical;
 let tab = 0;
@@ -55,9 +56,9 @@ const actions = {
         lazy: true,
         tooltip: 'File Import',
         disable: false,
-        closable: true,  
+        closable: true,
         panelComponent: function PanelComponent() {
-          return <p><FileImportData/> </p>;
+          return <p><FileImportData /> </p>;
         },
       })
       .then(() => {
@@ -208,9 +209,7 @@ const actions = {
 }
 
 const Search = () => {
-const [adjType, setadjTypes] = useState();
-const [adjCat, setadjCats] = useState();
-
+  
   const options = {
     tabs: [
       { id: '0', title: 'Search', panelComponent: Panel0, iconClass: 'fa fa-home', closable: false },
@@ -253,52 +252,66 @@ const [adjCat, setadjCats] = useState();
   };
 
 
-  useEffect(() => {
-  getAdjestmentTypeDataMethod();
-  getAdjestmentadjcatData();
-  }, []);
 
-  async function getAdjestmentTypeDataMethod() {
-    var data=await  getAdjestmentTypeData();
-      console.log('Statement 2'+data);
-      setadjTypes(data.response);
-      console.log('Statement ='+adjType);
-  }
 
-  async function getAdjestmentadjcatData() {
-      var data=await  getAdjestmentadjcat();
-        console.log('Statement 2'+data);
-        setadjCats(data.response);
-        console.log('adjCat ='+adjCat);
-    }
+    // setadjCats(data.response);
+    // console.log('adjCat =' + adjCat);
 
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-      const form = event.target;
-      event.preventDefault();
-      console.log("dd",form[1])
-      const formData = new FormData();
-      formData.append('custId', form[1].value);
-      formData.append('custName',  form[2].value);
-      formData.append('paymentTypeId',  form[3].value);
-      formData.append('fromAmt',  form[4].value);
-      formData.append('toAmt',  form[5].value);
-      formData.append('checkNum',  form[6].value);
-      formData.append('batchId',  form[7].value);
-      formData.append('paymentFromDate',  form[8].value);
-      formData.append('paymentToDate',  form[9].value);
-      formData.append('postedFromDate',  form[10].value);
-      formData.append('statuses',  form[11].value);
-      const json = Object.fromEntries(formData);
-      console.log(json);
-      onSearchPayment(json);
-    }
-  function Panel0(){
+    const form = event.target;
+    event.preventDefault();
+    console.log("dd", form[1])
+    const formData = new FormData();
+    formData.append('custId', form[1].value);
+    formData.append('custName', form[2].value);
+    formData.append('paymentTypeId', form[3].value);
+    formData.append('fromAmt', form[4].value);
+    formData.append('toAmt', form[5].value);
+    formData.append('checkNum', form[6].value);
+    formData.append('batchId', form[7].value);
+    formData.append('paymentFromDate', form[8].value);
+    formData.append('paymentToDate', form[9].value);
+    formData.append('postedFromDate', form[10].value);
+    formData.append('statuses', form[11].value);
+    const json = Object.fromEntries(formData);
+    console.log(json);
+    onSearchPayment(json);
+  }
+  function Panel0() {
     const [active, setactive] = useState('');
+    const [adjType, setadjTypes] = useState([]);
+  const [adjCat, setadjCats] = useState([{adjCatId: 10, adjCatDesc: 'Add Fee'}]);
+console.log(adjType)
     console.log(active);
-  return <p>
-    <div>
-          <div className='form-group'>
+
+    // useEffect(() => {
+    //   getAdjestmentTypeDataMethod();
+    //   // getAdjestmentadjcatData();
+    // }, []);
+  
+    const handleSearchType = (event) => {
+     setactive(event.target.value);
+    getAdjestmentadjcatData()
+    getAdjestmentTypeDataMethod()
+    }
+
+    async function getAdjestmentTypeDataMethod() {
+      await getAdjestmentTypeData().then((data)=>{;
+      setadjTypes([...data.response]);
+      })
+    }
+  
+    async function getAdjestmentadjcatData() {
+   await getAdjestmentadjcat().then((data)=>{
+    setadjCats([...data.response]);
+  });
+    }
+
+    return (
+    <p>
+      <div>
+        <div className='form-group'>
           <form onSubmit={onSubmitHandler}>
             <div className='mb-2 row'>
               <label for='inputFileType' className='col-lg-1 col-form-label'>
@@ -306,242 +319,130 @@ const [adjCat, setadjCats] = useState();
               </label>
               <div className='col-sm-4 Dropdown'>
                 <select
-                  className='form-select Search-type '
-                  Name='searchType'
-                  aria-label='Default select example'
+                  className='form-select Search-type ' Name='searchType' aria-label='Default select example'
                   onChange={(event) => {
-                    setactive(event.target.value);
-                    console.log(event);
+                    handleSearchType(event)
                   }}>
-                    <option value=''></option>
-                    
-                  <option
-                    value='Payments'
-                    onClick={() => setactive('payments')}>
-                    Payments
-                  </option>
+                  <option value=''></option>
 
                   <option
-                    value='Adjustments'
-                    onClick={() => setactive('Adjustments')}>
-                    Adjustments
+                    value='Payments' onClick={() => setactive('payments')  
+                    }> Payments
                   </option>
+
+                  <option value='Adjustments' onClick={() => setactive('Adjustments')}>Adjustments</option>
                 </select>
               </div>
               {active == '' ? (
                 <div className='mt-10'>
-                   <button type='submit' className='btn mb-3 btn-Gray'>
-                    Submit
-                  </button>
-                  <button
-                    type='reset'
-                    value='Reset'
-                    className='btn  mb-3 btn-darkGray '>
-                    Reset
-                  </button>
+                  <button type='submit' className='btn mb-3 btn-Gray'>Submit</button>
+                  <button type='reset' value='Reset' className='btn  mb-3 btn-darkGray '>Reset</button>
                 </div>
-              ) : null }
+              ) : null}
 
               {active == 'Payments' ? (
                 <div className='padding'>
                   {/* payments fields starts */}
                   <div>
                     <div className='mb-2 row'>
-                      <label
-                        for='inputCustomerid'
-                        className='col-lg-2 col-form-label'>
-                        Customer ID
-                      </label>
+                      <label for='inputCustomerid' className='col-lg-2 col-form-label'> Customer ID</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='inputCustomerid'
-                        />
+                        <input type='text' className='form-control search-form-control' id='inputCustomerid' />
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='inputCustomername'
-                        className='col-lg-2 col-form-label '>
-                        Customer Name
-                      </label>
+                      <label for='inputCustomername' className='col-lg-2 col-form-label '>Customer Name</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='inputCustomername'
-                        />
+                        <input type='text' className='form-control search-form-control' id='inputCustomername' />
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='inputfrom date'
-                        className='col-lg-2 col-form-label'>
-                        Payment From Date
-                      </label>
+                      <label for='inputfrom date' className='col-lg-2 col-form-label'>Payment From Date</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='inputfrom date'
-                        />
+                        <input type='text' className='form-control search-form-control' id='inputfrom date' />
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='inputTo date'
-                        className='col-lg-2 col-form-label'>
-                        {' '}
-                        Payment To Date
-                      </label>
+                      <label for='inputTo date' className='col-lg-2 col-form-label'> {' '}Payment To Date</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='inputTodate'
-                        />
+                        <input type='text' className='form-control search-form-control' id='inputTodate' />
                       </div>
                     </div>
                     <div className='mb-2 row'>
-                      <label
-                        for='inputfrom amount'
-                        className='col-lg-2 col-form-label'>
-                        Posted From Date
-                        
-                      </label>
+                      <label for='inputfrom amount' className='col-lg-2 col-form-label'>Posted From Date</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='date'
-                          className='form-control search-form-control'
-                          id='inputfromdate'
-                        />
+                        <input type='date' className='form-control search-form-control' id='inputfromdate' />
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='input to amount'
-                        className='col-lg-2 col-form-label'>
-                        Posted To Date
-                      </label>
+                      <label for='input to amount' className='col-lg-2 col-form-label'>Posted To Date</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='date'
-                          className='form-control search-form-control'
-                          id='input to amount'
-                        />
+                        <input type='date' className='form-control search-form-control' id='input to amount' />
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='input from amount'
-                        className='col-lg-2 col-form-label'>
-                        From Amount
+                      <label for='input from amount' className='col-lg-2 col-form-label'> From Amount
                       </label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='input from amount'
-                        />
+                        <input type='text'className='form-control search-form-control'id='input from amount'/>
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='input to amount'
-                        className='col-lg-2 col-form-label'>
-                        To Amount
-                      </label>
+                      <label for='input to amount' className='col-lg-2 col-form-label'> To Amount</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='input to amount'
-                        />
+                        <input type='text'className='form-control search-form-control' id='input to amount'/>
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='input type'
-                        className='col-lg-2 col-form-label'>
-                        Type
-                      </label>
+                      <label for='input type' className='col-lg-2 col-form-label'>Type</label>
                       <div className='col-sm-3'>
-                       <select className="form-select select-style" Name="adjType" aria-label="Default select example"
-                                          onChange={(e) => selectChangeHandler(adjType, e.target.value)} >
-                                          <option value=""></option>
-                                          {adjType &&
-                                            adjType.map((user) => (
-                                              <option value={user.adjTypeId}>{user.adjTypeName}</option>
-                                            ))}
-                                        </select>
-                       </div>
-                    </div>
-
-                    <div className='mb-2 row'>
-                      <label
-                        for='input status'
-                        className='col-lg-2 col-form-label'>
-                        Status
-                      </label>
-                      <div className='col-sm-3'>
-                        <select
-                          className='form-select search-form-select'
-                          Name='status'
-                          aria-label='Default select example'>
-                          <option value=''></option>
-                          <option value=''></option>
+                        <select className="form-select search-form-select" Name="adjType" aria-label="Default select example"
+                          onChange={(e) => selectChangeHandler(adjType, e.target.value)} >
+                          <option value=""></option>
+                          {adjType.length > 0 &&
+                            adjType.map((user) => (
+                              <option value={user.adjTypeId}>{user.adjTypeDesc}</option>
+                            ))}
                         </select>
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='input check number'
-                        className='col-lg-2 col-form-label'>
-                        Check Number
-                      </label>
+                      <label for='input status'className='col-lg-2 col-form-label'> Status</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='input check number'
-                        />
+                        <select className='form-select search-form-select'Name='status'aria-label='Default select example'>
+                          <option value=''></option>
+                          <option value='Posted-Unbilled'>Posted-unbilled</option>
+                          <option value='Unposted'>Unposted</option>
+                          <option value='Billed'>Billed</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className='mb-2 row'>
+                      <label for='input check number'className='col-lg-2 col-form-label'>Check Number</label>
+                      <div className='col-sm-3'>
+                        <input type='text'className='form-control search-form-control'id='input check number' />
                       </div>
                     </div>
                     <div className='mb-2 row'>
-                      <label
-                        for='input batch id'
-                        className='col-lg-2 col-form-label'>
-                        Batch ID
-                      </label>
+                      <label for='input batch id'className='col-lg-2 col-form-label'> Batch ID</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='input batch id'
-                        />
+                        <input type='text'className='form-control search-form-control'id='input batch id'/>
                       </div>
                     </div>
                   </div>
 
                   {/* payments fields ends */}
-                  <button type='submit' onClick={actions.payments} className='btn mb-3 btn-Gray'>
-                    Submit
-                  </button>
-                  <button
-                    type='reset'
-                    value='Reset'
-                    className='btn mb-3 btn-darkGray '>
-                    Reset
-                  </button>
+                  <button type='submit' onClick={actions.payments} className='btn mb-3 btn-Gray'> Submit</button>
+                  <button type='reset'value='Reset'className='btn mb-3 btn-darkGray '>Reset</button>
                 </div>
               ) : null}
               {active == 'Adjustments' ? (
@@ -549,91 +450,43 @@ const [adjCat, setadjCats] = useState();
                   {/* adjustments fields starts */}
                   <div>
                     <div className='mb-2 row'>
-                      <label
-                        for='inputCustomerid'
-                        className='col-lg-2 col-form-label'>
-                        Customer ID
-                      </label>
+                      <label for='inputCustomerid'className='col-lg-2 col-form-label'>Customer ID</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='inputCustomerid'
-                        />
+                        <input type='text'className='form-control search-form-control'id='inputCustomerid'/>
                       </div>
                     </div>
                     <div className='mb-2 row'>
-                      <label
-                        for='inputCustomername'
-                        className='col-lg-2 col-form-label'>
-                        Customer Name
-                      </label>
+                      <label for='inputCustomername'className='col-lg-2 col-form-label'>Customer Name</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='inputCustomername'
-                        />
+                        <input type='text'className='form-control search-form-control'id='inputCustomername'/>
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='inputfrom date'
-                        className='col-lg-2 col-form-label'>
-                        {' '}
-                        From Date
-                      </label>
+                      <label for='inputfrom date'className='col-lg-2 col-form-label'>{' '}From Date</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='inputfrom date'
-                        />
+                        <input type='text'className='form-control search-form-control'id='inputfrom date'/>
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='inputTo date'
-                        className='col-lg-2 col-form-label'>
-                        To Date
-                      </label>
+                      <label for='inputTo date'className='col-lg-2 col-form-label'>To Date</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='inputTodate'
-                        />
+                        <input type='text'className='form-control search-form-control'id='inputTodate'/>
                       </div>
                     </div>
                     <div className='mb-2 row'>
-                      <label
-                        for='inputfrom amount'
-                        className='col-lg-2 col-form-label'>
-                        From Amount
-                      </label>
+                      <label for='inputfrom amount' className='col-lg-2 col-form-label'> From Amount </label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='inputfrom amount'
-                        />
+                        <input type='text' className='form-control search-form-control'id='inputfrom amount'/>
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='input to amount'
-                        className='col-lg-2 col-form-label'>
-                        To Amount
-                      </label>
+                      <label for='input to amount'className='col-lg-2 col-form-label'>To Amount</label>
                       <div className='col-sm-3'>
-                        <input
-                          type='text'
-                          className='form-control search-form-control'
-                          id='input to amount'
-                        />
+                        <input type='text'className='form-control search-form-control' id='input to amount'
+/>
                       </div>
                     </div>
 
@@ -644,71 +497,58 @@ const [adjCat, setadjCats] = useState();
                         Category
                       </label>
                       <div className='col-sm-3'>
-                         <select className="form-select select-style" Name="adjType" aria-label="Default select example"
-                                                                  onChange={(e) => selectChangeHandler(adjCat, e.target.value)} >
-                                                                  <option value=""></option>
-                                                                  {adjCat &&
-                                                                    adjCat.map((user) => (
-                                                                      <option value={user.adjCatId}>{user.adjCatDesc}</option>
-                                                                    ))}
-                                                                </select>
+                     <select className="form-select search-form-select" Name="adjType" aria-label="Default select example"
+                          onChange={(e) => selectChangeHandler(adjCat, e.target.value)} >
+                          <option value=""></option>
+                          {adjCat.length > 0 &&
+                            adjCat.map((user) => {
+                              return (
+                              <option value={user.adjCatId}>{user.adjCatDesc}</option>
+                               )})}
+                        </select>
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='input type'
-                        className='col-lg-2 col-form-label'>
-                        Type
-                      </label>
+                      <label for='input type'className='col-lg-2 col-form-label'>Type </label>
                       <div className='col-sm-3'>
-                         <select className="form-select select-style" Name="adjType" aria-label="Default select example"
-                                                                  onChange={(e) => selectChangeHandler(adjType, e.target.value)} >
-                                                                  <option value=""></option>
-                                                                  {adjType &&
-                                                                    adjType.map((user) => (
-                                                                      <option value={user.adjTypeId}>{user.adjTypeName}</option>
-                                                                    ))}
-                                                                </select>
+                        <select className="form-select search-form-select" Name="adjType" aria-label="Default select example"
+                          onChange={(e) => selectChangeHandler(adjType, e.target.value)} >
+                          <option value=""></option>
+                          {adjType.length > 0 &&
+                            adjType.map((user) => (
+                              <option value={user.adjTypeId}>{user.adjTypeDesc}</option>
+                            ))}
+                        </select>
                       </div>
                     </div>
 
                     <div className='mb-2 row'>
-                      <label
-                        for='input status'
-                        className='col-lg-2 col-form-label'>
-                        Status
-                      </label>
+                      <label for='input status'className='col-lg-2 col-form-label'>Status</label>
                       <div className='col-sm-3'>
-                        <select
-                          className='form-select search-form-select'
-                          Name='status'
-                          aria-label='Default select example'>
-                          <option value=''></option>
-                          <option value=''></option>
+                        <select className='form-select search-form-select'Name='status'aria-label='Default select example'>
+                        <option value=''></option>
+                          <option value='Posted-Unbilled'>Posted-unbilled</option>
+                          <option value='Unposted'>Unposted</option>
+                          <option value='Billed'>Billed</option>
                         </select>
                       </div>
                     </div>
                   </div>
-                  <button type='submit'onClick={actions.adjustments} className='btn  mb-3 btn-Gray'>
-                    Submit 
+                  <button type='submit' onClick={actions.adjustments} className='btn  mb-3 btn-Gray'>
+                    Submit
                   </button>
-                 
-                 
-                  <button
-                    type='reset'
-                    value='Reset'
-                    className='btn  mb-3 btn-darkGray'>
-                    Reset
-                  </button>
+                  <button type='reset'value='Reset'className='btn  mb-3 btn-darkGray'>Reset</button>
                 </div>
               ) : null}
             </div>
-            </form>
-          </div>
-    </div>
+          </form>
+        </div>
+      </div>
     </p>
+    )
   };
+
   const [Tablist, Panellist, ready] = useDynTabs(options);
   ready((instance) => {
     _instance = instance;
@@ -727,55 +567,55 @@ const [adjCat, setadjCats] = useState();
 
   );
 };
-  export const HandleButtons = () => {
-    const [isOpen, setIsOpen] = useState(true);
-    const handleTrigger = () => setIsOpen(!isOpen);
-  
-    return (
-      <div className="col-6">
-        <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
-  
+export const HandleButtons = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const handleTrigger = () => setIsOpen(!isOpen);
+
+  return (
+    <div className="col-6">
+      <div className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
+
         <div className="sidebar-position">
-            <AiOutlineSearch onClick={actions.search} icon={AiOutlineSearch} />
-            <span onClick={actions.search}>Search</span>
-          </div>
-          
-          <div className="sidebar-position">
-            <BsGear onClick={actions.fileImport} icon={BsGear} />
-            <span onClick={actions.fileImport}>File Import</span>
-          </div>
-  
-          <div className="sidebar-position">
-            <BsBarChartLine onClick={actions.fileExport} icon={BsBarChartLine} />
-            <span onClick={actions.fileExport}>File Export</span>
-          </div>
-  
-          <div className="sidebar-position">
-            <BsGrid3X3Gap onClick={actions.batch} icon={BsGrid3X3Gap} />
-            <span onClick={actions.batch}>Batch Payment</span>
-          </div>
-  
-          <div className="sidebar-position">
-            <IoFlameOutline onClick={actions.gl} icon={IoFlameOutline} />
-            <span onClick={actions.gl}>GL Account</span>
-          </div>
-  
-          <div className="sidebar-position">
-            <BsFonts onClick={actions.tax} icon={BsFonts} />
-            <span onClick={actions.tax}>Tax Viewer</span>
-          </div>
-  
-          <div className="sidebar-position">
-            <BsStar onClick={actions.creditcard} icon={BsStar} />
-            <span onClick={actions.creditcard}>Credit Card</span>
-          </div>
-  
-  
+          <AiOutlineSearch onClick={actions.search} icon={AiOutlineSearch} />
+          <span onClick={actions.search}>Search</span>
         </div>
+
+        <div className="sidebar-position">
+          <BsGear onClick={actions.fileImport} icon={BsGear} />
+          <span onClick={actions.fileImport}>File Import</span>
+        </div>
+
+        <div className="sidebar-position">
+          <BsBarChartLine onClick={actions.fileExport} icon={BsBarChartLine} />
+          <span onClick={actions.fileExport}>File Export</span>
+        </div>
+
+        <div className="sidebar-position">
+          <BsGrid3X3Gap onClick={actions.batch} icon={BsGrid3X3Gap} />
+          <span onClick={actions.batch}>Batch Payment</span>
+        </div>
+
+        <div className="sidebar-position">
+          <IoFlameOutline onClick={actions.gl} icon={IoFlameOutline} />
+          <span onClick={actions.gl}>GL Account</span>
+        </div>
+
+        <div className="sidebar-position">
+          <BsFonts onClick={actions.tax} icon={BsFonts} />
+          <span onClick={actions.tax}>Tax Viewer</span>
+        </div>
+
+        <div className="sidebar-position">
+          <BsStar onClick={actions.creditcard} icon={BsStar} />
+          <span onClick={actions.creditcard}>Credit Card</span>
+        </div>
+
+
       </div>
-    );
-  
-  };
+    </div>
+  );
+
+};
 
 
 
