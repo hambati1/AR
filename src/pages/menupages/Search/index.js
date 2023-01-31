@@ -3,7 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import '../../menupages/index.style.scss';
-import { getAdjestmentTypeData, getAdjestmentadjcat } from '../../menupages/APICalls.js'
+import { getAdjestmentTypeData, getAdjestmentadjcat,getPaymentTypeData } from '../../menupages/APICalls.js'
 import 'react-dyn-tabs/style/react-dyn-tabs.min.css';
 import 'react-dyn-tabs/themes/react-dyn-tabs-basic.min.css';
 import useDynTabs from 'react-dyn-tabs';
@@ -20,8 +20,6 @@ import { BsBarChartLine, BsFonts, BsGear, BsGrid3X3Gap, BsStar } from "react-ico
 import { IoFlameOutline } from "react-icons/io5";
 import { AiOutlineSearch } from "react-icons/ai";
 import { onSearchPayment } from '../../menupages/APICalls.js';
-import { BiSleepy } from 'react-icons/bi';
-
 let _instance, isVertical;
 let tab = 0;
 
@@ -280,9 +278,11 @@ const Search = () => {
   }
   function Panel0() {
     const [active, setactive] = useState('');
+    const[paymentType,setpaymentTypes] = useState([]);
     const [adjType, setadjTypes] = useState([]);
-  const [adjCat, setadjCats] = useState([{adjCatId: 10, adjCatDesc: 'Add Fee'}]);
-console.log(adjType)
+  const [adjCat, setadjCats] = useState([]);
+// console.log(adjType)
+console.log(paymentType)
     console.log(active);
 
     // useEffect(() => {
@@ -294,6 +294,12 @@ console.log(adjType)
      setactive(event.target.value);
     getAdjestmentadjcatData()
     getAdjestmentTypeDataMethod()
+    getPaymentTypeDataMethod()
+    }
+    async function getPaymentTypeDataMethod() {
+      await getPaymentTypeData().then((data)=>{;
+      setpaymentTypes([...data.response]);
+      })
     }
 
     async function getAdjestmentTypeDataMethod() {
@@ -403,14 +409,15 @@ console.log(adjType)
                     <div className='mb-2 row'>
                       <label for='input type' className='col-lg-2 col-form-label'>Type</label>
                       <div className='col-sm-3'>
-                        <select className="form-select search-form-select" Name="adjType" aria-label="Default select example"
-                          onChange={(e) => selectChangeHandler(adjType, e.target.value)} >
+                        <select className="form-select search-form-select" Name='paymentType' aria-label="Default select example"
+                          onChange={(e) => selectChangeHandler(paymentType, e.target.value)} >
                           <option value=""></option>
-                          {adjType.length > 0 &&
-                            adjType.map((user) => (
-                              <option value={user.adjTypeId}>{user.adjTypeDesc}</option>
-                            ))}
-                        </select>
+                          {paymentType.length > 0 &&
+                            paymentType.map((user) => (
+                              <option value={user.paymentTypeId}>{user.paymentTypeDesc
+                              }</option>
+                            ))} 
+                        </select> 
                       </div>
                     </div>
 
@@ -485,8 +492,7 @@ console.log(adjType)
                     <div className='mb-2 row'>
                       <label for='input to amount'className='col-lg-2 col-form-label'>To Amount</label>
                       <div className='col-sm-3'>
-                        <input type='text'className='form-control search-form-control' id='input to amount'
-/>
+                        <input type='text'className='form-control search-form-control' id='input to amount'/>
                       </div>
                     </div>
 

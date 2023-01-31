@@ -35,6 +35,19 @@ let session=localStorage.getItem('token');
   return adjadjcat;
 };
 
+export const getPaymentTypeData=() => {
+  console.log("sssssssssss");
+  let session=localStorage.getItem('token');
+    const paymenttyeps = fetch(PATH + "ar/payment/type ", {
+      method: 'GET',
+      headers: { Session: session }
+    }
+    ).then((response) => response.json());
+    console.log(paymenttyeps);
+    return paymenttyeps;
+  };
+
+
 /* END Search Adjestment Type*/
 
 export const getimportSearchData = async (selectfileType) => {
